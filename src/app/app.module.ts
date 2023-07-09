@@ -45,7 +45,7 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import {JwtGuard } from './infraestructure/guard/JwtGuard';
-import { NgEncrypt } from 'ng-encrypt';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -88,8 +88,7 @@ const APP_CONTAINERS = [
     CardModule
   ],
   providers: [
-    JwtGuard,
-    NgEncrypt
+    JwtGuard
   ],
   bootstrap: [AppComponent],
 })
