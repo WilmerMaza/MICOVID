@@ -13,7 +13,7 @@ export class MicoviApiService {
 
   public params = new HttpParams();
   public basePatch = environment.micovi_api;
-  public headers$!: HttpHeaders;
+  public headers$: HttpHeaders | undefined;
   public token = '';
 
 
@@ -170,13 +170,14 @@ export class MicoviApiService {
   }
 
 
-  private httpOptions(): HttpHeaders {
+  private httpOptions():HttpHeaders{
     if (this.token) {
       return this.jsonAuth();
     }
     if (!this.token) {
       return this.notAuth();
     }
+    return new HttpHeaders();
   }
 
   private jsonAuth = (): HttpHeaders =>

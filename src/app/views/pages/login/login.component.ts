@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { LoginFormModel } from 'src/app/views/pages/model/LoginFormModel'
-import { SessionService } from 'src/app/views/pages/services/session.service'
+import { LoginFormModel } from 'src/app/views/pages/model/LoginFormModel';
+import { SessionService } from 'src/app/views/pages/services/session.service';
+import * as CryptoJS from 'crypto-js';
+import { ResponseLoginModel } from 'src/app/views/pages/model/ResponseLoginModel';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Route, Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -13,26 +19,33 @@ export class LoginComponent {
 
 
   public loginForm: FormGroup = new LoginFormModel().formLogin();
-  private loginSession$: SessionService;
+
   constructor(
-    loginSession$: SessionService
+    private loginSession$: SessionService,
+    private authService$: AuthService,
+    private router$: Router
   ) {
-    this.loginSession$ = loginSession$;
+
   }
 
 
   sessionLogin(): void {
 
     if (!this.loginForm.invalid) {
-      // const encryptor = new NgEncrypt();
-      // const encryptedPassword = encryptor.encrypt(this.loginForm.get("password")?.value);
-      // const data = {
-      //   Name: this.loginForm.get("username")?.value,
-      //   Password: encryptedPassword
-      // }
-      // this.loginSession$.sessionLogin(data).subscribe();
+      const secretKey = '1234567890';
+      const encryptedData = CryptoJS.AES.encrypt(this.loginForm.get("password")?.value, secretKey).toString();
+      const data = {
+        Name: this.loginForm.get("username")?.value,
+        Password: encryptedData
+      }
+      this.loginSession$.sessionLogin(data).subscribe((response: ResponseLoginModel) => {
+        const { token } = response;
+        if (token) {
+          this.authService$.setToken(token);
+          this.router$.navigate(['/dashboard']);
+        }
+      });
     }
-    console.log(this.loginForm)
 
   }
 }

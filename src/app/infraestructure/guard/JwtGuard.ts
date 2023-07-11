@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 
 
@@ -7,13 +8,17 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
     providedIn: 'root'
 })
 
-export class JwtGuard implements CanActivate {
+export class JwtGuard  {
     constructor(
-        private router: Router
+        private router: Router,
+        private authService$:AuthService
     ) { }
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // this.router.navigate(['/login']);
-        return true;
+        if (this.authService$.getToken()) {
+            return true;
+        }
+         this.router.navigate(['/login']);
+        return false;
     }
 }
 

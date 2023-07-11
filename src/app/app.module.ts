@@ -45,7 +45,7 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import {JwtGuard } from './infraestructure/guard/JwtGuard';
-
+import { HttpClientModule } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -85,7 +85,8 @@ const APP_CONTAINERS = [
     ProgressModule,
     BadgeModule,
     ListGroupModule,
-    CardModule
+    CardModule,
+    HttpClientModule
   ],
   providers: [
     JwtGuard
