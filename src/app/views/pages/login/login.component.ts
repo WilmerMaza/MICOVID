@@ -6,6 +6,7 @@ import * as CryptoJS from 'crypto-js';
 import { ResponseLoginModel } from 'src/app/views/pages/model/ResponseLoginModel';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Route, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -16,8 +17,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-
+  
   public loginForm: FormGroup = new LoginFormModel().formLogin();
 
   constructor(
@@ -32,7 +32,7 @@ export class LoginComponent {
   sessionLogin(): void {
 
     if (!this.loginForm.invalid) {
-      const secretKey = '1234567890';
+      const secretKey = environment.keyEncryp;
       const encryptedData = CryptoJS.AES.encrypt(this.loginForm.get("password")?.value, secretKey).toString();
       const data = {
         Name: this.loginForm.get("username")?.value,
