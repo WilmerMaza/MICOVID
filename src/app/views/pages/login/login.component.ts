@@ -17,9 +17,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  
-  public loginForm: FormGroup = new LoginFormModel().formLogin();
 
+  public loginForm: FormGroup = new LoginFormModel().formLogin();
+  public isChecked: boolean = false;
   constructor(
     private loginSession$: SessionService,
     private authService$: AuthService,

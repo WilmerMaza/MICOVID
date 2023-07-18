@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
   PerfectScrollbarModule,
 } from 'ngx-perfect-scrollbar';
@@ -40,10 +38,9 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule,
-} from '@coreui/angular';
+  UtilitiesModule} from '@coreui/angular';
 
-import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { IconModule } from '@coreui/icons-angular';
 import {JwtGuard } from './infraestructure/guard/JwtGuard';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -86,7 +83,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     JwtGuard
