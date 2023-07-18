@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   micovi_api: "http://localhost:3002",
-  keyEncryp: "hgouAsO8CV4Y&Nu1SZSS5O9q31xmu26UnVQh%P0*2kbxE^iF08"
+  keyEncryp: "jisfgugrhghg"
 };
 
 /*

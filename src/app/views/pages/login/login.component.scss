@@ -1,0 +1,211 @@
+.loginImg {
+
+    width: 50%;
+    height: auto;
+}
+
+.group_login {
+
+    display: flex;
+    flex-direction: row;
+    width: 862px;
+    height: 596px;
+    top: 87px;
+    left: 252px;
+    border-radius: 45px 0px 0px 45px;
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.formLogin {
+    margin: auto;
+    margin-top: 5%;
+}
+
+
+.conten {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.contenLogo {
+
+    background-image: url(/assets/images/Frame_Login.webp);
+    background-size: cover;
+    background-position: center;
+
+    width: 450px;
+    height: 568px;
+    border-radius: 45px 0px 0px 45px;
+    margin: 2%;
+    margin-right: 0px;
+}
+
+.contenMax {
+
+    width: 100%;
+    height: 100vh !important;
+    display: flex;
+    background-image: url(/assets/images/Frame_fondo_login.webp);
+    background-size: cover;
+    align-items: center;
+    background-position: center;
+
+}
+
+.textInicio {
+    margin-top: 30px;
+    margin-bottom: 0px;
+    color: #000000;
+    font-size: 34px;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    width: 245px;
+    height: 38px;
+
+}
+
+.textMedium {
+    color: #000000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 15%;
+
+}
+
+.textInput {
+    margin-bottom: 2px;
+    color: #000000;
+    font-size: 21px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 500;
+    /* Valor de font-weight para un texto delgado */
+    font-stretch: condensed;
+    /* Valor de font-stretch para un texto condensado (delgado) */
+
+}
+
+.inputLogin {
+    width: 270px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #F8F8F8;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1%;
+    border: none;
+
+}
+
+.button {
+    border: none;
+    width: 269px;
+    height: 31px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: linear-gradient(180deg, #0DDCF9 15.63%, #0C4CC8 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Viable Logic', sans-serif;
+    margin-top: 57px;
+}
+
+.contenFlex {
+
+    display: flex;
+    width: 270px;
+    align-items: center;
+    justify-content: space-between;
+
+    .checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .checkbox input {
+        margin-top: 7px;
+    }
+
+    .checkbox label {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 2px;
+        color: #000000;
+        font-size: 10px;
+    }
+}
+
+.buttonOlvidar {
+
+    color: #0CBDC8;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+.input-container {
+    position: relative;
+  }
+  
+.input-container c-input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+.input-container input {
+    width: 100%;
+    padding-right: 30px; /* Espacio para el icono */
+    border-radius: 10px !important; /* Ajusta el valor según tu diseño */
+    border: none;
+  }
+  
+.input-container .custom-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border-radius: 10px !important;
+ 
+    /* Estilos adicionales para el icono personalizado */
+    pointer-events: none; /* El icono no recibirá eventos del puntero del mouse */
+  }
+
+
+@media screen and (max-width: 860px) {
+    .contenLogo {
+        display: none;
+      
+    }
+    .group_login {
+    
+        width: 90%;
+        height: 100%;
+        margin: auto;
+        border-radius: 40px;
+    }
+
+    .conten {
+        width: 100%;
+        height: 70%;
+        padding: 1%;
+        border-radius: 45px;
+    }
+}
