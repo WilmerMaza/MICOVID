@@ -34,17 +34,10 @@ export class RegisterComponent {
         this.data.image = "defaul.png";
         this.data.phone = this.data.phone?.toString();
         this.data.character = this.data.character?.toString();
-
         
         this.registerSession$.register(this.data).then( res => {
           this.router$.navigate(['login']);
-        }).catch( error => {
-          console.log(error)
-        })
-        // Aquí puedes enviar los datos del formulario a través de una API o hacer cualquier otra acción necesaria
-      } else {
-        // El formulario no es válido, puedes mostrar un mensaje de error o realizar alguna otra acción
-      }
+        })   }
     }
 
   

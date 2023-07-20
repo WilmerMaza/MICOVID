@@ -4,6 +4,7 @@ import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import { DataLoginModel } from 'src/app/views/pages/model/DataLoginModel';
 import { ResponseLoginModel } from '../model/ResponseLoginModel';
 import { DataRegisterModel } from '../model/DataRegisterModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,7 @@ export class SessionService {
   }
 
   async register(data: DataRegisterModel): Promise<boolean> {
-    debugger
-    const endpoint = 'http://localhost:3002/register';
+    const endpoint = `${environment.micovi_api}/register`;
     const requestOptions = {
       method: 'POST',
       headers: {
