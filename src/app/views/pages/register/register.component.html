@@ -1,41 +1,68 @@
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-  <c-container>
-    <c-row class="justify-content-center">
-      <c-col lg="7" md="9" xl="6">
-        <c-card class="mx-4">
-          <c-card-body class="p-4">
-            <form cForm>
-              <h1>Register</h1>
-              <p class="text-medium-emphasis">Create your account</p>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
-                </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>@</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
-              </c-input-group>
-              <c-input-group class="mb-4">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
-              </c-input-group>
-              <div class="d-grid">
-                <button cButton color="success">Create Account</button>
-              </div>
-            </form>
-          </c-card-body>
-        </c-card>
-      </c-col>
-    </c-row>
-  </c-container>
+<head>
+  <!-- Otras etiquetas meta que puedas tener -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<div id="content-register">
+  <div class="group_register">
+    <div class="contenLogo">
+    </div>
+    <div class="contentInput col-lg-8 col-md-12 col-sm-12">
+      <div class="tittleRegister">
+        Registrate
+      </div>
+      <form [formGroup]="register" (ngSubmit)="enviarFormulario()" class="row">
+        <div class="content-formulario d-flex col-lg-10 col-md-11 col-sm-11 mx-auto">
+          <!-- Columna 1 -->
+          <div class="form-group mt-2 mr-5 column1">
+            <div class="">
+              <label class="textInput" for="nombreInstitucion">Nombre de la institución</label>
+              <input type="text" id="nombreInstitucion" formControlName="institutionName"
+                class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="representanteLegal">Representante Legal</label>
+              <input type="text" id="representanteLegal" formControlName="legalRepresentative"
+                class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="caracter">Caracter</label>
+              <input type="number" id="caracter" formControlName="character" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="tipo">Tipo</label>
+              <input type="text" id="tipo" formControlName="type" class="form-control inputRegister">
+            </div>
+          </div>
+
+          <!-- Columna 2 -->
+          <div class="form-group mt-2 mr-5">
+            <div class="">
+              <label class="textInput" for="sede">Sede</label>
+              <input type="text" id="sede" formControlName="sede" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="paginaWeb">Página web</label>
+              <input type="text" id="paginaWeb" formControlName="webPage" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="correoElectronico">Correo electrónico</label>
+              <input type="email" id="correoElectronico" formControlName="email" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="telefono">Teléfono</label>
+              <input type="number" id="telefono" formControlName="phone" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <label class="textInput" for="contraseña">Contraseña</label>
+              <input type="password" id="contraseña" formControlName="password" class="form-control inputRegister">
+            </div>
+            <div class="">
+              <button type="submit" [disabled]="register.invalid"
+                class="buttonSend btn btn-primary col-lg-12 col-md-12">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
