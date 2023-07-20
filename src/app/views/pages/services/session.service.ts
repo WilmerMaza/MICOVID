@@ -5,6 +5,7 @@ import { DataLoginModel } from 'src/app/views/pages/model/DataLoginModel';
 import { ResponseLoginModel } from '../model/ResponseLoginModel';
 import { DataRegisterModel } from '../model/DataRegisterModel';
 import { environment } from 'src/environments/environment';
+import { planModel } from '../model/PlanModel';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,10 @@ export class SessionService {
     };
     const response = await fetch(endpoint, requestOptions);
     return await response.ok;
+  }
+
+  consultGetPlans(): Observable<Array<planModel>> {
+    const endpoint = '/register/planes';
+    return this.micovid$.get(endpoint);
   }
 }

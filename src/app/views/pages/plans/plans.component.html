@@ -1,0 +1,25 @@
+<div class="body_page">
+    <div class="content_page">
+
+    <div class="header_page">
+        <h1>ELIGE TU PLAN</h1>
+    </div>
+    <div class="product_target">
+        <div *ngFor="let item of targetPlans; let indexOfElement=index;" class="target">
+            <div class="title_target">{{item.planname}}</div>
+            <div class="price_plan {{colorTarget[indexOfElement]}}">{{item.price | currency}}</div>
+            <div class="description_target">
+                <p>
+                    {{item.descripcion}}
+                </p>
+            </div>
+            <div class="selection_plan {{colorTarget[indexOfElement]}}"
+            (click)="GenerarCobro(item)"
+            >Seleccionar</div>
+        </div>
+    </div>
+        <div class="footer_page">
+            NOTA: El tiempo de uso se maneja en mes, trimestre, semestre y año.
+        </div>
+    </div>
+</div>
