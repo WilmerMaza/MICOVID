@@ -35,7 +35,6 @@ export class RegisterComponent {
         this.data.phone = this.data.phone?.toString();
         this.data.character = this.data.character?.toString();
         
-        debugger
         this.registerSession$.register(this.data).then( res => {
           this.router$.navigate(['login']);
         })   }
