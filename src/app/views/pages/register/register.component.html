@@ -5,6 +5,7 @@
 <div id="content-register">
   <div class="group_register">
     <div class="contenLogo">
+      <img src="/assets/images/IconoRegister.png" class="logoInterno">
     </div>
     <div class="contentInput col-lg-8 col-md-12 col-sm-12">
       <div class="tittleRegister">
@@ -13,7 +14,7 @@
       <form [formGroup]="register" (ngSubmit)="enviarFormulario()" class="row">
         <div class="content-formulario d-flex col-lg-10 col-md-11 col-sm-11 mx-auto">
           <!-- Columna 1 -->
-          <div class="form-group mt-2 mr-5 column1">
+          <div class="form-group mt-2 mr-5 column1"> 
             <div class="">
               <label class="textInput" for="nombreInstitucion">Nombre de la institución</label>
               <input type="text" id="nombreInstitucion" formControlName="institutionName"

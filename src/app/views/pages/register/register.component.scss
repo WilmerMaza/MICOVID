@@ -1,4 +1,4 @@
-#content-register{
+#content-register {
     width: 100%;
     height: 100vh !important;
     display: flex;
@@ -17,48 +17,60 @@
         border-radius: 45px 0px 0px 45px;
         background-color: white;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        position: relative;
     }
 
     .inputRegister {
-        max-width:250px;
+        max-width: 250px;
         height: 30px;
         flex-shrink: 0;
         border-radius: 10px;
         background: #F8F8F8;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         margin-bottom: 1%;
-        border: none;    
+        border: none;
+    }
+
+    .logoInterno {
+        height: 20vw;
+        z-index: 1;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+        margin-left: 1.7%;
+        /* Un valor mayor al z-index del contenido para que la imagen se superponga */
     }
 
     .contenLogo {
         border-radius: 12% 0px 0px 12%;
-        margin:  20px;
+        margin: 20px;
         width: 30%;
-        background-image: url(/assets/images/FrameFondoRegister.svg);
+        background-image: url(/assets/images/imageRegistro.png);
         background-size: contain;
-        background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
 
     .tittleRegister {
         margin-top: 30px;
-        margin-bottom: 0px;
+        margin-left: 3.3vw;
         color: #000000;
         font-size: 34px;
         font-weight: bold;
         font-style: normal;
         line-height: normal;
         width: 245px;
-        height: 38px;    
+        height: 38px;
     }
-    .contentInput{
-        
+
+    .contentInput {
+
         padding: 30px;
         display: flex;
         flex-direction: column;
     }
-    .content-formulario{
+
+    .content-formulario {
         margin-top: 30px;
         display: flex;
         flex-direction: row;
@@ -74,7 +86,7 @@
         /* Valor de font-weight para un texto delgado */
         font-stretch: condensed;
         /* Valor de font-stretch para un texto condensado (delgado) */
-    
+
     }
 
     .buttonSend {
@@ -85,34 +97,44 @@
         background: linear-gradient(180deg, #0DDCF9 15.63%, #0C4CC8 100%);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #ffffff;
-    
+
         font-size: 20px;
         font-style: normal;
         font-weight: bold;
         line-height: normal;
-    
+
         display: flex;
         justify-content: center;
         align-items: center;
-    
+
         font-family: 'Viable Logic', sans-serif;
         margin-top: 57px;
     }
 
-    .column1{
+    .column1 {
         padding-right: 50px
     }
-    @media screen and (max-width: 768px) {
-        .content-formulario{
-            display: flex;
-            flex-direction: column;     
-          
-        } 
 
-        .contentInput{
+    @media screen and (max-width: 768px) {
+        .content-formulario {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contentInput {
             height: 100%;
             overflow: auto;
         }
-      }
-}
 
+        .contenLogo {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        .logoInterno {            
+            display: none;
+        }
+    }
+
+}
