@@ -28,13 +28,14 @@ export class RegisterComponent {
      enviarFormulario() {
       if (this.register.valid) {
         const secretKey = environment.keyEncryp;
-        const encryptedData = CryptoJS.AES.encrypt(this.register.get("password")?.value, secretKey).toString();
+        this.data.password = CryptoJS.AES.encrypt(this.register.get("password")?.value, secretKey).toString();
         this.data = this.register.value;
         this.data.user = this.data.email;
         this.data.image = "defaul.png";
         this.data.phone = this.data.phone?.toString();
         this.data.character = this.data.character?.toString();
         
+        debugger
         this.registerSession$.register(this.data).then( res => {
           this.router$.navigate(['login']);
         })   }
