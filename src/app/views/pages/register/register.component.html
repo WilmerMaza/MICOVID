@@ -5,6 +5,7 @@
 <div id="content-register">
   <div class="group_register">
     <div class="contenLogo">
+      <img src="/assets/images/IconoRegister.png" class="logoInterno">
     </div>
     <div class="contentInput col-lg-8 col-md-12 col-sm-12">
       <div class="tittleRegister">
@@ -13,22 +14,22 @@
       <form [formGroup]="register" (ngSubmit)="enviarFormulario()" class="row">
         <div class="content-formulario d-flex col-lg-10 col-md-11 col-sm-11 mx-auto">
           <!-- Columna 1 -->
-          <div class="form-group mt-2 mr-5 column1">
-            <div class="">
+          <div class="form-group mt-2 mr-5 column1"> 
+            <div >
               <label class="textInput" for="nombreInstitucion">Nombre de la institución</label>
               <input type="text" id="nombreInstitucion" formControlName="institutionName"
                 class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="representanteLegal">Representante Legal</label>
               <input type="text" id="representanteLegal" formControlName="legalRepresentative"
                 class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="caracter">Caracter</label>
-              <input type="number" id="caracter" formControlName="character" class="form-control inputRegister">
+              <input type="text" id="caracter" formControlName="character" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="tipo">Tipo</label>
               <input type="text" id="tipo" formControlName="type" class="form-control inputRegister">
             </div>
@@ -36,27 +37,27 @@
 
           <!-- Columna 2 -->
           <div class="form-group mt-2 mr-5">
-            <div class="">
+            <div >
               <label class="textInput" for="sede">Sede</label>
               <input type="text" id="sede" formControlName="sede" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="paginaWeb">Página web</label>
               <input type="text" id="paginaWeb" formControlName="webPage" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="correoElectronico">Correo electrónico</label>
               <input type="email" id="correoElectronico" formControlName="email" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="telefono">Teléfono</label>
-              <input type="number" id="telefono" formControlName="phone" class="form-control inputRegister">
+              <input type="number" placeholder="(123) 456-789" id="telefono" formControlName="phone" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <label class="textInput" for="contraseña">Contraseña</label>
               <input type="password" id="contraseña" formControlName="password" class="form-control inputRegister">
             </div>
-            <div class="">
+            <div >
               <button type="submit" [disabled]="register.invalid"
                 class="buttonSend btn btn-primary col-lg-12 col-md-12">Enviar</button>
             </div>
