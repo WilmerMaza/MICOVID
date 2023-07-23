@@ -7,7 +7,7 @@ import { RegisterFormModel } from 'src/app/views/pages/model/RegisterFormModel'
 import { DataRegisterModel } from 'src/app/views/pages/model/DataRegisterModel'
 import { SessionService } from '../services/session.service';
 import { environment } from 'src/environments/environment';
-import { error } from 'console';
+import { ResponseRegister } from '../model/ResponseLoginModel';
 
 
 @Component({
@@ -28,16 +28,17 @@ export class RegisterComponent {
      enviarFormulario() {
       if (this.register.valid) {
         const secretKey = environment.keyEncryp;
-        this.data.password = CryptoJS.AES.encrypt(this.register.get("password")?.value, secretKey).toString();
+        const dataEncript = CryptoJS.AES.encrypt(this.register.get("password")?.value, secretKey).toString();
         this.data = this.register.value;
         this.data.user = this.data.email;
         this.data.image = "defaul.png";
         this.data.phone = this.data.phone?.toString();
         this.data.character = this.data.character?.toString();
-        
-        this.registerSession$.register(this.data).then( res => {
-          this.router$.navigate(['login']);
-        })   }
+        this.data.password = dataEncript;
+        this.registerSession$.register(this.data).subscribe((res: ResponseRegister) => {
+          if(res.isRegister) this.router$.navigate(['login']);
+        })   
+      }
     }
 
   
