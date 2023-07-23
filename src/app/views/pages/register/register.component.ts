@@ -24,6 +24,7 @@ export class RegisterComponent {
     private authService$: AuthService,
     private router$: Router
     ) {
+      this.register;
      }
      enviarFormulario() {
       if (this.register.valid) {
@@ -41,6 +42,12 @@ export class RegisterComponent {
       }
     }
 
+    hasError(controlName: string, errorName: string): boolean {
+      return this.register.get(controlName)?.hasError(errorName) || false;
+    }
   
-
+    isTouched(controlName: string): boolean {
+      return this.register.get(controlName)?.touched || false;
+    }
+    
 }
