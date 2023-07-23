@@ -24,7 +24,6 @@ export class RegisterComponent {
     private authService$: AuthService,
     private router$: Router
     ) {
-      this.register;
      }
      enviarFormulario() {
       if (this.register.valid) {
