@@ -41,6 +41,12 @@ export class RegisterComponent {
       }
     }
 
+    hasError(controlName: string, errorName: string): boolean {
+      return this.register.get(controlName)?.hasError(errorName) || false;
+    }
   
-
+    isTouched(controlName: string): boolean {
+      return this.register.get(controlName)?.touched || false;
+    }
+    
 }
