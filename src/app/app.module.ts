@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  PerfectScrollbarConfigInterface,
-  PerfectScrollbarModule,
-} from 'ngx-perfect-scrollbar';
+
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -38,15 +41,11 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule} from '@coreui/angular';
+  UtilitiesModule,
+} from '@coreui/angular';
 
-import { IconModule } from '@coreui/icons-angular';
-import {JwtGuard } from './infraestructure/guard/JwtGuard';
+import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HttpClientModule } from '@angular/common/http';
-
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-};
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -68,7 +67,6 @@ const APP_CONTAINERS = [
     HeaderModule,
     SidebarModule,
     IconModule,
-    PerfectScrollbarModule,
     NavModule,
     ButtonModule,
     FormModule,
@@ -83,13 +81,18 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    NgScrollbarModule,
+    FormsModule,
     HttpClientModule,
-    FormsModule
   ],
   providers: [
-    JwtGuard
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+    IconSetService,
+    Title,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

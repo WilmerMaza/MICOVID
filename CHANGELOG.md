@@ -1,15 +1,7 @@
-### [Micovi](https://coreui.io/angular/) changelog
+### [micovi](https://micovi.space) changelog
 
----
 
-#### `4.3.0`
+#### `1.0.0`
 
-update to:
-- `Angular 15`
-- `TypeScript 4.8`
-- `RxJS 7.5`
+- chore(dependencies): update to `Angular 16.1`
 
-refactor: 
-- refactor(AppComponent): change selector to `app-root`
-
----

@@ -7,12 +7,8 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
     badge: {
       color: 'info',
-      text: 'NEW'
-    }
-  },
-  {
-    title: true,
-    name: 'Extras'
+      text: 'NEW',
+    },
   },
   {
     name: 'Pages',
@@ -21,20 +17,20 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Login',
-        url: '/login'
+        url: '/login',
       },
       {
         name: 'Register',
-        url: '/register'
+        url: '/register',
       },
       {
         name: 'Error 404',
-        url: '/404'
+        url: '/404',
       },
       {
         name: 'Error 500',
-        url: '/500'
-      }
-    ]
+        url: '/500',
+      },
+    ],
   },
 ];

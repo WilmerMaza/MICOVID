@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import * as CryptoJS from 'crypto-js';
+import { AES } from 'crypto-js';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { RegisterFormModel } from 'src/app/views/pages/model/RegisterFormModel'
@@ -19,7 +19,7 @@ export class RegisterComponent {
   public register: FormGroup = new RegisterFormModel().formRegister();
   public data: DataRegisterModel = new DataRegisterModel;
 
-  constructor( 
+  constructor(
     private registerSession$: SessionService,
     private authService$: AuthService,
     private router$: Router
@@ -28,7 +28,7 @@ export class RegisterComponent {
      enviarFormulario() {
       if (this.register.valid) {
         const secretKey = environment.keyEncryp;
-        const dataEncript = CryptoJS.AES.encrypt(this.register.get("password")?.value, secretKey).toString();
+        const dataEncript = AES.encrypt(this.register.get("password")?.value, secretKey).toString();
         this.data = this.register.value;
         this.data.user = this.data.email;
         this.data.image = "defaul.png";
@@ -37,16 +37,16 @@ export class RegisterComponent {
         this.data.password = dataEncript;
         this.registerSession$.register(this.data).subscribe((res: ResponseRegister) => {
           if(res.isRegister) this.router$.navigate(['login']);
-        })   
+        })
       }
     }
 
     hasError(controlName: string, errorName: string): boolean {
       return this.register.get(controlName)?.hasError(errorName) || false;
     }
-  
+
     isTouched(controlName: string): boolean {
       return this.register.get(controlName)?.touched || false;
     }
-    
+
 }
