@@ -8,17 +8,17 @@ import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
 import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PlansComponent } from './plans/plans.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';  // Asegúrate de tener esta importación
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     Page404Component,
-    Page500Component,
-    PlansComponent
+    Page500Component
   ],
   imports: [
     CommonModule,
@@ -28,8 +28,11 @@ import { PlansComponent } from './plans/plans.component';
     GridModule,
     IconModule,
     FormModule,
+    FormsModule,
     ReactiveFormsModule,
-    FormsModule
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule
   ]
 })
 export class PagesModule {

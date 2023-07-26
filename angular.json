@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Micovi": {
+    "micovi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,10 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Micovi",
+            "outputPath": "dist/micovi",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "preserveSymlinks": true,
@@ -39,8 +41,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "chart.js",
-              "@coreui/chartjs/dist/js/coreui-chartjs.js"
+              "chart.js"
             ]
           },
           "configurations": {
@@ -55,12 +56,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -80,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Micovi:build:production"
+              "browserTarget": "micovi:build:production"
             },
             "development": {
-              "browserTarget": "Micovi:build:development"
+              "browserTarget": "micovi:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,14 +86,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Micovi:build"
+            "browserTarget": "micovi:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
