@@ -1,22 +1,22 @@
 <!--sidebar-->
 <c-sidebar
   #sidebar="cSidebar"
-  class="d-print-none sidebar sidebar-fixed"
+  class="d-print-none sidebar sidebar-fixed mi-sidebar-personalizado"
   id="sidebar"
   visible
 >
   <c-sidebar-brand
     [brandFull]="{
-      src: 'assets/img/brand/coreui-angular.svg',
-      width: 200,
-      height: 46,
-      alt: 'CoreUI Logo'
+      src: 'assets/images/micoviFront.svg',
+      width: 143,
+      height: 62,
+      alt: 'micovi Logo'
     }"
     [brandNarrow]="{
-      src: 'assets/img/brand/coreui-signet-white.svg',
+      src: 'assets/images/iconomicovi-angular.svg',
       width: 46,
       height: 46,
-      alt: 'CoreUI Logo'
+      alt: 'micovi Logo'
     }"
     routerLink="./"
   />
@@ -37,13 +37,11 @@
 <!--main-->
 <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
   <!--app-header-->
-  <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar" />
+  <app-default-header class="d-print-none header header-sticky" position="sticky" sidebarId="sidebar" />
   <!--app-body-->
-  <div class="body flex-grow-1 px-3">
-    <c-container breakpoint="lg" class="h-auto">
+  <div class="body flex-grow-1">
+    <c-container breakpoint="lg" class="h-auto bodyConten">
       <router-outlet/>
     </c-container>
   </div>
-  <!--app footer-->
-  <app-default-footer/>
 </div>
