@@ -60,11 +60,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        align-items: center;
         .title_target {
             width: 100%;
             text-align: center;
-            font-weight: 700;
+            font-weight:bold;
             font-size: 16px;
         }
         .price_plan{    
