@@ -158,7 +158,6 @@ export class MicoviApiService {
   }
 
   public handleError(error: HttpErrorResponse): Observable<never> {
-    console.log(error);
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
