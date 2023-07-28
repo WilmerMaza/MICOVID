@@ -5,3 +5,42 @@
     --scrollbar-hover-size: calc(var(--scrollbar-size) * 1.5);
   }
 }
+
+.mi-sidebar-personalizado {
+  background: linear-gradient(
+    225deg,
+    #0c4cc8 0%,
+    #3776f2 55.62%,
+    #0ddcf9 91.67%
+  ); /* Reemplaza #00ff00 por el color que desees */
+}
+
+.saludoSesion {
+  color: #000;
+  text-align: right;
+  font-family: Inria Sans;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin: auto !important;
+}
+
+:host {
+  .bodyConten {
+    padding: 0 !important;
+  }
+
+  @media (min-width: 1400px) {
+    .container-xxl,
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
+      max-width: 100%;
+
+
+    }
+  }
+}

@@ -1,0 +1,40 @@
+:host {
+  .legend {
+    small {
+      font-size: x-small;
+    }
+  }
+}
+
+.dashboard {
+  width: 98%;
+  height: 90vh;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+}
+.imgDash {
+  width: 831px;
+  height: 333px;
+  background-image: url(/assets/images/dashboard.png);
+  background-size: cover;
+  background-position: center;
+  margin: 12.5% 10% 12.5% 10%;
+}
+
+@media screen and (max-width: 1568px) {
+  .dashboard {
+    height: 90vh;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+  }
+}

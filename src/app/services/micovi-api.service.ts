@@ -171,6 +171,7 @@ export class MicoviApiService {
 
 
   private httpOptions():HttpHeaders{
+    debugger;
     if (this.token) {
       return this.jsonAuth();
     }
