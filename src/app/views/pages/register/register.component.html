@@ -39,7 +39,7 @@
               <label class="textInput" for="pais">Pais</label>
               <input [ngStyle]="{'border': hasError('pais', 'required') && isTouched('pais')? '1px solid red' : 'initial'}" type="text" id="tipo" formControlName="pais" class="form-control inputRegister">
               <div *ngIf="hasError('pais', 'required') && isTouched('pais')" class="error-message">
-                Tipo es obligatorio.
+                Pais es obligatorio.
               </div>
             </div>
           </div>
