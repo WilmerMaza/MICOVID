@@ -31,7 +31,7 @@ export class AuthService {
         const currentDateInSeconds = Math.floor(Date.now() / 1000);
 
         // Verificar si el token ha expirado
-        if (expirationDateInSeconds && expirationDateInSeconds < currentDateInSeconds) {
+        if (expirationDateInSeconds < currentDateInSeconds) {
           this.removeToken();
           return false;
         } else {
