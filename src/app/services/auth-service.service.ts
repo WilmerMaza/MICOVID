@@ -1,24 +1,48 @@
 import { Injectable } from '@angular/core';
-import jwtDecode from 'jwt-decode';  
-
+import jwtDecode from 'jwt-decode';
+import { ComponentStore } from '@ngrx/component-store';
+import { session } from '../views/pages/model/dataUserModel';
+import { Persistence } from 'src/app/utils/persistence.service';
+import { Observable } from 'rxjs';
+import { KEYSESSION } from 'src/app/config/constans';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthService {
-  private TOKEN_KEY = 'token';
+export class AuthService extends ComponentStore<session> {
+  private jwt: string = '';
 
-  constructor() { }
+  constructor(private persistence$: Persistence) {
+    super({
+      dataUser: {
+        ID: '',
+        email: '',
+        institutionName: '',
+        legalRepresentative: '',
+        character: '',
+        pais: '',
+        sede: '',
+        webPage: '',
+        phone: '',
+        image: '',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      token: '',
+    });
 
-  setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
-  }
+    const isAuth = persistence$.get(KEYSESSION);
+    if (isAuth) {
+      this.setAuth(isAuth);
+    }
 
-  getToken(): string {
-    return localStorage.getItem(this.TOKEN_KEY) ?? '';
+    this.getToken.subscribe((res) => {
+      this.jwt = res;
+    });
   }
 
   isAuthenticated(): boolean {
-    const token = this.getToken();
+    const token = this.jwt;
+
     if (token) {
       try {
         // Decodificar el token
@@ -32,7 +56,7 @@ export class AuthService {
 
         // Verificar si el token ha expirado
         if (expirationDateInSeconds < currentDateInSeconds) {
-          this.removeToken();
+          this.persistence$.delete(KEYSESSION);
           return false;
         } else {
           return true;
@@ -45,7 +69,44 @@ export class AuthService {
       return false;
     }
   }
-  removeToken(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-  }
+
+  readonly setAuth = this.updater((state, payload: session) => {
+    const {
+      ID,
+      email,
+      institutionName,
+      legalRepresentative,
+      character,
+      pais,
+      sede,
+      webPage,
+      phone,
+      image,
+      createdAt,
+      updatedAt,
+    } = payload.dataUser;
+    this.persistence$.save(KEYSESSION, payload);
+
+    return {
+      ...state,
+
+      dataUser: {
+        ID: ID,
+        email: email,
+        institutionName: institutionName,
+        legalRepresentative: legalRepresentative,
+        character: character,
+        pais: pais,
+        sede: sede,
+        webPage: webPage,
+        phone: phone,
+        image: image,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      },
+      token: payload.token,
+    };
+  });
+
+  readonly getToken: Observable<string> = this.select((state) => state.token);
 }
