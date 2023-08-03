@@ -1,0 +1,16 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+
+deploy:
+  stage: deploy
+  when: branch = master
+  script:
+    - aws s3 cp dist/micovi/  s3://my-bucket --recursive --grant public-read
+

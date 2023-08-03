@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import { DataLoginModel } from 'src/app/views/pages/model/DataLoginModel';
-import { ResponseLoginModel, ResponseRegister } from '../model/ResponseLoginModel';
+import { ResponseRegister } from '../model/ResponseLoginModel';
 import { DataRegisterModel } from '../model/DataRegisterModel';
 import { planModel } from '../model/PlanModel';
+import { session } from '../model/dataUserModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,11 @@ export class SessionService {
   ) { }
 
 
-  sessionLogin(data: DataLoginModel): Observable<ResponseLoginModel> {
+  sessionLogin(data: DataLoginModel): Observable<session> {
     const endpoint = '/login';
-    return this.micovid$.post(endpoint, data);
+    return this.micovid$.post<session>(endpoint, data).pipe(tap((UserInfo:session)=>{
+      this.micovid$.setAuth(UserInfo);
+    }));
   }
 
   register(data: DataRegisterModel): Observable<ResponseRegister> {

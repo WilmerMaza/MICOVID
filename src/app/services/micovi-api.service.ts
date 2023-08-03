@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import {environment} from 'src/environments/environment';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Validators } from 'src/app/utils/Validators';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IHttpModel, IoptionModel } from '../models/IHttp.Model';
 import { AuthService } from './auth-service.service';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MicoviApiService {
-
   public params = new HttpParams();
   public basePatch = environment.micovi_api;
   public headers$: HttpHeaders | undefined;
-  public token = '';
+  public token:string = '';
 
-
-  constructor(
-    private _http: HttpClient,
-    private Auth$: AuthService
-  ) {
-    this.token = this.Auth$.getToken();
+  constructor(private _http: HttpClient, private Auth$: AuthService) {
+    Auth$.getToken.subscribe((response: string) => {
+      this.token = response;
+    });
     this.init();
   }
 
@@ -29,6 +31,9 @@ export class MicoviApiService {
     this.headers$ = this.httpOptions();
   }
 
+  setAuth(values: any): void {
+    this.Auth$.setAuth(values);
+  }
 
   get<T>(url: string, params?: HttpParams, endpoint?: string): Observable<any> {
     let path$ = `${this.basePatch}${url}`;
@@ -45,8 +50,7 @@ export class MicoviApiService {
     return this._http.get(path$, headers).pipe(
       map((res) => {
         return res;
-      }
-      ),
+      }),
       // eslint-disable-next-line @typescript-eslint/unbound-method
       catchError(this.handleError)
     );
@@ -88,7 +92,7 @@ export class MicoviApiService {
         body: options.body,
         headers: options.headers ?? this.headers$,
         responseType: options.responseType,
-        observe: options.observe
+        observe: options.observe,
       })
       .pipe(
         // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -100,7 +104,7 @@ export class MicoviApiService {
     url: string,
     data?: any,
     endpoint?: string,
-    responseType?: string,
+    responseType?: string
   ): Observable<T> {
     let path$ = `${this.basePatch}${url}`;
 
@@ -168,8 +172,7 @@ export class MicoviApiService {
     return throwError(error);
   }
 
-
-  private httpOptions():HttpHeaders{
+  private httpOptions(): HttpHeaders {
     if (this.token) {
       return this.jsonAuth();
     }
@@ -183,15 +186,10 @@ export class MicoviApiService {
     new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${this.token}`)
-    ;
-
+      .set('Authorization', `Bearer ${this.token}`);
 
   private notAuth = () =>
     new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
-
-
 }
-
