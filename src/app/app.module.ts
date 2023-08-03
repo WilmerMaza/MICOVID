@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  HashLocationStrategy,
-  LocationStrategy,
-} from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,6 +43,7 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { LocalStorageService } from 'ngx-webstorage';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -84,9 +82,10 @@ const APP_CONTAINERS = [
     NgScrollbarModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [
+    LocalStorageService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
