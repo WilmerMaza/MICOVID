@@ -12,4 +12,7 @@ export class DefaultResponse {
   responseTime?: string;
 }
 
-
+export class ActionResponse {
+  action: any;
+  data:any;
+}
