@@ -1,11 +1,7 @@
 .container {
   width: 100%;
-  height: 100vh;
+  height: auto;
   justify-content: center;
   align-items: center;
-}
-
-/* Asegura que el componente de la tabla ocupe todo el ancho del contenedor */
-app-dinamic-table {
-  width: 100%;
+  margin-top: 50px;
 }

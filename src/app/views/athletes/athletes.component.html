@@ -1,3 +1,8 @@
 <div class="container">
-  <app-dinamic-table></app-dinamic-table>
+  <app-dinamic-table
+  [isCheckBox] = "isCheck"
+  [columns]="columnsValue"
+  [dataSource]="data"
+  (actionEvent)="getActionEvent($event)"
+  ></app-dinamic-table>
 </div>
