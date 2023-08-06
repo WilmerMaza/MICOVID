@@ -35,7 +35,7 @@ export class Persistence {
   delete = (key: string) => localStorage.removeItem(this.Encript(key));
 
   deleteAll = () => {
-    this.localSet$.clear();
+    localStorage.clear();
     location.reload();
   }
 
