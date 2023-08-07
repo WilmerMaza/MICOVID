@@ -17,7 +17,7 @@
 <!--</c-header>-->
 
 <ng-template #userDropdown>
-  <span class="saludoSesion" style="margin: auto"> Hola, {{ "Milton Correa" }} </span>
+  <span class="saludoSesion" style="margin: auto"> Hola, {{ namePerson }} </span>
   <c-dropdown alignment="end" variant="nav-item">
     <button cButton color="" [caret]="false" cDropdownToggle class="py-0">
       <c-avatar
@@ -95,7 +95,7 @@
         <hr cDropdownDivider />
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <a routerLink="./" cDropdownItem (click)="logout()">
           <svg cIcon class="me-2" name="cilLockLocked"></svg>
           Lock Account
         </a>

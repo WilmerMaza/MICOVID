@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth-service.service';
 import { RegisterFormModel } from 'src/app/views/pages/model/RegisterFormModel'
 import { DataRegisterModel } from 'src/app/views/pages/model/DataRegisterModel'
-import { SessionService } from '../services/session.service';
-import { ResponseRegister } from '../model/ResponseLoginModel';
+import { ResponseRegister } from 'src/app/views/pages/model/ResponseLoginModel';
 import { CryptoService } from 'src/app/utils/crypto.service';
+import { RegisterService } from '../services/register.service';
 
 
 @Component({
@@ -20,10 +19,8 @@ export class RegisterComponent {
   private cryptoService$ = new CryptoService();
 
   constructor(
-    private registerSession$: SessionService,
-    private authService$: AuthService,
+    private registerSession$: RegisterService,
     private router$: Router
-
     ) {
      }
      enviarFormulario() {
@@ -36,7 +33,7 @@ export class RegisterComponent {
         this.data.character = this.data.character?.toString();
         this.data.password = dataEncript;
         this.registerSession$.register(this.data).subscribe((res: ResponseRegister) => {
-          if(res.isRegister) this.router$.navigate(['login']);
+          if(res.isRegister) this.router$.navigate(['plans']);
         })
       }
     }

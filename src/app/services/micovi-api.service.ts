@@ -21,18 +21,12 @@ export class MicoviApiService {
   public token:string = '';
 
   constructor(private _http: HttpClient, private Auth$: AuthService) {
-    Auth$.getToken.subscribe((response: string) => {
-      this.token = response;
-    });
+    this.tokenSuscribe();
     this.init();
   }
 
   init(): void {
     this.headers$ = this.httpOptions();
-  }
-
-  setAuth(values: any): void {
-    this.Auth$.setAuth(values);
   }
 
   get<T>(url: string, params?: HttpParams, endpoint?: string): Observable<any> {
@@ -172,6 +166,12 @@ export class MicoviApiService {
     return throwError(error);
   }
 
+  tokenSuscribe():void{
+    this.Auth$.getToken.subscribe((response: string) => {
+      this.token = response;
+      this.init();
+    });
+  }
   private httpOptions(): HttpHeaders {
     if (this.token) {
       return this.jsonAuth();
