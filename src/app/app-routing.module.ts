@@ -71,7 +71,6 @@ const routes: Routes = [
   {
     path: 'plans',
     component: PlansComponent,
-    canActivate: [JwtGuard],
     data: {
       title: 'Plans Page'
     }

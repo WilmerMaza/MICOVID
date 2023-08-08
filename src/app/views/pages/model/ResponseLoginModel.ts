@@ -1,3 +1,5 @@
+import { DataUser } from "./dataUserModel";
+
 export class ResponseLoginModel {
     name?: string;
     email?: string;
@@ -7,6 +9,7 @@ export class ResponseLoginModel {
 
 export interface ResponseRegister {
     isRegister:boolean;
+    dataUser?:DataUser;
     msg: string;
     error: string;
 }
