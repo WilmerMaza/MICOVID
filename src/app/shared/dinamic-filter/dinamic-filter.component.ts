@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatAccordion, MatExpansionPanel} from '@angular/material/expansion';
 import { JsonDataItem, DynamicObject, filterResult, ControlItem } from '../model/filterModel'
 import { ActionResponse } from '../model/Response/DefaultResponse';
+import { regExps } from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-dinamic-filter',
@@ -31,7 +32,7 @@ export class DinamicFilterComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.textForm = this.formBuilder.group({
-      textInput: ['', Validators.pattern('^[a-zA-Z0-9 ]+$')],
+      textInput: ['', Validators.pattern(regExps['special'])],
     });
   }
 
@@ -54,8 +55,9 @@ export class DinamicFilterComponent {
   }
 
   sendDataFilter():void{
+    const { value: {textInput} } = this.textForm;
     const dataResponseFilter:DynamicObject<any> = {};
-    const data = this.textForm.value.textInput;
+    const data = textInput;
     dataResponseFilter['Name'] = data;
     this.jsonData.forEach((data: JsonDataItem) => {
       const arrayFilters: string[]=[];
