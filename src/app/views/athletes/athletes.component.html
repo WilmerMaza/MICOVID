@@ -1,8 +1,22 @@
 <div class="container">
+  <div class="containerFilter">
+    <app-dinamic-filter
+    [selectItemCount]="selectItemCount"
+    [isDownload]="isDownload"
+    [nameAdd]="nameAdd"
+    [dataFilter]="jsonData"
+    (filterResult)="getDataFilter($event)"
+    (actionFilter)="getActionEvent($event)"
+    >
+    loading..
+  </app-dinamic-filter>
+  </div>
+
   <app-dinamic-table
   [isCheckBox] = "isCheck"
   [columns]="columnsValue"
   [dataSource]="data"
   (actionEvent)="getActionEvent($event)"
+  (selectItemCount)="getselectItemCount($event)"
   ></app-dinamic-table>
 </div>

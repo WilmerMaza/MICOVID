@@ -40,6 +40,8 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from 'ngx-webstorage';
+import { SportsmanComponent } from './views/sportsman/sportsman.component';
+import { SharedModuleModule } from "./shared/shared-module.module";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -48,47 +50,48 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    AvatarModule,
-    BreadcrumbModule,
-    FooterModule,
-    DropdownModule,
-    GridModule,
-    HeaderModule,
-    SidebarModule,
-    IconModule,
-    NavModule,
-    ButtonModule,
-    FormModule,
-    UtilitiesModule,
-    ButtonGroupModule,
-    ReactiveFormsModule,
-    SidebarModule,
-    SharedModule,
-    TabsModule,
-    ListGroupModule,
-    ProgressModule,
-    BadgeModule,
-    ListGroupModule,
-    CardModule,
-    NgScrollbarModule,
-    FormsModule,
-    HttpClientModule,
-    MaterialModule,
-  ],
-  providers: [
-    LocalStorageService,
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy,
-    },
-    IconSetService,
-    Title,
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, ...APP_CONTAINERS, SportsmanComponent],
+    providers: [
+        LocalStorageService,
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy,
+        },
+        IconSetService,
+        Title,
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        AvatarModule,
+        BreadcrumbModule,
+        FooterModule,
+        DropdownModule,
+        GridModule,
+        HeaderModule,
+        SidebarModule,
+        IconModule,
+        NavModule,
+        ButtonModule,
+        FormModule,
+        UtilitiesModule,
+        ButtonGroupModule,
+        ReactiveFormsModule,
+        SidebarModule,
+        SharedModule,
+        TabsModule,
+        ListGroupModule,
+        ProgressModule,
+        BadgeModule,
+        ListGroupModule,
+        CardModule,
+        NgScrollbarModule,
+        FormsModule,
+        HttpClientModule,
+        MaterialModule,
+        SharedModuleModule
+    ]
 })
 export class AppModule {}

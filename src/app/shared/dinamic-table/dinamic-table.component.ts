@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import {PageEvent, MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {SelectionModel} from '@angular/cdk/collections';
 import { ActionResponse } from '../model/Response/DefaultResponse'
 
@@ -37,7 +36,7 @@ export class DinamicTableComponent implements AfterViewInit {
   }
 
   @Output() actionEvent = new EventEmitter<ActionResponse>();
-
+  @Output() selectItemCount = new EventEmitter<number>();
   pageEvent: PageEvent | undefined;
 
   @ViewChild(MatPaginator)
@@ -50,6 +49,7 @@ export class DinamicTableComponent implements AfterViewInit {
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected(): boolean{
+    this.selectItemCount.emit(this.selection.selected.length);
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;

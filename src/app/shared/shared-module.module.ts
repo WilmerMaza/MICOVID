@@ -5,18 +5,27 @@ import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MaterialModule } from '../infraestructure/modules/material/material.module';
+import { DinamicFilterComponent } from './dinamic-filter/dinamic-filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
-  declarations: [DinamicTableComponent],
+  declarations: [DinamicTableComponent, DinamicFilterComponent],
   imports: [
     CommonModule,
     MatTableModule, 
     MatCheckboxModule, 
     MatPaginatorModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatExpansionModule
   ],
   exports: [
-    DinamicTableComponent
+    DinamicTableComponent,
+    DinamicFilterComponent
   ]
 })
 export class SharedModuleModule { }
