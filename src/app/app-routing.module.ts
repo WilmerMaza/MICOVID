@@ -8,6 +8,7 @@ import { RegisterComponent } from './views/pages/register/components/register.co
 import { JwtGuard } from './infraestructure/guard/JwtGuard';
 import { PlanGuard } from './infraestructure/guard/PlanGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
+import { SportsmanComponent } from './views/sportsman/sportsman.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'sportsman', component: SportsmanComponent
+      }
+
     ]
   },
   {
