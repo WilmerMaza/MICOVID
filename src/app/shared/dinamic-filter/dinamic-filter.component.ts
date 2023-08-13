@@ -11,7 +11,7 @@ import { ActionResponse } from '../model/Response/DefaultResponse';
 })
 export class DinamicFilterComponent {
   public textForm: FormGroup;
-  public isImperfection:boolean = false;
+  public isImperfection:boolean =false;
   public showFilter:boolean = false;
   public jsonData: JsonDataItem[] = [];
 
