@@ -14,73 +14,84 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [JwtGuard,PlanGuard],
+    canActivate: [JwtGuard, PlanGuard],
     data: {
-      title: 'Home'
+      title: 'Home',
     },
     children: [
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+          import('./views/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
       },
       {
         path: 'athletes',
         loadChildren: () =>
-          import('./views/athletes/athletes.module').then((m) => m.AthletesModule)
+          import('./views/athletes/athletes.module').then(
+            (m) => m.AthletesModule
+          ),
       },
       {
         path: 'pages',
         loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule)
+          import('./views/pages/pages.module').then((m) => m.PagesModule),
       },
       {
-        path: 'sportsman', component: SportsmanComponent
-      }
-
-    ]
+        path: 'sportsman',
+        component: SportsmanComponent,
+      },
+      {
+        path: 'Entrenador',
+        loadChildren: () =>
+          import('./views/Entrenador/Entrenador.module').then(
+            (m) => m.EntrenadorModule
+          ),
+      },
+    ],
   },
   {
     path: '404',
     component: Page404Component,
     data: {
-      title: 'Page 404'
-    }
+      title: 'Page 404',
+    },
   },
   {
     path: '500',
     component: Page500Component,
     data: {
-      title: 'Page 500'
-    }
+      title: 'Page 500',
+    },
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
-      title: 'Login Page'
-    }
+      title: 'Login Page',
+    },
   },
   {
     path: 'register',
     component: RegisterComponent,
     data: {
-      title: 'Register Page'
-    }
+      title: 'Register Page',
+    },
   },
   {
     path: 'plans',
     component: PlansComponent,
     data: {
-      title: 'Plans Page'
-    }
+      title: 'Plans Page',
+    },
   },
-  {path: '**', redirectTo: '/404'}
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
@@ -88,11 +99,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
       anchorScrolling: 'enabled',
-      initialNavigation: 'enabledBlocking'
+      initialNavigation: 'enabledBlocking',
       // relativeLinkResolution: 'legacy'
-    })
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

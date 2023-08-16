@@ -1,6 +1,6 @@
 <div id="sportsman">
   <!-- aqui inicia la visualizacion individual -->
-  <div class="container-mat-card">
+  <div class="container-mat-card contentInfo" >
   <mat-card class="container-view" *ngIf="showSportsman">
     <button mat-icon-button class="close-button" (click)="closeCard()">
       <mat-icon>close</mat-icon>
@@ -11,10 +11,10 @@
           <img src="../../../assets/images/default.png">
         </div>
         <div fxFlex="80%" class="content-card">
-          <div fxLayout="column" fxLayoutGap="16px"> <!-- Contenedor de las columnas -->
+          <div fxLayout="column" fxLayoutGap="16px" class="contentData"> <!-- Contenedor de las columnas -->
             <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la primera fila -->
               <div fxFlex="auto">
-                <div class="row">{{dataSingle.name}}</div>
+                <div class="row" id="name">{{dataSingle.name}}</div>
                 <div class="row-data">{{dataSingle.typeIdentification}}  {{dataSingle.identification}}</div>
               </div>
             </div>
