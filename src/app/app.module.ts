@@ -42,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from 'ngx-webstorage';
 import { SportsmanComponent } from './views/sportsman/sportsman.component';
 import { SharedModuleModule } from "./shared/shared-module.module";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -91,7 +92,8 @@ const APP_CONTAINERS = [
         FormsModule,
         HttpClientModule,
         MaterialModule,
-        SharedModuleModule
+        SharedModuleModule,
+        FlexLayoutModule
     ]
 })
 export class AppModule {}
