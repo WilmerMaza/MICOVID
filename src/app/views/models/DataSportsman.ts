@@ -2,6 +2,7 @@ export interface Sportsman {
     ID: string;
     name: string;
     identification: string;
+    typeIdentification: string;
     nationality: string;
     birtDate: string;
     birthPlace: string;
@@ -15,4 +16,5 @@ export interface Sportsman {
     category: string;
     gender: string;
     weight: string;
+    height: string;
   }

@@ -14,6 +14,8 @@ import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 export class SportsmanComponent implements OnInit {
  public dataSportman: Sportsman[] = [];
  public data = columnsValue;
+ public showSportsman: Boolean = false;
+ public dataSingle:Sportsman;
  public isCheck = true;
   constructor(
     private sporsmanService$: SportsmanService,
@@ -27,5 +29,15 @@ export class SportsmanComponent implements OnInit {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
       this.dataSportman = res;
     });
+  }
+  getActionEvent(event:any):void{
+    if (event.action.action == 'ver')
+    {
+      this.showSportsman = true;
+      this.dataSingle = event.data;
+    } 
+  }
+  closeCard(){
+    this.showSportsman = false;
   }
 }

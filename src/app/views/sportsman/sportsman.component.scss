@@ -1,4 +1,5 @@
 #sportsman{
+  width: 100%;
     .container {
         width: 100%;
         height: auto;
@@ -6,5 +7,51 @@
         align-items: center;
         margin-top: 50px;
       }
+      .container-view{
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+    
+      }
+
+    .full-height{
+      padding: 0;
+    }
+    .content-card{
+
+      background: linear-gradient(265.16deg, #0DDCF9 -0.06%, #3776F2 49.85%, #0C4CC8 92.38%);
+    }
+  
+    .row {
+      color: #FFFFFF;
+      size: 13px;
+    }
+    .row-data{
+      color: #FFFFFF;
+      font-weight: bold;
+      size: 13px;
+    }
+  
+    .center-content img {
+      max-width: 100%;
       
+    }
+    
+    .close-button {
+      color: #FFFFFF;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1;
+    }
+  
+    .close-button:focus {
+      outline: none;
+    }
+
+    
 }
