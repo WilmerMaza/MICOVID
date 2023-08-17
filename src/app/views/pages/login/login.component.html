@@ -1,7 +1,10 @@
 <div class="contenMax">
   <div class="conten">
     <div class="group_login">
-      <div class="contenLogo"></div>
+      <div class="content-logo">
+        <div class="contenLogo"></div>
+      </div>
+      <div class="line-blue"></div>
       <div class="formLogin">
         <form [formGroup]="loginForm">
           <p class="textInicio">Iniciar sesión</p>
@@ -46,12 +49,14 @@
               <label>Recordar contraseña</label>
             </div>
           </div>
+          <div class="content-button">
+            <button class="button" (click)="sessionLogin()">
+              Ingresar
+            </button>
+          </div>
 
-          <button cButton class="button" (click)="sessionLogin()">
-            Ingresar
-          </button>
           <div class="olvidarConten">
-            <a class="buttonOlvidar"> ¿Olvidastet tu contraseña? </a>
+            <a class="buttonOlvidar"> ¿Olvidaste tu contraseña? </a>
           </div>
         </form>
       </div>
