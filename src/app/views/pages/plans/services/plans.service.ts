@@ -11,9 +11,9 @@ import { createPagoResponse, userPlan } from '../model/PlanModel';
 export class PlansService {
   constructor(private micovid$: MicoviApiService) {}
 
-  planUser(data: string): Observable<userPlan> {
-    const endpoint = `/home/${data}`;
-    return this.micovid$.post(endpoint);
+  planUser(): Observable<userPlan> {
+    const endpoint = `/home`;
+    return this.micovid$.get(endpoint);
   }
 
   consultGetPlans(): Observable<Array<planModel>> {

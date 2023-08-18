@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { Validators } from 'src/app/utils/Validators';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
 import { SessionService } from 'src/app/views/pages/services/session.service';
 
@@ -35,8 +36,8 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
       this.dataUser = res;
     });
 
-    const {institutionName}= this.dataUser;
-    this.namePerson = institutionName;
+    const {institutionName,name}= this.dataUser;
+    this.namePerson = Validators.isNullOrUndefined( institutionName)?name:institutionName;
   }
 
   logout(): void {
