@@ -12,23 +12,7 @@ export class AuthService extends ComponentStore<session> {
   private jwt: string = '';
 
   constructor(private persistence$: Persistence) {
-    super({
-      dataUser: {
-        ID: '',
-        email: '',
-        institutionName: '',
-        legalRepresentative: '',
-        character: '',
-        pais: '',
-        sede: '',
-        webPage: '',
-        phone: '',
-        image: '',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      token: '',
-    });
+    super({} as session);
 
     const isAuth = persistence$.get(KEYSESSION);
     if (isAuth) {
@@ -71,43 +55,18 @@ export class AuthService extends ComponentStore<session> {
   }
 
   readonly setAuth = this.updater((state, payload: session) => {
-    const {
-      ID,
-      email,
-      institutionName,
-      legalRepresentative,
-      character,
-      pais,
-      sede,
-      webPage,
-      phone,
-      image,
-      createdAt,
-      updatedAt,
-    } = payload.dataUser;
     this.persistence$.save(KEYSESSION, payload);
-
     return {
       ...state,
-
       dataUser: {
-        ID: ID,
-        email: email,
-        institutionName: institutionName,
-        legalRepresentative: legalRepresentative,
-        character: character,
-        pais: pais,
-        sede: sede,
-        webPage: webPage,
-        phone: phone,
-        image: image,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
+        ...payload.dataUser,
       },
       token: payload.token,
     };
   });
 
   readonly getToken: Observable<string> = this.select((state) => state.token);
-  readonly getDataUser: Observable<DataUser> = this.select((state) => state.dataUser);
+  readonly getDataUser: Observable<DataUser> = this.select(
+    (state) => state.dataUser
+  );
 }

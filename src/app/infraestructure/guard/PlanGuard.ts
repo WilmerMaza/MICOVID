@@ -9,7 +9,7 @@ import { DataUser } from 'src/app/views/pages/model/dataUserModel';
 import { Validators } from 'src/app/utils/Validators';
 import { firstValueFrom } from 'rxjs';
 import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
-import {userPlan} from 'src/app/views/pages/plans/model/PlanModel'
+import { userPlan } from 'src/app/views/pages/plans/model/PlanModel';
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +26,10 @@ export class PlanGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    this.authService$.getDataUser.subscribe((userData) => {
-      this.userDataInfo = userData;
-    });
 
-    const { ID } = this.userDataInfo;
-
-    this.userPlan = await firstValueFrom(this.planService$.planUser(ID));
+    this.userPlan = await firstValueFrom(
+      this.planService$.planUser()
+    );
 
     if (!Validators.isNullOrUndefined(this.userPlan)) {
       return true;
