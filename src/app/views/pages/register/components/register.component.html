@@ -1,101 +1,271 @@
 <div id="content-register">
   <div class="group_register">
     <div class="contenLogo">
-      <img src="/assets/images/IconoRegister.png" class="logoInterno">
+      <img src="/assets/images/IconoRegister.png" class="logoInterno" />
+    </div>
+    <div>
+      <img src="/assets/images/imageRegistroMin.png" class="logoInternoMini" />
     </div>
     <div class="contentInput col-lg-8">
-      <div>
-        <img src="/assets/images/imageRegistroMin.png" class="logoInternoMini">
-      </div>
-      <div class="tittleRegister">
-        Registrate
-      </div>
-      <form [formGroup]="register" (ngSubmit)="enviarFormulario()" class="row">
-        <div class="content-formulario">
-          <!-- Columna 1 -->
-          <div class="form-group column1 col-lg-6 col-md-6 col-sm-12">
-            <div>
-              <label class="textInput" for="nombreInstitucion">Nombre de la institución</label>
-              <input [ngStyle]="{'border': hasError('institutionName', 'required') && isTouched('institutionName')? '1px solid red' : 'initial'}" type="text" id="nombreInstitucion" formControlName="institutionName" class="form-control inputRegister">
-              <div *ngIf="hasError('institutionName', 'required') && isTouched('institutionName')" class="error-message">
-                Nombre de la institución es obligatorio.
+      <div class="tittleRegister">Registrate</div>
+      <div class="content-form">
+        <form
+          [formGroup]="register"
+          (ngSubmit)="enviarFormulario()"
+          class="row"
+        >
+          <div class="content-formulario">
+            <!-- Columna 1 -->
+            <!-- <div class="form-group column1 col-lg-6 col-md-6 col-sm-12"> -->
+              <div>
+                <label class="textInput" for="nombreInstitucion"
+                  >Nombre de la institución</label
+                >
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('institutionName', 'required') &&
+                      isTouched('institutionName')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="nombreInstitucion"
+                  formControlName="institutionName"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="
+                    hasError('institutionName', 'required') &&
+                    isTouched('institutionName')
+                  "
+                  class="error-message"
+                >
+                  Nombre de la institución es obligatorio.
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="textInput" for="representanteLegal">Representante Legal</label>
-              <input [ngStyle]="{'border': hasError('legalRepresentative', 'required') && isTouched('legalRepresentative')? '1px solid red' : 'initial'}" type="text" id="representanteLegal" formControlName="legalRepresentative" class="form-control inputRegister">
-              <div *ngIf="hasError('legalRepresentative', 'required') && isTouched('legalRepresentative')" class="error-message">
-                Representante Legal es obligatorio.
+              <div>
+                <label class="textInput" for="representanteLegal"
+                  >Representante Legal</label
+                >
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('legalRepresentative', 'required') &&
+                      isTouched('legalRepresentative')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="representanteLegal"
+                  formControlName="legalRepresentative"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="
+                    hasError('legalRepresentative', 'required') &&
+                    isTouched('legalRepresentative')
+                  "
+                  class="error-message"
+                >
+                  Representante Legal es obligatorio.
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="textInput" for="caracter">Caracter</label>
-              <input [ngStyle]="{'border': hasError('character', 'required') && isTouched('character')? '1px solid red' : 'initial'}" type="text" id="caracter" formControlName="character" class="form-control inputRegister">
-              <div *ngIf="hasError('character', 'required') && isTouched('character')" class="error-message">
-                Caracter es obligatorio.
+              <div>
+                <label class="textInput" for="caracter">Caracter</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('character', 'required') &&
+                      isTouched('character')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="caracter"
+                  formControlName="character"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="
+                    hasError('character', 'required') && isTouched('character')
+                  "
+                  class="error-message"
+                >
+                  Caracter es obligatorio.
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="textInput" for="pais">Pais</label>
-              <input [ngStyle]="{'border': hasError('pais', 'required') && isTouched('pais')? '1px solid red' : 'initial'}" type="text" id="tipo" formControlName="pais" class="form-control inputRegister">
-              <div *ngIf="hasError('pais', 'required') && isTouched('pais')" class="error-message">
-                Pais es obligatorio.
+              <div>
+                <label class="textInput" for="pais">Pais</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('pais', 'required') && isTouched('pais')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="tipo"
+                  formControlName="pais"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="hasError('pais', 'required') && isTouched('pais')"
+                  class="error-message"
+                >
+                  Pais es obligatorio.
+                </div>
               </div>
-            </div>
-          </div>
+            <!-- </div> -->
 
-          <!-- Columna 2 -->
-          <div class="column2 form-group col-lg-6 col-md-6 col-sm-12">
+            <!-- Columna 2 -->
+            <!-- <div class="column2 form-group col-lg-6 col-md-6 col-sm-12"> -->
             <div>
-              <label class="textInput" for="sede">Sede</label>
-              <input [ngStyle]="{'border': hasError('sede', 'required') && isTouched('sede')?'1px solid red' : 'initial'}" type="text" id="sede" formControlName="sede" class="form-control inputRegister">
-              <div *ngIf="hasError('sede', 'required') && isTouched('sede')" class="error-message">
-                Sede es obligatorio.
+                <label class="textInput" for="sede">Sede</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('sede', 'required') && isTouched('sede')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="sede"
+                  formControlName="sede"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="hasError('sede', 'required') && isTouched('sede')"
+                  class="error-message"
+                >
+                  Sede es obligatorio.
+                </div>
               </div>
+              <div>
+                <label class="textInput" for="paginaWeb">Página web</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('webPage', 'pattern') && isTouched('webPage')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="text"
+                  id="paginaWeb"
+                  formControlName="webPage"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="hasError('webPage', 'pattern') && isTouched('webPage')"
+                  class="error-message"
+                >
+                  La página web no es válida.
+                </div>
+              </div>
+              <div>
+                <label class="textInput" for="correoElectronico"
+                  >Correo electrónico</label
+                >
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('email', 'email') && isTouched('email')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="email"
+                  id="correoElectronico"
+                  formControlName="email"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="hasError('email', 'email') && isTouched('email')"
+                  class="error-message"
+                >
+                  Correo electrónico es obligatorio.
+                </div>
+                <div
+                  *ngIf="hasError('email', 'email') && isTouched('email')"
+                  class="error-message"
+                >
+                  Correo electrónico no es válido.
+                </div>
+              </div>
+              <div>
+                <label class="textInput" for="telefono">Teléfono</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('phone', 'required') && isTouched('phone')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="number"
+                  placeholder="(123) 456-789"
+                  id="telefono"
+                  formControlName="phone"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="hasError('phone', 'required') && isTouched('phone')"
+                  class="error-message"
+                >
+                  Teléfono es obligatorio.
+                </div>
+              </div>
+              <div>
+                <label class="textInput" for="contraseña">Contraseña</label>
+                <input
+                  [ngStyle]="{
+                    border:
+                      hasError('password', 'required') && isTouched('password')
+                        ? '1px solid red'
+                        : 'initial'
+                  }"
+                  type="password"
+                  id="contraseña"
+                  formControlName="password"
+                  class="form-control inputRegister"
+                />
+                <div
+                  *ngIf="
+                    hasError('password', 'required') && isTouched('password')
+                  "
+                  class="error-message"
+                >
+                  Contraseña es obligatoria.
+                </div>
+                <div
+                  *ngIf="
+                    hasError('password', 'minlength') && isTouched('password')
+                  "
+                  class="error-message"
+                >
+                  La contraseña debe tener al menos 6 caracteres.
+                </div>
+                <div
+                  *ngIf="
+                    hasError('password', 'pattern') && isTouched('password')
+                  "
+                  class="error-message"
+                >
+                  La contraseña debe contener al menos una mayúscula y un
+                  número.
+                </div>
+              <!-- </div> -->
             </div>
             <div>
-              <label class="textInput" for="paginaWeb">Página web</label>
-              <input [ngStyle]="{'border': hasError('webPage', 'pattern') && isTouched('webPage')?'1px solid red' : 'initial'}" type="text" id="paginaWeb" formControlName="webPage" class="form-control inputRegister">
-              <div *ngIf="hasError('webPage', 'pattern') && isTouched('webPage')" class="error-message">
-                La página web no es válida.
-              </div>
-            </div>
-            <div>
-              <label class="textInput" for="correoElectronico">Correo electrónico</label>
-              <input [ngStyle]="{'border': hasError('email', 'email') && isTouched('email')?'1px solid red' : 'initial'}" type="email" id="correoElectronico" formControlName="email" class="form-control inputRegister">
-              <div *ngIf="hasError('email', 'email') && isTouched('email')" class="error-message">
-                Correo electrónico es obligatorio.
-              </div>
-              <div *ngIf="hasError('email', 'email') && isTouched('email')" class="error-message">
-                Correo electrónico no es válido.
-              </div>
-            </div>
-            <div>
-              <label class="textInput" for="telefono">Teléfono</label>
-              <input [ngStyle]="{'border': hasError('phone', 'required') && isTouched('phone')?'1px solid red' : 'initial'}" type="number" placeholder="(123) 456-789" id="telefono" formControlName="phone" class="form-control inputRegister">
-              <div *ngIf="hasError('phone', 'required') && isTouched('phone')" class="error-message">
-                Teléfono es obligatorio.
-              </div>
-            </div>
-            <div>
-              <label class="textInput" for="contraseña">Contraseña</label>
-              <input [ngStyle]="{'border': hasError('password', 'required') && isTouched('password')?'1px solid red' : 'initial'}" type="password" id="contraseña" formControlName="password" class="form-control inputRegister">
-              <div *ngIf="hasError('password', 'required') && isTouched('password')" class="error-message">
-                Contraseña es obligatoria.
-              </div>
-              <div *ngIf="hasError('password', 'minlength') && isTouched('password')" class="error-message">
-                La contraseña debe tener al menos 6 caracteres.
-              </div>
-              <div *ngIf="hasError('password', 'pattern') && isTouched('password')" class="error-message">
-                La contraseña debe contener al menos una mayúscula y un número.
-              </div>
-            </div>
-            <div>
-              <button type="submit" [disabled]="register.invalid" class="buttonSend btn btn-primary col-lg-12 col-md-12">Crear cuenta</button>
+              <button
+                type="submit"
+                [disabled]="register.invalid"
+                class="buttonSend btn btn-primary col-lg-12 col-md-12"
+              >
+                Crear cuenta
+              </button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
