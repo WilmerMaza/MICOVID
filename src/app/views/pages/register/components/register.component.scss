@@ -26,16 +26,14 @@
       }
 
     .group_register {
-        overflow: hidden;
         display: flex;
-        width: 70%;
-        height: 75%;
-        justify-content: flex-start;
-        border-radius: 45px 0px 0px 45px;
+        width: 1000px;
+        height: 596px;
+        border-radius: 15px 0px 0px 15px;
         background-color: white;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        position: relative;
-        overflow: auto;
+        overflow: hidden;
+        border: 10px solid white;
     }
 
     .inputRegister {
@@ -50,24 +48,32 @@
     }
 
     .logoInterno {
-        height: 13vw;
-        z-index: 1;
+        height: 230px;
         position: absolute;
-        top: 72%;
-        left: 15.5%;
-        transform: translateY(-50%);
-        margin-left: 1.7%;
-        /* Un valor mayor al z-index del contenido para que la imagen se superponga */
+        right: -48%;
+        filter: drop-shadow(0 0 0.45rem black);
     }
 
     .contenLogo {
-        border-radius: 12% 0px 0px 12%;
-        margin: 20px;
         width: 30%;
         background-image: url(/assets/images/imageRegistro.png);
-        background-size: contain;
         background-size: cover;
         background-repeat: no-repeat;
+        display: flex;
+        margin-left: 3;
+        justify-content: flex-end;
+        align-items: flex-end;
+        position: relative;
+        box-shadow: 0px 0px 5px;
+    }
+
+    .content-form {
+        padding-top: 20px;
+    }
+
+    .row {
+        height: 360px;
+        flex-wrap: nowrap;
     }
 
     .tittleRegister {
@@ -82,16 +88,19 @@
     }
 
     .contentInput {
-
-        padding: 30px;
+        padding-left: 60px;
+        width: 70%;
         display: flex;
         flex-direction: column;
     }
 
     .content-formulario {
+        height: 300px;
         margin-top: 30px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        flex-wrap: wrap;
+
     }
 
     .textInput {
@@ -100,7 +109,7 @@
         font-size: 21px;
         font-style: normal;
         line-height: normal;
-        font-weight: 500;
+        font-weight: 400;
         /* Valor de font-weight para un texto delgado */
         font-stretch: condensed;
         /* Valor de font-stretch para un texto condensado (delgado) */
@@ -115,7 +124,7 @@
         background: linear-gradient(180deg, #0DDCF9 15.63%, #0C4CC8 100%);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #ffffff;
-        max-width: 250px;
+        width: 250px;
         font-size: 20px;
         font-style: normal;
         font-weight: bold;
@@ -126,29 +135,8 @@
         align-items: center;
 
         font-family: 'Viable Logic', sans-serif;
-        margin-top: 57px;
+        margin-top: 27px;
     }
-
- 
-
-    @media screen and (max-width: 768px) {
-        .content-formulario {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            height: 30%;
-        }
-
-        .contentInput {
-        
-            overflow: auto;
-        }
-
-        
-    .inputRegister {
-        max-width: none;     
-    }
-}
 
     @media screen and (max-width: 990px) {
         .logoInterno {            
@@ -161,16 +149,40 @@
         .logoInternoMini{
             display: block; 
             width: 100%;      
-           }
-    }
-    .group_register {
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        justify-content: flex-start;
-        border-radius: 45px 45px 45px 45px;
-        background-color: white;
-        overflow: auto;        
+        }
+           
+        .group_register {
+            width: 560px;
+            height: 653px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 45px;
+            border: 15px solid white;  
+        }
+
+        .contentInput{
+            width: 100%;
+            height: 400px;
+            padding-left: 0;
+        }
+
+        .content-form {
+            overflow: hidden;
+        }
+
+        .content-formulario {
+            label {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            input {
+                width: 230px;
+            }
+        }
+
+        .buttonSend {
+            width: 230px;
+        }
     }
 
 }
