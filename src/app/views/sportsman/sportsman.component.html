@@ -71,9 +71,9 @@
                 <div class="row">Teléfono</div>
                 <div class="row-data">{{dataSingle.phone}}</div>
               </div>
-              <div class="botones" fxFlex="auto" fxLayout="row" fxLayoutAlign="space-between">
-                <button class="columns">Editar</button>
-                <button class="columns" >Exportar</button>
+              <div class="botones">
+                <button mat-button class="columns">Editar</button>
+                <button mat-button class="columns" >Exportar</button>
               </div>
             </div>
           </div>
@@ -82,8 +82,26 @@
     </mat-card-content>
   </mat-card>
 </div>
+<div>
+
+</div>
+
+<div class="containerFilter">
+  <app-dinamic-filter
+  [selectItemCount]="selectItemCount"
+  [isDownload]="isDownload"
+  [nameAdd]="nameAdd"
+  [dataFilter]="jsonFilter"
+  (filterResult)="getDataFilter($event)"
+  (actionFilter)="getActionEvent($event)"
+  >
+  loading..
+</app-dinamic-filter>
+</div>
   <div class="container">
     <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
-      (actionEvent)="getActionEvent($event)"></app-dinamic-table>
+      (actionEvent)="getActionEvent($event)"
+      (selectItemCount)="getselectItemCount($event)"
+      ></app-dinamic-table>
   </div>
 </div>
