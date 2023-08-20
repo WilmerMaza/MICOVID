@@ -29,6 +29,7 @@
   .row {
     color: #ffffff;
     size: 13px;
+    margin-left: 0px;
   }
   .row-data {
     color: #ffffff;
@@ -71,14 +72,34 @@
 
   .contentData {
     padding: 10px 20px 10px 30px;
+    max-width: 1200px;
   }
 
   #name {
     color: #fff;
-    font-family: Inria Sans;
+    font-family: "Inria Sans";
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+  }
+
+  .columns{
+    border-radius: 17px;
+    background-color: #ffffff;
+    border: none;
+    width: 60px;
+    height: 17px;
+    color: #0C4CC8;
+    font-size: 10.2px;
+    font-family: "Inria Sans";
+    font-weight: bold;
+  }
+  .botones {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 150px;
+    justify-content: space-between;
   }
 }
