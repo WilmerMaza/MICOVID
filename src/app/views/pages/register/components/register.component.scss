@@ -185,4 +185,34 @@
         }
     }
 
+    @media screen and (max-width: 570px) {
+        .group_register {
+            width: 360px; 
+            position: relative;
+        }
+        .content-form{
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .content-formulario{
+            flex-wrap: nowrap;
+        }
+        .contentInput {
+            height: 80%;
+        }
+
+        .content-formulario {
+            input {
+                max-width: 400px;
+                width: 300px;
+            }
+        }
+        .buttonSend {
+            position: absolute;
+            bottom: 10px;
+            width: 320px;
+        }
+    }
+
 }
