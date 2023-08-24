@@ -5,7 +5,7 @@
         <h1>ELIGE TU PLAN</h1>
     </div>
     <div class="product_target">
-        <div *ngFor="let item of targetPlans; let indexOfElement=index;" class="target">
+        <div *ngFor="let item of targetPlans; let indexOfElement=index;" class="target" (click)="GenerarCobro(item)">
             <div class="title_target">{{item.planname}}</div>
             <div class="price_plan {{colorTarget[indexOfElement]}}">{{item.price | currency: 'USD' }}</div>
             <div class="description_target">
@@ -14,7 +14,6 @@
                 </p>
             </div>
             <div class="selection_plan {{colorTarget[indexOfElement]}}"
-            (click)="GenerarCobro(item)"
             >Seleccionar</div>
         </div>
     </div>

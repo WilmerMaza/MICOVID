@@ -61,6 +61,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        cursor: pointer;
         .title_target {
             width: 100%;
             text-align: center;
@@ -125,10 +126,6 @@
     box-shadow: -2px -2px 15px;
     transform-origin: center center;
 }
-.selection_plan:hover {
-    cursor: pointer;
-}
-
 
 .footer_page {
     color: #B4B4B4;

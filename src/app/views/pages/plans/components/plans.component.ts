@@ -3,6 +3,7 @@ import { planModel } from 'src/app/views/pages/model/PlanModel';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
 import { PlansService } from '../services/plans.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-plans',
@@ -29,6 +30,20 @@ export class PlansComponent implements OnInit {
   }
 
   GenerarCobro(item: planModel): void {
+    let timerInterval: number | undefined;
+    Swal.fire({
+      title: 'Espera, Estamos trabajando en tu compra',
+      timer: 6000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+        }, 200)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    })
     let userDataInfo: DataUser = {} as DataUser;
     this.authService$.getDataUser.subscribe((userData) => {
       userDataInfo = userData;
@@ -45,8 +60,17 @@ export class PlansComponent implements OnInit {
       userId: ID,
     };
 
-    this.planService$.createPagoPaypal(data).subscribe((res) => {
+    this.planService$.createPagoPaypal(data).subscribe((res) : void => {
       window.location.href = res.url;
+    },(respError): void => {
+      const { error} = respError;
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: error,
+        showConfirmButton: false,
+        timer: 2000
+      })
     });
   }
 }
