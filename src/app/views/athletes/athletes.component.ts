@@ -126,6 +126,7 @@ export class AthletesComponent {
       property: 'category',
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'Pony', value:'pony', code:''},
         {name:'Prejuvenil', value:'prejuvenil', code:''},
@@ -137,6 +138,7 @@ export class AthletesComponent {
       property: 'genero',
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'Femenino', value:'Femenino', code:''},
         {name:'Masculino', value:'Masculino', code:''}
@@ -147,6 +149,7 @@ export class AthletesComponent {
       property: 'identificacion' ,
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'T. de Identidad', value:'TI', code:''},
         {name:'C. de Ciudadania', value:'CC', code:''}

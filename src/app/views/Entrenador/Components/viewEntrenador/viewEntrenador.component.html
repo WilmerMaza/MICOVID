@@ -1,0 +1,73 @@
+<div class="container-mat-card contentInfo">
+  <mat-card class="container-view" *ngIf="showViewEntrenador">
+    <button mat-icon-button class="close-button" (click)="closeCard()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
+      <div fxLayout="row"> <!-- Definición de la primera fila -->
+        <div fxFlex="20%" class="center-content">
+          <img src="../../../assets/images/default.png">
+        </div>
+        <div fxFlex="80%" class="content-card">
+          <div fxLayout="column" fxLayoutGap="16px" class="contentData" fxFlex="80%">
+            <!-- Contenedor de las columnas -->
+            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la primera fila -->
+              <div fxFlex="auto">
+                <div class="row" id="name">{{dataSingle.name}}</div>
+                <div class="row-data">{{dataSingle.typeIdentification}} {{dataSingle.identification}}</div>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la segunda fila -->
+              <div fxFlex="14%">
+                <div class="row">Fecha de Nacimiento</div>
+                <div class="row-data">{{dataSingle.birtDate}}</div>
+              </div>
+
+              <div fxFlex="23%">
+                <div class="row">Lugar de Nacimiento</div>
+                <div class="row-data">{{dataSingle.nationality}}</div>
+              </div>
+
+              <div fxFlex="23%">
+                <div class="row">Máximo nivel de estudio alcanzado</div>
+                <div class="row-data">{{dataSingle.studyLevelMax}}</div>
+              </div>
+
+              <div fxFlex="auto">
+                <div class="row">Institución donde estudió</div>
+                <div class="row-data">{{dataSingle.institutionNameStudy}}</div>
+              </div>
+
+            </div>
+            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la tercera fila -->
+
+              <div fxFlex="14%">
+                <div class="row">Entidad donde labora</div>
+                <div class="row-data">{{dataSingle.institutionNameStudy}}</div>
+              </div>
+
+              <div fxFlex="23%">
+                <div class="row">Teléfono</div>
+                <div class="row-data">{{dataSingle.phone}}</div>
+              </div>
+
+              <div fxFlex="auto">
+                <div class="row">Correo eletrónico</div>
+                <div class="row-data">{{dataSingle.email}}</div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="btnView"  fxFlex="20%">
+            <!-- Definición de la cuarta fila -->
+            <div class="botones" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="end center">
+              <button mat-button class="columns">Editar</button>
+              <button mat-button class="columns">Exportar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

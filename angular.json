@@ -42,7 +42,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "crypto-js"
+              "crypto-js",
+              "sweetalert2"
             ]
           },
           "configurations": {

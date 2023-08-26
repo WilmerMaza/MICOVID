@@ -1,0 +1,129 @@
+.container {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.container-view {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+::ng-deep .full-height {
+  padding: 0 !important;
+}
+.content-card {
+  background: linear-gradient(
+    265.16deg,
+    #0ddcf9 -0.06%,
+    #3776f2 49.85%,
+    #0c4cc8 92.38%
+  );
+  padding: 20px;
+  border-radius: 0px 20px 20px 0px;
+  box-sizing: border-box;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.row {
+  color: #ffffff;
+  font-size: 15px;
+  margin-left: 0px;
+  font-family: Inria Sans;
+}
+.row-data {
+  color: #ffffff;
+  font-weight: bold;
+  font-family: Inria Sans;
+  font-size: 15px;
+}
+.center-content {
+  max-width: 100%; /* El contenedor no será más ancho que su contenedor principal */
+  height: auto;
+  overflow: hidden;
+  background-size: cover;
+  border-radius: 20px 0px 0px 20px;
+}
+.center-content img {
+  max-width: 100%; /* El contenedor no será más ancho que su contenedor principal */
+  object-fit: cover;
+}
+
+.close-button {
+  color: #ffffff;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.close-button:focus {
+  outline: none;
+}
+::ng-deep .contentInfo {
+  margin: 0;
+  margin-bottom: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .container {
+  max-width: 100% !important;
+}
+
+.contentData {
+  padding: 10px 20px 10px 30px;
+}
+
+#name {
+  color: #fff;
+  font-family: "Inria Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.columns {
+  border-radius: 17px;
+  background-color: #ffffff;
+  border: none;
+  width: 5% !important;
+  height: 100% !important;
+  color: #0c4cc8 !important;
+
+  font-family: "Inria Sans";
+  font-weight: bold;
+  font-size: 11.267px;
+  font-style: normal;
+  line-height: normal;
+}
+.botones {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: space-between;
+  height: 50%;
+}
+
+::ng-deep .contentInfo .container-view {
+  border-radius: 20px !important;
+}
+
+.btnView {
+  height: 100%;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  max-height: 10%;
+  display: flex;
+  align-items: flex-end;
+}
