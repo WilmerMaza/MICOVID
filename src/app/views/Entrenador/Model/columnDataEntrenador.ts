@@ -5,28 +5,18 @@ export const columnsEntrenadorValue = [
       estado: true
     },
     {
-      displayname: 'Tipo',
-      name:'typeIdentification',
-      estado: true
-    },
-    {
       displayname: 'Nombre completo',
       name:'name',
       estado: true
     },
     {
-      displayname: 'Genero',
-      name:'gender',
+      displayname: 'Correo',
+      name:'email',
       estado: true
     },
     {
-        displayname: 'Peso',
-        name:'weight',
-        estado: true
-    },
-    {
-        displayname: 'Categoria',
-        name:'category',
+        displayname: 'Teléfono',
+        name:'phone',
         estado: true
     },
     {

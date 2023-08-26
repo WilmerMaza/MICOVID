@@ -4,6 +4,7 @@ export const jsonData = [
       property: 'category',
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'Pony', value:'Pony', code:''},
         {name:'Amateur', value:'Amateur', code:''},
@@ -15,6 +16,7 @@ export const jsonData = [
       property: 'gender',
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'Femenino', value:'Femenino', code:''},
         {name:'Masculino', value:'Masculino', code:''}
@@ -25,6 +27,7 @@ export const jsonData = [
       property: 'typeIdentification' ,
       disable:false,
       isOpen:false,
+      typeFilter:"check",
       control:[
         {name:'T. de Identidad', value:'TI', code:''},
         {name:'C. de Ciudadania', value:'Cédula', code:''}
