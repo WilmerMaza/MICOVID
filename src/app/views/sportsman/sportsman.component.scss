@@ -1,12 +1,19 @@
 #sportsman {
   width: 100%;
+  padding: 15px;
   .container {
     width: 100%;
     height: auto;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    flex: 1;
+    min-width: 0;
   }
+
+  .containerFilter {
+      padding: 0px 10px 10px 10px;
+  }
+
   .container-view {
     width: 100%;
     height: 100%;
@@ -60,6 +67,8 @@
     margin: 1%;
     display: flex;
     justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
   }
 
   // ::ng-deep .container-view {
@@ -102,4 +111,104 @@
     width: 150px;
     justify-content: space-between;
   }
+  .conten-table{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .conten-table1{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .conten-table2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+  }
+  .content-timeline{
+    background-color: #ffffff;
+    padding-bottom: 20px;
+    width: 285px;
+    border-radius: 15px;
+    padding-top: 20px;
+    margin: 10px 10px 0px 0px;
+  }
+  
+//linea de tiempo
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transform: translateX(50%);
+}
+.tittle-timeline{
+  color: #0C4CC8;
+  font-size: 22px;
+  text-align: center;  
+  font-weight: bold;
+}
+.timeline-line {
+  position: absolute;
+  width: 8px;
+  height: 95%;
+  background: linear-gradient(180deg, #0DDCF9 0%, #0C4CC8 52.08%, #3776F2 100%);
+  transform: translateX(-50%);
+}
+
+.timeline-events {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeline-event {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ededed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -25px; /* Ajusta la distancia vertical de la categoría */
+  text-align: center;
+  width: 120px; /* Ajusta el ancho de la caja de categoría */
+}
+
+.event-details-left {
+  right: 150%; /* Posiciona las categorías a la izquierda */
+}
+
+.event-details-right {
+  left: 50%; /* Posiciona las categorías a la derecha */
+}
+
+.event-date {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.event-category {
+  font-size: 14px;
+}
+
 }
