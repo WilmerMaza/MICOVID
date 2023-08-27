@@ -1,107 +1,123 @@
 <div id="sportsman">
   <!-- aqui inicia la visualizacion individual -->
-  <div class="container-mat-card contentInfo" >
-  <mat-card class="container-view" *ngIf="showSportsman">
-    <button mat-icon-button class="close-button" (click)="closeCard()">
-      <mat-icon>close</mat-icon>
-    </button>
-    <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
-      <div fxLayout="row" > <!-- Definición de la primera fila -->
-        <div fxFlex="20%"  class="center-content">
-          <img src="../../../assets/images/default.png">
+  <div class="conten-table">
+    <div class="containerFilter">
+      <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
+        [dataFilter]="jsonFilter" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEvent($event)">
+        loading..
+      </app-dinamic-filter>
+    </div>
+    <div class="conten-table1">
+      <div class="conten-table2">
+        <div class="container-mat-card contentInfo" *ngIf="showSportsman">
+          <mat-card class="container-view">
+            <button mat-icon-button class="close-button" (click)="closeCard()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
+              <div fxLayout="row"> <!-- Definición de la primera fila -->
+                <div fxFlex="20%" class="center-content">
+                  <img src="../../../assets/images/default.png">
+                </div>
+                <div fxFlex="80%" class="content-card">
+                  <div fxLayout="column" fxLayoutGap="16px" class="contentData"> <!-- Contenedor de las columnas -->
+                    <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la primera fila -->
+                      <div fxFlex="auto">
+                        <div class="row" id="name">{{dataSingle.name}}</div>
+                        <div class="row-data">{{dataSingle.typeIdentification}} {{dataSingle.identification}}</div>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la segunda fila -->
+                      <div fxFlex="auto">
+                        <div class="row">Fecha de Nacimiento</div>
+                        <div class="row-data">{{dataSingle.birtDate}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Nacionalidad</div>
+                        <div class="row-data">{{dataSingle.nationality}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Lugar de Nacimiento</div>
+                        <div class="row-data">{{dataSingle.birthPlace}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Género</div>
+                        <div class="row-data">{{dataSingle.gender}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Peso</div>
+                        <div class="row-data">{{dataSingle.weight}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Altura</div>
+                        <div class="row-data">{{dataSingle.height}}</div>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la tercera fila -->
+                      <div fxFlex="auto">
+                        <div class="row">Máximo nivel de estudio alcanzado</div>
+                        <div class="row-data">{{dataSingle.studyLevelMax}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Institución donde estudió</div>
+                        <div class="row-data">{{dataSingle.institutionNameStudy}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Institución deportiva</div>
+                        <div class="row-data">{{dataSingle.sportInstition}}</div>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la cuarta fila -->
+                      <div fxFlex="auto">
+                        <div class="row">Disciplina deportiva</div>
+                        <div class="row-data">{{dataSingle.athleticDiscipline}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Correo</div>
+                        <div class="row-data">{{dataSingle.email}}</div>
+                      </div>
+                      <div fxFlex="auto">
+                        <div class="row">Teléfono</div>
+                        <div class="row-data">{{dataSingle.phone}}</div>
+                      </div>
+                      <div class="botones">
+                        <button mat-button class="columns">Editar</button>
+                        <button mat-button class="columns">Exportar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
         </div>
-        <div fxFlex="80%" class="content-card">
-          <div fxLayout="column" fxLayoutGap="16px" class="contentData"> <!-- Contenedor de las columnas -->
-            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la primera fila -->
-              <div fxFlex="auto">
-                <div class="row" id="name">{{dataSingle.name}}</div>
-                <div class="row-data">{{dataSingle.typeIdentification}}  {{dataSingle.identification}}</div>
+
+        <div class="container">
+          <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
+            (actionEvent)="getActionEvent($event)" (selectItemCount)="getselectItemCount($event)">
+          </app-dinamic-table>
+        </div>
+      </div>
+      <div class="content-timeline" *ngIf="showSportsman">
+        <div class="tittle-timeline">
+             Historial Categorico 
+        </div>
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-events">
+            <ng-container *ngFor="let event of historyCategory; let i = index">
+              <div class="timeline-event">
+                <div class="circle" [style.left.%]="calculateCirclePosition(i)"></div>
+                <div class="event-details"
+                  [ngClass]="{ 'event-details-left': i % 2 === 0, 'event-details-right': i % 2 !== 0 }">
+                  <div class="event-date">{{ event.categoryName }}</div>
+                  <div class="event-category">{{ event.FechaFin }}</div>
+                </div>
               </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la segunda fila -->
-              <div fxFlex="auto">
-                <div class="row">Fecha de Nacimiento</div>
-                <div class="row-data">{{dataSingle.birtDate}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Nacionalidad</div>
-                <div class="row-data">{{dataSingle.nationality}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Lugar de Nacimiento</div>
-                <div class="row-data">{{dataSingle.birthPlace}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Género</div>
-                <div class="row-data">{{dataSingle.gender}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Peso</div>
-                <div class="row-data">{{dataSingle.weight}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Altura</div>
-                <div class="row-data">{{dataSingle.height}}</div>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la tercera fila -->
-              <div fxFlex="auto">
-                <div class="row">Máximo nivel de estudio alcanzado</div>
-                <div class="row-data">{{dataSingle.studyLevelMax}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Institución donde estudió</div>
-                <div class="row-data">{{dataSingle.institutionNameStudy}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Institución deportiva</div>
-                <div class="row-data">{{dataSingle.sportInstition}}</div>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la cuarta fila -->
-              <div fxFlex="auto">
-                <div class="row">Disciplina deportiva</div>
-                <div class="row-data">{{dataSingle.athleticDiscipline}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Correo</div>
-                <div class="row-data">{{dataSingle.email}}</div>
-              </div>
-              <div fxFlex="auto">
-                <div class="row">Teléfono</div>
-                <div class="row-data">{{dataSingle.phone}}</div>
-              </div>
-              <div class="botones">
-                <button mat-button class="columns">Editar</button>
-                <button mat-button class="columns" >Exportar</button>
-              </div>
-            </div>
+            </ng-container>
           </div>
         </div>
       </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-<div>
-
-</div>
-
-<div class="containerFilter">
-  <app-dinamic-filter
-  [selectItemCount]="selectItemCount"
-  [isDownload]="isDownload"
-  [nameAdd]="nameAdd"
-  [dataFilter]="jsonFilter"
-  (filterResult)="getDataFilter($event)"
-  (actionFilter)="getActionEvent($event)"
-  >
-  loading..
-</app-dinamic-filter>
-</div>
-  <div class="container">
-    <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
-      (actionEvent)="getActionEvent($event)"
-      (selectItemCount)="getselectItemCount($event)"
-      ></app-dinamic-table>
+    </div>
   </div>
 </div>

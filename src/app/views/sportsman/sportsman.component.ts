@@ -1,8 +1,10 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SportsmanService } from './services/sportsman.service'
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Sportsman } from '../models/DataSportsman'
+import { HistorialCategory } from '../models/HistorialCategoryModel'
 import { columnsValue } from '../models/columnDataSportman'
+import { categoryModel } from '../models/categoryModel'
 import { jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
@@ -14,42 +16,86 @@ import { filterResult } from 'src/app/shared/model/filterModel';
   styleUrls: ['./sportsman.component.scss']
 })
 export class SportsmanComponent implements OnInit {
- public dataSportman: Sportsman[] = [];
- public data = columnsValue;
- public jsonFilter = jsonData;
- public showSportsman: Boolean = false;
- public dataSingle:Sportsman;
- public isCheck = true;
- public selectItemCount:number=0;
- isDownload = this.data.length !== 0;
- nameAdd:string='deportista'
+  public dataSportman: Sportsman[] = [];
+  public data = columnsValue;
+  public jsonFilter = jsonData;
+  public showSportsman: Boolean = false;
+  public dataSingle: Sportsman;
+  public isCheck = true;
+  public selectItemCount: number = 0;
+  public historyCategory: HistorialCategory[];
+  isDownload = this.data.length !== 0;
+  nameAdd: string = 'deportista'
 
-
+  calculateCirclePosition(index: number): number {
+    const circleSpacing = 100; // Ajusta el espaciado entre círculos
+    return index * circleSpacing;
+  }
   constructor(
     private sporsmanService$: SportsmanService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getSportsman();
-
+    this.getCategory();
+   
   }
 
-  getSportsman(){
+  getCategory() {
+    this.sporsmanService$.getAllCategory().subscribe((res: categoryModel[]) => {
+      const categoriaIndex = jsonData.findIndex(section => section.title === 'Categoria');
+      // Si se encuentra la sección "Categoria"
+      if (categoriaIndex !== -1) {
+        jsonData[categoriaIndex].control = res.map(item => ({
+          name: item.name,
+          value: item.name,
+          code: item.ID
+        }));
+      }
+    })
+  }
+
+  getSportsman() {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
       this.dataSportman = res;
     });
   }
-  getActionEvent(event:any):void{
-    if (event.action.action == 'ver')
-    {
+  getActionEvent(event: any): void {
+    if (event.action.action == 'ver') {
       this.showSportsman = true;
       this.dataSingle = event.data;
-    } 
+       this.historyCategorico(event.data)
+    }
   }
-  closeCard(){
+  historyCategorico(data: Sportsman):void {
+    const idObject = {
+      id: data.ID // Aquí asigna el valor de tu variable "id"
+    };
+    this.sporsmanService$.getHistoryCategory(idObject)
+    .subscribe((res: HistorialCategory[]) => {    
+      this.historyCategory = res;
+      this.historyCategory.forEach(item => {
+        // Transforma FechaInicio
+        const fechaInicio = new Date(item.FechaInicio);
+        item.FechaInicio = fechaInicio.toISOString().split('T')[0]; // Obtén el formato YYYY-MM-DD
+        
+        // Transforma FechaFin
+        const fechaFin = new Date(item.FechaFin);
+        item.FechaFin = fechaFin.toISOString().split('T')[0]; // Obtén el formato YYYY-MM-DD
+      });
+    }, (error) => {
+      if (error.status === 404) {
+        this.historyCategory = []; // Asignar un vector vacío si no se encontraron deportistas
+      }
+    });  
+  
+
+  }
+
+  closeCard() {
     this.showSportsman = false;
   }
-  getselectItemCount($event: number):void{
+  getselectItemCount($event: number): void {
     this.selectItemCount = $event;
   }
 

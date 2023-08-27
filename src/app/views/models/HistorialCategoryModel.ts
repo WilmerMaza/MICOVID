@@ -1,0 +1,8 @@
+export interface HistorialCategory {
+    id: number;
+    FechaInicio: string;
+    FechaFin: string;
+    CategoriumID: string;
+    SportsManID: string;
+    categoryName: string;
+  }
