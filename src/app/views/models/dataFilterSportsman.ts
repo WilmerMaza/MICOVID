@@ -34,3 +34,18 @@ export const jsonData = [
       ]
     }
   ]
+
+  export interface SportsmanData {
+    title: string;
+    property: string;
+    disable: boolean;
+    isOpen: boolean;
+    typeFilter: string;
+    control: ControlItem[];
+}
+
+export interface ControlItem {
+  name: string;
+  value: string;
+  code: string;
+}

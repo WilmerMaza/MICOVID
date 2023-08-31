@@ -32,4 +32,10 @@ export class SportsmanService {
 
   }
   
+  createSportsman (data: Sportsman): Observable<any> {
+    const endpoint = '/sportMan/create';
+    return this.micovid$.post(endpoint, data);     
+  }
+
+  
 }

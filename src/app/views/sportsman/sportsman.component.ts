@@ -24,6 +24,8 @@ export class SportsmanComponent implements OnInit {
   public isCheck = true;
   public selectItemCount: number = 0;
   public historyCategory: HistorialCategory[];
+  public dataCreateSportsman: any;
+  public showViewCreateSportsman: any = true;
   isDownload = this.data.length !== 0;
   nameAdd: string = 'deportista'
 
@@ -53,7 +55,8 @@ export class SportsmanComponent implements OnInit {
         }));
       }
     })
-  }
+    this.dataCreateSportsman = this.jsonFilter;
+    }
 
   getSportsman() {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
@@ -65,6 +68,9 @@ export class SportsmanComponent implements OnInit {
       this.showSportsman = true;
       this.dataSingle = event.data;
        this.historyCategorico(event.data)
+    }
+    if (event.action == 'add') {
+      this.showViewCreateSportsman = { isVisible: true };
     }
   }
   historyCategorico(data: Sportsman):void {
