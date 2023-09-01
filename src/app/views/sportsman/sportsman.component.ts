@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SportsmanService } from './services/sportsman.service'
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Sportsman } from '../models/DataSportsman'
-import { HistorialCategory } from '../models/HistorialCategoryModel'
+import { HistorialCategory, visible } from '../models/HistorialCategoryModel'
 import { columnsValue } from '../models/columnDataSportman'
 import { categoryModel } from '../models/categoryModel'
 import { jsonData } from '../models/dataFilterSportsman'
@@ -25,7 +25,7 @@ export class SportsmanComponent implements OnInit {
   public selectItemCount: number = 0;
   public historyCategory: HistorialCategory[];
   public dataCreateSportsman: any;
-  public showViewCreateSportsman: any = true;
+  public showViewCreateSportsman: visible;
   isDownload = this.data.length !== 0;
   nameAdd: string = 'deportista'
 
@@ -55,6 +55,7 @@ export class SportsmanComponent implements OnInit {
         }));
       }
     })
+    debugger
     this.dataCreateSportsman = this.jsonFilter;
     }
 

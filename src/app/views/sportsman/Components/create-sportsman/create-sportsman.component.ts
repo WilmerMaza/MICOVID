@@ -5,6 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { ControlItem, SportsmanData } from '../../../models/dataFilterSportsman'
 import Swal from 'sweetalert2';
 import { SportsmanService } from '../../services/sportsman.service';
+import { visible } from 'src/app/views/models/HistorialCategoryModel';
+import { Error } from 'src/app/views/models/errorsModel';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -12,13 +14,13 @@ import { SportsmanService } from '../../services/sportsman.service';
   styleUrls: ['./create-sportsman.component.scss']
 })
 export class CreateSportsmanComponent implements OnInit {
-  @Input('viewActive') set setView(value: any) {
+  @Input('viewActive') set setView(value: visible) {
     this.showViewSportsman = value.isVisible;
   }
-  @Input('dataCategory') set dataCategory(value: any) {
+  @Input('dataCategory') set dataCategory(value: SportsmanData) {
     this.dataCreateSportsman = value;
   }
-  @Output() CreateSportsman = new EventEmitter<any>();
+  @Output() CreateSportsman = new EventEmitter<boolean>();
   public dataCreateSportsman: any;
   public showViewSportsman: Boolean = true;
   public currentPage: number = 0;
@@ -31,7 +33,6 @@ export class CreateSportsmanComponent implements OnInit {
     private sporsmanService$: SportsmanService,
   ) { }
   ngOnInit() {
-    debugger
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
     this.generos = genero;
     this.typeIdentification = identificación
@@ -61,7 +62,6 @@ export class CreateSportsmanComponent implements OnInit {
       },
     });
     
-    debugger
     const formSportsman = {      
       ...this.sportsmansForm.value,
       image: 'default.png',
@@ -79,7 +79,7 @@ export class CreateSportsmanComponent implements OnInit {
         this.CreateSportsman.emit(true);
 
       },
-      (respError): void => {
+      (respError: Error): void => {
         const { error } = respError;
         Toast.fire({
           icon: 'error',
