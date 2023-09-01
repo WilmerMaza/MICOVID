@@ -14,8 +14,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
   declarations: [DinamicTableComponent, DinamicFilterComponent],
   imports: [
     CommonModule,
-    MatTableModule, 
-    MatCheckboxModule, 
+    MatTableModule,
+    MatCheckboxModule,
     MatPaginatorModule,
     MaterialModule,
     FormsModule,

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  micovi_api: "http://localhost:3002",
-  keyEncryp: "jisfgugrhghg"
+  micovi_api: 'http://localhost:3002',
+  universalTutorial: 'https://www.universal-tutorial.com'
 };
 
 /*

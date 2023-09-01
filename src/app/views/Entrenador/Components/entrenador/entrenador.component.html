@@ -1,6 +1,6 @@
 <div>
-  <app-createEntrenador [viewActive]="showViewCreateEntrenador" *ngIf="showViewCreateEntrenador" (CreateEntrenador)="findEntranador()"></app-createEntrenador>
   <div class="dinamic">
+    <app-createEntrenador [viewActive]="showViewCreateEntrenador" *ngIf="showViewCreateEntrenador" (CreateEntrenador)="findEntranador()" class="create"></app-createEntrenador>
     <section class="filterContent">
       <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
         [dataFilter]="filtros" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEventFilter($event)">

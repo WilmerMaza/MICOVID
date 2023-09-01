@@ -6,8 +6,7 @@ export const filterEntrenadorValue = [
     isOpen:false,
     typeFilter:"input",
     control:[
-      {name:'Pony', value:'pony', code:''}
-
+      { name: 'identificacion', value: '' ,code:''}
     ]
   }
 ]
