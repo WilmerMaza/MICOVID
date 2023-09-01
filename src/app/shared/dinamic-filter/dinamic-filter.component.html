@@ -1,9 +1,9 @@
 <div class="dinamic-filter">
   <div class="container-everythings">
-    <div fxFlex="40" class="content-form-filter">
+    <div fxFlex="40" >
       <form [formGroup]="textForm">
         <div class="content-form-field">
-          <mat-form-field appearance="outline" class="txt-search" fxFlex="95"
+          <mat-form-field appearance="outline"  class="content-form-field" fxFlex="95"
             [ngClass]="{ imperfection: isImperfection }">
             <mat-icon class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
               matPrefix>search</mat-icon>
@@ -71,7 +71,7 @@
                   [ngClass]="{ imperfection: isImperfection }">
                   <mat-icon class="material-icons-outlined mat-gray icon-filter"
                     matPrefix>search</mat-icon>
-                  <input matInput  class="textInput" placeholder="Buscar..." [disabled]="!item.disable"/>
+                  <input matInput  class="textInput" placeholder="Buscar..." [disabled]="!item.disable"  [(ngModel)]="item.control[0].value" name="{{item.property}}"/>
                 </mat-form-field>
                 </section>
               </mat-expansion-panel>

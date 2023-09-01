@@ -13,3 +13,7 @@ export interface ResponseRegister {
     msg: string;
     error: string;
 }
+
+export interface universalToken{
+  auth_token:string;
+}

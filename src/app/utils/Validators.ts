@@ -21,7 +21,9 @@ export const regExps: { [key: string]: RegExp } = {
   decimalNumbers: /^\d{1,2}$|^\d{1,2}\.\d{1,2}$/,
   spaceEnd: /^\w+[^\s]$/,
   numberWDecimal: /^(\d*|(\d+))(\.\d+)?$/,
+  telefonoRegex :/^\d{8,15}$/,
   regexcomma: /,/g,
+
 };
 export class Validators {
   static isNullOrUndefined<T>(

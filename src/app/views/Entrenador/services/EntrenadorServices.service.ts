@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
-import {requestEntrenador} from 'src/app/views/Entrenador/Model/entrenadorModel'
+import {requestEntrenador, requetEntrenador, resposeCreate} from 'src/app/views/Entrenador/Model/entrenadorModel'
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,14 @@ export class EntrenadorServices {
     const endpoint = '/Entrenador/getAll';
     return this.micovid$.post(endpoint, bodyRequest);
   }
-  createEntrenador(bodyRequest:any):Observable<any>{
+
+  createEntrenador(bodyRequest:requetEntrenador):Observable<resposeCreate>{
     const endpoint = '/Entrenador/create';
     return this.micovid$.post(endpoint,bodyRequest)
+  }
+
+  updateEntrenador(bodyRequest:requetEntrenador):Observable<resposeCreate>{
+    const endpoint = '/Entrenador/update';
+    return this.micovid$.put(endpoint,bodyRequest)
   }
 }

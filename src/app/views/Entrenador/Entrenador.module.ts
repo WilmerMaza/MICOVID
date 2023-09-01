@@ -8,7 +8,8 @@ import { MaterialModule } from 'src/app/infraestructure/modules/material/materia
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateEntrenadorComponent } from './Components/createEntrenador/createEntrenador.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import {MatIconModule } from '@angular/material/icon';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    NgxMaskModule.forRoot()
   ],
   declarations: [
     EntrenadorComponent,
@@ -30,13 +32,4 @@ import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
   ],
   bootstrap: [CreateEntrenadorComponent],
 })
-export class EntrenadorModule {
-  constructor(private matIconRegistry: MatIconRegistry) {
-    // Registrar los iconos SVG personalizados aquí
-    matIconRegistry.addSvgIcon(
-      'sliceRigh',
-      'src/assets/slice.svg'
-    );
-
-  }
-}
+export class EntrenadorModule {}

@@ -65,7 +65,7 @@
   outline: none;
 }
 ::ng-deep .contentInfo {
-  margin: 1%;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
 }
@@ -260,14 +260,6 @@
   top: -10px !important;
 }
 
-
-::ng-deep .mat-radio-button-custom.mat-radio-checked .mat-radio-outer-circle,
-.mat-radio-button-custom.mat-radio-checked .mat-radio-inner-circle {
-  background-color: blue; /* Cambia a azul cuando se selecciona */
-}
-
-/* Cuando los radio buttons están seleccionados */
-::ng-deep  .mat-radio-button-custom:not(.mat-radio-checked) .mat-radio-outer-circle,
-.mat-radio-button-custom:not(.mat-radio-checked) .mat-radio-inner-circle {
-  background-color: white; /* Cambia a blanco cuando están deseleccionados */
+.Error{
+  font-size: 12px;
 }

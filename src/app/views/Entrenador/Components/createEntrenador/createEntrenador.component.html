@@ -22,18 +22,21 @@
           <div fxFill #contentPanel class="contendorCarousel">
             <div class="carousel">
               <form [formGroup]="entrenadorForm">
-
+                <!-- Vista 1: Formulario con 4 campos -->
                 <div class="form-carousel" *ngIf="currentPage === 0">
 
-                  <div fxLayout="row" fxLayoutGap="10%"  fxLayoutAlign="center center">
-
+                  <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
                       <div class="row">Nombre completo</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="name" required class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('name')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -42,26 +45,35 @@
                       <div class="row">Tipo. Documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="typeIdentification" required class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('typeIdentification')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-select formControlName="typeIdentification" name="typeIdentification" class="inputmat">
+                            <mat-option *ngFor="let opcion of typeIdentificationlist" [value]="opcion.code">
+                              {{ opcion.code +' - '+opcion.value}}
+                            </mat-option>
+                          </mat-select>
+
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('typeIdentification')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
 
-
-
                   </div>
 
-                  <div fxLayout="row" fxLayoutGap="10%"  fxLayoutAlign="center center">
+                  <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
                       <div class="row">Número de documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="identification" required class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('identification')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('identification')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -74,8 +86,11 @@
                             class="inputmat">
                           <mat-datepicker-toggle matSuffix [for]="dp" class="iconDataPicker"></mat-datepicker-toggle>
                           <mat-datepicker #dp></mat-datepicker>
-                          <mat-error *ngIf="entrenadorForm.get('birtDate')?.invalid">Fecha de nacimiento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('birtDate')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -84,7 +99,7 @@
 
                 </div>
 
-                <!-- Vista 2: Formulario con 4 campos -->
+                <!-- Vista 2: Formulario con 6 campos -->
                 <div class="form-carousel" *ngIf="currentPage === 1">
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
 
@@ -92,9 +107,40 @@
                       <div class="row">País de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="nationality" class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('nationality')?.invalid">País de nacimiento is
-                            required</mat-error>
+
+
+                          <mat-select formControlName="nationality" name="nationality" class="inputmat"
+                            (selectionChange)="universalEstadoApis($event)">
+                            <mat-option *ngFor="let opcion of listPaises" [value]="opcion.country_name">
+                              {{ opcion.country_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('nationality')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Departamento de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+
+
+                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"
+                            (selectionChange)="universalCiudadesApis($event)">
+                            <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
+                              {{ opcion.state_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('stateordepartmen')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -103,26 +149,19 @@
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="city" class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('city')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <mat-select formControlName="city" name="city" class="inputmat">
+                            <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
+                              {{ opcion.city_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('city')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
-
-
-                    <div fxFlex="30">
-                      <div class="row">Departamento de nacimiento</div>
-                      <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="stateordepartmen" required class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('name')?.invalid">Nombre completo is required</mat-error>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-
-
 
 
                   </div>
@@ -133,7 +172,20 @@
                       <div class="row">Genero</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="gender" class="inputmat" />
+
+
+                          <mat-select formControlName="gender" name="gender" class="inputmat">
+                            <mat-option *ngFor="let opcion of genderlist" [value]="opcion.code">
+                              {{ opcion.value }}
+                            </mat-option>
+                          </mat-select>
+
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('gender')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -153,46 +205,56 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="institutionNameStudy" required class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('institutionNameStudy')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('institutionNameStudy')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('institutionNameStudy')?.hasError('pattern')">
+                              *Campo invalido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
 
-
-
-
-
-
                   </div>
 
                 </div>
-
+                <!-- Vista 3: Formulario con 3 campos -->
                 <div class="form-carousel" *ngIf="currentPage === 2">
-                  <div fxLayout="row" fxLayoutGap="16px"  fxLayoutAlign="center center">
-
-
-
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
                       <div class="row">Correo eléctronico</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
                           <input matInput formControlName="email" />
-                          <mat-error *ngIf="entrenadorForm.get('email')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('email')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('email')?.hasError('pattern')">
+                              *Campo inválido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
 
 
-                    <div fxFlex="30">
+                    <div fxFlex="30" *ngIf="!isEdit">
                       <div class="row">Contraseña</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="password" class="inputmat" />
-                          <mat-error *ngIf="entrenadorForm.get('password')?.invalid">País de nacimiento is
-                            required</mat-error>
+                          <input matInput formControlName="password" class="inputmat" type="password" />
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('password')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('password')?.hasError('pattern')">
+                              Minimo 8 caracteres, con combinación de mayúsculas, minúsculas, números y símbolos.
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -202,27 +264,25 @@
                       <div class="row">Teléfono</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="phone" />
-                          <mat-error *ngIf="entrenadorForm.get('phone')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <input matInput formControlName="phone" type="text" mask="(000) 000 00 00"
+                            placeholder="Ingrese su número de teléfono" />
+
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('phone')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('phone')?.hasError('pattern')">
+                              *Campo inválido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
 
-
-
-
-
-
                   </div>
                 </div>
 
-
               </form>
-              <!-- Vista 1: Formulario con 5 campos -->
-
-
-              <!-- Radio buttons para navegar entre las vistas -->
 
             </div>
 
@@ -239,7 +299,7 @@
                 </svg>
               </button>
             </div>
-
+            <!-- Radio buttons para navegar entre las vistas -->
 
             <div fxLayoutAlign="center center">
               <mat-radio-group [(ngModel)]="currentPage">
@@ -265,14 +325,11 @@
 
 
             <div class="contentBtnCrear" *ngIf="currentPage === 2">
-              <button mat-button class="btnCrear" (click)="createEntrenador()">Crear</button>
+              <button mat-button class="btnCrear" (click)="createEntrenador()">{{isEdit?'Guardar':'Crear'}}</button>
             </div>
 
 
           </div>
-
-
-
 
 
         </div>

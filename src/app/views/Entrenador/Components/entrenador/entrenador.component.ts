@@ -4,7 +4,7 @@ import { EntrenadorServices } from 'src/app/views/Entrenador/services/Entrenador
 import { filterEntrenadorValue } from 'src/app/views/Entrenador/Model/filtroDataEntrenador';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
-import { Entrandor, listEntrenador } from '../../Model/entrenadorModel';
+import { Entrandor, listEntrenador, viewModalEntrenador } from '../../Model/entrenadorModel';
 import { DateValidators } from 'src/app/utils/Validators';
 
 @Component({
@@ -21,7 +21,7 @@ export class EntrenadorComponent implements OnInit {
   public nameAdd: string = 'entrenador';
   public filtros = filterEntrenadorValue;
   public showViewEntrenador: any = false;
-  public showViewCreateEntrenador: any = true;
+  public showViewCreateEntrenador: viewModalEntrenador = {isVisible: true};
   public dataSingle: Entrandor;
   constructor(private entrenadorServices$: EntrenadorServices) {}
 
@@ -38,10 +38,6 @@ export class EntrenadorComponent implements OnInit {
     this.entrenadorServices$
       .getAllEntrenadores(filterEntranador)
       .subscribe((response: listEntrenador) => {
-        response.map((item) => {
-          item.birtDate = DateValidators.parseDate(item.birtDate);
-          item.nationality = `${item.nationality}, ${item.city} (${item.stateordepartmen})`;
-        });
         this.data = response;
       });
   }
@@ -52,20 +48,33 @@ export class EntrenadorComponent implements OnInit {
 
   getDataFilter(event: filterResult): void {
     const {
-      filterData: { Name },
+      filterData: { Name, identificacion },
     } = event;
 
-    this.findEntranador(Name);
+    this.findEntranador(Name, identificacion);
   }
 
   getActionEvent($event: ActionResponse): void {
     const {
       action: { action },
+      data,
     } = $event;
 
     switch (action) {
       case 'ver':
+        const dataResponse = {
+          ...data,
+          birtDate: DateValidators.parseDate(data.birtDate),
+          nationality: `${data.nationality}, ${data.city} (${data.stateordepartmen})`,
+        };
+
         this.showViewEntrenador = {
+          isVisible: true,
+          data: dataResponse,
+        };
+        break;
+      case 'Editar':
+        this.showViewCreateEntrenador = {
           isVisible: true,
           data: $event.data,
         };
