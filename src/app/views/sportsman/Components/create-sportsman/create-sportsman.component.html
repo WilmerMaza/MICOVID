@@ -1,0 +1,310 @@
+<div class="container-mat-card contentInfo">
+  <mat-card class="container-view" *ngIf="showViewSportsman">
+    <button mat-icon-button class="close-button" (click)="closeCard()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
+      <div fxLayout="row"> <!-- Definición de la primera fila -->
+        <div fxFlex="20%" class="center-content">
+          <div class="img">
+            <p class="masImg">+</p>
+            <p class="textImg">Añadir foto</p>
+          </div>
+
+        </div>
+        <div fxFlex="80%" class="content-card">
+
+
+
+          <!-- Carousel  -->
+
+
+          <div fxFill #contentPanel class="contendorCarousel">
+            <div class="carousel">
+              <form [formGroup]="sportsmansForm">
+
+                <div class="form-carousel" *ngIf="currentPage === 0">
+
+                  <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center center">
+
+
+                    <div fxFlex="30">
+                      <div class="row">Nombre completo</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="name" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+            
+                    <div fxFlex="30">
+                      <div class="row">Tipo. Documento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <mat-select formControlName="typeIdentification" class="inputmat">
+                            <mat-option *ngFor="let identification of typeIdentification" [value]="identification">
+                              {{ identification }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="sportsmansForm.get('typeIdentification')?.invalid">Número de documento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center center">
+
+                    <div fxFlex="30">
+                      <div class="row">Número de documento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="identification" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('identification')?.invalid">Número de documento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Fecha de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput [matDatepicker]="dp" placeholder="DD/MM/AA" formControlName="birtDate"
+                            class="inputmat">
+                          <mat-datepicker-toggle matSuffix [for]="dp" class="iconDataPicker"></mat-datepicker-toggle>
+                          <mat-datepicker #dp></mat-datepicker>
+                          <mat-error *ngIf="sportsmansForm.get('birtDate')?.invalid">Fecha de nacimiento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- Vista 2: Formulario con 4 campos -->
+                <div class="form-carousel" *ngIf="currentPage === 1">
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+
+                    <div fxFlex="30">
+                      <div class="row">País de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline">
+                          <input matInput formControlName="nationality" class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('nationality')?.invalid">País de nacimiento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Ciudad de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline">
+                          <input matInput formControlName="city" class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('city')?.invalid">Ciudad de nacimiento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+
+                    <div fxFlex="30">
+                      <div class="row">Departamento de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="department" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center" >
+
+                    <div fxFlex="30" class="peso-estatura">
+                      <div fxFlex="35">
+                        <div class="row">Peso (Kg)</div>
+                        <div class="row-data">
+                          <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <input matInput formControlName="weight" class="inputmat" />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div fxFlex="45">
+                        <div class="row">Estatura (m)</div>
+                        <div class="row-data">
+                          <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <input matInput formControlName="height" class="inputmat" />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Genero</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <mat-select formControlName="gender" class="inputmat">
+                            <mat-option *ngFor="let genero of generos" [value]="genero">
+                              {{ genero }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Categoría</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <mat-select formControlName="category" class="inputmat">
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                              {{ categoria.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="form-carousel" *ngIf="currentPage === 2">
+
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+
+                    <div fxFlex="30">
+                      <div class="row">máximo nivel de estudio alcanzado</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="studyLevelMax" class="inputmat" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Institución donde estudió</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="institutionNameStudy" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('institutionNameStudy')?.invalid">Número de documento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div fxFlex="30">
+                      <div class="row">Institución deportiva</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="sportInstition" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('sportInstition')?.invalid">Número de documento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+
+                    <div fxFlex="30">
+                      <div class="row">Disciplina deportiva</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="athleticDiscipline" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('athleticDiscipline')?.invalid">Número de documento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Correo eléctronico</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline">
+                          <input matInput formControlName="email" />
+                          <mat-error *ngIf="sportsmansForm.get('email')?.invalid">Ciudad de nacimiento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="30">
+                      <div class="row">Teléfono</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline">
+                          <input matInput formControlName="phone" />
+                          <mat-error *ngIf="sportsmansForm.get('phone')?.invalid">Ciudad de nacimiento is
+                            required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </form>
+              <!-- Vista 1: Formulario con 5 campos -->
+
+
+              <!-- Radio buttons para navegar entre las vistas -->
+
+            </div>
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center" class="btones">
+            <div class="widthBtnLeft">
+              <button class="slice" [ngClass]="{'invisible-button': currentPage == 0}" (click)="setCurrentPageL()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                  <path d="M14.2002 15.1971L0.200195 8.0231L14.2002 0.67407L7.7252 8.0231L14.2002 15.1971Z"
+                    fill="#0C4CC8" />
+                  <path d="M14.2002 15.1971L0.200195 8.0231L14.2002 0.67407L7.7252 8.0231L14.2002 15.1971Z"
+                    stroke="#0C4CC8" />
+                </svg>
+              </button>
+            </div>
+
+
+            <div fxLayoutAlign="center center">
+              <mat-radio-group [(ngModel)]="currentPage">
+                <mat-radio-button class="mat-radio-button-custom" [value]="0"></mat-radio-button>
+                <mat-radio-button class="mat-radio-button-custom" [value]="1"></mat-radio-button>
+                <mat-radio-button class="mat-radio-button-custom" [value]="2"></mat-radio-button>
+              </mat-radio-group>
+
+            </div>
+
+
+
+            <div class="widthBtnRigh" *ngIf="currentPage !== 2">
+              <button class="slice" (click)="setCurrentPageR()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+                  <path d="M0.799805 0.799194L14.7998 7.97324L0.799805 15.3223L7.2748 7.97324L0.799805 0.799194Z"
+                    fill="#0C4CC8" />
+                  <path d="M0.799805 0.799194L14.7998 7.97324L0.799805 15.3223L7.2748 7.97324L0.799805 0.799194Z"
+                    stroke="#0C4CC8" />
+                </svg>
+              </button>
+            </div>
+
+
+            <div class="contentBtnCrear" *ngIf="currentPage === 2">
+              <button mat-button class="btnCrear" (click)="createSportsman()">Crear</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

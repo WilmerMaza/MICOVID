@@ -43,6 +43,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { SportsmanComponent } from './views/sportsman/sportsman.component';
 import { SharedModuleModule } from "./shared/shared-module.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CreateSportsmanComponent } from './views/sportsman/Components/create-sportsman/create-sportsman.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -51,7 +52,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, ...APP_CONTAINERS, SportsmanComponent],
+    declarations: [AppComponent, ...APP_CONTAINERS, SportsmanComponent, CreateSportsmanComponent],
     providers: [
         LocalStorageService,
         {

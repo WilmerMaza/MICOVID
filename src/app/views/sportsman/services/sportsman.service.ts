@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import { Sportsman } from '../../models/DataSportsman';
 import { categoryModel } from '../../models/categoryModel'
-import { HistorialCategory } from '../../models/HistorialCategoryModel'
+import { HistorialCategory } from '../../models/HistorialCategoryModel';
+import { SuccessResponse } from '../../models/SuccessResponse';
 import { DynamicObject } from 'src/app/shared/model/filterModel';
 
 @Injectable({
@@ -31,5 +32,11 @@ export class SportsmanService {
     return this.micovid$.post(endpoint, idObject);
 
   }
+  
+  createSportsman (data: Sportsman): Observable<SuccessResponse> {
+    const endpoint = '/sportMan/create';
+    return this.micovid$.post(endpoint, data);     
+  }
+
   
 }

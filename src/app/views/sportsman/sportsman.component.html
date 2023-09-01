@@ -1,7 +1,15 @@
 <div id="sportsman">
   <!-- aqui inicia la visualizacion individual -->
   <div class="conten-table">
-    <div class="containerFilter">
+    <div>
+  <app-create-sportsman 
+  [viewActive]="showViewCreateSportsman"
+  [dataCategory]="dataCreateSportsman" *ngIf="showViewCreateSportsman">
+</app-create-sportsman>
+
+    </div>
+
+    <div class="containerFilter">  <!--  aca inicia el uso del filtro  -->
       <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
         [dataFilter]="jsonFilter" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEvent($event)">
         loading..
@@ -9,7 +17,7 @@
     </div>
     <div class="conten-table1">
       <div class="conten-table2">
-        <div class="container-mat-card contentInfo" *ngIf="showSportsman">
+        <div class="container-mat-card contentInfo" *ngIf="showSportsman">  <!--  aca inicia la vista del deportista-->
           <mat-card class="container-view">
             <button mat-icon-button class="close-button" (click)="closeCard()">
               <mat-icon>close</mat-icon>
@@ -92,13 +100,13 @@
           </mat-card>
         </div>
 
-        <div class="container">
+        <div class="container">  <!--  aca inicia el uso de la tabla -->
           <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
             (actionEvent)="getActionEvent($event)" (selectItemCount)="getselectItemCount($event)">
           </app-dinamic-table>
         </div>
       </div>
-      <div class="content-timeline" *ngIf="showSportsman">
+      <div class="content-timeline" *ngIf="showSportsman">  <!--  aca inicia el historial categorico -->
         <div class="tittle-timeline">
              Historial Categorico 
         </div>

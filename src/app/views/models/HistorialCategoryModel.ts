@@ -6,3 +6,7 @@ export interface HistorialCategory {
     SportsManID: string;
     categoryName: string;
   }
+
+  export interface visible {
+    isVisible: true
+  }
