@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
 import { gender, typeIdentification } from '../../Model/constantesEntrenador';
 import { Validators as Validar, regExps } from 'src/app/utils/Validators';
-import { UniversalList, listInfo, viewModalEntrenador } from '../../Model/entrenadorModel';
+import { UniversalList, eventsPaises, listInfo, viewModalEntrenador } from '../../Model/entrenadorModel';
 
 @Component({
   selector: 'app-createEntrenador',
@@ -39,12 +39,12 @@ export class CreateEntrenadorComponent implements OnInit {
     private infoUniversalService$: InfoUniversalService
   ) {}
 
-  async ngOnInit() {
+  async ngOnInit():Promise<void> {
     this.listPaises = await firstValueFrom(
       this.infoUniversalService$.getPaises()
     );
   }
-  closeCard() {
+  closeCard():void {
     this.showViewEntrenador = false;
     this.defaulCarrusel();
   }
@@ -98,14 +98,14 @@ export class CreateEntrenadorComponent implements OnInit {
     }
   }
 
-  universalCiudadesApis(event: any) {
+  universalCiudadesApis(event: eventsPaises) {
     const { value } = event;
     this.infoUniversalService$
       .getCiudades(value)
       .subscribe((res) => (this.listCiudades = res));
   }
 
-  universalEstadoApis(event: any) {
+  universalEstadoApis(event: eventsPaises) {
     const { value } = event;
     this.infoUniversalService$
       .getEstados(value)
@@ -127,13 +127,13 @@ export class CreateEntrenadorComponent implements OnInit {
     this.CreateEntrenador.emit(true);
   }
 
-  quitarValidacion() {
+  quitarValidacion():void {
     this.entrenadorForm.get('password')?.clearValidators();
     this.entrenadorForm.get('password')?.updateValueAndValidity();
   }
 
   // Función para restablecer la validación
-  restablecerValidacion() {
+  restablecerValidacion():void {
     this.entrenadorForm
       .get('password')
       ?.setValidators([Validators.pattern(regExps['regexPassword'])]);

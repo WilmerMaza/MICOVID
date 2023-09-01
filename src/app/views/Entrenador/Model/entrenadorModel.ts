@@ -70,5 +70,8 @@ export interface UniversalList{
   city_name?:string
 };
 
+export interface  eventsPaises{
+  value: string
+}
 
 

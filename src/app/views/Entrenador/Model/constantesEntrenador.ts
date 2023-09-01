@@ -1,4 +1,6 @@
-export const gender = [
+import { listInfo } from './entrenadorModel';
+
+export const gender: Array<listInfo> = [
   {
     value: 'Dama',
     code: 'F',
@@ -9,8 +11,7 @@ export const gender = [
   },
 ];
 
-
-export const typeIdentification = [
+export const typeIdentification: Array<listInfo> = [
   {
     value: 'Cédula de ciudadanía',
     code: 'CC',
@@ -22,8 +23,9 @@ export const typeIdentification = [
   {
     value: 'Cédula de extranjería',
     code: 'CE',
-  },{
+  },
+  {
     value: 'Pasaporte ',
     code: 'PB',
-  }
+  },
 ];

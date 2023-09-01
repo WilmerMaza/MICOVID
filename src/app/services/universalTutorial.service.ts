@@ -55,12 +55,14 @@ export class UniversalTutorialService {
     );
   }
 
-  public handleError(error: HttpErrorResponse): Observable<never> {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
+  public handleError(errors: HttpErrorResponse): Observable<never> {
+const {error} = errors;
+
+    if (error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.message);
     } else {
       console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+        `Backend returned code ${error.status}, ` + `body was: ${error}`
       );
     }
     return throwError(error);
