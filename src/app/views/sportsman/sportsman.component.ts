@@ -55,7 +55,7 @@ export class SportsmanComponent implements OnInit {
         }));
       }
     })
-    debugger
+
     this.dataCreateSportsman = this.jsonFilter;
     }
 
