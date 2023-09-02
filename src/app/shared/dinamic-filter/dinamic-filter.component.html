@@ -1,10 +1,9 @@
-<div class="dinamic-filter">
+<div id="dinamic-filter">
   <div class="container-everythings">
-    <div fxFlex="40" >
+    <div>
       <form [formGroup]="textForm">
         <div class="content-form-field">
-          <mat-form-field appearance="outline"  class="content-form-field" fxFlex="95"
-            [ngClass]="{ imperfection: isImperfection }">
+          <mat-form-field appearance="outline"  class="content-form-field" fxFlex>
             <mat-icon class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
               matPrefix>search</mat-icon>
             <input matInput formControlName="textInput" class="textInput" placeholder="Buscar..." />
@@ -12,12 +11,12 @@
         </div>
       </form>
     </div>
-    <div class="container-download" [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }"
+    <div *ngIf="showDownload" class="container-download" [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }"
       (click)="actionClick('download')">
       Dercargar
     </div>
 
-    <div class="container-selection">
+    <div *ngIf="showSelection" class="container-selection">
       {{ selectItemCount }}
       {{ selectItemCount > 1 ? "Seleccionados" : "Seleccionado" }}
     </div>
@@ -67,8 +66,7 @@
                   </mat-checkbox>
                 </section>
                 <section *ngIf="item.typeFilter === 'input' ">
-                  <mat-form-field appearance="outline" class="content-form-field" fxFlex="95"
-                  [ngClass]="{ imperfection: isImperfection }">
+                  <mat-form-field appearance="outline" class="content-form-field" fxFlex>
                   <mat-icon class="material-icons-outlined mat-gray icon-filter"
                     matPrefix>search</mat-icon>
                   <input matInput  class="textInput" placeholder="Buscar..." [disabled]="!item.disable"  [(ngModel)]="item.control[0].value" name="{{item.property}}"/>
@@ -98,7 +96,7 @@
       </div>
     </div>
 
-    <div class="container-add" (click)="actionClick('add')">
+    <div *ngIf="showButtonAdd" class="container-add" (click)="actionClick('add')">
       <button mat-raised-button class="btnAñadir">
         + Añadir {{ nameAdd }}
       </button>

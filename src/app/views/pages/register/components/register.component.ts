@@ -64,10 +64,10 @@ export class RegisterComponent {
             this.router$.navigate(['plans']);
           }
         },(respError): void => {
-          const { error} = respError;
+          const { error: {msg}} = respError;
           Toast.fire({
             icon: 'error',
-            title: error
+            title: msg
           })
         });
     }
