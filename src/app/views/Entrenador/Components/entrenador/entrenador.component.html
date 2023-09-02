@@ -7,7 +7,7 @@
         loading..
       </app-dinamic-filter>
     </section>
-    <app-viewEntrenador [viewActive]="showViewEntrenador" *ngIf="showViewEntrenador"></app-viewEntrenador>
+    <app-viewEntrenador [viewActive]="showViewEntrenador" (editarEntrenadorView)="editarEntrenadorView($event)" *ngIf="showViewEntrenador"></app-viewEntrenador>
     <section>
       <app-dinamic-table [isCheckBox]="isCheck" [columns]="column" [dataSource]="data"
         (selectItemCount)="getselectItemCount($event)" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
