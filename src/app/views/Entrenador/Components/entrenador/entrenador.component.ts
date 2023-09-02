@@ -21,7 +21,7 @@ export class EntrenadorComponent implements OnInit {
   public nameAdd: string = 'entrenador';
   public filtros = filterEntrenadorValue;
   public showViewEntrenador: any = false;
-  public showViewCreateEntrenador: viewModalEntrenador = {isVisible: true};
+  public showViewCreateEntrenador: viewModalEntrenador = {isVisible: false};
   public dataSingle: Entrandor;
   constructor(private entrenadorServices$: EntrenadorServices) {}
 
@@ -63,9 +63,7 @@ export class EntrenadorComponent implements OnInit {
     switch (action) {
       case 'ver':
         const dataResponse = {
-          ...data,
-          birtDate: DateValidators.parseDate(data.birtDate),
-          nationality: `${data.nationality}, ${data.city} (${data.stateordepartmen})`,
+          ...data
         };
 
         this.showViewEntrenador = {
@@ -82,6 +80,14 @@ export class EntrenadorComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  editarEntrenadorView($event:Entrandor):void{
+    this.showViewCreateEntrenador = {
+      isVisible: true,
+      data: $event,
+    };
+    this. showViewEntrenador ={isVisible: false}
   }
 
   getActionEventFilter($event: ActionResponse): void {
