@@ -5,6 +5,7 @@ import { AddAnnualPlanComponent } from './dialogComponents/add-annual-plan.compo
 import { filterPlanValue } from '../models/dataFilterAnnualPlan';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { PlanItem } from '../models/interfaceFormPlan';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-annual-plan',
@@ -18,7 +19,8 @@ export class AnnualPlanComponent implements OnInit {
   public filters = filterPlanValue;
   constructor(
     private service$ : AnnualPlanService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router$ : Router
   ){}
 
   ngOnInit(): void {
@@ -68,5 +70,10 @@ export class AnnualPlanComponent implements OnInit {
 
   showTooltip(data: string): string {
     return data.length > 13 ? data : '';
+  }
+
+  navMacro(id: string): void{
+    this.router$.navigate(["/plan-anual/macrociclo"],
+    {queryParams: {documentId: id}});
   }
 }
