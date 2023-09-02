@@ -8,6 +8,10 @@ export interface  RootPlan{
     item: PlanItem[];
 }
 
+export interface RootPlanById {
+    item: PlanItem;
+}
+
 export interface PlanItem {
     ID: string;
     name: string;

@@ -1,1 +1,19 @@
-<p>macrociclo works!</p>
+<div id="content_macro">
+    <div class="content_header">
+        <div class="name_plan">{{dataPlan.name}}</div>
+        <div class="categori_plan">
+            <div>Categoría</div>
+            <div class="dinamic">{{dataPlan.CategoriumID}}</div>
+        </div>
+        <div class="year_plan">
+            <div>Año de creación</div>
+            <div class="dinamic">{{dataPlan.year | date:'yyyy'}}</div>
+        </div>
+    </div>
+    <div class="content_body_macro">
+        <div class="conten_cards">
+            <div class="add_macro">+</div>
+            <div class="text_add">Crear evento fundamental</div>
+        </div>
+    </div>
+</div>
