@@ -1,9 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators  } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AnnualPlanService } from '../../Services/annual-plan.service';
 import { Toast } from '../../../../utils/alert_Toast';
 import { categoryModel } from 'src/app/views/models/categoryModel';
+import { ReturnInsertPlan } from '../../models/interfaceFormPlan';
+import { DynamicError} from 'src/app/shared/model/filterModel';
 
 @Component({
   selector: 'app-add-annual-plan',
@@ -17,8 +19,7 @@ export class AddAnnualPlanComponent implements OnInit {
   public minDate = new Date();
   constructor(
     public dialogRef: MatDialogRef<AddAnnualPlanComponent>,
-    private annualPlanService$: AnnualPlanService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private annualPlanService$: AnnualPlanService
   ){
     this.addPlanAnualForm = new FormGroup({
       name:new FormControl('',[Validators.required]),
@@ -32,20 +33,20 @@ export class AddAnnualPlanComponent implements OnInit {
   }
 
   getAllCategories(): void {
-    this.annualPlanService$.getCategories().subscribe(data => {
+    this.annualPlanService$.getCategories().subscribe((data:categoryModel[])=> {
       this.categoriesList = data;
     })
   }
 
   createAnnualPlan():void{
     
-    this.annualPlanService$.postInsertAnnualPlan(this.addPlanAnualForm.value).subscribe(data => {
+    this.annualPlanService$.postInsertAnnualPlan(this.addPlanAnualForm.value).subscribe((data:ReturnInsertPlan) => {
       Toast.fire({
         icon: 'success',
         title: data.msg
       })
       this.onNoClick();
-    },(dataError)=> {
+    },(dataError: DynamicError<any>)=> {
       const { error: {msg}} = dataError;
       
       Toast.fire({

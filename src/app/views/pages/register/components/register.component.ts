@@ -8,6 +8,7 @@ import { CryptoService } from 'src/app/utils/crypto.service';
 import { RegisterService } from '../services/register.service';
 import { SessionService } from '../../services/session.service';
 import Swal from 'sweetalert2';
+import { DynamicError } from 'src/app/shared/model/filterModel';
 
 @Component({
   selector: 'app-register',
@@ -63,7 +64,7 @@ export class RegisterComponent {
             this.sessionService$.setAuth(dataUserInfo);
             this.router$.navigate(['plans']);
           }
-        },(respError): void => {
+        },(respError: DynamicError<any>): void => {
           const { error: {msg}} = respError;
           Toast.fire({
             icon: 'error',

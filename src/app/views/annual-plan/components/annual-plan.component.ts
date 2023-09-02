@@ -44,8 +44,7 @@ export class AnnualPlanComponent implements OnInit {
 
   getDataFilter(event: filterResult):void {
     const {Categorium, Name, year } = event.filterData;
-    const categoryIsOpen = event.jsonData[0];
-    const yearIsOpen =event.jsonData[1];
+    const { jsonData: [categoryIsOpen, yearIsOpen] } = event;
     
     if(categoryIsOpen.isOpen && Categorium?.length > 0) {
       this.dataListPlan = this.allDataByFilter.filter(item => item.Categorium.name.toLowerCase().includes(Categorium.toLowerCase()));

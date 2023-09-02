@@ -21,3 +21,7 @@ export interface filterResult {
 export interface DynamicObject<T> {
 [key: string]: T;
 }
+
+export interface DynamicError<T> {
+  [key: string]: T;
+}
