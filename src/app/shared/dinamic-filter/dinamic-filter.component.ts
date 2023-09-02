@@ -25,7 +25,6 @@ import { regExps } from 'src/app/utils/Validators';
 })
 export class DinamicFilterComponent {
   public textForm: FormGroup;
-  public isImperfection: boolean = false;
   public showFilter: boolean = false;
   public jsonData: JsonDataItem[] = [];
 
@@ -39,6 +38,9 @@ export class DinamicFilterComponent {
   @Input('dataFilter') set setDataFilter(value: JsonDataItem[]) {
     this.jsonData = value;
   }
+  @Input('showDownload') showDownload = true;
+  @Input("showSelection") showSelection = true;
+  @Input('showButtonAdd') showButtonAdd = true;
 
   @Output() filterResult = new EventEmitter<filterResult>();
   @Output() actionFilter = new EventEmitter<ActionResponse>();
@@ -50,7 +52,6 @@ export class DinamicFilterComponent {
   }
 
   onSubmit(): void {
-    this.isImperfection = true;
     if (this.textForm.valid) {
       this.sendDataFilter();
       this.textForm.reset();

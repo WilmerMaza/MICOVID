@@ -29,6 +29,15 @@ export const navItems: INavData[] = [
     },
   },
   {
+    name: 'Plan Anual',
+    url: '/plan-anual',
+    iconComponent: { name: 'cil-speedometer' },
+    badge: {
+      color: 'info',
+      text: 'NEW',
+    },
+  },
+  {
     name: 'Pages',
     url: '/login',
     iconComponent: { name: 'cil-star' },

@@ -54,6 +54,13 @@ const routes: Routes = [
             (m) => m.EntrenadorModule
           ),
       },
+      {
+        path: 'plan-anual',
+        loadChildren: () =>
+          import('./views/annual-plan/annual-plan.module').then(
+            (m) => m.AnnualPlanModule
+          ),
+      },
     ],
   },
   {

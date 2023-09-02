@@ -1,0 +1,51 @@
+<div class="content-dialog">
+    <div class="content-x-close">
+        <button class='closeButtonModal' matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="content-form">
+        <div class="form_insert">
+            <h4>Crear plan anual</h4>
+            <form [formGroup]="addPlanAnualForm">
+                <div class="content-input">
+                    <div class="row">Nombre del plan</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <input matInput formControlName="name" required class="inputmat" />
+                            <mat-error *ngIf="addPlanAnualForm.get('name')?.invalid">El nombre del plan es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="content-input">
+                    <div class="row">Categoria</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-select formControlName="CategoriumID">
+                                <mat-option *ngFor="let item of categoriesList" [value]="item.ID">{{item.name}}</mat-option>
+                              </mat-select>
+                            <mat-error *ngIf="addPlanAnualForm.get('CategoriumID')?.invalid">La categoria es requerida</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="content-input">
+                    <div class="row">Año de creación</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <input matInput [min]="minDate" formControlName="year" required class="inputmat" [matDatepicker]="picker"/>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="addPlanAnualForm.get('year')?.invalid">El año de creación es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <div class="content-button">
+                <div class="button-close" matDialogClose>Cancelar</div>
+                <div class="button-add" (click)="createAnnualPlan()">Crear</div>
+            </div>
+        </div>
+
+    </div>
+</div>

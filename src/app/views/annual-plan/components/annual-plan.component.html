@@ -1,0 +1,33 @@
+<div id="content-annual-plan">
+    <div class="content-filter">
+        <app-dinamic-filter
+        [showDownload]="false"
+        [showSelection]="false"
+        [showButtonAdd]="false"
+        [dataFilter]="filters"
+        (filterResult)="getDataFilter($event)"
+        >
+        loading..
+      </app-dinamic-filter>
+    </div>
+    <div class="content-plans">
+        <div class="multi-target add-target" (click) = "openDialog()">
+            <span class="x-style">+</span>
+            <span>Agregar plan anual</span>
+        </div>
+        <ng-container *ngIf="dataListPlan.length">
+            <div *ngFor="let item of dataListPlan" class="multi-target">
+                <div class="content_title" [matTooltip]="showTooltip(item.name)" matTooltipPosition="above">
+                    <h3>{{item.name}}</h3>
+                </div>
+                <div>Categoria</div>
+                <div class="categoria">{{item.Categorium.name}}</div>
+                <div>Año de creación</div>
+                <div class="year-target">{{item.year | date:'yyyy'}}</div>
+                <div class="button-target">
+                 <span>Ver</span>  
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
