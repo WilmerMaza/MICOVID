@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnnualPlanComponent } from './components/annual-plan.component';
+import { MacrocicloComponent } from './components/macrociclo/macrociclo.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: AnnualPlanComponent,
-    data: {
-      title: 'plan-anual'
-    }
+    component: AnnualPlanComponent
+  },
+  {
+    path: 'macrociclo',
+    component: MacrocicloComponent,
   }
 ];
 

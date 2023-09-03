@@ -25,7 +25,7 @@
                 <div>Año de creación</div>
                 <div class="year-target">{{item.year | date:'yyyy'}}</div>
                 <div class="button-target">
-                 <span>Ver</span>  
+                 <span (click)="navMacro(item.ID)">Ver</span>  
                 </div>
             </div>
         </ng-container>

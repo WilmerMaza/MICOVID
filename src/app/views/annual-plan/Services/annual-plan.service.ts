@@ -4,7 +4,7 @@ import { MicoviApiService } from '../../../services/micovi-api.service';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { DataUser } from '../../pages/model/dataUserModel';
 import { categoryModel } from '../../models/categoryModel';
-import { PlanAnualForm, ReturnInsertPlan, RootPlan } from "../models/interfaceFormPlan";
+import { PlanAnualForm, ReturnInsertPlan, RootPlan, RootPlanById } from "../models/interfaceFormPlan";
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +31,11 @@ export class AnnualPlanService {
 
   getAllAnnualPlan(): Observable<RootPlan> {
     const endpoint = '/home/getAllAnnualPlan';
+    return this.micovid$.get(endpoint);
+  }
+
+  getDataPlanById(ID: string): Observable<RootPlanById> {
+    const endpoint = `/home/getAnnualPlanById?documentId=${ID}`;
     return this.micovid$.get(endpoint);
   }
 }
