@@ -11,6 +11,7 @@ import { UniversalList, eventsPaises } from 'src/app/views/Entrenador/Model/entr
 import { firstValueFrom } from 'rxjs';
 import { Validators as Validar, regExps } from 'src/app/utils/Validators';
 import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
+import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -116,8 +117,7 @@ export class CreateSportsmanComponent implements OnInit {
     const { value } = event;
     this.infoUniversalService$
       .getCiudades(value)
-      .subscribe((res) => (this.listCiudades = res));
-      debugger
+      .subscribe((res: Array<UniversalList>) => (this.listCiudades = res));
   }
 
   universalEstadoApis(event: eventsPaises): void {
@@ -155,9 +155,8 @@ export class CreateSportsmanComponent implements OnInit {
       CategoriumID: this.categorias.find(item => item.name == this.sportsmansForm.value.category)?.code,
       ID: this.dataID
     };
-    if (!this.isEdit) {
-      this.sporsmanService$[this.isEdit?"createSportsman":"updateSportsman"](formSportsman).subscribe(
-        async (res) => {
+      this.sporsmanService$[this.isEdit?"updateSportsman":"createSportsman"](formSportsman).subscribe(
+        async (res: SuccessResponse ) => {
           await Toast.fire({
             icon: 'success',
             title: `${res.Message}`,
@@ -175,6 +174,5 @@ export class CreateSportsmanComponent implements OnInit {
           });
         }
       );
-    }
   }
 }
