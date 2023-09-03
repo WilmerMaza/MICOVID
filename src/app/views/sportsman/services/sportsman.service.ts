@@ -38,5 +38,10 @@ export class SportsmanService {
     return this.micovid$.post(endpoint, data);     
   }
 
+  updateSportsman (data: Sportsman): Observable<SuccessResponse> {
+    const endpoint = '/sportMan/update';
+    return this.micovid$.post(endpoint, data);     
+  }
+
   
 }

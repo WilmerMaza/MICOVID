@@ -8,6 +8,7 @@ import { categoryModel } from '../models/categoryModel'
 import { jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
+import { DateValidators } from 'src/app/utils/Validators';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class SportsmanComponent implements OnInit {
   public historyCategory: HistorialCategory[];
   public dataCreateSportsman: any;
   public showViewCreateSportsman: visible;
+  public fechaFormateada: string;
   isDownload = this.data.length !== 0;
   nameAdd: string = 'deportista'
 
@@ -66,14 +68,24 @@ export class SportsmanComponent implements OnInit {
   }
   getActionEvent(event: any): void {
     if (event.action.action == 'ver') {
+      const {birtDate} = event.data
       this.showSportsman = true;
-      this.dataSingle = event.data;
+      this.dataSingle = {
+        ...event.data,
+        birtDate: DateValidators.parseDate(birtDate),
+      };
        this.historyCategorico(event.data)
     }
     if (event.action == 'add') {
       this.showViewCreateSportsman = { isVisible: true };
     }
+    if (event.action.action == 'Editar') {
+      this.showViewCreateSportsman = { isVisible: true,
+        data: event.data };
+    }
   }
+
+
   historyCategorico(data: Sportsman):void {
     const idObject = {
       id: data.ID // Aquí asigna el valor de tu variable "id"

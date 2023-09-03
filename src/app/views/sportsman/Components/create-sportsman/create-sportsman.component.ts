@@ -7,6 +7,11 @@ import Swal from 'sweetalert2';
 import { SportsmanService } from '../../services/sportsman.service';
 import { visible } from 'src/app/views/models/HistorialCategoryModel';
 import { Error } from 'src/app/views/models/errorsModel';
+import { UniversalList, eventsPaises } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import { firstValueFrom } from 'rxjs';
+import { Validators as Validar, regExps } from 'src/app/utils/Validators';
+import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
+import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -16,6 +21,7 @@ import { Error } from 'src/app/views/models/errorsModel';
 export class CreateSportsmanComponent implements OnInit {
   @Input('viewActive') set setView(value: visible) {
     this.showViewSportsman = value.isVisible;
+    this.dataIni(value);
   }
   @Input('dataCategory') set dataCategory(value: SportsmanData) {
     this.dataCreateSportsman = value;
@@ -28,17 +34,97 @@ export class CreateSportsmanComponent implements OnInit {
   public categorias: ControlItem[];
   public generos: string[];
   public typeIdentification: string[];
+  public listPaises: Array<UniversalList> = [];
+  public isEdit: boolean = false;
+  public listCiudades: Array<UniversalList> = [];
+  public listEstados: Array<UniversalList> = [];
+  public dataID: string;
 
   constructor(
     private sporsmanService$: SportsmanService,
+    private infoUniversalService$: InfoUniversalService
   ) { }
-  ngOnInit() {
+  async ngOnInit():Promise<void> {
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
     this.generos = genero;
-    this.typeIdentification = identificación
+    this.typeIdentification = identificación;
+    this.listPaises = await firstValueFrom(
+      this.infoUniversalService$.getPaises()
+    );
   }
-  closeCard() {
+  closeCard() : void{
     this.showViewSportsman = false;
+  }
+
+  dataIni(value: visible): void {
+    if (!Validar.isNullOrUndefined(value.data)) {
+      const {
+        birtDate,
+        sportInstition,
+        city,
+        department,
+        category,
+        email,
+        gender,
+        identification,
+        institutionNameStudy,
+        name,
+        nationality,
+        phone,
+        athleticDiscipline,
+        studyLevelMax,
+        typeIdentification,
+        weight,
+        height
+
+      } = value.data;
+      const data = {
+        birtDate,
+        city,
+        email,
+        gender,
+        identification,
+        institutionNameStudy,
+        name,
+        nationality,
+        phone,
+        department,
+        athleticDiscipline,
+        sportInstition,
+        studyLevelMax,
+        typeIdentification,
+        weight,
+        height,
+        category
+      };
+      const state = {
+        value: nationality,
+      };
+      const citys = {
+        value: department,
+      };
+      this.universalCiudadesApis(citys);
+      this.universalEstadoApis(state);
+      this.sportsmansForm.setValue(data);
+      this.isEdit = true;
+      this.dataID = value.data.ID;
+    } else {
+      this.isEdit = false;
+    }
+  }
+
+  universalCiudadesApis(event: eventsPaises):void {
+    const { value } = event;
+    this.infoUniversalService$
+      .getCiudades(value)
+      .subscribe((res: Array<UniversalList>) => (this.listCiudades = res));
+  }
+
+  universalEstadoApis(event: eventsPaises): void {
+    const { value } = event;
+    this.infoUniversalService$
+      .getEstados(value)
+      .subscribe((res: Array<UniversalList>) => (this.listEstados = res));
   }
 
   setCurrentPageL(): void {
@@ -61,31 +147,32 @@ export class CreateSportsmanComponent implements OnInit {
         toast.addEventListener('mouseleave', Swal.resumeTimer);
       },
     });
-    
-    const formSportsman = {      
+
+    const formSportsman = {
       ...this.sportsmansForm.value,
       image: 'default.png',
-      category: this.sportsmansForm.value.category.name,
-      CategoriumID: this.sportsmansForm.value.category.code
+      category: this.sportsmansForm.value.category,
+      CategoriumID: this.categorias.find(item => item.name == this.sportsmansForm.value.category)?.code,
+      ID: this.dataID
     };
-    this.sporsmanService$.createSportsman(formSportsman).subscribe(
-      async (res) => {
-        await Toast.fire({
-          icon: 'success',
-          title: `${res.Menssage}`,
-        });
-        this.sportsmansForm.reset();
-        this.currentPage = 0;
-        this.CreateSportsman.emit(true);
+      this.sporsmanService$[this.isEdit?"updateSportsman":"createSportsman"](formSportsman).subscribe(
+        async (res: SuccessResponse ) => {
+          await Toast.fire({
+            icon: 'success',
+            title: `${res.Message}`,
+          });
+          this.sportsmansForm.reset();
+          this.currentPage = 0;
+          this.CreateSportsman.emit(true);
 
-      },
-      (respError: Error): void => {
-        const { error } = respError;
-        Toast.fire({
-          icon: 'error',
-          title: error,
-        });
-      }
-    );
+        },
+        (respError: Error): void => {
+          const { error } = respError;
+          Toast.fire({
+            icon: 'error',
+            title: error,
+          });
+        }
+      );
   }
 }

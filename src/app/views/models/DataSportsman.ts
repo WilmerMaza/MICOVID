@@ -4,8 +4,9 @@ export interface Sportsman {
     identification: string;
     typeIdentification: string;
     nationality: string;
+    city: string,
+    department: string;
     birtDate: string;
-    birthPlace: string;
     studyLevelMax: string;
     institutionNameStudy: string;
     sportInstition: string;
