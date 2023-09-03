@@ -1,3 +1,5 @@
+import { Sportsman } from "./DataSportsman";
+
 export interface HistorialCategory {
     id: number;
     FechaInicio: string;
@@ -8,5 +10,6 @@ export interface HistorialCategory {
   }
 
   export interface visible {
-    isVisible: true
+    isVisible: boolean;
+    data?: Sportsman;
   }

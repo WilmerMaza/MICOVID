@@ -47,7 +47,7 @@
                               {{ identification }}
                             </mat-option>
                           </mat-select>
-                          <mat-error *ngIf="sportsmansForm.get('typeIdentification')?.invalid">Número de documento is
+                          <mat-error *ngIf="sportsmansForm.get('typeIdentification')?.invalid">Tipo de documento is
                             required</mat-error>
                         </mat-form-field>
                       </div>
@@ -102,6 +102,17 @@
                     </div>
 
                     <div fxFlex="30">
+                      <div class="row">Departamento de nacimiento</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                          <input matInput formControlName="department" required class="inputmat" />
+                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    
+                    <div fxFlex="30">
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
@@ -113,15 +124,7 @@
                     </div>
 
 
-                    <div fxFlex="30">
-                      <div class="row">Departamento de nacimiento</div>
-                      <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="department" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
-                        </mat-form-field>
-                      </div>
-                    </div>
+ 
 
                   </div>
 
@@ -164,7 +167,7 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <mat-select formControlName="category" class="inputmat">
-                            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria.name">
                               {{ categoria.name }}
                             </mat-option>
                           </mat-select>
@@ -298,7 +301,7 @@
 
 
             <div class="contentBtnCrear" *ngIf="currentPage === 2">
-              <button mat-button class="btnCrear" (click)="createSportsman()">Crear</button>
+              <button mat-button class="btnCrear" (click)="createSportsman()">{{isEdit?'Guardar':'Crear'}}</button>
             </div>
 
           </div>
