@@ -8,6 +8,7 @@ import { categoryModel } from '../models/categoryModel'
 import { jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
+import { DateValidators } from 'src/app/utils/Validators';
 
 
 @Component({
@@ -67,9 +68,12 @@ export class SportsmanComponent implements OnInit {
   }
   getActionEvent(event: any): void {
     if (event.action.action == 'ver') {
+      const {birtDate} = event.data
       this.showSportsman = true;
-      this.dataSingle = event.data;
-      this.transformFecha(event.data.birtDate);
+      this.dataSingle = {
+        ...event.data,
+        birtDate: DateValidators.parseDate(birtDate),
+      };
        this.historyCategorico(event.data)
     }
     if (event.action == 'add') {
@@ -81,24 +85,6 @@ export class SportsmanComponent implements OnInit {
     }
   }
 
-  transformFecha(birtDate: string):void{
-    const fecha = new Date(birtDate);
-    const nombresMeses = [
-      "Enero", "Febrero", "Marzo", "Abril",
-      "Mayo", "Junio", "Julio", "Agosto",
-      "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
-    
-    const dia = fecha.getDate();
-    const mes = fecha.getMonth();
-    const año = fecha.getFullYear();
-    
-    // Obtener el nombre del mes a partir del array de nombres de meses
-    const nombreMes = nombresMeses[mes];
-    
-    // Crear la cadena de fecha en el formato deseado
-    this.fechaFormateada = `${dia}-${nombreMes}-${año}`;
-  }
 
   historyCategorico(data: Sportsman):void {
     const idObject = {

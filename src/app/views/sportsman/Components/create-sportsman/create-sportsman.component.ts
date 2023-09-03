@@ -43,7 +43,7 @@ export class CreateSportsmanComponent implements OnInit {
     private sporsmanService$: SportsmanService,
     private infoUniversalService$: InfoUniversalService
   ) { }
-  async ngOnInit() {
+  async ngOnInit():Promise<void> {
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
     this.generos = genero;
     this.typeIdentification = identificación;
@@ -51,7 +51,7 @@ export class CreateSportsmanComponent implements OnInit {
       this.infoUniversalService$.getPaises()
     );
   }
-  closeCard() {
+  closeCard() : void{
     this.showViewSportsman = false;
   }
 
@@ -78,23 +78,23 @@ export class CreateSportsmanComponent implements OnInit {
 
       } = value.data;
       const data = {
-        birtDate: birtDate,
-        city: city,
-        email: email,
-        gender: gender,
-        identification: identification,
-        institutionNameStudy: institutionNameStudy,
-        name: name,
-        nationality: nationality,
-        phone: phone,
-        department: department,
-        athleticDiscipline: athleticDiscipline,
-        sportInstition: sportInstition,
-        studyLevelMax: studyLevelMax,
-        typeIdentification: typeIdentification,
-        weight: weight,
-        height: height,
-        category: category
+        birtDate,
+        city,
+        email,
+        gender,
+        identification,
+        institutionNameStudy,
+        name,
+        nationality,
+        phone,
+        department,
+        athleticDiscipline,
+        sportInstition,
+        studyLevelMax,
+        typeIdentification,
+        weight,
+        height,
+        category
       };
       const state = {
         value: nationality,
@@ -112,14 +112,15 @@ export class CreateSportsmanComponent implements OnInit {
     }
   }
 
-  universalCiudadesApis(event: eventsPaises) {
+  universalCiudadesApis(event: eventsPaises):void {
     const { value } = event;
     this.infoUniversalService$
       .getCiudades(value)
       .subscribe((res) => (this.listCiudades = res));
+      debugger
   }
 
-  universalEstadoApis(event: eventsPaises) {
+  universalEstadoApis(event: eventsPaises): void {
     const { value } = event;
     this.infoUniversalService$
       .getEstados(value)
@@ -155,7 +156,7 @@ export class CreateSportsmanComponent implements OnInit {
       ID: this.dataID
     };
     if (!this.isEdit) {
-      this.sporsmanService$.createSportsman(formSportsman).subscribe(
+      this.sporsmanService$[this.isEdit?"createSportsman":"updateSportsman"](formSportsman).subscribe(
         async (res) => {
           await Toast.fire({
             icon: 'success',
@@ -174,28 +175,6 @@ export class CreateSportsmanComponent implements OnInit {
           });
         }
       );
-    }
-    else {
-      this.sporsmanService$.updateSportsman(formSportsman).subscribe(
-        async (res) => {
-          await Toast.fire({
-            icon: 'success',
-            title: `${res.Message}`,
-          });
-          this.sportsmansForm.reset();
-          this.currentPage = 0;
-          this.CreateSportsman.emit(true);
-
-        },
-        (respError: Error): void => {
-          const { error } = respError;
-          Toast.fire({
-            icon: 'error',
-            title: error,
-          });
-        }
-      );
-
     }
   }
 }
