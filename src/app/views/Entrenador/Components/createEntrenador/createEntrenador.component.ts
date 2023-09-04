@@ -16,6 +16,8 @@ import {
   CityName,
   ESTADOSCONST,
   Estado,
+  Iciudades,
+  Iestados,
   Ipaises,
   PAISESCONST,
 } from 'src/app/models/PaisesConst';
@@ -106,7 +108,7 @@ export class CreateEntrenadorComponent {
     this.activeCity = false;
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
-      (item) => item.state_name == value
+      (item:Iciudades) => item.state_name === value
     )?.city_name;
   }
 
@@ -114,7 +116,7 @@ export class CreateEntrenadorComponent {
     this.activeDepto = false;
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
-      (item) => item.country_name == value
+      (item:Iestados) => item.country_name === value
     )?.estados;
   }
 
