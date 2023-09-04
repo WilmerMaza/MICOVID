@@ -1,5 +1,4 @@
 export interface session {
-  dataUser: DataUser;
   token: string;
 }
 
@@ -27,4 +26,13 @@ export interface DataUser {
   studyLevelMax?: string;
   institutionNameStudy?: string;
   SportsInstitutionID?: string;
+  account?:string;
+}
+
+
+export interface Ijwt {
+  dataUser: DataUser
+  account: string
+  iat: number
+  exp: number
 }
