@@ -104,7 +104,7 @@ export class CreateEntrenadorComponent {
     }
   }
 
-  universalCiudadesApis(event: eventsPaises) {
+  universalCiudadesApis(event: eventsPaises):void {
     this.activeCity = false;
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
@@ -112,7 +112,7 @@ export class CreateEntrenadorComponent {
     )?.city_name;
   }
 
-  universalEstadoApis(event: eventsPaises) {
+  universalEstadoApis(event: eventsPaises):void {
     this.activeDepto = false;
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
