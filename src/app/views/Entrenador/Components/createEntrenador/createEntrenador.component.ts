@@ -1,50 +1,54 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { entrenadorFormModel } from 'src/app/views/Entrenador/Model/entrenadorFormModel';
 import { EntrenadorServices } from '../../services/EntrenadorServices.service';
 import { CryptoService } from 'src/app/utils/crypto.service';
-import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
 import Swal from 'sweetalert2';
-import { firstValueFrom } from 'rxjs';
 import { gender, typeIdentification } from '../../Model/constantesEntrenador';
 import { Validators as Validar, regExps } from 'src/app/utils/Validators';
-import { UniversalList, eventsPaises, listInfo, viewModalEntrenador } from '../../Model/entrenadorModel';
+import {
+  eventsPaises,
+  listInfo,
+  viewModalEntrenador,
+} from '../../Model/entrenadorModel';
+import {
+  CIUDADESCONST,
+  CityName,
+  ESTADOSCONST,
+  Estado,
+  Ipaises,
+  PAISESCONST,
+} from 'src/app/models/PaisesConst';
 
 @Component({
   selector: 'app-createEntrenador',
   templateUrl: './createEntrenador.component.html',
   styleUrls: ['./createEntrenador.component.scss'],
 })
-export class CreateEntrenadorComponent implements OnInit {
+export class CreateEntrenadorComponent {
   @Input('viewActive') set setView(value: viewModalEntrenador) {
     this.showViewEntrenador = value.isVisible;
     this.dataIni(value);
   }
   @Output() CreateEntrenador = new EventEmitter<boolean>();
 
-  public showViewEntrenador: Boolean | undefined = true ;
+  public showViewEntrenador: Boolean | undefined = true;
   public currentPage: number = 0;
   public entrenadorForm: FormGroup = new entrenadorFormModel().formEntrenador();
   private cryptoService$ = new CryptoService();
-  public listPaises: Array<UniversalList> = [];
-  public listCiudades: Array<UniversalList> = [];
-  public listEstados: Array<UniversalList> = [];
+  public listPaises: Ipaises[] = PAISESCONST;
+  public listCiudades: CityName[] | undefined = [];
+  public listEstados: Estado[] | undefined = [];
   public genderlist: Array<listInfo> = gender;
   public typeIdentificationlist: Array<listInfo> = typeIdentification;
   public isActiveCrear: boolean = true;
   public isEdit: boolean = false;
+  public activeDepto: boolean = true;
+  public activeCity: boolean = true;
 
-  constructor(
-    private entrenadorServices$: EntrenadorServices,
-    private infoUniversalService$: InfoUniversalService
-  ) {}
+  constructor(private entrenadorServices$: EntrenadorServices) {}
 
-  async ngOnInit():Promise<void> {
-    this.listPaises = await firstValueFrom(
-      this.infoUniversalService$.getPaises()
-    );
-  }
-  closeCard():void {
+  closeCard(): void {
     this.showViewEntrenador = false;
     this.defaulCarrusel();
   }
@@ -99,17 +103,19 @@ export class CreateEntrenadorComponent implements OnInit {
   }
 
   universalCiudadesApis(event: eventsPaises) {
+    this.activeCity = false;
     const { value } = event;
-    this.infoUniversalService$
-      .getCiudades(value)
-      .subscribe((res) => (this.listCiudades = res));
+    this.listCiudades = CIUDADESCONST.find(
+      (item) => item.state_name == value
+    )?.city_name;
   }
 
   universalEstadoApis(event: eventsPaises) {
+    this.activeDepto = false;
     const { value } = event;
-    this.infoUniversalService$
-      .getEstados(value)
-      .subscribe((res:Array<UniversalList>) => (this.listEstados = res));
+    this.listEstados = ESTADOSCONST.find(
+      (item) => item.country_name == value
+    )?.estados;
   }
 
   setCurrentPageR(): void {
@@ -120,20 +126,19 @@ export class CreateEntrenadorComponent implements OnInit {
     this.currentPage = this.currentPage - 1;
   }
 
-
   defaulCarrusel(): void {
     this.entrenadorForm.reset();
     this.currentPage = 0;
     this.CreateEntrenador.emit(true);
   }
 
-  quitarValidacion():void {
+  quitarValidacion(): void {
     this.entrenadorForm.get('password')?.clearValidators();
     this.entrenadorForm.get('password')?.updateValueAndValidity();
   }
 
   // Función para restablecer la validación
-  restablecerValidacion():void {
+  restablecerValidacion(): void {
     this.entrenadorForm
       .get('password')
       ?.setValidators([Validators.pattern(regExps['regexPassword'])]);
