@@ -130,8 +130,8 @@
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
 
 
-                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"
-                            (selectionChange)="universalCiudadesApis($event)">
+                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"  [disabled]="activeDepto"
+                            (selectionChange)="universalCiudadesApis($event)" matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
                             <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
                               {{ opcion.state_name }}
                             </mat-option>
@@ -141,6 +141,7 @@
                               *Campo requerido
                             </ng-container>
                           </mat-error>
+
                         </mat-form-field>
                       </div>
                     </div>
@@ -149,7 +150,7 @@
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <mat-select formControlName="city" name="city" class="inputmat">
+                          <mat-select formControlName="city" name="city" class="inputmat" matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
                             <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
                               {{ opcion.city_name }}
                             </mat-option>
