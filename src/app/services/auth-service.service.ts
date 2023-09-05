@@ -62,8 +62,8 @@ export class AuthService extends ComponentStore<session> {
     };
   });
 
-  readonly getToken: Observable<string> = this.select((state) => state.token);
-  readonly getDataUser: Observable<DataUser> = this.select((state) => {
+  readonly getToken: Observable<string> = this.select((state:session) => state.token);
+  readonly getDataUser: Observable<DataUser> = this.select((state:session) => {
     const tokenPayload: Ijwt = jwtDecode(state.token);
     const {dataUser} = tokenPayload;
     return dataUser;
