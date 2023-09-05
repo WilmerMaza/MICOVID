@@ -4,7 +4,8 @@
     <div>
   <app-create-sportsman 
   [viewActive]="showViewCreateSportsman"
-  [dataCategory]="dataCreateSportsman" *ngIf="showViewCreateSportsman">
+  [dataCategory]="dataCreateSportsman" *ngIf="showViewCreateSportsman"
+  (CreateSportsman)="reloadData()">
 </app-create-sportsman>
 
     </div>
@@ -38,7 +39,7 @@
                     <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la segunda fila -->
                       <div fxFlex="auto">
                         <div class="row">Fecha de Nacimiento</div>
-                        <div class="row-data">{{dataSingle.birtDate}}</div>
+                        <div class="row-data">{{birdData}}</div>
                       </div>
                       <div fxFlex="auto">
                         <div class="row">Nacionalidad</div>
@@ -89,7 +90,7 @@
                         <div class="row-data">{{dataSingle.phone}}</div>
                       </div>
                       <div class="botones">
-                        <button mat-button class="columns">Editar</button>
+                        <button mat-button class="columns" (click)="editSportman()">Editar</button>
                         <button mat-button class="columns">Exportar</button>
                       </div>
                     </div>

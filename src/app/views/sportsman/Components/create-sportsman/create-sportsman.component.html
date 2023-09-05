@@ -33,7 +33,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="name" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('name')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -47,8 +51,12 @@
                               {{ identification }}
                             </mat-option>
                           </mat-select>
-                          <mat-error *ngIf="sportsmansForm.get('typeIdentification')?.invalid">Tipo de documento is
-                            required</mat-error>
+                         
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('typeIdentification')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -62,8 +70,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="identification" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('identification')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('identification')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -94,9 +105,17 @@
                       <div class="row">País de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="nationality" class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('nationality')?.invalid">País de nacimiento is
-                            required</mat-error>
+                          <mat-select formControlName="nationality" name="nationality" class="inputmat"
+                            (selectionChange)="universalEstadoApis($event)">
+                            <mat-option *ngFor="let opcion of listPaises" [value]="opcion.country_name">
+                              {{ opcion.country_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('nationality')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -105,8 +124,17 @@
                       <div class="row">Departamento de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="department" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('name')?.invalid">Nombre completo is required</mat-error>
+                          <mat-select formControlName="department" name="department" class="inputmat"  [disabled]="activeDepto"
+                          (selectionChange)="universalCiudadesApis($event)" matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
+                          <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
+                            {{ opcion.state_name }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error class="Error">
+                          <ng-container *ngIf="sportsmansForm.get('department')?.hasError('required')">
+                            *Campo requerido
+                          </ng-container>
+                        </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -116,9 +144,16 @@
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="city" class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('city')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <mat-select formControlName="city" name="city" class="inputmat" matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
+                            <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
+                              {{ opcion.city_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('city')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -136,6 +171,11 @@
                         <div class="row-data">
                           <mat-form-field class="matforms" appearance="outline" fxFlex>
                             <input matInput formControlName="weight" class="inputmat" />
+                            <mat-error class="Error">
+                              <ng-container *ngIf="sportsmansForm.get('weight')?.hasError('required')">
+                                *Campo requerido
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                       </div>
@@ -144,6 +184,11 @@
                         <div class="row-data">
                           <mat-form-field class="matforms" appearance="outline" fxFlex>
                             <input matInput formControlName="height" class="inputmat" />
+                            <mat-error class="Error">
+                              <ng-container *ngIf="sportsmansForm.get('height')?.hasError('required')">
+                                *Campo requerido
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                       </div>
@@ -188,6 +233,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="studyLevelMax" class="inputmat" />
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('studyLevelMax')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -197,8 +247,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="institutionNameStudy" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('institutionNameStudy')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('institutionNameStudy')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -207,8 +260,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="sportInstition" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('sportInstition')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('sportInstition')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -222,8 +278,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="athleticDiscipline" required class="inputmat" />
-                          <mat-error *ngIf="sportsmansForm.get('athleticDiscipline')?.invalid">Número de documento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('athleticDiscipline')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -233,8 +292,11 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
                           <input matInput formControlName="email" />
-                          <mat-error *ngIf="sportsmansForm.get('email')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('email')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -243,9 +305,12 @@
                       <div class="row">Teléfono</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="phone" />
-                          <mat-error *ngIf="sportsmansForm.get('phone')?.invalid">Ciudad de nacimiento is
-                            required</mat-error>
+                          <input matInput formControlName="phone" type="text" mask="(000) 000 00 00"/>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('phone')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>

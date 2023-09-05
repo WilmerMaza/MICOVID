@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
 import { Validators as Validar, regExps } from 'src/app/utils/Validators';
 import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
+import { CIUDADESCONST, CityName, ESTADOSCONST, Estado, Iciudades, Iestados, Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -34,11 +35,13 @@ export class CreateSportsmanComponent implements OnInit {
   public categorias: ControlItem[];
   public generos: string[];
   public typeIdentification: string[];
-  public listPaises: Array<UniversalList> = [];
   public isEdit: boolean = false;
-  public listCiudades: Array<UniversalList> = [];
-  public listEstados: Array<UniversalList> = [];
+  public listEstados: Estado[] | undefined = [];
   public dataID: string;
+  public activeDepto: boolean = true;
+  public activeCity: boolean = true;
+  public listPaises: Ipaises[] = PAISESCONST;
+  public listCiudades: CityName[] | undefined = [];
 
   constructor(
     private sporsmanService$: SportsmanService,
@@ -48,12 +51,16 @@ export class CreateSportsmanComponent implements OnInit {
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
     this.generos = genero;
     this.typeIdentification = identificación;
-    this.listPaises = await firstValueFrom(
-      this.infoUniversalService$.getPaises()
-    );
   }
   closeCard() : void{
     this.showViewSportsman = false;
+    this.defaulCarrusel();
+  }
+
+   defaulCarrusel(): void {
+    this.sportsmansForm.reset();
+    this.currentPage = 0;
+    this.CreateSportsman.emit(true);
   }
 
   dataIni(value: visible): void {
@@ -114,17 +121,19 @@ export class CreateSportsmanComponent implements OnInit {
   }
 
   universalCiudadesApis(event: eventsPaises):void {
+    this.activeCity = false;
     const { value } = event;
-    this.infoUniversalService$
-      .getCiudades(value)
-      .subscribe((res: Array<UniversalList>) => (this.listCiudades = res));
+    this.listCiudades = CIUDADESCONST.find(
+      (item:Iciudades) => item.state_name === value
+    )?.city_name;
   }
 
-  universalEstadoApis(event: eventsPaises): void {
+  universalEstadoApis(event: eventsPaises):void {
+    this.activeDepto = false;
     const { value } = event;
-    this.infoUniversalService$
-      .getEstados(value)
-      .subscribe((res: Array<UniversalList>) => (this.listEstados = res));
+    this.listEstados = ESTADOSCONST.find(
+      (item:Iestados) => item.country_name === value
+    )?.estados;
   }
 
   setCurrentPageL(): void {
@@ -136,6 +145,7 @@ export class CreateSportsmanComponent implements OnInit {
   }
 
   createSportsman(): void {
+    if (this.sportsmansForm.valid) {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -174,5 +184,8 @@ export class CreateSportsmanComponent implements OnInit {
           });
         }
       );
-  }
+    } else {
+       this.sportsmansForm.markAllAsTouched();       
+    }
+  }  
 }

@@ -28,6 +28,8 @@ export class SportsmanComponent implements OnInit {
   public dataCreateSportsman: any;
   public showViewCreateSportsman: visible;
   public fechaFormateada: string;
+  public birdData: string;
+
   isDownload = this.data.length !== 0;
   nameAdd: string = 'deportista'
 
@@ -68,11 +70,10 @@ export class SportsmanComponent implements OnInit {
   }
   getActionEvent(event: any): void {
     if (event.action.action == 'ver') {
-      const {birtDate} = event.data
+      this.birdData = DateValidators.parseDate(event.data.birtDate);
       this.showSportsman = true;
       this.dataSingle = {
         ...event.data,
-        birtDate: DateValidators.parseDate(birtDate),
       };
        this.historyCategorico(event.data)
     }
@@ -80,11 +81,26 @@ export class SportsmanComponent implements OnInit {
       this.showViewCreateSportsman = { isVisible: true };
     }
     if (event.action.action == 'Editar') {
+      this.showSportsman = false
       this.showViewCreateSportsman = { isVisible: true,
         data: event.data };
     }
   }
 
+  reloadData(): void {
+    this.getSportsman();
+  }
+
+  editSportman(): void {
+    const event = {
+      action: {
+        action: 'Editar'
+      },
+      data: this.dataSingle // Aquí debes proporcionar los datos adecuados
+    };
+  
+    this.getActionEvent(event);
+  }  
 
   historyCategorico(data: Sportsman):void {
     const idObject = {

@@ -18,7 +18,7 @@ export const regExps: { [key: string]: RegExp } = {
   username: /[-_a-zA-Z0-9]*/,
   maxTaxes: /^((100(\.0{1,2})?)|(\d{1,2}(\.\d{1,2})?))%$/,
   maxReteica: /^(0(\.\d+)?|1(\.0+)?)%$/,
-  decimalNumbers: /^\d{1,2}$|^\d{1,2}\.\d{1,2}$/,
+  decimalNumbers: /^\d{1,3}$|^\d{1,3}\.\d{1,2}$/,
   spaceEnd: /^\w+[^\s]$/,
   numberWDecimal: /^(\d*|(\d+))(\.\d+)?$/,
   telefonoRegex :/^\d{8,15}$/,
