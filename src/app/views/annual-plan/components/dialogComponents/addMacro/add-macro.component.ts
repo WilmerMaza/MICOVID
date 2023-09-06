@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators  } from '@angular/forms';
+import { FormControl, FormGroup, Validators as validForm  } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AnnualPlanService } from '../../../Services/annual-plan.service';
 import { Toast } from '../../../../../utils/alert_Toast';
 import { categoryModel } from 'src/app/views/models/categoryModel';
 import { ReturnInsert, dialogDataMacro } from '../../../models/interfaceFormPlan';
 import { DynamicError} from 'src/app/shared/model/filterModel';
+import { Validators } from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-add-macro',
@@ -25,10 +26,10 @@ export class AddMacroComponent {
     private annualPlanService$: AnnualPlanService
   ){
     this.addMacroForm = new FormGroup({
-      name:new FormControl('',[Validators.required]),
-      date_initial: new FormControl('', [Validators.required]),
-      date_end: new FormControl('', [Validators.required]),
-      detail: new FormControl('', [Validators.required])
+      name:new FormControl('',[validForm.required]),
+      date_initial: new FormControl('', [validForm.required]),
+      date_end: new FormControl('', [validForm.required]),
+      detail: new FormControl('', [validForm.required])
     })
   }
 
@@ -40,7 +41,7 @@ export class AddMacroComponent {
     const { action, dataList } = this.data;
     this.isEditPanel = action === 'Edit';
     this.titleInit = this.isEditPanel ? 'Editar': 'Crear';
-    if(dataList !== null) {
+    if(!Validators.isNullOrUndefined(dataList)) {
       this.addMacroForm.patchValue(dataList);
     }
   }

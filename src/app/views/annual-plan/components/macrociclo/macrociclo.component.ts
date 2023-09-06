@@ -26,7 +26,8 @@ export class MacrocicloComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.routeId = this.route$.snapshot.queryParams["documentId"];
+    const { snapshot : {queryParams} } = this.route$;
+    this.routeId = queryParams["documentId"];
     this.getDataById(this.routeId)
   }
 
