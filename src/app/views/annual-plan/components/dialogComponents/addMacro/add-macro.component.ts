@@ -37,15 +37,17 @@ export class AddMacroComponent {
   }
 
   setValueForm(): void {
-    this.isEditPanel = this.data.action === 'Edit';
+    const { action, dataList } = this.data;
+    this.isEditPanel = action === 'Edit';
     this.titleInit = this.isEditPanel ? 'Editar': 'Crear';
-    if(this.data.dataList !== null) {
-      this.addMacroForm.patchValue(this.data.dataList);
+    if(dataList !== null) {
+      this.addMacroForm.patchValue(dataList);
     }
   }
 
   createMacrociclo():void{
-    this.addMacroForm.value['PlanAnualID'] = this.data.routeId;
+    const { routeId } = this.data;
+    this.addMacroForm.value['PlanAnualID'] = routeId;
     this.annualPlanService$.insertMacro(this.addMacroForm.value).subscribe((data:ReturnInsert) => {
       Toast.fire({
         icon: 'success',

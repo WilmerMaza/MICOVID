@@ -55,9 +55,9 @@ export class MacrocicloComponent implements OnInit {
     this.dataListMacro = this.dataFilterListMacro?.filter(item => item.name.includes(filterData['Name']));
   }
 
-  getActionEvent(event: ActionResponse): void{
+  getActionEvent({action}: ActionResponse): void{
     let data: dialogDataMacro = {routeId:  this.routeId}
-    if(event.action === 'add'){
+    if(action === 'add'){
       let dialogRef = this.dialog.open( AddMacroComponent, {
         width: '384px',
         data
@@ -65,7 +65,7 @@ export class MacrocicloComponent implements OnInit {
       dialogRef.afterClosed().subscribe(() => {
         this.getAllMacrosById(this.routeId);
       })
-    }else if(event.action === 'clearFilter'){
+    }else if(action === 'clearFilter'){
       this.dataListMacro = [...this.dataFilterListMacro];
     }
     
