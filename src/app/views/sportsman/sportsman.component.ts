@@ -5,7 +5,7 @@ import { Sportsman } from '../models/DataSportsman'
 import { HistorialCategory, visible } from '../models/HistorialCategoryModel'
 import { columnsValue } from '../models/columnDataSportman'
 import { categoryModel } from '../models/categoryModel'
-import { jsonData } from '../models/dataFilterSportsman'
+import { SportsmanData, jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { DateValidators } from 'src/app/utils/Validators';
@@ -25,7 +25,7 @@ export class SportsmanComponent implements OnInit {
   public isCheck = true;
   public selectItemCount: number = 0;
   public historyCategory: HistorialCategory[];
-  public dataCreateSportsman: any;
+  public dataCreateSportsman: SportsmanData[];
   public showViewCreateSportsman: visible;
   public fechaFormateada: string;
   public birdData: string;

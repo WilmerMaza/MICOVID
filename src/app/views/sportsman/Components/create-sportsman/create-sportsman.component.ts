@@ -24,7 +24,7 @@ export class CreateSportsmanComponent implements OnInit {
     this.showViewSportsman = value.isVisible;
     this.dataIni(value);
   }
-  @Input('dataCategory') set dataCategory(value: SportsmanData) {
+  @Input('dataCategory') set dataCategory(value: SportsmanData[]) {
     this.dataCreateSportsman = value;
   }
   @Output() CreateSportsman = new EventEmitter<boolean>();
