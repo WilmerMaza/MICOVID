@@ -5,7 +5,7 @@ import { Sportsman } from '../models/DataSportsman'
 import { HistorialCategory, visible } from '../models/HistorialCategoryModel'
 import { columnsValue } from '../models/columnDataSportman'
 import { categoryModel } from '../models/categoryModel'
-import { jsonData } from '../models/dataFilterSportsman'
+import { SportsmanData, jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { DateValidators } from 'src/app/utils/Validators';
@@ -25,11 +25,13 @@ export class SportsmanComponent implements OnInit {
   public isCheck = true;
   public selectItemCount: number = 0;
   public historyCategory: HistorialCategory[];
-  public dataCreateSportsman: any;
+  public dataCreateSportsman: SportsmanData[];
   public showViewCreateSportsman: visible;
   public fechaFormateada: string;
-  isDownload = this.data.length !== 0;
-  nameAdd: string = 'deportista'
+  public birdData: string;
+
+  public isDownload = this.data.length !== 0;
+  public nameAdd: string = 'deportista'
 
   calculateCirclePosition(index: number): number {
     const circleSpacing = 100; // Ajusta el espaciado entre círculos
@@ -66,25 +68,42 @@ export class SportsmanComponent implements OnInit {
       this.dataSportman = res;
     });
   }
-  getActionEvent(event: any): void {
-    if (event.action.action == 'ver') {
-      const {birtDate} = event.data
+  getActionEvent(event: ActionResponse): void {
+    const {
+      action: { action   },
+      data  : { birtDate },
+      data,
+    } = event;
+    if (action == 'ver') {
+      this.birdData = DateValidators.parseDate(birtDate);
       this.showSportsman = true;
-      this.dataSingle = {
-        ...event.data,
-        birtDate: DateValidators.parseDate(birtDate),
-      };
-       this.historyCategorico(event.data)
+      this.dataSingle = data;
+       this.historyCategorico(data)
     }
     if (event.action == 'add') {
       this.showViewCreateSportsman = { isVisible: true };
     }
-    if (event.action.action == 'Editar') {
+    if (action == 'Editar') {
+      this.showSportsman = false
       this.showViewCreateSportsman = { isVisible: true,
-        data: event.data };
+        data: data };
     }
   }
 
+  reloadData(): void {
+    this.getSportsman();
+  }
+
+  editSportman(): void {
+    const event = {
+      action: {
+        action: 'Editar'
+      },
+      data: this.dataSingle // Aquí debes proporcionar los datos adecuados
+    };
+  
+    this.getActionEvent(event);
+  }  
 
   historyCategorico(data: Sportsman):void {
     const idObject = {
