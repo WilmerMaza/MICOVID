@@ -30,8 +30,8 @@ export class SportsmanComponent implements OnInit {
   public fechaFormateada: string;
   public birdData: string;
 
-  isDownload = this.data.length !== 0;
-  nameAdd: string = 'deportista'
+  public isDownload = this.data.length !== 0;
+  public nameAdd: string = 'deportista'
 
   calculateCirclePosition(index: number): number {
     const circleSpacing = 100; // Ajusta el espaciado entre círculos
@@ -68,22 +68,26 @@ export class SportsmanComponent implements OnInit {
       this.dataSportman = res;
     });
   }
-  getActionEvent(event: any): void {
-    if (event.action.action == 'ver') {
-      this.birdData = DateValidators.parseDate(event.data.birtDate);
+  getActionEvent(event: ActionResponse): void {
+    debugger
+    const {
+      action: { action   },
+      data  : { birtDate },
+      data,
+    } = event;
+    if (action == 'ver') {
+      this.birdData = DateValidators.parseDate(birtDate);
       this.showSportsman = true;
-      this.dataSingle = {
-        ...event.data,
-      };
-       this.historyCategorico(event.data)
+      this.dataSingle = data;
+       this.historyCategorico(data)
     }
     if (event.action == 'add') {
       this.showViewCreateSportsman = { isVisible: true };
     }
-    if (event.action.action == 'Editar') {
+    if (action == 'Editar') {
       this.showSportsman = false
       this.showViewCreateSportsman = { isVisible: true,
-        data: event.data };
+        data: data };
     }
   }
 
