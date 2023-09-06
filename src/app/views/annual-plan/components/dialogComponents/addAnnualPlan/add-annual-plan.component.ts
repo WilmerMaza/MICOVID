@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AnnualPlanService } from '../../Services/annual-plan.service';
-import { Toast } from '../../../../utils/alert_Toast';
+import { AnnualPlanService } from '../../../Services/annual-plan.service';
+import { Toast } from '../../../../../utils/alert_Toast';
 import { categoryModel } from 'src/app/views/models/categoryModel';
-import { ReturnInsertPlan } from '../../models/interfaceFormPlan';
+import { ReturnInsert } from '../../../models/interfaceFormPlan';
 import { DynamicError} from 'src/app/shared/model/filterModel';
 
 @Component({
@@ -39,8 +39,8 @@ export class AddAnnualPlanComponent implements OnInit {
   }
 
   createAnnualPlan():void{
-    
-    this.annualPlanService$.postInsertAnnualPlan(this.addPlanAnualForm.value).subscribe((data:ReturnInsertPlan) => {
+
+    this.annualPlanService$.postInsertAnnualPlan(this.addPlanAnualForm.value).subscribe((data:ReturnInsert) => {
       Toast.fire({
         icon: 'success',
         title: data.msg

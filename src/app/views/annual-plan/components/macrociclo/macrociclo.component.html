@@ -1,19 +1,58 @@
 <div id="content_macro">
-    <div class="content_header">
-        <div class="name_plan">{{dataPlan.name}}</div>
-        <div class="categori_plan">
-            <div>Categoría</div>
-            <div class="dinamic">{{dataPlan.CategoriumID}}</div>
-        </div>
-        <div class="year_plan">
-            <div>Año de creación</div>
-            <div class="dinamic">{{dataPlan.year | date:'yyyy'}}</div>
-        </div>
+    <div class="content_filter">
+        <div class="content-filter">
+            <app-dinamic-filter
+            [showDownload]="false"
+            [showSelection]="false"
+            [showLateralPanel]="false"
+            nameAdd="evento"
+            (filterResult)="getDataFilter($event)"
+            (actionFilter)="getActionEvent($event)"
+            >
+            loading..
+          </app-dinamic-filter>
+    </div>
+  <div class="content_panel_initial">
+    <div *ngIf="delayData" class="content_header" (click)="goBack()">
+      <div class="name_plan">{{ dataPlan.name }}</div>
+      <div class="categori_plan">
+        <div>Categoría</div>
+        <div class="dinamic">{{ dataPlan.CategoriumID }}</div>
+      </div>
+      <div class="year_plan">
+        <div>Año de creación</div>
+        <div class="dinamic">{{ dataPlan.year | date : "yyyy" }}</div>
+      </div>
     </div>
     <div class="content_body_macro">
-        <div class="conten_cards">
+      <div class="conten_cards" [ngClass]="{modelhover: !dataListMacro.length}">
+        <div class="content_initial" *ngIf="!dataListMacro.length">
             <div class="add_macro">+</div>
             <div class="text_add">Crear evento fundamental</div>
         </div>
+        <div *ngFor="let item of dataListMacro" class="content_target">
+          <div class="content_header_target">
+           <h3>{{item.name}}</h3> <mat-icon class="editButton" (click)="editData(item)">border_color</mat-icon>
+          </div>
+          <div class="content_detail">
+            <div><b>Descripción</b></div>
+            {{item.detail}}
+          </div>
+          <div class="content_date">
+            <div class="content_footer_target">
+              <div class="date_init">
+                <div>Fecha de inicio:</div>
+                {{item.date_initial | date:'dd/MM/yyyy'}}
+              </div>
+              <div class="date_end">
+                <div>Fecha de cierre:</div>
+                {{item.date_end | date:'dd/MM/yyyy'}}
+              </div>
+            </div>
+            <button class="btnAñadir">Ver</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

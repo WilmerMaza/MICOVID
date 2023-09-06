@@ -4,8 +4,14 @@
       <form [formGroup]="textForm">
         <div class="content-form-field">
           <mat-form-field appearance="outline"  class="content-form-field" fxFlex>
-            <mat-icon class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
+            <mat-icon *ngIf="showLateralPanel; else other_content" class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
               matPrefix>search</mat-icon>
+              <ng-template #other_content>
+                <mat-icon *ngIf="!clearInput"  class="material-icons-outlined mat-gray icon-filter" (click)="otherOnSubmit()"
+                matPrefix>search</mat-icon>
+                <mat-icon *ngIf="clearInput"  class="material-icons-outlined mat-gray icon-filter" (click)="clearFilterAction()"
+                matPrefix>clear</mat-icon>
+              </ng-template>
             <input matInput formControlName="textInput" class="textInput" placeholder="Buscar..." />
           </mat-form-field>
         </div>
@@ -21,7 +27,7 @@
       {{ selectItemCount > 1 ? "Seleccionados" : "Seleccionado" }}
     </div>
 
-    <div class="content-filters" (click)="showFilterToggle()">
+    <div *ngIf="showLateralPanel" class="content-filters" (click)="showFilterToggle()">
       <button mat-button class="btnFiltrar">Filtrar</button>
     </div>
     <div class="container-prueba" *ngIf="showFilter">

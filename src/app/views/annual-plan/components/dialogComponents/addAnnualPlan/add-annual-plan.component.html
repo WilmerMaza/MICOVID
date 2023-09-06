@@ -43,9 +43,8 @@
             </form>
             <div class="content-button">
                 <div class="button-close" matDialogClose>Cancelar</div>
-                <div class="button-add" (click)="createAnnualPlan()">Crear</div>
+                <div class="button-add" (click)="!addPlanAnualForm.invalid ? createAnnualPlan() : null">Crear</div>
             </div>
         </div>
-
     </div>
 </div>
