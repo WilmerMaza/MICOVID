@@ -1,0 +1,65 @@
+<div class="content-dialog">
+    <div class="content-x-close">
+        <button class='closeButtonModal' matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="content-form">
+        <div class="form_insert">
+            <h4>{{titleInit}} evento</h4>
+            <form [formGroup]="addMacroForm">
+                <div class="content-input">
+                    <div class="row">Nombre del evento</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <input matInput formControlName="name" required class="inputmat" />
+                            <mat-error *ngIf="addMacroForm.get('name')?.invalid">El nombre del plan es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="input-date">
+                    <div class="date_init">
+                        <div class="row">Fecha de inicio</div>
+                        <div class="row-data">
+                            <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                <input matInput [min]="minDate" formControlName="date_initial" required class="inputmat" [matDatepicker]="picker" placeholder="DD/MM/AA"/>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="addMacroForm.get('date_initial')?.invalid">*requerida</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="date_end">
+                        <div class="row">Fecha de cierre</div>
+                        <div class="row-data">
+                            <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                <input matInput [min]="addMacroForm.get('date_initial')?.value" formControlName="date_end" required class="inputmat" [matDatepicker]="picker_end" placeholder="DD/MM/AA"/>
+                                <mat-datepicker-toggle matSuffix [for]="picker_end"></mat-datepicker-toggle>
+                                <mat-datepicker #picker_end></mat-datepicker>
+                                <mat-error *ngIf="addMacroForm.get('date_end')?.invalid">*requerida</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-textArea">
+                    <div class="row">Descripción del evento</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <textarea matInput formControlName="detail" required class="inputmat"></textarea>
+                            <mat-error *ngIf="addMacroForm.get('detail')?.invalid">*requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <div class="content-button">
+                <div class="button-close" matDialogClose>Cancelar</div>
+                <div *ngIf="!isEditPanel; else other_button" class="button-add" (click)="!addMacroForm.invalid ? createMacrociclo() : null">Crear</div>
+                <ng-template #other_button>
+                    <div class="button-add" (click)="EditDataMacro()">Editar</div>
+                </ng-template>
+            </div>
+        </div>
+
+    </div>
+</div>

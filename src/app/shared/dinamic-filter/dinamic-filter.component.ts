@@ -27,6 +27,7 @@ export class DinamicFilterComponent {
   public textForm: FormGroup;
   public showFilter: boolean = false;
   public jsonData: JsonDataItem[] = [];
+  public clearInput : boolean = false;
 
   @ViewChild(MatAccordion)
   acc!: MatAccordion;
@@ -41,6 +42,7 @@ export class DinamicFilterComponent {
   @Input('showDownload') showDownload = true;
   @Input("showSelection") showSelection = true;
   @Input('showButtonAdd') showButtonAdd = true;
+  @Input('showLateralPanel') showLateralPanel = true;
 
   @Output() filterResult = new EventEmitter<filterResult>();
   @Output() actionFilter = new EventEmitter<ActionResponse>();
@@ -58,6 +60,19 @@ export class DinamicFilterComponent {
     }
   }
 
+  otherOnSubmit():void{
+    if (this.textForm.valid) {
+      this.sendDataFilter();
+      this.clearInput = true;
+    }
+  }
+
+  clearFilterAction():void{
+    this.textForm.reset();
+    this.actionClick('clearFilter');
+    this.clearInput = false;
+  }
+
   showFilterToggle(): void {
     this.showFilter = !this.showFilter;
   }
@@ -65,11 +80,6 @@ export class DinamicFilterComponent {
   enableSlideToggle(event: any, item: JsonDataItem): void {
     event.stopPropagation();
     item.isOpen = item.disable;
-  }
-
-  capturarValor(field: any, event: any) {
-    console.log(field);
-    console.log(event);
   }
 
   sendDataFilter(): void {

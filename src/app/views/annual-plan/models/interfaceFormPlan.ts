@@ -1,7 +1,7 @@
 export interface PlanAnualForm {
-    name: string;
-    CategoriumID: string;
-    year: string;
+    name?: string;
+    CategoriumID?: string;
+    year?: string;
 }
 
 export interface  RootPlan{
@@ -30,6 +30,25 @@ export interface PlanItem {
     };
 }
 
-export interface ReturnInsertPlan {
+export interface ReturnInsert {
     msg: string;
+}
+
+export interface dialogDataMacro {
+    routeId:string,
+    dataList?: any,
+    action?:string
+}
+
+export interface ItemMacro {
+    item : MacroDatos[];
+}
+
+export interface MacroDatos {
+    ID?: string;
+    PlanAnualID?: string;
+    date_end?: string;
+    date_initial?: string;
+    detail?: string;
+    name: string;
 }

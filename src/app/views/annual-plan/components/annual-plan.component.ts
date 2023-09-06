@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnualPlanService } from '../Services/annual-plan.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddAnnualPlanComponent } from './dialogComponents/add-annual-plan.component';
+import { AddAnnualPlanComponent } from './dialogComponents/addAnnualPlan/add-annual-plan.component';
 import { filterPlanValue } from '../models/dataFilterAnnualPlan';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { PlanItem } from '../models/interfaceFormPlan';
