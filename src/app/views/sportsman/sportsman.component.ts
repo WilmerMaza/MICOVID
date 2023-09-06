@@ -69,7 +69,6 @@ export class SportsmanComponent implements OnInit {
     });
   }
   getActionEvent(event: ActionResponse): void {
-    debugger
     const {
       action: { action   },
       data  : { birtDate },
