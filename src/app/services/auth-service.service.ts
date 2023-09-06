@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import { ComponentStore } from '@ngrx/component-store';
-import { DataUser, session } from '../views/pages/model/dataUserModel';
+import { DataUser, Ijwt, session } from '../views/pages/model/dataUserModel';
 import { Persistence } from 'src/app/utils/persistence.service';
 import { Observable } from 'rxjs';
 import { KEYSESSION } from 'src/app/config/constans';
@@ -58,15 +58,14 @@ export class AuthService extends ComponentStore<session> {
     this.persistence$.save(KEYSESSION, payload);
     return {
       ...state,
-      dataUser: {
-        ...payload.dataUser,
-      },
       token: payload.token,
     };
   });
 
-  readonly getToken: Observable<string> = this.select((state) => state.token);
-  readonly getDataUser: Observable<DataUser> = this.select(
-    (state) => state.dataUser
-  );
+  readonly getToken: Observable<string> = this.select((state:session) => state.token);
+  readonly getDataUser: Observable<DataUser> = this.select((state:session) => {
+    const tokenPayload: Ijwt = jwtDecode(state.token);
+    const {dataUser} = tokenPayload;
+    return dataUser;
+  });
 }
