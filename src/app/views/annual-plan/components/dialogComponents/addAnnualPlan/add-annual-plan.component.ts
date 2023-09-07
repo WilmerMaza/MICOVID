@@ -56,6 +56,10 @@ export class AddAnnualPlanComponent implements OnInit {
     })
   }
 
+  alertTrigger():void{
+    this.addPlanAnualForm.markAllAsTouched();
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

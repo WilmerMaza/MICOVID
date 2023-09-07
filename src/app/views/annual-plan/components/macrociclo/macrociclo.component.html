@@ -32,21 +32,28 @@
         </div>
         <div *ngFor="let item of dataListMacro" class="content_target">
           <div class="content_header_target">
-           <h3>{{item.name}}</h3> <mat-icon class="editButton" (click)="editData(item)">border_color</mat-icon>
+           <h3>{{item.name}}</h3>
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="none" class="editButton" (click)="editData(item)">
+            <path d="M8.48629 12.2285L6.31986 9.3282M6.31986 9.3282L14.9049 2.91559L15.9881 4.36576M6.31986 9.3282L5.22715 12.0945C5.15516 12.2767 5.30157 12.4705 5.49654 12.4511L8.6023 12.1419L17.0713 5.81593L15.9881 4.36576M15.9881 4.36576L9.47352 9.20403" stroke="#0C4CC8" stroke-width="0.837642"/>
+            <path d="M15.9261 2.09668L18.1191 5.03271L19.1677 4.24947C19.3994 4.07644 19.4469 3.74839 19.2739 3.51674L17.7074 1.41957C17.5343 1.18793 17.2063 1.14041 16.9746 1.31344L15.9261 2.09668Z" stroke="#0C4CC8" stroke-width="0.837642"/>
+            <path d="M8 5H2C1.44772 5 1 5.44772 1 6V15C1 15.5523 1.44772 16 2 16H10C10.5523 16 11 15.5523 11 15V12" stroke="#0C4CC8" stroke-width="0.88"/>
+            </svg>
           </div>
           <div class="content_detail">
             <div><b>Descripción</b></div>
-            {{item.detail}}
+            <div class="detail_description">
+              {{item.detail}}
+            </div>
           </div>
           <div class="content_date">
             <div class="content_footer_target">
               <div class="date_init">
                 <div>Fecha de inicio:</div>
-                {{item.date_initial | date:'dd/MM/yyyy'}}
+                <div style="color:#0C4CC8;">{{item.date_initial | date:'dd/MM/yyyy'}}</div>
               </div>
               <div class="date_end">
                 <div>Fecha de cierre:</div>
-                {{item.date_end | date:'dd/MM/yyyy'}}
+               <div style="color:#0C4CC8;"> {{item.date_end | date:'dd/MM/yyyy'}}</div>
               </div>
             </div>
             <button class="btnAñadir">Ver</button>

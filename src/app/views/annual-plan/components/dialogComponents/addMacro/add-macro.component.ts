@@ -65,6 +65,10 @@ export class AddMacroComponent {
     })
   }
 
+  alertTrigger():void{
+    this.addMacroForm.markAllAsTouched();
+  }
+
   EditDataMacro():void{
     const { dataList } = this.data;
     this.addMacroForm.value['ID'] = dataList.ID;
