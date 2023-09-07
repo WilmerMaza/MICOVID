@@ -1,9 +1,29 @@
 export const genero = [
-    'Varon',
-    'Dama'
+    {
+        value: 'Dama',
+        code: 'F',
+    },
+    {
+        value: 'Varón',
+        code: 'M',
+    },
 ]
 
 export const identificación = [
-    'TI',
-    'CC'
+    {
+        value: 'Cédula de ciudadanía',
+        code: 'CC',
+    },
+    {
+        value: 'Tarjetas de identidad',
+        code: 'TI',
+    },
+    {
+        value: 'Cédula de extranjería',
+        code: 'CE',
+    },
+    {
+        value: 'Pasaporte ',
+        code: 'PB',
+    },
 ]

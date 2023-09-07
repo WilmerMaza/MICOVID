@@ -18,8 +18,8 @@ export const jsonData = [
       isOpen:false,
       typeFilter:"check",
       control:[
-        {name:'Femenino', value:'Femenino', code:''},
-        {name:'Masculino', value:'Masculino', code:''}
+        {name:'Dama', value:'F', code:'F'},
+        {name:'Varón', value:'M', code:'M'}
       ]
     },
     {
@@ -29,8 +29,10 @@ export const jsonData = [
       isOpen:false,
       typeFilter:"check",
       control:[
-        {name:'T. de Identidad', value:'TI', code:''},
-        {name:'C. de Ciudadania', value:'Cédula', code:''}
+        {name:'Tarjetas de identidad', value:'TI', code:'TI'},
+        {name:'Cédula de ciudadanía', value:'CC', code:'CC'},
+        {name:'Cédula de extranjería', value:'CE', code:'CE'},
+        {name:'Pasaporte', value:'PB', code:'PB'}
       ]
     }
   ]
