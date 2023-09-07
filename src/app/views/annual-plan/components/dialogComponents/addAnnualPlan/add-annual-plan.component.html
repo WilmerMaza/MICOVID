@@ -1,8 +1,6 @@
 <div class="content-dialog">
     <div class="content-x-close">
-        <button class='closeButtonModal' matDialogClose>
-            <mat-icon>close</mat-icon>
-        </button>
+        <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
     </div>
 
     <div class="content-form">
@@ -43,7 +41,7 @@
             </form>
             <div class="content-button">
                 <div class="button-close" matDialogClose>Cancelar</div>
-                <div class="button-add" (click)="!addPlanAnualForm.invalid ? createAnnualPlan() : null">Crear</div>
+                <div class="button-add" (click)="!addPlanAnualForm.invalid ? createAnnualPlan() : alertTrigger()">Crear</div>
             </div>
         </div>
     </div>

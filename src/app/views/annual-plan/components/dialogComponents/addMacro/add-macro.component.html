@@ -1,8 +1,6 @@
 <div class="content-dialog">
     <div class="content-x-close">
-        <button class='closeButtonModal' matDialogClose>
-            <mat-icon>close</mat-icon>
-        </button>
+        <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
     </div>
 
     <div class="content-form">
@@ -54,7 +52,7 @@
             </form>
             <div class="content-button">
                 <div class="button-close" matDialogClose>Cancelar</div>
-                <div *ngIf="!isEditPanel; else other_button" class="button-add" (click)="!addMacroForm.invalid ? createMacrociclo() : null">Crear</div>
+                <div *ngIf="!isEditPanel; else other_button" class="button-add" (click)="!addMacroForm.invalid ? createMacrociclo() : alertTrigger()">Crear</div>
                 <ng-template #other_button>
                     <div class="button-add" (click)="EditDataMacro()">Editar</div>
                 </ng-template>
