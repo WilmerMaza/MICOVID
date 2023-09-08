@@ -9,6 +9,8 @@ import { RegisterService } from '../services/register.service';
 import { SessionService } from '../../services/session.service';
 import Swal from 'sweetalert2';
 import { DynamicError } from 'src/app/shared/model/filterModel';
+import { Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
+import { CARACTER } from '../../model/constRegister';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +21,8 @@ export class RegisterComponent {
   public register: FormGroup = new RegisterFormModel().formRegister();
   public data: DataRegisterModel = new DataRegisterModel();
   private cryptoService$ = new CryptoService();
+  public listPaises: Ipaises[] = PAISESCONST;
+  public caracter: Array<string>  = CARACTER;
 
   constructor(
     private registerSession$: RegisterService,

@@ -73,42 +73,44 @@
               </div>
               <div class="content-input">
                 <label class="textInput" for="caracter">Caracter</label>
-                <input
+                <select
                   [ngStyle]="{
                     border:
-                      hasError('character', 'required') &&
-                      isTouched('character')
+                      hasError('character', 'required') && isTouched('character')
                         ? '1px solid red'
                         : 'initial'
                   }"
-                  type="text"
                   id="caracter"
                   formControlName="character"
                   class="form-control inputRegister"
-                />
+                >
+                  <option value="">Selecciona un caracter</option>
+                  <option *ngFor="let caracter of caracter" [value]="caracter">{{ caracter }}</option>
+                </select>
                 <div
-                  *ngIf="
-                    hasError('character', 'required') && isTouched('character')
-                  "
+                  *ngIf="hasError('character', 'required') && isTouched('character')"
                   class="error-message"
                 >
                   Caracter es obligatorio.
                 </div>
               </div>
+              
               <div class="content-input">
                 <label class="textInput" for="pais">Pais</label>
-                <input
+                <select
                   [ngStyle]="{
                     border:
                       hasError('pais', 'required') && isTouched('pais')
                         ? '1px solid red'
                         : 'initial'
                   }"
-                  type="text"
-                  id="tipo"
+                  id="pais"
                   formControlName="pais"
                   class="form-control inputRegister"
-                />
+                >
+                  <option value="">Selecciona un país</option>
+                  <option *ngFor="let pais of listPaises" [value]="pais.country_name">{{ pais.country_name }}</option>
+                </select>
                 <div
                   *ngIf="hasError('pais', 'required') && isTouched('pais')"
                   class="error-message"
@@ -116,6 +118,7 @@
                   Pais es obligatorio.
                 </div>
               </div>
+              
             <!-- </div> -->
 
             <!-- Columna 2 -->
@@ -202,6 +205,7 @@
                   }"
                   type="number"
                   placeholder="(123) 456-789"
+                  mask="(000) 000 00 00"
                   id="telefono"
                   formControlName="phone"
                   class="form-control inputRegister"
