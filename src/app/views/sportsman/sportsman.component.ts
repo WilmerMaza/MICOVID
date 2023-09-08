@@ -9,6 +9,9 @@ import { SportsmanData, jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { DateValidators } from 'src/app/utils/Validators';
+import { Error } from '../models/errorsModel';
+import { listInfo } from '../Entrenador/Model/entrenadorModel';
+import { gender } from '../Entrenador/Model/constantesEntrenador';
 
 
 @Component({
@@ -22,6 +25,7 @@ export class SportsmanComponent implements OnInit {
   public jsonFilter = jsonData;
   public showSportsman: Boolean = false;
   public dataSingle: Sportsman;
+  public dataSingleAux: Sportsman;
   public isCheck = true;
   public selectItemCount: number = 0;
   public historyCategory: HistorialCategory[];
@@ -29,6 +33,7 @@ export class SportsmanComponent implements OnInit {
   public showViewCreateSportsman: visible;
   public fechaFormateada: string;
   public birdData: string;
+  public generos: listInfo[];
 
   public isDownload = this.data.length !== 0;
   public nameAdd: string = 'deportista'
@@ -42,9 +47,9 @@ export class SportsmanComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.generos = gender;
     this.getSportsman();
     this.getCategory();
-   
   }
 
   getCategory() {
@@ -65,7 +70,7 @@ export class SportsmanComponent implements OnInit {
 
   getSportsman() {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
-      this.dataSportman = res;
+      this.transformGenre(res); 
     });
   }
   getActionEvent(event: ActionResponse): void {
@@ -76,6 +81,10 @@ export class SportsmanComponent implements OnInit {
     } = event;
     if (action == 'ver') {
       this.birdData = DateValidators.parseDate(birtDate);
+      const generoItem = this.generos.find((generoSet: listInfo) => generoSet.code === data.gender);
+      if (generoItem) {
+        data.gender = generoItem.value;
+      }
       this.showSportsman = true;
       this.dataSingle = data;
        this.historyCategorico(data)
@@ -84,10 +93,30 @@ export class SportsmanComponent implements OnInit {
       this.showViewCreateSportsman = { isVisible: true };
     }
     if (action == 'Editar') {
+      this.transformGenreInversa(data)
       this.showSportsman = false
       this.showViewCreateSportsman = { isVisible: true,
-        data: data };
+        data: this.dataSingleAux };
     }
+  }
+
+  transformGenre(data: Sportsman[]): void{
+    this.dataSportman = data.map((item: Sportsman) => {
+      const generoItem = this.generos.find((generoSet: listInfo) => generoSet.code === item.gender);
+      if (generoItem) {
+        item.gender = generoItem.value;
+      }
+      return item;
+    });
+  }
+
+  transformGenreInversa(data: Sportsman): void{
+    const generoItem = this.generos.find((generoSet: listInfo) => generoSet.value === data.gender);
+
+    if (generoItem) {
+      data.gender = generoItem.code;
+    }
+    this.dataSingleAux = data;
   }
 
   reloadData(): void {
@@ -104,7 +133,7 @@ export class SportsmanComponent implements OnInit {
   
     this.getActionEvent(event);
   }  
-
+  
   historyCategorico(data: Sportsman):void {
     const idObject = {
       id: data.ID // Aquí asigna el valor de tu variable "id"
@@ -129,8 +158,8 @@ export class SportsmanComponent implements OnInit {
   
 
   }
-
-  closeCard() {
+  
+  closeCard(): void {
     this.showSportsman = false;
   }
   getselectItemCount($event: number): void {
@@ -146,9 +175,9 @@ export class SportsmanComponent implements OnInit {
     this.sporsmanService$.getSFilterSportsman(event.filterData)
       .subscribe(
         (res: Sportsman[]) => {
-          this.dataSportman = res; // Asignar el resultado a dataSportman
+          this.transformGenre(res); // Asignar el resultado a dataSportman
         },
-        (error) => {
+        (error: Error) => {
           if (error.status === 404) {
             this.dataSportman = []; // Asignar un vector vacío si no se encontraron deportistas
           }

@@ -43,12 +43,12 @@
                     </div>
             
                     <div fxFlex="30">
-                      <div class="row">Tipo. Documento</div>
+                      <div class="row">Tipo de Documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <mat-select formControlName="typeIdentification" class="inputmat">
-                            <mat-option *ngFor="let identification of typeIdentification" [value]="identification">
-                              {{ identification }}
+                            <mat-option *ngFor="let identification of typeIdentification" [value]="identification.code">
+                              {{ identification.code+' - '+identification.value  }}
                             </mat-option>
                           </mat-select>
                          
@@ -199,8 +199,8 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <mat-select formControlName="gender" class="inputmat">
-                            <mat-option *ngFor="let genero of generos" [value]="genero">
-                              {{ genero }}
+                            <mat-option *ngFor="let genero of generos" [value]="genero.code">
+                              {{ genero.value }}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>

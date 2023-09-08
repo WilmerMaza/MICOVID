@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { sportsmanFormModel } from '../../../models/sportsmanFormModel'
-import { genero, identificación } from '../../../models/constSportsman'
 import { FormGroup } from '@angular/forms';
 import { ControlItem, SportsmanData } from '../../../models/dataFilterSportsman'
 import Swal from 'sweetalert2';
 import { SportsmanService } from '../../services/sportsman.service';
 import { visible } from 'src/app/views/models/HistorialCategoryModel';
 import { Error } from 'src/app/views/models/errorsModel';
-import { UniversalList, eventsPaises } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import { UniversalList, eventsPaises, listInfo } from 'src/app/views/Entrenador/Model/entrenadorModel';
 import { firstValueFrom } from 'rxjs';
 import { Validators as Validar, regExps } from 'src/app/utils/Validators';
 import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 import { CIUDADESCONST, CityName, ESTADOSCONST, Estado, Iciudades, Iestados, Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
+import { gender, typeIdentification } from 'src/app/views/Entrenador/Model/constantesEntrenador';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -33,8 +33,8 @@ export class CreateSportsmanComponent implements OnInit {
   public currentPage: number = 0;
   public sportsmansForm: FormGroup = new sportsmanFormModel().formsportsman();
   public categorias: ControlItem[];
-  public generos: string[];
-  public typeIdentification: string[];
+  public generos: listInfo[];
+  public typeIdentification: listInfo[];
   public isEdit: boolean = false;
   public listEstados: Estado[] | undefined = [];
   public dataID: string;
@@ -49,8 +49,8 @@ export class CreateSportsmanComponent implements OnInit {
   ) { }
   async ngOnInit():Promise<void> {
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
-    this.generos = genero;
-    this.typeIdentification = identificación;
+    this.generos = gender;
+    this.typeIdentification = typeIdentification;
   }
   closeCard() : void{
     this.showViewSportsman = false;
