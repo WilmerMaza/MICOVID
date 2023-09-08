@@ -9,7 +9,9 @@ import { SportsmanData, jsonData } from '../models/dataFilterSportsman'
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { DateValidators } from 'src/app/utils/Validators';
-import { genero } from '../models/constSportsman';
+import { Error } from '../models/errorsModel';
+import { listInfo } from '../Entrenador/Model/entrenadorModel';
+import { gender } from '../Entrenador/Model/constantesEntrenador';
 
 
 @Component({
@@ -31,6 +33,7 @@ export class SportsmanComponent implements OnInit {
   public showViewCreateSportsman: visible;
   public fechaFormateada: string;
   public birdData: string;
+  public generos: listInfo[];
 
   public isDownload = this.data.length !== 0;
   public nameAdd: string = 'deportista'
@@ -44,9 +47,9 @@ export class SportsmanComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.generos = gender;
     this.getSportsman();
     this.getCategory();
-   
   }
 
   getCategory() {
@@ -78,7 +81,7 @@ export class SportsmanComponent implements OnInit {
     } = event;
     if (action == 'ver') {
       this.birdData = DateValidators.parseDate(birtDate);
-      const generoItem = genero.find(g => g.code === data.gender);
+      const generoItem = this.generos.find((generoSet: listInfo) => generoSet.code === data.gender);
       if (generoItem) {
         data.gender = generoItem.value;
       }
@@ -98,8 +101,8 @@ export class SportsmanComponent implements OnInit {
   }
 
   transformGenre(data: Sportsman[]): void{
-    this.dataSportman = data.map(item => {
-      const generoItem = genero.find(g => g.code === item.gender);
+    this.dataSportman = data.map((item: Sportsman) => {
+      const generoItem = this.generos.find((generoSet: listInfo) => generoSet.code === item.gender);
       if (generoItem) {
         item.gender = generoItem.value;
       }
@@ -108,7 +111,7 @@ export class SportsmanComponent implements OnInit {
   }
 
   transformGenreInversa(data: Sportsman): void{
-    const generoItem = genero.find(g => g.value === data.gender);
+    const generoItem = this.generos.find((generoSet: listInfo) => generoSet.value === data.gender);
 
     if (generoItem) {
       data.gender = generoItem.code;
@@ -174,7 +177,7 @@ export class SportsmanComponent implements OnInit {
         (res: Sportsman[]) => {
           this.transformGenre(res); // Asignar el resultado a dataSportman
         },
-        (error) => {
+        (error: Error) => {
           if (error.status === 404) {
             this.dataSportman = []; // Asignar un vector vacío si no se encontraron deportistas
           }
