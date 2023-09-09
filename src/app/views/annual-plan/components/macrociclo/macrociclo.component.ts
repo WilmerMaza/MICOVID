@@ -91,4 +91,9 @@ export class MacrocicloComponent implements OnInit {
   goBack(): void{
     this.router.navigate(['/plan-anual']);
   }
+
+  goToModuleMicro({ID}: MacroDatos): void{
+    this.router.navigate(["/plan-anual/microciclo"],
+    {queryParams: {documentId: ID}});
+  }
 }

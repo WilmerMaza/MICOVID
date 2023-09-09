@@ -4,7 +4,7 @@ import { MicoviApiService } from '../../../services/micovi-api.service';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { DataUser } from '../../pages/model/dataUserModel';
 import { categoryModel } from '../../models/categoryModel';
-import { ItemMacro, MacroDatos, PlanAnualForm, ReturnInsert, RootPlan, RootPlanById } from "../models/interfaceFormPlan";
+import { Item, ItemMacro, MacroDatos, Macrociclo, PlanAnualForm, ReturnInsert, RootPlan, RootPlanById } from "../models/interfaceFormPlan";
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +52,10 @@ export class AnnualPlanService {
   updateMacro(data:MacroDatos):Observable<ReturnInsert> {
     const endpoint = '/home/updateMacrocycle';
     return this.micovid$.post(endpoint, data);
+  }
+
+  getAllMicrociclos(ID: string): Observable<Item<Macrociclo>> {
+    const endpoint = `/home/getAllMicro?documentID=${ID}`;
+    return this.micovid$.get(endpoint);
   }
 }

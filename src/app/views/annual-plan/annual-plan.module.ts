@@ -9,10 +9,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MacrocicloComponent } from './components/macrociclo/macrociclo.component';
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
+import { MicrocicloComponent } from './components/microciclo/microciclo.component';
 
 
 @NgModule({
-  declarations: [AnnualPlanComponent, AddAnnualPlanComponent, MacrocicloComponent, AddMacroComponent],
+  declarations: [AnnualPlanComponent, AddAnnualPlanComponent, MacrocicloComponent, AddMacroComponent, MicrocicloComponent],
   imports: [
     CommonModule,
     AnnualPlanRoutingModule,

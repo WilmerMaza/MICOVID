@@ -1,0 +1,23 @@
+#content_micro {
+    width: 100%;
+    padding: 14px 18px;
+    .content_body {
+        width: 100%;
+        background: #fff;
+        padding: 14px 18px;
+        border-radius: 15px;
+        .content_header_micro {
+            border-radius: 15px;
+            background: linear-gradient(90deg, #0C4CC8 -0.91%, #0D95E1 54.24%, #0DDCF9 101.39%);
+            height: 89px;
+            color: #fff;
+            font-size: 38px;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            font-weight: 700;
+            font-family: 'Inria Sans';
+            margin-bottom: 20px;
+        }
+    }
+}

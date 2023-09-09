@@ -2,36 +2,43 @@ export const columnsValue = [
     {
       displayname: 'No. identificación',
       name:'identification',
-      estado: true
+      estado: true,
+      type: "text"
     },
     {
       displayname: 'Tipo',
       name:'typeIdentification',
-      estado: true
+      estado: true,
+      type: "text"
     },
     {
       displayname: 'Nombre completo',
       name:'name',
-      estado: true
+      estado: true,
+      type: "text"
     },
     {
       displayname: 'Genero',
       name:'gender',
-      estado: true
+      estado: true,
+      type: "text"
     },
     {
         displayname: 'Peso',
         name:'weight',
-        estado: true
+        estado: true,
+        type: "text"
     },
     {
         displayname: 'Categoria',
         name:'category',
-        estado: true
+        estado: true,
+        type: "text"
     },
     {
       displayname:'acción',
       estado:true,
+      type: "action",
       menu:[
         {action:'ver', text:'Ver'},
         {action:'Editar', text:'Editar'}
