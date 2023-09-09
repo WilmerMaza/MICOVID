@@ -29,8 +29,9 @@ export class MicrocicloComponent  implements OnInit {
 
   getAllInfoModule(): void {
     this.service$.getAllMicrociclos(this.routeId).subscribe((data: Item<Macrociclo>) => {
-      this.nameMacro = data.item.name;
-      this.dataSource = data.item.Microciclos;
+      const { item: { name, Microciclos } } = data;
+      this.nameMacro = name;
+      this.dataSource = Microciclos;
       
     })
   }
