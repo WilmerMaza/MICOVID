@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';  // Asegúrate de tener esta importación
 import { PlansComponent } from './plans/components/plans.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PlansComponent } from './plans/components/plans.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class PagesModule {

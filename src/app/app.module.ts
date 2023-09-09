@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/infraestructure/modules/material/material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { NgxMaskModule } from 'ngx-mask';
+
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 // Import app component
@@ -94,7 +96,8 @@ const APP_CONTAINERS = [
         HttpClientModule,
         MaterialModule,
         SharedModuleModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        NgxMaskModule.forRoot()
     ]
 })
 export class AppModule {}
