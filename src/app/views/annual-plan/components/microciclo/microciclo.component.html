@@ -1,0 +1,15 @@
+<div id="content_micro">
+    <div class="content_body">
+        <div class="content_header_micro">
+            <div>
+                {{nameMacro}}
+            </div>
+        </div>
+        <app-dinamic-table
+        [columns]="columns"
+        [dataSource]="dataSource"
+        (actionEvent)="getActionEvent($event)"
+        ></app-dinamic-table>
+    </div>
+
+</div>
