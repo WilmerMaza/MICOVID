@@ -6,10 +6,9 @@ import Swal from 'sweetalert2';
 import { SportsmanService } from '../../services/sportsman.service';
 import { visible } from 'src/app/views/models/HistorialCategoryModel';
 import { Error } from 'src/app/views/models/errorsModel';
-import { UniversalList, eventsPaises, listInfo } from 'src/app/views/Entrenador/Model/entrenadorModel';
-import { firstValueFrom } from 'rxjs';
-import { Validators as Validar, regExps } from 'src/app/utils/Validators';
-import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
+import {  eventsPaises, listInfo } from 'src/app/views/Entrenador/Model/entrenadorModel';
+
+import { Validators as Validar } from 'src/app/utils/Validators';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 import { CIUDADESCONST, CityName, ESTADOSCONST, Estado, Iciudades, Iestados, Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
 import { gender, typeIdentification } from 'src/app/views/Entrenador/Model/constantesEntrenador';
@@ -45,7 +44,6 @@ export class CreateSportsmanComponent implements OnInit {
 
   constructor(
     private sporsmanService$: SportsmanService,
-    private infoUniversalService$: InfoUniversalService
   ) { }
   async ngOnInit():Promise<void> {
     this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
@@ -185,7 +183,7 @@ export class CreateSportsmanComponent implements OnInit {
         }
       );
     } else {
-       this.sportsmansForm.markAllAsTouched();       
+       this.sportsmansForm.markAllAsTouched();
     }
-  }  
+  }
 }

@@ -7,7 +7,7 @@ export class entrenadorFormModel {
     formEntrenador(): FormGroup {
          return new FormGroup({
            name:new FormControl(null,[Validators.required]),
-           identification: new FormControl(null, [Validators.required]),
+           identification: new FormControl(null, [Validators.required,Validators.pattern(regExps["number"])]),
            typeIdentification: new FormControl(null, [Validators.required]),
            birtDate:new FormControl(null, [Validators.required]),
            nationality :new FormControl(null,[Validators.required]),

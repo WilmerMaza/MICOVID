@@ -61,15 +61,6 @@ export interface viewModalEntrenador{
   data?: Entrandor,
 };
 
-
-export interface UniversalList{
-  country_name?: string,
-  country_short_name?: string,
-  country_phone_code?: number,
-  state_name?:string,
-  city_name?:string
-};
-
 export interface  eventsPaises{
   value: string
 }

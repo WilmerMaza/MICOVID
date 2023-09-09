@@ -5,7 +5,11 @@ import { EntrenadorServices } from '../../services/EntrenadorServices.service';
 import { CryptoService } from 'src/app/utils/crypto.service';
 import Swal from 'sweetalert2';
 import { gender, typeIdentification } from '../../Model/constantesEntrenador';
-import { Validators as Validar, regExps } from 'src/app/utils/Validators';
+import {
+  NormaliceLowerValidators,
+  Validators as Validar,
+  regExps,
+} from 'src/app/utils/Validators';
 import {
   eventsPaises,
   listInfo,
@@ -104,19 +108,19 @@ export class CreateEntrenadorComponent {
     }
   }
 
-  universalCiudadesApis(event: eventsPaises):void {
+  universalCiudadesApis(event: eventsPaises): void {
     this.activeCity = false;
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
-      (item:Iciudades) => item.state_name === value
+      (item: Iciudades) => item.state_name === value
     )?.city_name;
   }
 
-  universalEstadoApis(event: eventsPaises):void {
+  universalEstadoApis(event: eventsPaises): void {
     this.activeDepto = false;
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
-      (item:Iestados) => item.country_name === value
+      (item: Iestados) => item.country_name === value
     )?.estados;
   }
 
@@ -163,9 +167,13 @@ export class CreateEntrenadorComponent {
       },
     });
 
+    const { value } = this.entrenadorForm;
     const encryptedData = this.cryptoService$
       .Encript(this.entrenadorForm.get('password')?.value)
       .toString();
+
+      NormaliceLowerValidators.normaliceData(value);
+
     const formEntrenador = this.isEdit
       ? {
           ...this.entrenadorForm.value,

@@ -70,8 +70,12 @@
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="identification" required class="inputmat" />
                           <mat-error class="Error">
+
                             <ng-container *ngIf="entrenadorForm.get('identification')?.hasError('required')">
                               *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('identification')?.hasError('pattern')">
+                              *Campo invalido
                             </ng-container>
                           </mat-error>
                         </mat-form-field>
@@ -193,7 +197,7 @@
 
 
                     <div fxFlex="30">
-                      <div class="row">máximo nivel de estudio alcanzado</div>
+                      <div class="row">Máximo nivel de estudio alcanzado</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <input matInput formControlName="studyLevelMax" class="inputmat" />

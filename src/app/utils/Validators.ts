@@ -1,3 +1,5 @@
+import { typeIdentification } from '../views/Entrenador/Model/constantesEntrenador';
+
 export const regExps: { [key: string]: RegExp } = {
   emailRegex: /^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*/,
   emailComplet:
@@ -21,9 +23,8 @@ export const regExps: { [key: string]: RegExp } = {
   decimalNumbers: /^\d{1,3}$|^\d{1,3}\.\d{1,2}$/,
   spaceEnd: /^\w+[^\s]$/,
   numberWDecimal: /^(\d*|(\d+))(\.\d+)?$/,
-  telefonoRegex :/^\d{8,15}$/,
+  telefonoRegex: /^\d{8,15}$/,
   regexcomma: /,/g,
-
 };
 export class Validators {
   static isNullOrUndefined<T>(
@@ -39,18 +40,77 @@ export class DateValidators {
 
     if (!isNaN(fechaDate.getTime())) {
       const año: number = fechaDate.getFullYear();
-      const mes:string = fechaDate.toLocaleString('es-ES', {month: 'long' })
-      const mesMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1) ;
-
-
-
+      const mes: string = fechaDate.toLocaleString('es-ES', { month: 'long' });
+      const mesMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
       const dia: number = fechaDate.getDate() + 1;
-
-      const fechaFormateada: string = `${dia.toString().padStart(2, '0')} - ${mesMayuscula} - ${año}`;
+      const fechaFormateada: string = `${dia
+        .toString()
+        .padStart(2, '0')} - ${mesMayuscula} - ${año}`;
       return fechaFormateada;
     } else {
       console.error('La cadena de fecha no es válida.');
       return '';
     }
+  }
+}
+
+export class NormaliceLowerValidators {
+  static normaliceData(data: any): void {
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        if (key !== 'password') {
+          if (typeof data[key] === 'string') {
+            data[key] = data[key].toLowerCase();
+          }
+        }
+      }
+    }
+  }
+}
+
+export class NormaliceUpperValidators {
+  static normaliceData(data: any): void {
+    if (typeof data === 'object') {
+      for (const objeto of data) {
+        for (const key in objeto) {
+          if (objeto.hasOwnProperty(key)) {
+            if (typeof objeto[key] === 'string') {
+              if (
+                typeIdentification.find(
+                  (item) => item.code.toLowerCase() === objeto[key]
+                )
+              ) {
+                objeto[key] = objeto[key].toUpperCase();
+              } else {
+                objeto[key] =
+                  objeto[key].charAt(0).toUpperCase() + objeto[key].slice(1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+export class NormaliceUpperUnicosValidators {
+  static normaliceData(data: string): string {
+    if (typeof data === 'string') {
+      if (data.includes(' ')) {
+        const splitter = data.split(' ');
+
+        let cadenaMayusculas = '';
+        splitter.forEach((item: string) => {
+          item = item.charAt(0).toUpperCase() + item.slice(1);
+
+          cadenaMayusculas += item + ' ';
+        });
+        data = cadenaMayusculas.trimEnd();
+      } else {
+        data = data.charAt(0).toUpperCase() + data.slice(1);
+      }
+    }
+
+    return data;
   }
 }
