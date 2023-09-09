@@ -7,6 +7,7 @@ import { MaterialModule } from '../../infraestructure//modules/material/material
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateSportsmanComponent } from './Components/create-sportsman/create-sportsman.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    NgxMaskModule.forRoot()
   ],
   declarations: [
     SportsmanComponent,
