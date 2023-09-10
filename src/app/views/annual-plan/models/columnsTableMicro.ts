@@ -1,7 +1,7 @@
 export const columnsEntrenadorValue = [
     {
       displayname: 'No. Microciclo',
-      name:'id',
+      name:'number_micro',
       estado: true,
       type: "text",
     },
@@ -30,12 +30,6 @@ export const columnsEntrenadorValue = [
         name:'stages',
         estado: true,
         type:"text"
-    },
-    {
-        displayname: 'No. de dias',
-        name:'number_days',
-        estado: true,
-        type:"number"
     },
     {
       displayname:'acción',
