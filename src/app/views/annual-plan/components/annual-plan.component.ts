@@ -39,7 +39,7 @@ export class AnnualPlanComponent implements OnInit {
       width: '384px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(()=> {
       this.getAllPlan();
     });
   }
