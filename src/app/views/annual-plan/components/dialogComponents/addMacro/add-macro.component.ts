@@ -19,7 +19,7 @@ export class AddMacroComponent {
   public minDate:Date;
   public isEditPanel : boolean = false;
   public titleInit : string;
-
+  
   constructor(
     public dialogRef: MatDialogRef<AddMacroComponent>,
     @Inject(MAT_DIALOG_DATA) public data:dialogDataMacro,
@@ -27,7 +27,7 @@ export class AddMacroComponent {
   ){
     this.addMacroForm = new FormGroup({
       name:new FormControl('',[validForm.required]),
-      date_initial: new FormControl(Date, [validForm.required]),
+      date_initial: new FormControl({value:'', disabled:true}, [validForm.required]),
       date_end: new FormControl(Date, [validForm.required]),
       detail: new FormControl('', [validForm.required])
     })
@@ -42,6 +42,8 @@ export class AddMacroComponent {
     this.minDate = new Date(this.data.lastDate);
     if(!this.data.initial) this.minDate.setDate(this.minDate.getDate() + 1)
       else this.minDate.setHours(0,0,0,0);
+
+    this.addMacroForm.patchValue({date_initial: this.minDate})
   }
 
   setValueForm(): void {

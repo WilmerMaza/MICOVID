@@ -7,15 +7,11 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/components/register.component';
 import { JwtGuard } from './infraestructure/guard/JwtGuard';
 import { PlanGuard } from './infraestructure/guard/PlanGuard';
+import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
 import { SportsmanComponent } from './views/sportsman/sportsman.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -37,11 +33,6 @@ const routes: Routes = [
           import('./views/athletes/athletes.module').then(
             (m) => m.AthletesModule
           ),
-      },
-      {
-        path: 'pages',
-        loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule),
       },
       {
         path: 'sportsman',
@@ -78,18 +69,24 @@ const routes: Routes = [
     },
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page',
-    },
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page',
-    },
+    path:'',
+    canActivate: [IgnoreLoginGuard],
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          title: 'Login Page',
+        },
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          title: 'Register Page',
+        },
+      }
+    ]
   },
   {
     path: 'plans',

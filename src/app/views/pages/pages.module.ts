@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/components/register.component';
 import { Page404Component } from './page404/page404.component';
@@ -24,7 +23,6 @@ import { NgxMaskModule } from 'ngx-mask';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule,
     CardModule,
     ButtonModule,
     GridModule,
@@ -36,6 +34,13 @@ import { NgxMaskModule } from 'ngx-mask';
     MatCardModule,
     MatInputModule,
     NgxMaskModule.forRoot()
+  ],
+  exports: [
+    LoginComponent,
+    RegisterComponent,
+    Page404Component,
+    Page500Component,
+    PlansComponent
   ]
 })
 export class PagesModule {
