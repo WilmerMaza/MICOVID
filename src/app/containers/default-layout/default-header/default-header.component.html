@@ -1,19 +1,34 @@
 <!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
   <c-container [fluid]="true">
+    <div class="buttomheader" style="display:flex; align-items: center;">
+      
     <button
       toggle="visible"
       cHeaderToggler
       [cSidebarToggle]="sidebarId"
-      class="ps-1"
+      class="ps-1 text-primary" 
     >
       <svg cIcon name="cilMenu" size="lg"></svg>
     </button>
+  
+    <button
+      [routerLink]="['/dashboard']"
+      toggle="visible"
+      cHeaderToggler
+      class="ps-1 text-primary button_house"
+      style="display: flex;"
+    >
+    <mat-icon style="color: #0C4CC8;"   fontIcon="home"></mat-icon>
+    </button>
+    </div>
     <c-header-nav class="ms-3">
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
     </c-header-nav>
+
   </c-container>
 </ng-container>
+
 <!--</c-header>-->
 
 <ng-template #userDropdown>
