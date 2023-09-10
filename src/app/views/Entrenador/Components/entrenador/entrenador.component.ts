@@ -4,8 +4,15 @@ import { EntrenadorServices } from 'src/app/views/Entrenador/services/Entrenador
 import { filterEntrenadorValue } from 'src/app/views/Entrenador/Model/filtroDataEntrenador';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
-import { Entrandor, listEntrenador, viewModalEntrenador } from '../../Model/entrenadorModel';
-import { DateValidators } from 'src/app/utils/Validators';
+import {
+  Entrandor,
+  listEntrenador,
+  viewModalEntrenador,
+} from '../../Model/entrenadorModel';
+import {
+  NormaliceUpperUnicosValidators,
+  NormaliceUpperValidators,
+} from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-entrenador',
@@ -20,8 +27,8 @@ export class EntrenadorComponent implements OnInit {
   public isDownload: boolean;
   public nameAdd: string = 'entrenador';
   public filtros = filterEntrenadorValue;
-  public showViewEntrenador: any = false;
-  public showViewCreateEntrenador: viewModalEntrenador = {isVisible: false};
+  public showViewEntrenador: viewModalEntrenador = { isVisible: false };
+  public showViewCreateEntrenador: viewModalEntrenador = { isVisible: false };
   public dataSingle: Entrandor;
   constructor(private entrenadorServices$: EntrenadorServices) {}
 
@@ -38,6 +45,11 @@ export class EntrenadorComponent implements OnInit {
     this.entrenadorServices$
       .getAllEntrenadores(filterEntranador)
       .subscribe((response: listEntrenador) => {
+        response.forEach((item: Entrandor) => {
+          item.name = NormaliceUpperUnicosValidators.normaliceData(item.name);
+        });
+        NormaliceUpperValidators.normaliceData(response);
+
         this.data = response;
       });
   }
@@ -63,7 +75,7 @@ export class EntrenadorComponent implements OnInit {
     switch (action) {
       case 'ver':
         const dataResponse = {
-          ...data
+          ...data,
         };
 
         this.showViewEntrenador = {
@@ -82,12 +94,12 @@ export class EntrenadorComponent implements OnInit {
     }
   }
 
-  editarEntrenadorView($event:Entrandor):void{
+  editarEntrenadorView($event: Entrandor): void {
     this.showViewCreateEntrenador = {
       isVisible: true,
       data: $event,
     };
-    this. showViewEntrenador ={isVisible: false}
+    this.showViewEntrenador = { isVisible: false };
   }
 
   getActionEventFilter($event: ActionResponse): void {

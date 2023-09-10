@@ -5,9 +5,6 @@ import { DataLoginModel } from 'src/app/views/pages/model/DataLoginModel';
 import { session } from '../model/dataUserModel';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Persistence } from 'src/app/utils/persistence.service';
-import { InfoUniversalService } from 'src/app/services/infoUniversal.service';
-import { universalToken } from '../model/ResponseLoginModel';
-import {UNIVERSALTOKENKEY} from 'src/app/models/constan';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +15,7 @@ export class SessionService {
     private micovid$: MicoviApiService,
     private Auth$: AuthService,
     private persistence$:Persistence,
-    private infoUniversalService$: InfoUniversalService
+
   ) { }
 
 
@@ -34,9 +31,6 @@ export class SessionService {
     const endpoint = '/login';
     return this.micovid$.post<session>(endpoint, data).pipe(tap(async (UserInfo:session)=>{
       this.setAuth(UserInfo);
-       this.infoUniversalService$.tokenSuscribe().subscribe((res:universalToken)=>{
-        this.persistence$.save(UNIVERSALTOKENKEY, res.auth_token);
-       });
     }));
   }
 
