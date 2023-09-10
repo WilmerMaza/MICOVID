@@ -4,6 +4,7 @@ import { LoginFormModel } from 'src/app/views/pages/model/LoginFormModel';
 import { SessionService } from 'src/app/views/pages/services/session.service';
 import { CryptoService } from 'src/app/utils/crypto.service';
 import { Router } from '@angular/router';
+import { Toast } from 'src/app/utils/alert_Toast';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,12 @@ export class LoginComponent {
       };
       this.loginSession$.sessionLogin(data).subscribe(() => {
         this.router$.navigate(['/dashboard']);
+      },
+      (loginError: Error) => {
+        Toast.fire({
+          icon: 'error',
+          title: 'Usuario o contraseña incorrecta',
+        });
       });
     }
   }
