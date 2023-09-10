@@ -22,10 +22,16 @@
   />
 
   <ng-scrollbar pointerEventsMethod="scrollbar">
-    <c-sidebar-nav
-      [navItems]="navItems"
-      dropdownMode="close"
-    />
+    <div *ngFor="let item of navItems">
+      <div class="item_nav" (click)="goRouter(item)">
+        <div class="content_item">
+          <div class="content_icon">
+            <mat-icon>{{item.iconComponent.name}}</mat-icon>
+          </div>
+          <div class="nav_name">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
   </ng-scrollbar>
   <c-sidebar-toggler
     *ngIf="!sidebar.narrow"

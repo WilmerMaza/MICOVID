@@ -26,6 +26,35 @@
   margin: auto !important;
 }
 
+.item_nav{
+  font-family: Inria Sans;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.item_nav:hover{
+  cursor: pointer;
+  background-color: #3776f2;
+  transform: scale(1.1);
+  box-shadow: 0 1px 5px rgb(27, 27, 27);
+}
+
+.content_item {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.content_icon {
+  width: 100px;
+}
+
 :host {
   .bodyConten {
     padding: 0 !important;

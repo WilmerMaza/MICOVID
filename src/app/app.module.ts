@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // Import containers
 import {
-  DefaultFooterComponent,
   DefaultHeaderComponent,
   DefaultLayoutComponent,
 } from './containers';
@@ -46,9 +45,9 @@ import { SportsmanComponent } from './views/sportsman/sportsman.component';
 import { SharedModuleModule } from "./shared/shared-module.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateSportsmanComponent } from './views/sportsman/Components/create-sportsman/create-sportsman.component';
+import { PagesModule } from './views/pages/pages.module'
 
 const APP_CONTAINERS = [
-  DefaultFooterComponent,
   DefaultHeaderComponent,
   DefaultLayoutComponent,
 ];
@@ -97,6 +96,7 @@ const APP_CONTAINERS = [
         MaterialModule,
         SharedModuleModule,
         FlexLayoutModule,
+        PagesModule,
         NgxMaskModule.forRoot()
     ]
 })
