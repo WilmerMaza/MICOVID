@@ -1,4 +1,5 @@
 import { typeIdentification } from '../views/Entrenador/Model/constantesEntrenador';
+import { listInfo } from '../views/Entrenador/Model/entrenadorModel';
 
 export const regExps: { [key: string]: RegExp } = {
   emailRegex: /^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*/,
@@ -55,14 +56,10 @@ export class DateValidators {
 }
 
 export class NormaliceLowerValidators {
-  static normaliceData(data: any): void {
+  static normaliceData(data: Record<string, any>): void {
     for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        if (key !== 'password') {
-          if (typeof data[key] === 'string') {
-            data[key] = data[key].toLowerCase();
-          }
-        }
+      if (typeof data[key] === 'string' && key !== 'password') {
+        data[key] = data[key].toLowerCase();
       }
     }
   }
@@ -73,19 +70,13 @@ export class NormaliceUpperValidators {
     if (typeof data === 'object') {
       for (const objeto of data) {
         for (const key in objeto) {
-          if (objeto.hasOwnProperty(key)) {
-            if (typeof objeto[key] === 'string') {
-              if (
-                typeIdentification.find(
-                  (item) => item.code.toLowerCase() === objeto[key]
-                )
-              ) {
-                objeto[key] = objeto[key].toUpperCase();
-              } else {
-                objeto[key] =
-                  objeto[key].charAt(0).toUpperCase() + objeto[key].slice(1);
-              }
-            }
+          if (typeof objeto[key] === 'string') {
+            const value = objeto[key];
+            // Verificar si value es un código de tipo de identificación
+            const matchingType = typeIdentification.find(
+              (item: listInfo) => item.code.toLowerCase() === value.toLowerCase()
+            );
+             objeto[key] = matchingType ? value.toUpperCase() : value.charAt(0).toUpperCase() + value.slice(1);
           }
         }
       }
