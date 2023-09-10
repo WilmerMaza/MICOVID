@@ -19,5 +19,9 @@
             font-family: 'Inria Sans';
             margin-bottom: 20px;
         }
+        .content_header_micro:hover {
+            cursor: pointer;
+            transform: scale(.99);
+        }
     }
 }

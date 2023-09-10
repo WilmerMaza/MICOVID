@@ -72,6 +72,17 @@ export class MacrocicloComponent implements OnInit {
     
   }
 
+  addMacrociclo(): void{
+    let data: dialogDataMacro = {routeId:  this.routeId}
+    let dialogRef = this.dialog.open( AddMacroComponent, {
+      width: '384px',
+      data
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllMacrosById(this.routeId);
+    })
+  }
+
   editData(item: MacroDatos): void{
     let data: dialogDataMacro = {
       routeId:this.routeId,

@@ -40,4 +40,8 @@ export class MicrocicloComponent  implements OnInit {
     console.log(event);
   }
 
+  goBack(): void{
+    window.history.back();
+  }
+
 }
