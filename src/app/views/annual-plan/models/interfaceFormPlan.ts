@@ -37,7 +37,8 @@ export interface ReturnInsert {
 export interface dialogDataMacro {
     routeId:string,
     dataList?: any,
-    action?:string
+    action?:string,
+    lastDate:string
 }
 
 export interface ItemMacro {
@@ -47,7 +48,7 @@ export interface ItemMacro {
 export interface MacroDatos {
     ID?: string;
     PlanAnualID?: string;
-    date_end?: string;
+    date_end: string;
     date_initial?: string;
     detail?: string;
     name: string;

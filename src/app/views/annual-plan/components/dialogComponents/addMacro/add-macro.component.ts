@@ -16,7 +16,7 @@ import { Validators } from 'src/app/utils/Validators';
 export class AddMacroComponent {
   public addMacroForm: FormGroup;
   public categoriesList:categoryModel[] = [];
-  public minDate = new Date();
+  public minDate:Date;
   public isEditPanel : boolean = false;
   public titleInit : string;
 
@@ -27,14 +27,16 @@ export class AddMacroComponent {
   ){
     this.addMacroForm = new FormGroup({
       name:new FormControl('',[validForm.required]),
-      date_initial: new FormControl('', [validForm.required]),
-      date_end: new FormControl('', [validForm.required]),
+      date_initial: new FormControl(Date, [validForm.required]),
+      date_end: new FormControl(Date, [validForm.required]),
       detail: new FormControl('', [validForm.required])
     })
   }
 
   ngOnInit(): void {
     this.setValueForm();
+    this.minDate = new Date(this.data.lastDate);
+    this.minDate.setDate(this.minDate.getDate() + 1)
   }
 
   setValueForm(): void {
@@ -48,6 +50,16 @@ export class AddMacroComponent {
 
   createMacrociclo():void{
     const { routeId } = this.data;
+    const { value : { date_initial}} = this.addMacroForm;
+
+    if(date_initial < this.minDate) {
+      Toast.fire({
+        icon: 'error',
+        title: 'La fecha de inicio no puede ser menor al ultimo Macrociclo existente'
+      })
+      return;
+    }
+    
     this.addMacroForm.value['PlanAnualID'] = routeId;
     this.annualPlanService$.insertMacro(this.addMacroForm.value).subscribe((data:ReturnInsert) => {
       Toast.fire({
