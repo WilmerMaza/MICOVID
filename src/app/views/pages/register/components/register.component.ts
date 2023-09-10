@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { DynamicError } from 'src/app/shared/model/filterModel';
 import { Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
 import { CARACTER } from '../../model/constRegister';
+import { NormaliceLowerValidators } from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-register',
@@ -53,6 +54,7 @@ export class RegisterComponent {
       this.data.phone = this.data.phone?.toString();
       this.data.character = this.data.character?.toString();
       this.data.password = dataEncript;
+      NormaliceLowerValidators.normaliceData(this.data);
       this.registerSession$
         .register(this.data)
         .subscribe(async (res: ResponseRegister) => {
