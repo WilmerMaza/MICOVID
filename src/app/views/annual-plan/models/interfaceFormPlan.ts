@@ -38,7 +38,8 @@ export interface dialogDataMacro {
     routeId:string,
     dataList?: any,
     action?:string,
-    lastDate:string
+    lastDate:string,
+    initial?:boolean
 }
 
 export interface ItemMacro {

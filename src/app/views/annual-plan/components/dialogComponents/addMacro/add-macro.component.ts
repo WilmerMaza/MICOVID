@@ -35,8 +35,13 @@ export class AddMacroComponent {
 
   ngOnInit(): void {
     this.setValueForm();
+    this.setInitialMinDate();
+  }
+
+  setInitialMinDate():void {
     this.minDate = new Date(this.data.lastDate);
-    this.minDate.setDate(this.minDate.getDate() + 1)
+    if(!this.data.initial) this.minDate.setDate(this.minDate.getDate() + 1)
+      else this.minDate.setHours(0,0,0,0);
   }
 
   setValueForm(): void {
@@ -51,7 +56,7 @@ export class AddMacroComponent {
   createMacrociclo():void{
     const { routeId } = this.data;
     const { value : { date_initial}} = this.addMacroForm;
-
+    
     if(date_initial < this.minDate) {
       Toast.fire({
         icon: 'error',
