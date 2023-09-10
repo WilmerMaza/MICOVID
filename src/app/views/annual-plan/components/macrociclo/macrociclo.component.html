@@ -26,7 +26,7 @@
     </div>
     <div class="content_body_macro">
       <div class="conten_cards" [ngClass]="{modelhover: !dataListMacro.length}">
-        <div class="content_initial" *ngIf="!dataListMacro.length">
+        <div class="content_initial" *ngIf="!dataListMacro.length" (click)="addMacrociclo()">
             <div class="add_macro">+</div>
             <div class="text_add">Crear evento fundamental</div>
         </div>
