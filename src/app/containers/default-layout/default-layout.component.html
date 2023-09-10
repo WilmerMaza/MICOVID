@@ -23,7 +23,7 @@
 
   <ng-scrollbar pointerEventsMethod="scrollbar">
     <div *ngFor="let item of navItems">
-      <div class="item_nav">
+      <div class="item_nav" (click)="goRouter(item)">
         <div class="content_item">
           <div class="content_icon">
             <mat-icon>{{item.iconComponent.name}}</mat-icon>

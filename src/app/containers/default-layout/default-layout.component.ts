@@ -17,9 +17,10 @@ export class DefaultLayoutComponent implements OnInit {
   constructor(private router: Router, private service$: AuthService) {}
 
   ngOnInit(): void {
+    const { ItemsInstitution, ItemsCoach } = this.itemsNavigate;
     this.service$.getDataUser.subscribe((data:DataUser) => {
       const { account } = data;
-      this.navItems = account === 'Admin'? this.itemsNavigate.ItemsInstitution : this.itemsNavigate.ItemsCoach
+      this.navItems = account === 'Admin'? ItemsInstitution : ItemsCoach
     })
   }
 
