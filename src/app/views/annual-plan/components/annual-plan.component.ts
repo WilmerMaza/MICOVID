@@ -4,8 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddAnnualPlanComponent } from './dialogComponents/addAnnualPlan/add-annual-plan.component';
 import { filterPlanValue } from '../models/dataFilterAnnualPlan';
 import { filterResult } from 'src/app/shared/model/filterModel';
-import { PlanItem } from '../models/interfaceFormPlan';
-import { Router } from '@angular/router';
+import { PlanItem, RootPlan } from '../models/interfaceFormPlan';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Validators } from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-annual-plan',
@@ -17,18 +18,24 @@ export class AnnualPlanComponent implements OnInit {
   public dataListPlan:PlanItem[] = [];
   public allDataByFilter:PlanItem[];
   public filters = filterPlanValue;
+  public coachId:string;
+  public isCoach:boolean;
   constructor(
     private service$ : AnnualPlanService,
     public dialog: MatDialog,
-    private router$ : Router
+    private router$ : Router,
+    private route$: ActivatedRoute,
   ){}
 
   ngOnInit(): void {
-    this.getAllPlan();
+    const { snapshot : {queryParams} } = this.route$;
+    this.coachId = queryParams["coachId"];
+    this.getAllPlan(this.coachId);
   }
   
-  getAllPlan():void {
-    this.service$.getAllAnnualPlan().subscribe(data => { 
+  getAllPlan(coach: string):void {
+    this.isCoach = Validators.isNullOrUndefined<string>(this.coachId);
+    this.service$.getAllAnnualPlan(coach).subscribe((data:RootPlan) => { 
       this.dataListPlan = data.item;
       this.allDataByFilter = data.item;
     })
@@ -40,7 +47,7 @@ export class AnnualPlanComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(()=> {
-      this.getAllPlan();
+      this.getAllPlan(this.coachId);
     });
   }
 
@@ -74,6 +81,9 @@ export class AnnualPlanComponent implements OnInit {
 
   navMacro(id: string): void{
     this.router$.navigate(["/plan-anual/macrociclo"],
-    {queryParams: {documentId: id}});
+    {queryParams: {
+      documentId: id, 
+      isCoach: Validators.isNullOrUndefined<string>(this.coachId)?true:false
+    }});
   }
 }

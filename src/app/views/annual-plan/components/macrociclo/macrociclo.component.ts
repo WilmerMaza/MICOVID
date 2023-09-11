@@ -21,6 +21,7 @@ export class MacrocicloComponent implements OnInit {
   public lastDate:string;
   public dateNow = new Date();
   public isInitial : boolean = false;
+  public isCoach: boolean;
   constructor(
     private route$: ActivatedRoute,
     private service$: AnnualPlanService,
@@ -29,8 +30,9 @@ export class MacrocicloComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    const { snapshot : {queryParams} } = this.route$;
-    this.routeId = queryParams["documentId"];
+    const { snapshot : {queryParams: {documentId, isCoach}} } = this.route$;
+    this.isCoach = isCoach === 'true';
+    this.routeId = documentId;
     this.getDataById(this.routeId)
   }
 
@@ -112,8 +114,13 @@ export class MacrocicloComponent implements OnInit {
     })
   }
 
-  goBack(): void{
-    this.router.navigate(['/plan-anual']);
+  goBack(): void{ 
+    if(this.isCoach){
+      this.router.navigate(['/plan-anual']);
+    }
+    else {
+      window.history.back();
+    }
   }
 
   goToModuleMicro({ID}: MacroDatos): void{

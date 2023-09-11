@@ -29,7 +29,8 @@ export const columnsEntrenadorValue = [
       type: "action",
       menu:[
         {action:'ver', text:'Ver'},
-        {action:'Editar', text:'Editar'}
+        {action:'Editar', text:'Editar'},
+        {action:'planAnual', text:'Plan anual'}
       ]
     }
 ]
