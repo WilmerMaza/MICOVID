@@ -66,7 +66,7 @@ export class AddMacroComponent {
       })
       return;
     }
-    
+    this.addMacroForm.value['date_initial'] = this.minDate;
     this.addMacroForm.value['PlanAnualID'] = routeId;
     this.annualPlanService$.insertMacro(this.addMacroForm.value).subscribe((data:ReturnInsert) => {
       Toast.fire({
