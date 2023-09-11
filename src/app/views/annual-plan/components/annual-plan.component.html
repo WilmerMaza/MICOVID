@@ -11,7 +11,7 @@
       </app-dinamic-filter>
     </div>
     <div class="content-plans">
-        <div class="multi-target add-target" (click) = "openDialog()">
+        <div *ngIf="isCoach" class="multi-target add-target" (click) = "openDialog()">
             <span class="x-style">+</span>
             <span>Agregar plan anual</span>
         </div>

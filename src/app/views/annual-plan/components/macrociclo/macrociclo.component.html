@@ -5,6 +5,7 @@
             [showDownload]="false"
             [showSelection]="false"
             [showLateralPanel]="false"
+            [showButtonAdd]="isCoach"
             nameAdd="evento"
             (filterResult)="getDataFilter($event)"
             (actionFilter)="getActionEvent($event)"
@@ -26,9 +27,12 @@
     </div>
     <div class="content_body_macro">
       <div class="conten_cards" [ngClass]="{modelhover: !dataListMacro.length}">
-        <div class="content_initial" *ngIf="!dataListMacro.length" (click)="addMacrociclo()">
+        <div class="content_initial" *ngIf="!dataListMacro.length && isCoach" (click)="addMacrociclo()">
             <div class="add_macro">+</div>
             <div class="text_add">Crear evento fundamental</div>
+        </div>
+        <div *ngIf="!isCoach && delayData && !dataListMacro.length" class="content_info">
+            <div>No se encuentran eventos asignados para el plan {{dataPlan.name}}</div>
         </div>
         <div *ngFor="let item of dataListMacro" class="content_target">
           <div class="content_header_target">

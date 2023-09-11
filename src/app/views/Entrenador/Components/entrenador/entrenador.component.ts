@@ -13,6 +13,7 @@ import {
   NormaliceUpperUnicosValidators,
   NormaliceUpperValidators,
 } from 'src/app/utils/Validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entrenador',
@@ -30,7 +31,10 @@ export class EntrenadorComponent implements OnInit {
   public showViewEntrenador: viewModalEntrenador = { isVisible: false };
   public showViewCreateEntrenador: viewModalEntrenador = { isVisible: false };
   public dataSingle: Entrandor;
-  constructor(private entrenadorServices$: EntrenadorServices) {}
+  constructor(
+    private entrenadorServices$: EntrenadorServices,
+    private router : Router
+    ) {}
 
   ngOnInit(): void {
     this.findEntranador();
@@ -89,6 +93,10 @@ export class EntrenadorComponent implements OnInit {
           data: $event.data,
         };
         break;
+      case 'planAnual':
+        this.router.navigate(['/plan-anual'],
+        {queryParams: {coachId: data.ID}})
+      break;
       default:
         break;
     }

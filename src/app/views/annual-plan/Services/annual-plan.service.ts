@@ -29,8 +29,8 @@ export class AnnualPlanService {
     return this.micovid$.post(endpoint, data);
   }
 
-  getAllAnnualPlan(): Observable<RootPlan> {
-    const endpoint = '/home/getAllAnnualPlan';
+  getAllAnnualPlan(coach: string): Observable<RootPlan> {
+    const endpoint = `/home/getAllAnnualPlan?coachId=${coach}`;
     return this.micovid$.get(endpoint);
   }
 

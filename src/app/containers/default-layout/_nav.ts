@@ -21,15 +21,6 @@ export class NavItem {
         color: 'info',
         text: 'NEW',
       },
-    },
-    {
-      name: 'Plan Anual',
-      url: '/plan-anual',
-      iconComponent: { name: 'widgets' },
-      badge: {
-        color: 'info',
-        text: 'NEW',
-      },
     }
   ];
 
