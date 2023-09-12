@@ -28,13 +28,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'athletes',
-        loadChildren: () =>
-          import('./views/athletes/athletes.module').then(
-            (m) => m.AthletesModule
-          ),
-      },
-      {
         path: 'sportsman',
         component: SportsmanComponent,
       },
