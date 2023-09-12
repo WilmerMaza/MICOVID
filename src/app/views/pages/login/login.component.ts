@@ -27,7 +27,7 @@ export class LoginComponent {
         Password: encryptedData,
       };
       this.loginSession$.sessionLogin(data).subscribe(() => {
-        this.router$.navigate(['/dashboard']);
+        this.router$.navigate(['/']);
       },
       (loginError: Error) => {
         Toast.fire({
