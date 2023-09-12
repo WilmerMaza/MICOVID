@@ -87,6 +87,9 @@
                     cursor: pointer;
                     transform: scale(1.1);
                 }
+                .disabledIcon {
+                    opacity: .5;
+                }
             }
             .content_detail{
                 height: 80px;
