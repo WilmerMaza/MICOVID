@@ -29,7 +29,10 @@ const routes: Routes = [
       },
       {
         path: 'sportsman',
-        component: SportsmanComponent,
+        loadChildren: () =>
+        import('./views/sportsman/sporstman.module').then(
+          (m) => m.SportManModule
+        ),
       },
       {
         path: 'Entrenador',

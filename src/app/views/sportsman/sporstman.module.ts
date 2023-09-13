@@ -30,7 +30,7 @@ import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
   ],
   bootstrap: [CreateSportsmanComponent],
 })
-export class EntrenadorModule {
+export class SportManModule {
   constructor(private matIconRegistry: MatIconRegistry) {
     // Registrar los iconos SVG personalizados aquí
     matIconRegistry.addSvgIcon(
