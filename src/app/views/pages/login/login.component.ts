@@ -5,6 +5,7 @@ import { SessionService } from 'src/app/views/pages/services/session.service';
 import { CryptoService } from 'src/app/utils/crypto.service';
 import { Router } from '@angular/router';
 import { Toast } from 'src/app/utils/alert_Toast';
+import { NormaliceLowerValidators } from 'src/app/utils/Validators';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,14 @@ export class LoginComponent {
 
   sessionLogin(): void {
     if (!this.loginForm.invalid) {
-      const encryptedData = this.cryptoService$
+       const data = {
+         Name: this.loginForm.get('username')?.value,
+         Password: '',
+       };
+       NormaliceLowerValidators.normaliceData(data)
+      data.Password = this.cryptoService$
         .Encript(this.loginForm.get('password')?.value)
         .toString();
-      const data = {
-        Name: this.loginForm.get('username')?.value,
-        Password: encryptedData,
-      };
       this.loginSession$.sessionLogin(data).subscribe(() => {
         this.router$.navigate(['/']);
       },
