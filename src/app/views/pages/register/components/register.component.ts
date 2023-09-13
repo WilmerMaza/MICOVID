@@ -58,17 +58,14 @@ export class RegisterComponent {
       this.registerSession$
         .register(this.data)
         .subscribe(async (res: ResponseRegister) => {
-          const { isRegister, dataUser } = res;
+          const { isRegister, dataUser: {ID, email} } = res;
           if (isRegister) {
-            const dataUserInfo = {
-              dataUser,
-            };
             await Toast.fire({
               icon: 'success',
               title: 'Tu registro a sido exitoso'
             })
-            this.sessionService$.setAuth(dataUserInfo);
-            this.router$.navigate(['plans']);
+            this.router$.navigate(['plans'],
+            {queryParams: {ID, email}});
           }
         },(respError: DynamicError<any>): void => {
           const { error: {msg}} = respError;

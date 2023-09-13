@@ -9,7 +9,7 @@ export class ResponseLoginModel {
 
 export interface ResponseRegister {
     isRegister:boolean;
-    dataUser?:DataUser;
+    dataUser:DataUser;
     msg: string;
     error: string;
 }

@@ -53,7 +53,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, ...APP_CONTAINERS, SportsmanComponent, CreateSportsmanComponent],
+    declarations: [AppComponent, ...APP_CONTAINERS],
     providers: [
         LocalStorageService,
         {

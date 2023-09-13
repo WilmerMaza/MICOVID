@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
 import { PlansService } from '../services/plans.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-plans',
@@ -13,13 +14,18 @@ import Swal from 'sweetalert2';
 export class PlansComponent implements OnInit {
   public targetPlans: Array<planModel> = [];
   public colorTarget: string[] = ['yellow', 'blue', 'red', 'green'];
-
+  private userID:string;
+  private userEmail:string;
   constructor(
     private planService$: PlansService,
-    private authService$: AuthService
+    private authService$: AuthService,
+    private route$: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    const { snapshot : {queryParams : {ID, email}}} = this.route$;
+    this.userID = ID;
+    this.userEmail = email;
     this.GetPlans();
   }
 
@@ -44,11 +50,7 @@ export class PlansComponent implements OnInit {
         clearInterval(timerInterval)
       }
     })
-    let userDataInfo: DataUser = {} as DataUser;
-    this.authService$.getDataUser.subscribe((userData) => {
-      userDataInfo = userData;
-    });
-    const { ID, email } = userDataInfo;
+
     const { planname, price, caracteristicas } = item;
 
     const data = {
@@ -56,8 +58,8 @@ export class PlansComponent implements OnInit {
       currency: 'USD',
       planName: planname,
       characteristicsPlan: caracteristicas,
-      userName: email,
-      userId: ID,
+      userName: this.userEmail,
+      userId: this.userID,
     };
 
     this.planService$.createPagoPaypal(data).subscribe((res) : void => {
