@@ -22,6 +22,7 @@ export class MacrocicloComponent implements OnInit {
   public dateNow = new Date();
   public isInitial : boolean = false;
   public isCoach: boolean;
+  public date_end:string;
   constructor(
     private route$: ActivatedRoute,
     private service$: AnnualPlanService,
@@ -38,12 +39,14 @@ export class MacrocicloComponent implements OnInit {
 
   getDataById(ID: string): void {
     this.service$.getDataPlanById(ID).subscribe((data:RootPlanById) => {
-      const {name, year, Categorium} = data.item;
+      const {name, date_initial, Categorium, date_end} = data.item;
       this.dataPlan = {
         name,
-        year,
+        date_initial,
         CategoriumID: Categorium.name,
+        date_end
       }
+      this.date_end = date_end;
       this.delayData = true;
       this.getAllMacrosById(ID);
     })
@@ -66,7 +69,8 @@ export class MacrocicloComponent implements OnInit {
     let data: dialogDataMacro = {
       routeId:  this.routeId, 
       lastDate: this.lastDate,
-      initial:this.isInitial
+      initial:this.isInitial,
+      date_end: this.date_end
     }
     if(action === 'add'){
       let dialogRef = this.dialog.open( AddMacroComponent, {
@@ -86,7 +90,8 @@ export class MacrocicloComponent implements OnInit {
     let data: dialogDataMacro = {
       routeId:  this.routeId, 
       lastDate: this.lastDate,
-      initial:this.isInitial
+      initial:this.isInitial,
+      date_end: this.date_end
     }
     let dialogRef = this.dialog.open( AddMacroComponent, {
       width: '384px',
@@ -102,7 +107,8 @@ export class MacrocicloComponent implements OnInit {
       routeId:this.routeId,
       dataList: item,
       action: "Edit",
-      lastDate: this.lastDate
+      lastDate: this.lastDate,
+      date_end: this.date_end
     }
 
     let dialogRef = this.dialog.open( AddMacroComponent, {

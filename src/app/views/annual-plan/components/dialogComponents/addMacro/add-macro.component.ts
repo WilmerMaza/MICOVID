@@ -17,6 +17,7 @@ export class AddMacroComponent {
   public addMacroForm: FormGroup;
   public categoriesList:categoryModel[] = [];
   public minDate:Date;
+  public maxDate:Date;
   public isEditPanel : boolean = false;
   public titleInit : string;
   
@@ -39,7 +40,9 @@ export class AddMacroComponent {
   }
 
   setInitialMinDate():void {
-    this.minDate = new Date(this.data.lastDate);
+    const { lastDate, date_end } = this.data;
+    this.minDate = new Date(lastDate);
+    this.maxDate = new Date(date_end);
     if(!this.data.initial) this.minDate.setDate(this.minDate.getDate() + 1)
       else this.minDate.setHours(0,0,0,0);
 

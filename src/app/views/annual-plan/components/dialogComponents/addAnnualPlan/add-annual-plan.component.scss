@@ -48,6 +48,14 @@
                 }
             }
         }
+        .content_date {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .date {
+                width: 48%;
+            }
+        }
     }
 
     .content-button {

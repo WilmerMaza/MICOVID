@@ -21,8 +21,8 @@
         <div class="dinamic">{{ dataPlan.CategoriumID }}</div>
       </div>
       <div class="year_plan">
-        <div>Año de creación</div>
-        <div class="dinamic">{{ dataPlan.year | date : "yyyy" }}</div>
+        <div>Fecha de creación</div>
+        <div class="dinamic date_plan">{{ dataPlan.date_initial | date : "dd/MM/yyyy" }} - {{ dataPlan.date_end | date : "dd/MM/yyyy" }}</div>
       </div>
     </div>
     <div class="content_body_macro">

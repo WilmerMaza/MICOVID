@@ -23,7 +23,7 @@
                 <div>Categoria</div>
                 <div class="categoria">{{item.Categorium.name}}</div>
                 <div>Año de creación</div>
-                <div class="year-target">{{item.year | date:'yyyy'}}</div>
+                <div class="year-target">{{item.date_initial | date:'yyyy'}}</div>
                 <div class="button-target">
                  <span (click)="navMacro(item.ID)">Ver</span>  
                 </div>
