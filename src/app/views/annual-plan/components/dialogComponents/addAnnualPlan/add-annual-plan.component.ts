@@ -24,7 +24,8 @@ export class AddAnnualPlanComponent implements OnInit {
     this.addPlanAnualForm = new FormGroup({
       name:new FormControl('',[Validators.required]),
       CategoriumID: new FormControl('', [Validators.required]),
-      year: new FormControl('', [Validators.required])
+      date_initial: new FormControl('', [Validators.required]),
+      date_end: new FormControl('', [Validators.required])
     })
   }
 

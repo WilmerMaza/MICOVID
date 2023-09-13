@@ -27,16 +27,30 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="content-input">
-                    <div class="row">Año de creación</div>
-                    <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                            <input matInput [min]="minDate" formControlName="year" required class="inputmat" [matDatepicker]="picker"/>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                            <mat-error *ngIf="addPlanAnualForm.get('year')?.invalid">El año de creación es requerido</mat-error>
-                        </mat-form-field>
+                <div class="content-input content_date">
+                    <div class="date">
+                        <div class="row">Fecha de inicio</div>
+                        <div class="row-data">
+                            <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                <input matInput [min]="minDate" formControlName="date_initial" required class="inputmat" [matDatepicker]="picker"/>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="addPlanAnualForm.get('date_initial')?.invalid">*requerido</mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
+                    <div class="date">
+                        <div class="row">Fecha de cierre</div>
+                        <div class="row-data">
+                            <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                <input matInput [min]="addPlanAnualForm.get('date_initial')?.value" formControlName="date_end" required class="inputmat" [matDatepicker]="picker_end"/>
+                                <mat-datepicker-toggle matSuffix [for]="picker_end"></mat-datepicker-toggle>
+                                <mat-datepicker #picker_end></mat-datepicker>
+                                <mat-error *ngIf="addPlanAnualForm.get('date_end')?.invalid">*requerido</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
                 </div>
             </form>
             <div class="content-button">

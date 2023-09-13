@@ -63,7 +63,7 @@ export class AnnualPlanComponent implements OnInit {
     }
     if(yearIsOpen.isOpen && year?.length > 0) {
       this.dataListPlan = this.allDataByFilter.filter(item => {
-        const fecha = new Date(item.year);
+        const fecha = new Date(item.date_initial);
         const año = fecha.getFullYear();
         return año.toString() === year;
       });

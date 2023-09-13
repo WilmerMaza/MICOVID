@@ -1,7 +1,8 @@
 export interface PlanAnualForm {
     name?: string;
     CategoriumID?: string;
-    year?: string;
+    date_initial?: string;
+    date_end?:string;
 }
 
 export interface  RootPlan{
@@ -15,7 +16,8 @@ export interface RootPlanById {
 export interface PlanItem {
     ID: string;
     name: string;
-    year: string;
+    date_initial: string;
+    date_end: string;
     createdAt: string;
     updatedAt: string;
     EntrenadorID: string;
@@ -39,7 +41,8 @@ export interface dialogDataMacro {
     dataList?: any,
     action?:string,
     lastDate:string,
-    initial?:boolean
+    initial?:boolean,
+    date_end:string
 }
 
 export interface ItemMacro {
