@@ -84,7 +84,6 @@
                   formControlName="character"
                   class="form-control inputRegister"
                 >
-                  <option value="">Selecciona un caracter</option>
                   <option *ngFor="let caracter of caracter" [value]="caracter">{{ caracter }}</option>
                 </select>
                 <div
@@ -107,8 +106,7 @@
                   id="pais"
                   formControlName="pais"
                   class="form-control inputRegister"
-                >
-                  <option value="">Selecciona un país</option>
+                >          
                   <option *ngFor="let pais of listPaises" [value]="pais.country_name">{{ pais.country_name }}</option>
                 </select>
                 <div
@@ -215,6 +213,12 @@
                   class="error-message"
                 >
                   Teléfono es obligatorio.
+                </div>
+                <div
+                  *ngIf="hasError('phone', 'pattern') && isTouched('phone')"
+                  class="error-message"
+                >
+                  El formato del teléfono no es válido.
                 </div>
               </div>
               <div class="content-input">

@@ -185,6 +185,10 @@
         .buttonSend {
             width: 230px;
         }
+
+        .inputRegister {
+            max-width: 200px;
+        }
     }
 
     @media screen and (max-width: 570px) {
@@ -215,6 +219,16 @@
             bottom: 10px;
             width: 320px;
         }
+        
+        .inputRegister {
+            max-width: 300px;
+        }
+
+        .select-arrow::after {
+            bottom: 5%; /* Ajusta la posición vertical */
+            left: 87%; /* Ajusta la distancia desde el borde izquierdo */
+          }
+        
     }
 
     /* Estilo para el triángulo de flecha */
