@@ -1,4 +1,4 @@
-export interface userPlan {
+export interface userPlanData {
   ID: string;
   userName: string;
   planName: string;
@@ -16,6 +16,11 @@ export interface userPlan {
   createdAt: string;
   updatedAt: string;
   SportsInstitutionID: string;
+}
+
+export interface userPlan {
+  dataUserPlan: userPlanData;
+  statusPlan: string;
 }
 
 export interface createPagoResponse {
