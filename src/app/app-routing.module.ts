@@ -10,6 +10,7 @@ import { PlanGuard } from './infraestructure/guard/PlanGuard';
 import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
 import { SportsmanComponent } from './views/sportsman/sportsman.component';
+import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entrada.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,13 @@ const routes: Routes = [
         component: RegisterComponent,
         data: {
           title: 'Register Page',
+        },
+      },
+      {
+        path: 'PortalMICOVI',
+        component: PortalEntradaComponent,
+        data: {
+          title: 'Portal Page',
         },
       }
     ]
