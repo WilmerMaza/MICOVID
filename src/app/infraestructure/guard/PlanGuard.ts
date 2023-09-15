@@ -38,7 +38,14 @@ export class PlanGuard {
         const {
           dataUserPlan :
          { endDate } } = this.userPlan;
-        if( moment(endDate) > moment()){
+         const daysRestantes = moment(endDate).diff(moment(), 'days');
+        if(daysRestantes > 0){
+          if(daysRestantes < 15){
+            Toast.fire({
+              icon: 'warning',
+              title: `Tu plan esta proximo a vencerse, ${daysRestantes} restantes`,
+            });
+          }
          return true;
         } 
         else{
