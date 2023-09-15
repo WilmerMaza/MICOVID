@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
 import { userPlan } from 'src/app/views/pages/plans/model/PlanModel';
 import { Toast } from 'src/app/utils/alert_Toast';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -32,12 +33,12 @@ export class PlanGuard {
         this.planService$.planUser()
       );
       const {
-        statusPlan } = this.userPlan;
-      if (statusPlan == 'COMPLETED') {
+        dataUserPlan } = this.userPlan;
+      if (dataUserPlan) {
         const {
           dataUserPlan :
          { endDate } } = this.userPlan;
-        if(new Date(endDate) > new Date()){
+        if( moment(endDate) > moment()){
          return true;
         } 
         else{
@@ -45,10 +46,7 @@ export class PlanGuard {
           this.router.navigate(['/plans']);
           return false;          
         }
-      } else if (statusPlan === 'INCOMPLETED'){
-        this.mensaje('Tu plan no ha completado el proceso de pago')
-        return false;
-      } 
+      }
       else {
         this.mensaje('No cuentas con un plan')
         this.router.navigate(['/plans']);
