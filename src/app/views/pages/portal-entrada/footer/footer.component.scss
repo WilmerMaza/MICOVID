@@ -1,7 +1,7 @@
 #footer {
     padding-top: 30px;
     background-color: #0C4CC8;
-    height: 1000px;
+    height: auto;
     .icon{
         width: 100%;
         display: flex;
@@ -14,8 +14,7 @@
     }
 
     .icon img{
-        width: 300px; 
-        height: auto;
+        width: 220px; 
     }
 
     .contenedor {
@@ -36,7 +35,7 @@
 
     .columna h2 {        
         font-weight: bold;
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .columna p {        

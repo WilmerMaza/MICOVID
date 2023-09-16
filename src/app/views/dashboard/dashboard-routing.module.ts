@@ -5,7 +5,7 @@ import { DashboardComponent } from './components/dashboard.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: DashboardComponent,
     data: {
       title: $localize`Dashboard`

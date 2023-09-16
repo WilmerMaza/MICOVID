@@ -15,6 +15,13 @@ import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entr
 const routes: Routes = [
   {
     path: '',
+    component: PortalEntradaComponent,
+    data: {
+      title: 'Portal Page',
+    },
+  },
+  {
+    path: '',
     component: DefaultLayoutComponent,
     canActivate: [JwtGuard, PlanGuard],
     data: {
@@ -22,7 +29,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
+        path: 'home',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
@@ -83,13 +90,6 @@ const routes: Routes = [
           title: 'Register Page',
         },
       },
-      {
-        path: 'PortalMICOVI',
-        component: PortalEntradaComponent,
-        data: {
-          title: 'Portal Page',
-        },
-      }
     ]
   },
   {
@@ -99,7 +99,7 @@ const routes: Routes = [
       title: 'Plans Page',
     },
   },
-  { path: '**', redirectTo: '/404' },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

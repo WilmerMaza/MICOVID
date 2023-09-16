@@ -10,7 +10,10 @@ export class BannerComponent {
   constructor(
     private router$: Router  ){
   }
-  redireccion(){
+  redirectRegister(){
     this.router$.navigate(['register'])
+  }
+  redirectLogin(){
+    this.router$.navigate(['login'])
   }
 }
