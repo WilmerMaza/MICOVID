@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Validators } from 'src/app/utils/Validators';
+import Swal from 'sweetalert2';
 
-
-
-interface IUser {
-  name: string;
-  state: string;
-  registered: string;
-  country: string;
-  usage: number;
-  period: string;
-  payment: string;
-  activity: string;
-  avatar: string;
-  status: string;
-  color: string;
+const customOptions: any = {
+  title: 'Muchas gracias por confiar en MICOVI',
+  width: 600,
+  padding: '3em',
+  background: '#fff',
+  timer:50000,
+  showConfirmButton:false,
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("../../../../assets/images/login-min.png")
+    top right
+    no-repeat
+  `,
+  customClass: {
+    container: 'my-swal-container',
+  }
 }
 
 @Component({
@@ -22,105 +26,60 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor() {
+  constructor(private route$: ActivatedRoute) {
   }
-
-  public users: IUser[] = [
-    {
-      name: 'Yiorgos Avraamu',
-      state: 'New',
-      registered: 'Jan 1, 2021',
-      country: 'Us',
-      usage: 50,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Mastercard',
-      activity: '10 sec ago',
-      avatar: './assets/img/avatars/1.jpg',
-      status: 'success',
-      color: 'success'
-    },
-    {
-      name: 'Avram Tarasios',
-      state: 'Recurring ',
-      registered: 'Jan 1, 2021',
-      country: 'Br',
-      usage: 10,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Visa',
-      activity: '5 minutes ago',
-      avatar: './assets/img/avatars/2.jpg',
-      status: 'danger',
-      color: 'info'
-    },
-    {
-      name: 'Quintin Ed',
-      state: 'New',
-      registered: 'Jan 1, 2021',
-      country: 'In',
-      usage: 74,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Stripe',
-      activity: '1 hour ago',
-      avatar: './assets/img/avatars/3.jpg',
-      status: 'warning',
-      color: 'warning'
-    },
-    {
-      name: 'Enéas Kwadwo',
-      state: 'Sleep',
-      registered: 'Jan 1, 2021',
-      country: 'Fr',
-      usage: 98,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Paypal',
-      activity: 'Last month',
-      avatar: './assets/img/avatars/4.jpg',
-      status: 'secondary',
-      color: 'danger'
-    },
-    {
-      name: 'Agapetus Tadeáš',
-      state: 'New',
-      registered: 'Jan 1, 2021',
-      country: 'Es',
-      usage: 22,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'ApplePay',
-      activity: 'Last week',
-      avatar: './assets/img/avatars/5.jpg',
-      status: 'success',
-      color: 'primary'
-    },
-    {
-      name: 'Friderik Dávid',
-      state: 'New',
-      registered: 'Jan 1, 2021',
-      country: 'Pl',
-      usage: 43,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Amex',
-      activity: 'Yesterday',
-      avatar: './assets/img/avatars/6.jpg',
-      status: 'info',
-      color: 'dark'
-    }
-  ];
-
-  public trafficRadioGroup = new UntypedFormGroup({
-    trafficRadio: new UntypedFormControl('Month')
-  });
-
   ngOnInit(): void {
-    this.initCharts();
+    const { snapshot : {queryParams: {newpay}} } = this.route$;
+    if(!Validators.isNullOrUndefined(newpay)){
+      this.newPayCompleted();
+    }
   }
 
-  initCharts(): void {
-
+  newPayCompleted() {
+    Swal.fire(customOptions);
+    this.createConfeti()
   }
 
-  setTrafficPeriod(value: string): void {
-    this.trafficRadioGroup.setValue({ trafficRadio: value });
+  createConfeti() {
+    const container = document.querySelector('.my-swal-container');
+    const colores = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#ff5733', '#33ff57'];
 
-    this.initCharts();
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotateY(0deg);
+      }
+      30% {
+        transform:translateY(30vh) rotateY(360deg);
+      }
+      70% {
+        transform:translateY(70vh) rotateX(0deg);
+      }
+      100%{
+        transform: translateY(100vh) rotateX(360deg);
+      }
+    }
+    `;
+
+    document.head.appendChild(style);
+    
+    for (let i = 0; i < 50; i++) {
+      const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+      const confeti = document.createElement('div');
+      confeti.classList.add('confeti');
+      confeti.style.left = `${Math.random() * 100}%`;
+      container?.appendChild(confeti);
+      confeti.style.position = 'absolute';
+      confeti.style.top = '0';
+      confeti.style.width = '10px';
+      confeti.style.height = '10px';
+      confeti.style.backgroundColor = colorAleatorio;
+      confeti.style.borderRadius = '50%';
+      confeti.style.animation = `fall ${Math.random()+2}s linear infinite`;
+      
+    }
   }
+
 }

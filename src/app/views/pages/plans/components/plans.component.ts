@@ -5,6 +5,8 @@ import { DataUser } from 'src/app/views/pages/model/dataUserModel';
 import { PlansService } from '../services/plans.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { pagoPaypal } from '../../model/pagoPaypal';
+import { createPagoResponse } from '../model/PlanModel';
 
 @Component({
   selector: 'app-plans',
@@ -13,19 +15,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlansComponent implements OnInit {
   public targetPlans: Array<planModel> = [];
-  public colorTarget: string[] = ['yellow', 'blue', 'red', 'green'];
-  private userID:string;
-  private userEmail:string;
+  public colorTarget: string[] = ['blue', 'red', 'green'];
+  public data:pagoPaypal;
   constructor(
     private planService$: PlansService,
-    private authService$: AuthService,
-    private route$: ActivatedRoute,
+    private authService$: AuthService
   ) {}
 
   ngOnInit() {
-    const { snapshot : {queryParams : {ID, email}}} = this.route$;
-    this.userID = ID;
-    this.userEmail = email;
     this.GetPlans();
   }
 
@@ -53,16 +50,18 @@ export class PlansComponent implements OnInit {
 
     const { planname, price, caracteristicas } = item;
 
-    const data = {
-      amount: Number(price),
-      currency: 'USD',
-      planName: planname,
-      characteristicsPlan: caracteristicas,
-      userName: this.userEmail,
-      userId: this.userID,
-    };
+    this.authService$.getDataUser.subscribe((dataUser: DataUser) => {
+      this.data = {
+        amount: Number(price),
+        currency: 'USD',
+        planName: planname,
+        characteristicsPlan: caracteristicas,
+        userId: dataUser.ID,
+        userName: dataUser.email
+      };
+    })
 
-    this.planService$.createPagoPaypal(data).subscribe((res) : void => {
+    this.planService$.createPagoPaypal(this.data).subscribe((res: createPagoResponse) : void => {
       window.location.href = res.url;
     },(respError): void => {
       const { error} = respError;

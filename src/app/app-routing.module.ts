@@ -9,7 +9,6 @@ import { JwtGuard } from './infraestructure/guard/JwtGuard';
 import { PlanGuard } from './infraestructure/guard/PlanGuard';
 import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
-import { SportsmanComponent } from './views/sportsman/sportsman.component';
 import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entrada.component';
 
 const routes: Routes = [
