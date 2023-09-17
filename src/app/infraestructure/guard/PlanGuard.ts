@@ -45,8 +45,12 @@ export class PlanGuard {
               icon: 'warning',
               title: `Tu plan esta proximo a vencerse, ${daysRestantes} días restantes`,
             });
+            this.planService$.setShowPlan = true;
           }
-         return true;
+          else if(daysRestantes > 15){
+            this.planService$.setShowPlan = false;
+          }
+          return true;
         } 
         else{
           this.mensaje('Tu plan se encuentra vencido')

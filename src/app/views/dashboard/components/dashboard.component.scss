@@ -38,3 +38,8 @@
     margin: 1%;
   }
 }
+
+::ng-deep.swal2-container {
+  overflow-y: hidden !important;
+  backdrop-filter: blur(5px);
+}

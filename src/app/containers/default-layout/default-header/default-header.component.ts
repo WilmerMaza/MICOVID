@@ -4,6 +4,7 @@ import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Validators } from 'src/app/utils/Validators';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
+import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
 import { SessionService } from 'src/app/views/pages/services/session.service';
 
 @Component({
@@ -18,11 +19,12 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newNotifications = new Array(5);
   public namePerson?: string = '';
   private  dataUser: DataUser = {} as DataUser;
-
+  public disabledPlan:boolean;
   constructor(
     private classToggler: ClassToggleService,
     private session$: SessionService,
-    private Auth$: AuthService
+    private Auth$: AuthService,
+    private plansService$ : PlansService
   ) {
     super();
   }
@@ -32,6 +34,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   }
 
   personName(): void {
+    this.disabledPlan = !this.plansService$.showPlan;
     this.Auth$.getDataUser.subscribe((res: DataUser) => {
       this.dataUser = res;
     });

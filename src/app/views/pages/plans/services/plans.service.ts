@@ -9,8 +9,17 @@ import { createPagoResponse, userPlan } from '../model/PlanModel';
   providedIn: 'root',
 })
 export class PlansService {
+  private showModulePlan: boolean = false;
   constructor(private micovid$: MicoviApiService) {}
+  
+  public get showPlan() : boolean {
+    return this.showModulePlan;
+  }
 
+  public set setShowPlan(setModulePlanValue : boolean) {
+    this.showModulePlan = setModulePlanValue;
+  }
+  
   planUser(): Observable<userPlan> {
     const endpoint = `/home`;
     return this.micovid$.get(endpoint);
