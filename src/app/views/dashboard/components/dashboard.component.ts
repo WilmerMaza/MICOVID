@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Validators } from 'src/app/utils/Validators';
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertOptions } from 'sweetalert2';
 
-const customOptions: any = {
+const customOptions: SweetAlertOptions = {
   title: 'Muchas gracias por confiar en MICOVI',
   width: 600,
   padding: '3em',
