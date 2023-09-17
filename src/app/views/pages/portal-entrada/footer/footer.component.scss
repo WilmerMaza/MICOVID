@@ -1,0 +1,45 @@
+#footer {
+    padding-top: 30px;
+    background-color: #0C4CC8;
+    height: auto;
+    .icon{
+        width: 100%;
+        display: flex;
+        height: 100px;
+        justify-content: center;
+        padding: auto;
+    }
+    .icon img {
+        width: 300px; 
+    }
+
+    .icon img{
+        width: 220px; 
+    }
+
+    .contenedor {
+        margin: 50px;
+        display: flex;
+        justify-content: space-evenly;   
+        border-top: 2px solid #ffff; 
+        border-bottom: 2px solid #ffff; 
+    
+    }
+
+    .columna {
+        padding: 20px;
+        max-width: 250px;
+        color:  #ffff;
+        font-family: Inria Sans;
+    }
+
+    .columna h2 {        
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .columna p {        
+        font-size: 22px;
+    }
+
+}

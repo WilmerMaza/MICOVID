@@ -10,8 +10,16 @@ import { PlanGuard } from './infraestructure/guard/PlanGuard';
 import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
 import { SportsmanComponent } from './views/sportsman/sportsman.component';
+import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entrada.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: PortalEntradaComponent,
+    data: {
+      title: 'Portal Page',
+    },
+  },
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -21,7 +29,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
+        path: 'home',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
@@ -81,7 +89,7 @@ const routes: Routes = [
         data: {
           title: 'Register Page',
         },
-      }
+      },
     ]
   },
   {
@@ -91,7 +99,7 @@ const routes: Routes = [
       title: 'Plans Page',
     },
   },
-  { path: '**', redirectTo: '/404' },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

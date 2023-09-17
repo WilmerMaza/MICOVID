@@ -1,0 +1,100 @@
+#banner{
+
+
+    .bannerHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        background-color: #ffff;
+        background-image: linear-gradient(to right, transparent, transparent, rgba(0,0,0,0.3), transparent, transparent);
+        background-position: bottom;
+        background-size: 300% 2px; /* Ancho de la sombra y altura */
+        background-repeat: no-repeat;
+    }
+    .icono{
+        height: 60px;
+        width: auto;
+        margin-left: 20px;       
+    }
+
+    .ingresar{
+        font-family: Inria Sans;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 31px;
+        letter-spacing: 0em;
+        padding-right: 30px;
+    }
+    .ingresar button{
+        border: none;
+        background-color: #ffff;
+    }
+    .ButtonIngresar{
+        width: 218px;
+        height: 40px;
+        color: white;
+        background: #0C4CC8 !important; 
+        border-radius: 15px;
+        margin-left: 30px;
+        border: none;
+    }
+
+    .bannerContent{
+        padding-left: 100px;
+        margin: 20px;
+        width: 98%; /* Corregido el typo, 'Width' a 'width' */
+        height: auto;
+        border-radius: 20px;
+        background-image: url('/assets/images/fondoBanner.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; /* Centro la imagen en el div */
+    }
+
+    .bannerContentTittle{
+        font-family: Inria Sans;
+        font-size: 55px;
+        text-align: left;
+        color: #FBFBFB;
+        font-style: bold;
+    }
+    .sport{
+        margin: 0px;
+        height: 75px;
+        font-size: 80px;
+        font-weight: 700;
+    }
+    .tecnology{
+        font-size: 60px;
+        font-weight: 700;        
+    }
+    .bannerContentIcon{
+        padding-top: 30px
+    }
+
+    .bannerContentIcon img {
+        width: 250px; 
+    }
+
+    .bannerContentText{
+        max-width: 550px;
+        min-width: 400px;
+        font-family: Inria Sans;
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #FBFBFB;
+        text-align: justify;
+        padding-bottom: 30px;
+
+    }
+
+    @media screen and (max-width: 740px) {
+        .bannerContentText{
+            max-width: 350px;
+        }
+    }
+}

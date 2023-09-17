@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';  // Asegúrate de tener esta importación
 import { PlansComponent } from './plans/components/plans.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { PortalEntradaComponent } from './portal-entrada/portal-entrada.component';
+import { BannerComponent } from './portal-entrada/banner/banner.component';
+import { FooterComponent } from './portal-entrada/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { NgxMaskModule } from 'ngx-mask';
     RegisterComponent,
     Page404Component,
     Page500Component,
-    PlansComponent
+    PlansComponent,
+    PortalEntradaComponent,
+    BannerComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

@@ -29,7 +29,7 @@ export class LoginComponent {
         .Encript(this.loginForm.get('password')?.value)
         .toString();
       this.loginSession$.sessionLogin(data).subscribe(() => {
-        this.router$.navigate(['/']);
+        this.router$.navigate(['/home']);
       },
       (loginError: Error) => {
         Toast.fire({

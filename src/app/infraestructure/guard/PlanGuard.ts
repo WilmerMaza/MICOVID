@@ -43,7 +43,7 @@ export class PlanGuard {
           if(daysRestantes < 15){
             Toast.fire({
               icon: 'warning',
-              title: `Tu plan esta proximo a vencerse, ${daysRestantes} restantes`,
+              title: `Tu plan esta proximo a vencerse, ${daysRestantes} días restantes`,
             });
           }
          return true;
