@@ -35,9 +35,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  newPayCompleted() {
+  newPayCompleted(): void {
     Swal.fire(customOptions);
-    this.createConfeti()
+    this.createConfeti();
   }
 
   createConfeti(): void {
