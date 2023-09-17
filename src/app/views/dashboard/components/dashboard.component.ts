@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     this.createConfeti()
   }
 
-  createConfeti() {
+  createConfeti(): void {
     const container = document.querySelector('.my-swal-container');
     const colores = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#ff5733', '#33ff57'];
 
