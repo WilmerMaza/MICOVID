@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertOptions } from 'sweetalert2';
 
 export const Toast = Swal.mixin({
     toast: true,
@@ -11,3 +11,21 @@ export const Toast = Swal.mixin({
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
+
+export const customOptions: SweetAlertOptions = {
+  title: 'Muchas gracias por confiar en MICOVI',
+  width: 600,
+  padding: '3em',
+  background: '#fff',
+  timer:50000,
+  showConfirmButton:false,
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("../../../../assets/images/login-min.png")
+    top right
+    no-repeat
+  `,
+  customClass: {
+    container: 'my-swal-container',
+  }
+}

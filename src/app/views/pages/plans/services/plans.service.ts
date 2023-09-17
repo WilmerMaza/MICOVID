@@ -16,8 +16,8 @@ export class PlansService {
     return this.showModulePlan;
   }
 
-  public set setShowPlan(v : boolean) {
-    this.showModulePlan = v;
+  public set setShowPlan(setModulePlanValue : boolean) {
+    this.showModulePlan = setModulePlanValue;
   }
   
   planUser(): Observable<userPlan> {
