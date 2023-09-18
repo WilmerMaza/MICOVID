@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AES, enc } from 'crypto-ts';
 import { CipherParams } from 'crypto-ts/src/lib/CipherParams';
-import { GetHexaKey } from 'src/app/config/keys';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoService {
-
+  private getHexaKey = environment.GetHexaKey;
   constructor() { }
 
-  private GetKey = () => enc.Utf8.parse(GetHexaKey);
+  private GetKey = () => enc.Utf8.parse(this.getHexaKey);
 
   public Encript = (value: string): CipherParams =>
     AES.encrypt(value, this.GetKey());

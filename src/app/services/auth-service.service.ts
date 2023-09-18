@@ -4,7 +4,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { DataUser, Ijwt, session } from '../views/pages/model/dataUserModel';
 import { Persistence } from 'src/app/utils/persistence.service';
 import { Observable } from 'rxjs';
-import { KEYSESSION } from 'src/app/config/constans';
+import { KEYSESSION } from 'src/app/models/constan';
 @Injectable({
   providedIn: 'root',
 })
