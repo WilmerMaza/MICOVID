@@ -2,6 +2,8 @@
     padding-top: 30px;
     background-color: #0C4CC8;
     height: auto;
+    min-width: 390px;
+    
     .icon{
         width: 100%;
         display: flex;
@@ -40,6 +42,13 @@
 
     .columna p {        
         font-size: 22px;
+    }
+
+    @media screen and (max-width: 570px) {
+        .contenedor{
+            flex-direction: column;
+        }
+
     }
 
 }

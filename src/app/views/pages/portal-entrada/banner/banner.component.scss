@@ -43,7 +43,6 @@
     .bannerContent{
         padding-left: 100px;
         margin: 20px;
-        width: 98%; /* Corregido el typo, 'Width' a 'width' */
         height: auto;
         border-radius: 20px;
         background-image: url('/assets/images/fondoBanner.png');
@@ -79,7 +78,6 @@
 
     .bannerContentText{
         max-width: 550px;
-        min-width: 400px;
         font-family: Inria Sans;
         font-size: 19px;
         font-weight: 400;
@@ -95,6 +93,28 @@
     @media screen and (max-width: 740px) {
         .bannerContentText{
             max-width: 350px;
+        }
+    }
+
+    
+    @media screen and (max-width: 570px) {
+        .ingresar{
+            display: flex; 
+            flex-direction: column-reverse;
+            padding-right: 0px;
+        }
+
+        .ButtonIngresar{
+            margin-left: 0px;
+        }
+
+        .bannerContent{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 0px;
+            margin: 0px 0px 20px;
+            min-width: 390px;
         }
     }
 }
