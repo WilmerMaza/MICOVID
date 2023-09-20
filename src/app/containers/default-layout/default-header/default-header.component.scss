@@ -1,10 +1,21 @@
-  .buttomheader{
+.buttomheader{
     display: flex;
     align-items: center;
 
     .button_house{
       display: flex !important;
     }
-  }
+
+    .stikyUser {
+      box-shadow: 0px 3.02083px 3.02083px 0px rgba(0, 0, 0, 0.10);
+      padding: 3px 14px;
+      border-radius: 16px;
+      font-family: Inria Sans;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+}
   
   
