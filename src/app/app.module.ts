@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/infraestructure/modules/material/material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NgxMaskModule } from 'ngx-mask';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -62,6 +63,7 @@ const APP_CONTAINERS = [
         },
         IconSetService,
         Title,
+      { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
     ],
     bootstrap: [AppComponent],
     imports: [

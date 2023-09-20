@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MacrocicloComponent } from './components/macrociclo/macrociclo.component';
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
 import { MicrocicloComponent } from './components/microciclo/microciclo.component';
-import { MAT_DATE_LOCALE } from '@angular/material/core'
+
 
 
 @NgModule({
@@ -23,9 +23,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
-  providers:[
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class AnnualPlanModule { }
