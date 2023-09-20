@@ -13,11 +13,31 @@ import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entr
 
 const routes: Routes = [
   {
-    path: '',
-    component: PortalEntradaComponent,
-    data: {
-      title: 'Portal Page',
-    },
+    path:'',
+    canActivate: [IgnoreLoginGuard],
+    children: [
+      {
+        path: '',
+        component: PortalEntradaComponent,
+        data: {
+          title: 'Portal Page',
+        },
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          title: 'Login Page',
+        },
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          title: 'Register Page',
+        },
+      },
+    ]
   },
   {
     path: '',
@@ -70,26 +90,6 @@ const routes: Routes = [
     data: {
       title: 'Page 500',
     },
-  },
-  {
-    path:'',
-    canActivate: [IgnoreLoginGuard],
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-        data: {
-          title: 'Login Page',
-        },
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        data: {
-          title: 'Register Page',
-        },
-      },
-    ]
   },
   {
     path: 'plans',

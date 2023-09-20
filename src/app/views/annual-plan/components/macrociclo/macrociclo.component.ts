@@ -19,7 +19,7 @@ export class MacrocicloComponent implements OnInit {
   private dataFilterListMacro: MacroDatos[] = [];
   private routeId:string;
   public lastDate:string;
-  public dateNow = new Date();
+  public dateNow: Date;
   public isInitial : boolean = false;
   public isCoach: boolean;
   public date_end:string;
@@ -46,6 +46,7 @@ export class MacrocicloComponent implements OnInit {
         CategoriumID: Categorium.name,
         date_end
       }
+      this.dateNow = new Date(date_initial)
       this.date_end = date_end;
       this.delayData = true;
       this.getAllMacrosById(ID);
