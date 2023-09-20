@@ -21,6 +21,9 @@
     >
     <mat-icon style="color: #0C4CC8;"   fontIcon="home"></mat-icon>
     </button>
+      <div [ngStyle]="{'background-color': stickyUser?.color, color: stickyUser?.textColor}" class="stikyUser" >
+        {{stickyUser?.text | uppercase}}
+      </div>
     </div>
     <c-header-nav class="ms-3">
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
