@@ -12,7 +12,6 @@ import { AddMacroComponent } from './components/dialogComponents/addMacro/add-ma
 import { MicrocicloComponent } from './components/microciclo/microciclo.component';
 
 
-
 @NgModule({
   declarations: [AnnualPlanComponent, AddAnnualPlanComponent, MacrocicloComponent, AddMacroComponent, MicrocicloComponent],
   imports: [
