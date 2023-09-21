@@ -74,4 +74,8 @@ export class PlansComponent implements OnInit {
       })
     });
   }
+
+  goBack():void{
+    window.history.back();
+  }
 }
