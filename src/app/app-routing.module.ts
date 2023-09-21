@@ -10,6 +10,7 @@ import { PlanGuard } from './infraestructure/guard/PlanGuard';
 import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
 import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entrada.component';
+import { UserAndJwtGuard } from './infraestructure/guard/UserandJwtGuard';
 
 const routes: Routes = [
   {
@@ -94,6 +95,7 @@ const routes: Routes = [
   {
     path: 'plans',
     component: PlansComponent,
+    canActivate: [UserAndJwtGuard],
     data: {
       title: 'Plans Page',
     },

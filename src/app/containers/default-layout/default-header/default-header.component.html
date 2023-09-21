@@ -102,11 +102,11 @@
           <c-badge class="ms-2 float-end" color="secondary"> 42 </c-badge>
         </a>
       </li> -->
-      <li>
+      <li *ngIf="stickyUser?.showLinkPlan">
         <hr cDropdownDivider />
       </li>
-      <li>
-        <a [disabled]="disabledPlan" routerLink="./plans" cDropdownItem >
+      <li *ngIf="stickyUser?.showLinkPlan">
+        <a routerLink="./plans" cDropdownItem >
           <svg cIcon class="me-2" name="cilCreditCard"></svg>
           Planes
           <c-badge class="ms-2 float-end" color="primary"> new </c-badge>

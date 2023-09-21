@@ -19,13 +19,11 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newTasks = new Array(5);
   public newNotifications = new Array(5);
   public namePerson?: string = '';
-  public disabledPlan:boolean;
   public stickyUser: stiky | undefined;
   constructor(
     private classToggler: ClassToggleService,
     private session$: SessionService,
     private Auth$: AuthService,
-    private plansService$ : PlansService
   ) {
     super();
   }
@@ -35,7 +33,6 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   }
 
   personName(): void {
-    this.disabledPlan = !this.plansService$.showPlan;
     this.Auth$.getDataUser.subscribe((res: DataUser) => {
       const { institutionName, name, account } = res;
       this.namePerson = Validators.isNullOrUndefined(institutionName)
