@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth-service.service'
 import { DataUser } from '../../views/pages/model/dataUserModel';
-import { objectStikyUser } from '../../containers/utilsLayout/constants'
+import { objectStikyUser, stiky } from '../../containers/utilsLayout/constants'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class UserAndJwtGuard {
   canActivate():boolean{
     let isAdmin:boolean|undefined;
     this.authService$.getDataUser.subscribe((res: DataUser) => {
-        isAdmin =  objectStikyUser.find(data => data.roll === res.account)?.showLinkPlan;
+        isAdmin =  objectStikyUser.find((data:stiky) => data.roll === res.account)?.showLinkPlan;
     })
 
     if (this.authService$.isAuthenticated() && isAdmin) {  
