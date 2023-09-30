@@ -4,7 +4,19 @@ import { MicoviApiService } from '../../../services/micovi-api.service';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { DataUser } from '../../pages/model/dataUserModel';
 import { categoryModel } from '../../models/categoryModel';
-import { Item, ItemMacro, MacroDatos, Macrociclo, PlanAnualForm, ReturnInsert, RootPlan, RootPlanById } from "../models/interfaceFormPlan";
+import {
+  Item,
+  ItemMacro,
+  MacroDatos,
+  Macrociclo,
+  PlanAnualForm,
+  ReturnInsert,
+  RootPlan,
+  RootPlanById,
+  task,
+} from '../models/interfaceFormPlan';
+import { resposeCreate } from '../../Entrenador/Model/entrenadorModel';
+import { TareasMicrociclo } from '../models/eventsModel';
 
 @Injectable({
   providedIn: 'root',
@@ -44,12 +56,12 @@ export class AnnualPlanService {
     return this.micovid$.get(endpoint);
   }
 
-  insertMacro(data: MacroDatos):Observable<ReturnInsert> {
+  insertMacro(data: MacroDatos): Observable<ReturnInsert> {
     const endpoint = '/home/postInsertMacro';
     return this.micovid$.post(endpoint, data);
   }
 
-  updateMacro(data:MacroDatos):Observable<ReturnInsert> {
+  updateMacro(data: MacroDatos): Observable<ReturnInsert> {
     const endpoint = '/home/updateMacrocycle';
     return this.micovid$.post(endpoint, data);
   }
@@ -57,5 +69,25 @@ export class AnnualPlanService {
   getAllMicrociclos(ID: string): Observable<Item<Macrociclo>> {
     const endpoint = `/home/getAllMicro?documentID=${ID}`;
     return this.micovid$.get(endpoint);
+  }
+
+  getMicrocicloTask(microcicloId: string): Observable<Array<TareasMicrociclo>> {
+    const endpoint = `/Tareas/getMicrocicloTask${microcicloId}`;
+    return this.micovid$.get(endpoint);
+  }
+
+  getTaskEntrenador(): Observable<task> {
+    const endpoint = `/Tareas/getTareas`;
+    return this.micovid$.get(endpoint);
+  }
+
+  assingTask(data: any): Observable<resposeCreate> {
+    const endpoint = '/Tareas/assignTasks';
+    return this.micovid$.post(endpoint, data);
+  }
+
+  createTask(data: any): Observable<resposeCreate> {
+    const endpoint = '/Tareas/create';
+    return this.micovid$.post(endpoint, data);
   }
 }

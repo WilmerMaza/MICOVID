@@ -1,10 +1,11 @@
 <div id="content_micro">
     <div class="content_body">
-        <div class="content_header_micro" (click)="goBack()">
+        <div class="content_header_micro" (click)="goBack()" *ngIf="!showViewTareas.isVisible">
             <div>
                 {{nameMacro}}
             </div>
         </div>
+        <app-tareasxmicro [viewActive]="showViewTareas" (closeCardView)="closeCardTarea($event)"></app-tareasxmicro>
         <app-dinamic-table
         [columns]="columns"
         [dataSource]="dataSource"

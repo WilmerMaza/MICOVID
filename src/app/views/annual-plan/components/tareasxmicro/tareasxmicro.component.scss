@@ -1,0 +1,164 @@
+.close-button {
+  color: #ffffff;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.close-button:focus {
+  outline: none;
+}
+::ng-deep .contentInfo {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 35vh;
+}
+
+::ng-deep .container-view {
+  width: 100% !important;
+  border-radius: 15px !important;
+  background: linear-gradient(
+    90deg,
+    #0c4cc8 -0.91%,
+    #0d95e1 54.24%,
+    #0ddcf9 101.39%
+  );
+}
+
+:host {
+  display: block;
+  text-align: center;
+}
+
+.calendar {
+  background: white;
+}
+
+.headerTareas {
+  margin-top: 3%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  color: #ffffff;
+
+  font-family: Inria Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.numMicro {
+  color: #ffffff;
+  text-align: center;
+  font-family: Inria Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+::ng-deep .fc-daygrid-day-frame {
+  position: relative;
+  .fc-daygrid-day-top {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+#idCalendar {
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  height: calc(28vh - 50px);
+
+  border-collapse: collapse; /* Combina los bordes de las celdas adyacentes en uno solo */
+  width: 100%; /* Establece el ancho de la tabla al 100% del contenedor */
+
+  th,
+  td {
+    border: 1px solid rgba(12, 76, 200, 0.3); /* Establece el borde de 1 píxel sólido de color negro */
+    padding: 5px; /* Agrega un espacio interno para el contenido de las celdas */
+    text-align: center; /* Centra el contenido dentro de las celdas */
+  }
+  .filasCalendar {
+    height: 100%;
+    position: relative;
+  }
+  .numberDays {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    color: #0c4cc8;
+    font-family: Inria Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .diaCalendar {
+    color: #0c4cc8;
+    text-align: center;
+    font-family: Inria Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .thead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .theadText {
+    color: #0c4cc8;
+    font-family: Inria Sans;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+  }
+  .btnAdd {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 0px 5px;
+  }
+
+  .btnAdd:active {
+    box-shadow: inset 1px 1px 5px black ;
+  }
+
+  .btnAdd:hover{
+    background: rgb(223, 223, 224);
+    box-shadow: 1px 1px 5px black
+  }
+
+  .calendarGrid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .eventosCalendar {
+    border-radius: 15px;
+    width: 100%;
+    color: white;
+    margin: 1%;
+  }
+
+  .evento-multiple-dias {
+    position: relative;
+  }
+}

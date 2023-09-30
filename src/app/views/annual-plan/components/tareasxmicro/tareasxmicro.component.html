@@ -1,0 +1,57 @@
+<div *ngIf="showViewTareas" class="container-mat-card contentInfo">
+  <mat-card class="container-view" *ngIf="showViewTareas">
+    <button mat-icon-button class="close-button" (click)="closeCard()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-content>
+      <div>
+        <div class="headerTareas">
+          <div>{{fechaInicio}}</div>
+          <div>{{nameMacro}}<span class="numMicro"> / No. microciclo ({{numMicrociclo}})</span></div>
+          <div>{{fechaFin}}</div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <table class="calendarTable calendarGrid" id="idCalendar" >
+            <thead>
+              <tr>
+                <th *ngFor="let item of diasFechas">
+                  <div class="thead">
+                    <div class="theadText">
+                      <span class="btnAdd" (click)="assigntask(item)">
+                        <mat-icon>add_circle_outline</mat-icon>
+                        <span>Asignar tarea</span>
+                      </span>
+                    </div>
+                    <span></span>
+                    <div class="diaCalendar"> {{item.dia}}</div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngFor="let item of diasFechas" class="filasCalendar">
+                  <div class="calendarGrid">
+                    <div *ngFor="let event of eventsDay(item) ;" [style.grid-row]="event.position"
+                     [style.width]="((event.durationDays ? event.durationDays : 1)  * 100)+'%'"
+                     [style.background]="event.color" class="eventosCalendar"  [ngClass] = "{
+                      'evento-multiple-dias': (event.durationDays ? event.durationDays: 1) > 1
+                    }">
+                      {{event.title}}
+                    </div>
+                    <div class="numberDays">
+                      {{item.number}}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
