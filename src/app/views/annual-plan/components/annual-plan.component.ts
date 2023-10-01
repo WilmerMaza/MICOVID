@@ -32,10 +32,10 @@ export class AnnualPlanComponent implements OnInit {
     this.coachId = queryParams["coachId"];
     this.getAllPlan(this.coachId);
   }
-  
+
   getAllPlan(coach: string):void {
     this.isCoach = Validators.isNullOrUndefined<string>(this.coachId);
-    this.service$.getAllAnnualPlan(coach).subscribe((data:RootPlan) => { 
+    this.service$.getAllAnnualPlan(coach).subscribe((data:RootPlan) => {
       this.dataListPlan = data.item;
       this.allDataByFilter = data.item;
     })
@@ -54,7 +54,7 @@ export class AnnualPlanComponent implements OnInit {
   getDataFilter(event: filterResult):void {
     const {Categorium, Name, year } = event.filterData;
     const { jsonData: [categoryIsOpen, yearIsOpen] } = event;
-    
+
     if(categoryIsOpen.isOpen && Categorium?.length > 0) {
       this.dataListPlan = this.allDataByFilter.filter(item => item.Categorium.name.toLowerCase().includes(Categorium.toLowerCase()));
     }
@@ -82,7 +82,7 @@ export class AnnualPlanComponent implements OnInit {
   navMacro(id: string): void{
     this.router$.navigate(["/plan-anual/macrociclo"],
     {queryParams: {
-      documentId: id, 
+      documentId: id,
       isCoach: Validators.isNullOrUndefined<string>(this.coachId)?true:false
     }});
   }

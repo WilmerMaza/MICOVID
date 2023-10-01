@@ -1,0 +1,38 @@
+<div class="content-dialog">
+  <div class="content-x-close">
+    <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
+  </div>
+
+  <div class="content-form">
+    <div class="form_insert">
+      <h4>{{titleInit}}</h4>
+      <form [formGroup]="addTaskForm">
+        <div class="content-input">
+          <div class="content-input">
+            <div class="row">Nombre</div>
+            <div class="row-data">
+              <mat-form-field class="matforms" appearance="outline" fxFlex>
+                <input matInput formControlName="name" required class="inputmat" />
+                <mat-error *ngIf="addTaskForm.get('name')?.invalid">El nombre de la tarea es requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="content-textArea">
+          <div class="row">Descripción del evento</div>
+          <div class="row-data">
+            <mat-form-field class="matforms" appearance="outline" fxFlex>
+              <textarea matInput formControlName="describe" required class="inputmat"></textarea>
+              <mat-error *ngIf="addTaskForm.get('describe')?.invalid">*requerido</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="content-button">
+        <div class="button-close" matDialogClose>Cancelar</div>
+        <div class="button-add" (click)="createTask()">Crear</div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -73,7 +73,7 @@ export interface Microciclo {
     updatedAt: Date;
     MacrocicloID: string;
 }
-  
+
 export interface Macrociclo {
     ID: string;
     name: string;
@@ -84,4 +84,16 @@ export interface Macrociclo {
     updatedAt: Date;
     PlanAnualID: string;
     Microciclos: Microciclo[];
+}
+
+
+export type task = tasks[]
+
+export interface tasks {
+  ID: string
+  name: string
+  describe: string
+  createdAt: string
+  updatedAt: string
+  EntrenadorID: string
 }
