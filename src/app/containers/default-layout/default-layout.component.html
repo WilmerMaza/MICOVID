@@ -5,25 +5,20 @@
   id="sidebar"
   visible
 >
-  <c-sidebar-brand
-    [brandFull]="{
-      src: 'assets/images/micoviFront.svg',
-      width: 143,
-      height: 62,
-      alt: 'micovi Logo'
-    }"
-    [brandNarrow]="{
-      src: 'assets/images/iconomicovi-angular.svg',
-      width: 46,
-      height: 46,
-      alt: 'micovi Logo'
-    }"
-    routerLink="./"
-  />
-
+  <div class="picture-header">
+    <div class="content-img">
+      <img src="https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7" alt="imagen de usuario inicial">
+    </div>
+    <div class="content-userName">
+      <span class="name">{{userName}}</span>
+    </div>
+  </div>
   <ng-scrollbar pointerEventsMethod="scrollbar">
     <div *ngFor="let item of navItems">
-      <div class="item_nav" (click)="goRouter(item)">
+      <div class="item_nav" [routerLink]="[item.url]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
         <div class="content_item">
           <div class="content_icon">
             <mat-icon>{{item.iconComponent.name}}</mat-icon>
@@ -33,11 +28,20 @@
       </div>
     </div>
   </ng-scrollbar>
-  <c-sidebar-toggler
-    *ngIf="!sidebar.narrow"
-    toggle="unfoldable"
-    cSidebarToggle="sidebar"
-  />
+  <c-sidebar-brand
+  [brandFull]="{
+    src: 'assets/images/micoviFront.svg',
+    width: 143,
+    height: 62,
+    alt: 'micovi Logo'
+  }"
+  [brandNarrow]="{
+    src: 'assets/images/iconomicovi-angular.svg',
+    width: 46,
+    height: 46,
+    alt: 'micovi Logo'
+  }"
+/>
 </c-sidebar>
 
 <!--main-->
