@@ -28,19 +28,17 @@
 
 .item_nav{
   font-family: Inria Sans;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 18px;
+  margin: 5px 0px;
 }
 
 .item_nav:hover{
   cursor: pointer;
-  background-color: #3776f2;
-  transform: scale(1.1);
-  box-shadow: 0 1px 5px rgb(27, 27, 27);
 }
 
 .content_item {
@@ -53,6 +51,36 @@
 
 .content_icon {
   width: 100px;
+}
+
+.picture-header {
+  height: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  .content-img{
+    border: 2px solid #37cdf2;
+    border-radius: 50%;
+    padding: 2px;
+    overflow: hidden;
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+::ng-deep.ng-scroll-content {
+  margin-top: 10px;
+}
+
+.active {
+  background-color: white;
+  color: #0C4CC8;
+  transform: scale(1.1);
+  border-radius:  0px 15px 15px 0px;
+  box-shadow: 0 1px 5px rgb(27, 27, 27);
 }
 
 :host {
