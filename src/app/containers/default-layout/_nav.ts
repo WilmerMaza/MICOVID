@@ -42,6 +42,15 @@ export class NavItem {
         color: 'info',
         text: 'NEW',
       },
+    },
+    {
+      name: 'Ejercicios',
+      url: '/Ejercicios',
+      iconComponent: { name: 'widgets' },
+      badge: {
+        color: 'info',
+        text: 'NEW',
+      },
     }
   ];
 }

@@ -11,7 +11,6 @@ import { MacrocicloComponent } from './components/macrociclo/macrociclo.componen
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
 import { MicrocicloComponent } from './components/microciclo/microciclo.component';
 import {TareasxmicroComponent} from './components/tareasxmicro/tareasxmicro.component'
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { AddAssingTareaComponent } from './components/dialogComponents/addAssingTarea/add-assingtarea.component';
 import { AddTareaComponent } from './components/dialogComponents/addTarea/add-tarea.component';
 
@@ -27,8 +26,7 @@ import { AddTareaComponent } from './components/dialogComponents/addTarea/add-ta
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
-    FullCalendarModule
+    MaterialModule
   ]
 })
 export class AnnualPlanModule { }

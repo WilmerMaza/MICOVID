@@ -1,0 +1,61 @@
+.createSubgrupo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0px 20px 0px;
+
+    .tittle-subgrupo{
+        color: #0C4CC8;
+        font-family: Inria Sans;
+        font-size: 27px;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+
+    .contet-input{
+        padding-top: 30px;
+    }
+
+    .row{
+        color: #000000;
+        font-family:  Inria Sans;
+        font-size: 21.58px;
+        font-size: 17px;
+        font-weight: 800;
+        padding-left: 12px;
+    }
+
+    .field-input{
+        border-radius: 10px;
+        border: 1px solid #dfd4d4;
+        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .scroll-container{
+        width: 370px;
+    }
+
+    .botones{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-top: 15px;
+
+
+    }
+    .botones-input{
+        border-radius: 25px;
+        height: 30px;
+        width: 80px;
+        font-weight: 500;
+    }
+
+    .custom-input {
+        height: 150px; 
+        overflow-y: auto; 
+      }
+
+}
