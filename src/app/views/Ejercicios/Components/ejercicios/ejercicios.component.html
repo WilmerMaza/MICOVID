@@ -1,0 +1,14 @@
+<div id="ejercicio" >
+    <div class="dinamic">
+      <section class="filterContent">
+        <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
+          [dataFilter]="filtros" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEventFilter($event)">
+          loading..
+        </app-dinamic-filter>
+      </section>
+      <section>
+        <app-dinamic-table [isCheckBox]="isCheck" [columns]="column" [dataSource]="dataEjercicio"
+          (selectItemCount)="getselectItemCount($event)" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
+      </section>
+    </div>
+  </div>

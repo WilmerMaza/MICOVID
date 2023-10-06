@@ -1,0 +1,68 @@
+<div class="createSubgrupo">
+
+    <div class="tittle-subgrupo">
+      Crear subgrupo
+    </div>
+    <div class="scroll-container">
+      <form [formGroup]="subGrupoForm" (ngSubmit)="onSubmit()" class="form-container">
+        <div class="contet-input">
+          <div class="row">Nombre</div>
+          <div class="form-field">
+              <input matInput formControlName="NameSubGrupo" class="field-input">
+              <mat-error class="Error">
+                <ng-container *ngIf="subGrupoForm.get('NameSubGrupo')?.hasError('required')">
+                  *Campo requerido
+                </ng-container>
+              </mat-error>
+   
+          </div>
+        </div>
+  
+        <div class="contet-input">
+          <div class="row">Abreviatura</div>
+          <div class="form-field">
+              <input matInput formControlName="abbreviation" class="field-input">
+              <mat-error class="Error">
+                <ng-container *ngIf="subGrupoForm.get('abbreviation')?.hasError('required')">
+                  *Campo requerido
+                </ng-container>
+              </mat-error>
+          </div>
+        </div>
+  
+        <div class="contet-input">
+          <div class="row">Descripción</div>
+          <div class="form-field">
+              <input matInput formControlName="Description" class="field-input custom-input">
+              <mat-error class="Error">
+                <ng-container *ngIf="subGrupoForm.get('Description')?.hasError('required')">
+                  *Campo requerido
+                </ng-container>
+              </mat-error>
+          </div>
+        </div>
+  
+        <div class="contet-input">
+          <div class="row">Grupo al que pertenece</div>
+          <div class="form-field">
+              <mat-select formControlName="grupo" name="grupo" class="field-input">
+                <mat-option *ngFor="let opcion of grupoAll" [value]="opcion.ID">
+                  {{ opcion.NameGrupo }}
+                </mat-option>
+              </mat-select>
+              <mat-error class="Error">
+                <ng-container *ngIf="subGrupoForm.get('grupo')?.hasError('required')">
+                  *Campo requerido
+                </ng-container>
+              </mat-error>
+          </div>
+        </div>
+        <div class="botones">
+        <button class="botones-input" type="submit" mat-raised-button color="primary">Crear</button>
+        
+        <button   style="color: #3f51b5;" class="botones-input" type="submit" mat-raised-button mat-dialog-close color="basic" >Volver</button>
+      </div>
+      </form>
+    </div>
+  
+  </div>

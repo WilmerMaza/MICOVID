@@ -76,6 +76,13 @@ const routes: Routes = [
             (m) => m.AnnualPlanModule
           ),
       },
+      {
+        path: 'Ejercicios',
+        loadChildren: () =>
+          import('./views/Ejercicios/Ejercicios.module').then(
+            (m) => m.EjerciciosModule
+          ),
+      },
     ],
   },
   {

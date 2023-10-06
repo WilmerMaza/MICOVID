@@ -1,0 +1,127 @@
+<div class="createEjercicio">
+
+  <div class="tittle-ejercicio">
+    Crear ejercicio
+  </div>
+  <div class="scroll-container">
+    <form [formGroup]="ejercicioForm" (ngSubmit)="onSubmit()" class="form-container">
+      <div class="contet-input">
+        <div class="row">Nombre del ejercicio</div>
+        <div class="form-field">
+            <input matInput formControlName="name" class="field-input">
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('name')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+ 
+        </div>
+      </div>
+
+      <div class="contet-input">
+        <div class="row">Abreviatura</div>
+        <div class="form-field">
+            <input matInput formControlName="description" class="field-input">
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('description')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+
+      <div class="contet-input">
+        <div class="row">descripción</div>
+        <div class="form-field">
+            <input matInput formControlName="abbreviation" class="field-input" style="height: 100px;">
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('abbreviation')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+
+      <div class="content-select">
+        <div class="row-select"> 
+          <span> <button (click)="openCrearSubgrupo()" class="crearSubgr"> crear </button> </span> <span> Subgrupo </span>
+         </div>
+        <div class="select">
+            <mat-select formControlName="subgrupo" name="subgrupo" class="field-select">
+              <mat-option *ngFor="let opcion of dataSubgrupo" [value]="opcion.ID">
+                {{ opcion.NameSubGrupo }}
+              </mat-option>
+            </mat-select>
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('subgrupo')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+
+      <div class="content-select">
+        <div class="row-select"> 
+         <span> Tipo de relación</span>
+         </div>
+        <div class="select">
+            <mat-select formControlName="relationship" name="relationship" class="field-select">
+              <mat-option *ngFor="let opcion of dataTypeRelation" [value]="opcion.code">
+                {{ opcion.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('relationship')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+      <div class="content-select">
+        <div class="row-select"> 
+          <span> U. medida </span>
+         </div>
+        <div class="select">
+            <mat-select formControlName="cantidad" name="cantidad" class="field-select">
+              <mat-option *ngFor="let opcion of dataUnitsofmeasurements" [value]="opcion.ID">
+                {{ opcion.Name }} ({{opcion.Abbreviation}})
+              </mat-option>
+            </mat-select>
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('cantidad')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+      <div class="content-select">
+        <div class="row-select"> 
+          <span> Calidad/desempeño </span>
+         </div>
+        <div class="select">
+            <mat-select formControlName="calidadPromedio" name="calidadPromedio" class="field-select">
+              <mat-option *ngFor="let opcion of dataUnitsofmeasurements" [value]="opcion.ID">
+                {{ opcion.Name }} ({{opcion.Abbreviation}})
+              </mat-option>
+            </mat-select>
+            <mat-error class="Error">
+              <ng-container *ngIf="ejercicioForm.get('calidadPromedio')?.hasError('required')">
+                *Campo requerido
+              </ng-container>
+            </mat-error>
+        </div>
+      </div>
+
+      <div class="contet-input">
+        <div class="row"> </div>
+        <div class="form-field">
+            <input matInput formControlName="visualIlustration" class="field-input" value="image.jpg" >
+        </div>
+      </div>
+      <div class="botonCrearContent">
+        <button type="submit" mat-button class="botonCrear">Crear ejercicio</button>
+      </div>
+    </form>
+  </div>
+
+</div>
