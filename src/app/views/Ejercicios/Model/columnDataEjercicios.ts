@@ -36,7 +36,6 @@ export const columnsEjerciciosValue = [
       menu:[
         {action:'ver', text:'Ver'},
         {action:'Editar', text:'Editar'},
-        {action:'planAnual', text:'Plan anual'}
       ]
     }
 ]
