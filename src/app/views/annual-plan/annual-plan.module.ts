@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MacrocicloComponent } from './components/macrociclo/macrociclo.component';
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
 import { MicrocicloComponent } from './components/microciclo/microciclo.component';
-import {TareasxmicroComponent} from './components/tareasxmicro/tareasxmicro.component'
+import {TareasxmicroComponent} from './components/tareasxmicro/tareasxmicro.component';
 import { AddAssingTareaComponent } from './components/dialogComponents/addAssingTarea/add-assingtarea.component';
 import { AddTareaComponent } from './components/dialogComponents/addTarea/add-tarea.component';
 

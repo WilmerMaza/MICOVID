@@ -35,17 +35,9 @@
 <!--</c-header>-->
 
 <ng-template #userDropdown>
-  <span class="saludoSesion" style="margin: auto"> Hola, {{ namePerson }} </span>
   <c-dropdown alignment="end" variant="nav-item">
     <button cButton color="" [caret]="false" cDropdownToggle class="py-0">
-      <c-avatar
-        cTextColor="primary"
-        shape="rounded-1"
-        size="md"
-        src="./assets/img/avatars/2.jpg"
-        status="success"
-      >
-      </c-avatar>
+      <mat-icon style="color: #0C4CC8; font-size: 30px;">arrow_drop_down</mat-icon>
     </button>
     <ul cDropdownMenu class="pt-0 pr-5 w-auto">
       <!-- <li>

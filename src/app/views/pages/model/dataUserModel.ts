@@ -5,7 +5,7 @@ export interface session {
 export interface DataUser {
   ID: string;
   email: string;
-  institutionName?: string;
+  institutionName: string;
   legalRepresentative?: string;
   character?: string;
   pais?: string;
@@ -15,7 +15,7 @@ export interface DataUser {
   image?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  name?: string;
+  name: string;
   identification?: string;
   typeIdentification?: string;
   gender?: string;
