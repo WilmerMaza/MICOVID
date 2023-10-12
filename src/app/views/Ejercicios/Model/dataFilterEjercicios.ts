@@ -6,7 +6,6 @@ export const jsonData = [
       isOpen:false,
       typeFilter:"check",
       control:[
-        {name:'RCM', value:'RCM', code:''},
       ]
     },
     {
@@ -26,7 +25,7 @@ export const jsonData = [
       isOpen:false,
       typeFilter:"input",
       control:[
-        { name: 'nameSubGrupo', value: '' ,code:''}
+        { name: 'abbreviation', value: '' ,code:''}
       ]
     },
     {

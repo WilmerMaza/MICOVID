@@ -33,7 +33,7 @@
         <div class="contet-input">
           <div class="row">Descripción</div>
           <div class="form-field">
-              <input matInput formControlName="Description" class="field-input custom-input">
+            <textarea matInput formControlName="Description" class="field-input custom-input"></textarea>
               <mat-error class="Error">
                 <ng-container *ngIf="subGrupoForm.get('Description')?.hasError('required')">
                   *Campo requerido

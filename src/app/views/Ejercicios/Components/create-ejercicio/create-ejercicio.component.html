@@ -21,9 +21,9 @@
       <div class="contet-input">
         <div class="row">Abreviatura</div>
         <div class="form-field">
-            <input matInput formControlName="description" class="field-input">
+            <input matInput formControlName="abbreviation" class="field-input">
             <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('description')?.hasError('required')">
+              <ng-container *ngIf="ejercicioForm.get('abbreviation')?.hasError('required')">
                 *Campo requerido
               </ng-container>
             </mat-error>
@@ -33,9 +33,9 @@
       <div class="contet-input">
         <div class="row">descripción</div>
         <div class="form-field">
-            <input matInput formControlName="abbreviation" class="field-input" style="height: 100px;">
+            <textarea matInput  formControlName="description" class="field-input" style="height: 100px;"></textarea>
             <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('abbreviation')?.hasError('required')">
+              <ng-container *ngIf="ejercicioForm.get('description')?.hasError('required')">
                 *Campo requerido
               </ng-container>
             </mat-error>
@@ -79,7 +79,7 @@
       </div>
       <div class="content-select">
         <div class="row-select"> 
-          <span> U. medida </span>
+          <span> U. de cantidad </span>
          </div>
         <div class="select">
             <mat-select formControlName="cantidad" name="cantidad" class="field-select">
