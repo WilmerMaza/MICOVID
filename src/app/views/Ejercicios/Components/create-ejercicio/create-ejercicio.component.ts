@@ -54,11 +54,11 @@ export class CreateEjercicioComponent implements OnInit{
           UnidTypes: [
             {
               UnitsofmeasurementID: cantidad,
-              Type: this.dataUnitsofmeasurements.find(unit => unit.ID === cantidad )?.Name || 'null'
+              Type: 'cantidad'
             },
             {
               UnitsofmeasurementID: calidadPromedio,
-              Type: this.dataUnitsofmeasurements.find(unit => unit.ID === cantidad )?.Name || 'null'  
+              Type: 'calidad'
             }
           ],
        }
