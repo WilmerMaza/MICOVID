@@ -2,7 +2,7 @@
   <div class="dinamic">
     <app-createEntrenador [viewActive]="showViewCreateEntrenador" *ngIf="showViewCreateEntrenador" (CreateEntrenador)="findEntranador()" class="create"></app-createEntrenador>
     <section class="filterContent">
-      <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
+      <app-dinamic-filter [isDownload]="isDownload" [nameAdd]="nameAdd"
         [dataFilter]="filtros" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEventFilter($event)">
         loading..
       </app-dinamic-filter>
@@ -10,7 +10,7 @@
     <app-viewEntrenador [viewActive]="showViewEntrenador" (editarEntrenadorView)="editarEntrenadorView($event)" *ngIf="showViewEntrenador"></app-viewEntrenador>
     <section>
       <app-dinamic-table [isCheckBox]="isCheck" [columns]="column" [dataSource]="data"
-        (selectItemCount)="getselectItemCount($event)" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
+         (actionEvent)="getActionEvent($event)"></app-dinamic-table>
     </section>
   </div>
 </div>

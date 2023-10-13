@@ -3,6 +3,7 @@ import {PageEvent, MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import { ActionResponse } from '../model/Response/DefaultResponse'
+import { DinamicService } from '../dinamic.service';
 
 @Component({
   selector: 'app-dinamic-table',
@@ -36,8 +37,15 @@ export class DinamicTableComponent implements AfterViewInit {
   }
 
   @Output() actionEvent = new EventEmitter<ActionResponse>();
-  @Output() selectItemCount = new EventEmitter<number>();
   pageEvent: PageEvent | undefined;
+
+  constructor(private service$: DinamicService){
+    this.service$.dataToPass$.subscribe(data => {
+      if(data){
+        this.dataAction("download", this.selection.selected);
+      }
+    })
+  }
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -49,7 +57,7 @@ export class DinamicTableComponent implements AfterViewInit {
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected(): boolean{
-    this.selectItemCount.emit(this.selection.selected.length);
+    this.service$.setDataSelectNumber(this.selection.selected.length);
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;

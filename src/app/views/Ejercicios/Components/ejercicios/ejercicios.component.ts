@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { columnsEjerciciosValue } from '../../Model/columnDataEjercicios'
 import { filterResult } from 'src/app/shared/model/filterModel';
@@ -25,7 +25,7 @@ export class EjerciciosComponent implements OnInit {
   public dataEjercicioAll: Ejercicio[];
   public dialogRef: MatDialogRef<CreateEjercicioComponent>;
   public grupoAll: Grupo[];
-
+  
 
   constructor(
     public dialog: MatDialog,
@@ -46,6 +46,7 @@ export class EjerciciosComponent implements OnInit {
     }
      this.dataEjercicio = res.item;
      this.dataEjercicioAll = res.item;
+      this.isDownload = this.dataEjercicio.length > 0;
     })
 
   }

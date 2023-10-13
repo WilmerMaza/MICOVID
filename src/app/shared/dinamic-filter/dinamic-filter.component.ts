@@ -17,6 +17,7 @@ import {
 } from '../model/filterModel';
 import { ActionResponse } from '../model/Response/DefaultResponse';
 import { regExps } from 'src/app/utils/Validators';
+import { DinamicService } from '../dinamic.service';
 
 @Component({
   selector: 'app-dinamic-filter',
@@ -28,12 +29,11 @@ export class DinamicFilterComponent {
   public showFilter: boolean = false;
   public jsonData: JsonDataItem[] = [];
   public clearInput : boolean = false;
-
+  public selectItemCount: number = 0;
   @ViewChild(MatAccordion)
   acc!: MatAccordion;
   @ViewChild(MatExpansionPanel) pannel?: MatExpansionPanel;
 
-  @Input('selectItemCount') selectItemCount = 0;
   @Input('isDownload') isDownload = false;
   @Input('nameAdd') nameAdd = '';
   @Input('dataFilter') set setDataFilter(value: JsonDataItem[]) {
@@ -47,10 +47,14 @@ export class DinamicFilterComponent {
   @Output() filterResult = new EventEmitter<filterResult>();
   @Output() actionFilter = new EventEmitter<ActionResponse>();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service$ : DinamicService) {
     this.textForm = this.formBuilder.group({
       textInput: ['', Validators.pattern(regExps['special'])],
     });
+
+    this.service$.selectNumber$.subscribe(data => {
+        this.selectItemCount = data
+    })
   }
 
   onSubmit(): void {
@@ -137,7 +141,15 @@ export class DinamicFilterComponent {
   }
 
   actionClick(data: string): void {
-    let dataActionResponse: ActionResponse = { action: data, data };
-    this.actionFilter.emit(dataActionResponse);
+    if(data !== "download") {
+      let dataActionResponse: ActionResponse = { action: data, data };
+      this.actionFilter.emit(dataActionResponse);
+      return;
+    }
+    this.sendDataToTable(true);
+  }
+
+  sendDataToTable(data: boolean) {
+    this.service$.setData(data);
   }
 }
