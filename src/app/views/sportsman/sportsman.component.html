@@ -11,7 +11,7 @@
     </div>
 
     <div class="containerFilter">  <!--  aca inicia el uso del filtro  -->
-      <app-dinamic-filter [selectItemCount]="selectItemCount" [isDownload]="isDownload" [nameAdd]="nameAdd"
+      <app-dinamic-filter  [isDownload]="isDownload" [nameAdd]="nameAdd"
         [dataFilter]="jsonFilter" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEvent($event)">
         loading..
       </app-dinamic-filter>
@@ -103,7 +103,7 @@
 
         <div class="container">  <!--  aca inicia el uso de la tabla -->
           <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
-            (actionEvent)="getActionEvent($event)" (selectItemCount)="getselectItemCount($event)">
+            (actionEvent)="getActionEvent($event)">
           </app-dinamic-table>
         </div>
       </div>
