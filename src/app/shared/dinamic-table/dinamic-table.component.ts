@@ -40,7 +40,7 @@ export class DinamicTableComponent implements AfterViewInit {
   pageEvent: PageEvent | undefined;
 
   constructor(private service$: DinamicService){
-    this.service$.dataToPass$.subscribe(data => {
+    this.service$.dataToPass$.subscribe((data: boolean) => {
       if(data){
         this.dataAction("download", this.selection.selected);
       }
