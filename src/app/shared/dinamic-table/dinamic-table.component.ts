@@ -57,8 +57,9 @@ export class DinamicTableComponent implements AfterViewInit {
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected(): boolean{
-    this.service$.setDataSelectNumber(this.selection.selected.length);
-    const numSelected = this.selection.selected.length;
+    var countSelect = this.selection.selected.length;
+    this.service$.setDataSelectNumber(countSelect);
+    const numSelected = countSelect;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
