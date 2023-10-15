@@ -20,11 +20,13 @@ export class EjerciciosComponent implements OnInit {
   public column = columnsEjerciciosValue;
   public filtros = jsonData;
   public nameAdd: string = 'ejercicio';
-  public isDownload: boolean;
+  public isDownload: boolean = true;
   public dataEjercicio: Ejercicio[];
   public dataEjercicioAll: Ejercicio[];
   public dialogRef: MatDialogRef<CreateEjercicioComponent>;
   public grupoAll: Grupo[];
+  public combinate: boolean;
+  public data: Ejercicio[]
   
 
   constructor(
@@ -67,8 +69,7 @@ export class EjerciciosComponent implements OnInit {
     })
   }
   
-  getselectItemCount($event: number): void {
-    
+  getselectItemCount($event: number): void {    
     this.selectItemCount = $event;  
   }
 
@@ -77,13 +78,22 @@ export class EjerciciosComponent implements OnInit {
       action: { action },
       data,
     } = $event;
-    
-    switch (action) {
+
+    const action2 = $event.action
+    this.data = data;
+    switch (action || action2) {
       case 'ver':
         const dataResponse = {
           ...data,
         };
       break;
+      case 'download':
+        if(this.data.length > 1) 
+        {
+          this.combinate = true;
+          this.openModal();
+        }
+          break;
 
       default:
         break;
@@ -94,6 +104,7 @@ export class EjerciciosComponent implements OnInit {
     const { action } = $event;
     switch (action) {
       case 'add':
+        this.combinate = false;
         this.openModal();
         break;
       default:
@@ -147,7 +158,8 @@ export class EjerciciosComponent implements OnInit {
   openModal(): void {
     const dialogRef = new MatDialogConfig (); 
     dialogRef.data = {      
-        message: 'Este es un mensaje de texto.'    
+        combinate: this.combinate,
+        dataEjercicios: this.combinate ? this.data : ''    
     }; 
     dialogRef.width = '517px';
     dialogRef.height = '604px'

@@ -37,7 +37,10 @@ export interface Grupo {
   }
 
   
-
+export interface combinateDialogModel {
+  dataEjercicios: Ejercicio[];
+  combinate: boolean;
+}
 
   
   export interface EjercicioResponse {

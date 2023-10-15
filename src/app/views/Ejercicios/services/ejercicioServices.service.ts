@@ -46,4 +46,9 @@ export class EjercicioServices {
     return this.micovid$.post(endpoint, data);  
   }
 
+  CreateEjercicioCombinate(data: CreateEjercicioModel) : Observable <responseModel>{
+    const endpoint = '/exercises/Combine-Exercise';
+    return this.micovid$.post(endpoint, data);  
+  }
+
 }

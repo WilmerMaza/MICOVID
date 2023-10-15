@@ -3,7 +3,7 @@
     Type: string;
   }
   
-  export interface CreateEjercicioModel {
+  export interface CreateEjercicioCombinateModel {
     Name: string;
     Abbreviation: string;
     Description: string;
@@ -11,6 +11,6 @@
     Relationship: string;
     SubGrupoID: string;
     UnidTypes: UnitMeasurement[];
-    ListIDExercises?: string[];
+    ListIDExercises: string[];
   }
   
