@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ejerciciosFormModel } from '../../Model/ejerciciosFormModel'
 import { CreateSubgrupoComponent } from '../create-subgrupo/create-subgrupo.component';
 import { EjercicioServices } from '../../services/ejercicioServices.service';
-import { SubGrupo, SubGrupoResponse } from '../../Model/ejercicioModel';
+import { Ejercicio, SubGrupo, SubGrupoResponse, combinateDialogModel } from '../../Model/ejercicioModel';
 import { UnitsofmeasurementsModel, UnitsofmeasurementsResponse } from '../../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../../Model/createEjercicioModel'
 import { TypeRelationModel, TypeRelation } from '../../Model/typeRelation'
@@ -28,11 +28,11 @@ export class CreateEjercicioComponent implements OnInit{
 
   constructor(private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
-  public dialogRef: MatDialogRef<CreateSubgrupoComponent> ) {}
+  public dialogRef: MatDialogRef<CreateSubgrupoComponent>,
+  @Inject(MAT_DIALOG_DATA) public data: combinateDialogModel  )   {   }
 
   ngOnInit() {
     this.message = this.dialog;
-
     this.getSubGrupos();
     this.unitsofmeasurements();
   }
@@ -62,8 +62,15 @@ export class CreateEjercicioComponent implements OnInit{
             }
           ],
        }
+        const { combinate,
+          dataEjercicios } = this.data;
+       if( combinate ){
+        this.dataCreateEjercicio.ListIDExercises = dataEjercicios.map((item: Ejercicio) => item.ID);   
+       }
 
-       this.ejerciciosService$.CreateEjercicio(this.dataCreateEjercicio).
+       this.ejerciciosService$[
+        combinate ? 'CreateEjercicioCombinate' : 'CreateEjercicio' ]
+        (this.dataCreateEjercicio).
        subscribe( async (res: responseModel) => {
         if (res.success) {
           await Toast.fire({
