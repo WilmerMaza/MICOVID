@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component'
+import { IndicadorComponent } from './Components/create-indicador/indicador.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
     data: {
       title: 'Ejercicios'
     }
+  },
+  {
+    path: 'Indicador',
+    component: IndicadorComponent
   }
 ];
 

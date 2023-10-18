@@ -8,6 +8,8 @@ import { CreateEjercicioComponent } from '../create-ejercicio/create-ejercicio.c
 import { EjercicioServices } from '../../services/ejercicioServices.service'
 import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse } from '../../Model/ejercicioModel'
 import { every } from 'rxjs';
+import { DinamicService } from 'src/app/shared/dinamic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ejercicios',
@@ -32,7 +34,16 @@ export class EjerciciosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private  ejercicioServices$: EjercicioServices,
-  ) {} 
+    private dinamicService$ : DinamicService,
+    private router: Router
+  ) 
+  {
+      this.dinamicService$.selectNumber$.subscribe((data: number) => {
+        this.selectItemCount = data;
+        if(data > 1) this.nameAdd = 'indicador';
+        else this.nameAdd = 'ejercicio';
+      })
+  } 
 
   ngOnInit():void {
     this.getEjercicios();  
@@ -94,7 +105,9 @@ export class EjerciciosComponent implements OnInit {
           this.openModal();
         }
           break;
-
+      case 'add indicador':
+        this.router.navigate(["Ejercicios/Indicador"]);
+        break;
       default:
         break;
     }
