@@ -1,7 +1,12 @@
-<div class="createEjercicio">
+<div class="createEjercicio" style="border-radius: 30px;">
+  <div class="cerrar">
+    <button mat-icon-button (click)="cerrar()"  >
+      <mat-icon style="color: antiquewhite;" >close</mat-icon>
+    </button>
+  </div>
 
   <div class="tittle-ejercicio">
-    Crear ejercicio
+    {{tittleName}}
   </div>
   <div class="scroll-container">
     <form [formGroup]="ejercicioForm" (ngSubmit)="onSubmit()" class="form-container">
@@ -9,12 +14,9 @@
         <div class="row">Nombre del ejercicio</div>
         <div class="form-field">
             <input matInput formControlName="name" class="field-input">
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('name')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
-            </mat-error>
- 
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('name')?.touched) && ejercicioForm.get('name')?.hasError('required')">
+              *Campo requerido
+            </mat-error> 
         </div>
       </div>
 
@@ -22,10 +24,8 @@
         <div class="row">Abreviatura</div>
         <div class="form-field">
             <input matInput formControlName="abbreviation" class="field-input">
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('abbreviation')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('abbreviation')?.touched) && ejercicioForm.get('abbreviation')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -34,10 +34,8 @@
         <div class="row">descripción</div>
         <div class="form-field">
             <textarea matInput  formControlName="description" class="field-input" style="height: 100px;"></textarea>
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('description')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('description')?.touched) && ejercicioForm.get('description')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -52,10 +50,8 @@
                 {{ opcion.NameSubGrupo }}
               </mat-option>
             </mat-select>
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('subgrupo')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('subgrupo')?.touched) && ejercicioForm.get('subgrupo')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -70,10 +66,8 @@
                 {{ opcion.name }}
               </mat-option>
             </mat-select>
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('relationship')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('relationship')?.touched) && ejercicioForm.get('relationship')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -87,10 +81,8 @@
                 {{ opcion.Name }} ({{opcion.Abbreviation}})
               </mat-option>
             </mat-select>
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('cantidad')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('cantidad')?.touched) && ejercicioForm.get('cantidad')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -104,10 +96,8 @@
                 {{ opcion.Name }} ({{opcion.Abbreviation}})
               </mat-option>
             </mat-select>
-            <mat-error class="Error">
-              <ng-container *ngIf="ejercicioForm.get('calidadPromedio')?.hasError('required')">
-                *Campo requerido
-              </ng-container>
+            <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('calidadPromedio')?.hasError('required')">
+              *Campo requerido
             </mat-error>
         </div>
       </div>
@@ -119,7 +109,7 @@
         </div>
       </div>
       <div class="botonCrearContent">
-        <button type="submit" mat-button class="botonCrear">Crear ejercicio</button>
+        <button type="button" mat-button class="botonCrear" (click)="submitted = true; onCreateEjercicio()">Crear ejercicio</button>
       </div>
     </form>
   </div>

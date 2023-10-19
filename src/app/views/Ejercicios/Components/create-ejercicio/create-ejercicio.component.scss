@@ -7,6 +7,10 @@
     max-height: fit-content; 
     max-height: 500px; 
 
+    .cerrar{
+      display: flex;
+      flex-direction: row-reverse;
+    }
     
     .botonCrear{
       background-color:  #73F237;
@@ -36,7 +40,7 @@
       font-size: 35px;
       color: #FFFFFF;
       font-family: sans-serif;
-      padding: 40px 0px 20px 30px;
+      padding: 0px 0px 20px 30px;
     }
     .form-container {
       display: flex;
@@ -54,6 +58,7 @@
       font-family: Inria Sans;
       font-weight: 800;
       color: #35113b;
+      padding-right: 15px;
     }
     
     .select{
@@ -69,7 +74,8 @@
     }
 
     .field-select{
-      width: 190px;
+      width: 270px;
+      padding-right: 10px;
     }
 
      .row{
@@ -77,6 +83,7 @@
       font-family: Inria Sans;
       font-weight: 800;
       color: #35113b;
+      padding-right: 25px;
      }
 
      .form-field{
@@ -88,6 +95,7 @@
       background-color: #FFFFFF;
       border-radius: 10px;
       border: 2px solid #0c4cc8;
+      width: 270px;
      }
 
      .crearSubgr{

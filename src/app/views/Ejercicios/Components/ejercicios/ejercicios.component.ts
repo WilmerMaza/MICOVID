@@ -8,6 +8,7 @@ import { CreateEjercicioComponent } from '../create-ejercicio/create-ejercicio.c
 import { EjercicioServices } from '../../services/ejercicioServices.service'
 import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse } from '../../Model/ejercicioModel'
 import { every } from 'rxjs';
+import { ViewEjericioComponent } from '../view-ejericio/view-ejericio.component';
 
 @Component({
   selector: 'app-ejercicios',
@@ -86,6 +87,7 @@ export class EjerciciosComponent implements OnInit {
         const dataResponse = {
           ...data,
         };
+        this.openModalEjercicio();
       break;
       case 'download':
         if(this.data.length > 1) 
@@ -164,11 +166,22 @@ export class EjerciciosComponent implements OnInit {
     dialogRef.width = '517px';
     dialogRef.height = '604px'
     this.dialogRef = this.dialog.open(CreateEjercicioComponent, dialogRef);
-
     this.dialogRef.afterClosed().subscribe((result: boolean) => {
       if( result )
       {this.getEjercicios();}
     });
+  }
+
+  openModalEjercicio(): void {
+    const dialogRef = new MatDialogConfig (); 
+    dialogRef.data = {      
+        combinate: this.combinate,
+        dataEjercicios: this.combinate ? this.data : ''    
+    }; 
+    dialogRef.width = '450px';
+    dialogRef.height = '550px'
+    this.dialog.open(ViewEjericioComponent, dialogRef);
+
   }
 
 }

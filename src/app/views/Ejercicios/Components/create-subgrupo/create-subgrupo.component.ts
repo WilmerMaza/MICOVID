@@ -20,6 +20,8 @@ export class CreateSubgrupoComponent implements OnInit {
   public subGrupoForm: FormGroup = new subGrupoFormModel().formSubGrupos();
   public grupoAll: Grupo[];
   public subGrupo: subgrupoModel;
+  public submitted: boolean = false;
+
   constructor(private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
     private dialogRef: MatDialogRef<CreateSubgrupoComponent>) {  }
@@ -35,8 +37,17 @@ export class CreateSubgrupoComponent implements OnInit {
     })
   }
 
+  cerrar(): void {
+    this.dialogRef.close(true);
+  }
+
+  onCreateSubGrupo(): void {
+    this.submitted = true;
+    this.onSubmit();
+  }
+  
   onSubmit(): void {
-    if (this.subGrupoForm.valid) {
+    if (this.submitted && this.subGrupoForm.valid) {
     const { Description, NameSubGrupo,
     abbreviation, grupo  } = this.subGrupoForm.value
     this.subGrupo = {

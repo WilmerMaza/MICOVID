@@ -1,0 +1,10 @@
+<div class="carousel-container">
+  <button (click)="prevSlide()" class="carousel-button left">❮</button>
+  <div class="carousel-slide" [ngStyle]="{'transform': 'translateX(' + slideIndex * -100 + '%)'}">
+    <div *ngFor="let presentation of presentations" class="carousel-item">
+      {{ presentation.title }}
+      <!-- Agrega aquí el contenido de cada presentación -->
+    </div>
+  </div>
+  <button (click)="nextSlide()" class="carousel-button right">❯</button>
+</div>

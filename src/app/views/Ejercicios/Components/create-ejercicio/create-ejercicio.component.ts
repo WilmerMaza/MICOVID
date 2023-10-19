@@ -25,6 +25,8 @@ export class CreateEjercicioComponent implements OnInit{
   public dataUnitsofmeasurements: UnitsofmeasurementsModel[];
   public dataCreateEjercicio: CreateEjercicioModel;
   public dataTypeRelation: TypeRelationModel[] = TypeRelation;
+  public submitted: boolean = false;
+  public tittleName: string;
 
   constructor(private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
@@ -35,10 +37,17 @@ export class CreateEjercicioComponent implements OnInit{
     this.message = this.dialog;
     this.getSubGrupos();
     this.unitsofmeasurements();
+    this.tittle();
+  }
+
+  tittle(): void{
+    const { combinate,
+       } = this.data;    
+    this.tittleName = combinate ? 'Crear ejercicio combinado' : 'Crear ejercicio'
   }
 
   onSubmit() {
-    if (this.ejercicioForm.valid) {
+    if (this.submitted && this.ejercicioForm.valid) {
       const { name, description, abbreviation,
         subgrupo, relationship, cantidad,
       calidadPromedio } = this.ejercicioForm.value;
@@ -89,11 +98,19 @@ export class CreateEjercicioComponent implements OnInit{
     }
 }
 
+onCreateEjercicio(): void {
+  this.submitted = true;
+  this.onSubmit();
+}
 
 unitsofmeasurements():void{
   this.ejerciciosService$.GetAllUnitsofmeasurements().subscribe ( (res: UnitsofmeasurementsResponse) =>{
     this.dataUnitsofmeasurements = res.item;
   })
+}
+
+cerrar(): void {
+  this.dialogRef.close(true);
 }
 
 getSubGrupos(): void{

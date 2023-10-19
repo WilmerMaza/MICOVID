@@ -10,7 +10,7 @@ import { EjerciciosComponent } from './Components/ejercicios/ejercicios.componen
 import { CreateEjercicioComponent } from './Components/create-ejercicio/create-ejercicio.component';
 import { MaterialModule } from 'src/app/infraestructure/modules/material/material.module';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
-
+import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,8 @@ import { SharedModuleModule } from 'src/app/shared/shared-module.module';
   declarations: [
     EjerciciosComponent,
     CreateEjercicioComponent,
-    CreateSubgrupoComponent
+    CreateSubgrupoComponent,
+    ViewEjericioComponent
   ],
 
 })
