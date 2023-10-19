@@ -3,7 +3,7 @@ import {PageEvent, MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import { ActionResponse } from '../model/Response/DefaultResponse'
-import { DinamicService } from '../dinamic.service';
+import { DinamicService, dataToPass } from '../dinamic.service';
 
 @Component({
   selector: 'app-dinamic-table',
@@ -40,9 +40,9 @@ export class DinamicTableComponent implements AfterViewInit {
   pageEvent: PageEvent | undefined;
 
   constructor(private service$: DinamicService){
-    this.service$.dataToPass$.subscribe((data: boolean) => {
-      if(data){
-        this.dataAction("download", this.selection.selected);
+    this.service$.dataToPass$.subscribe((data: dataToPass) => {
+      if(data.isEspecial){
+        this.dataAction(data.eventName, this.selection.selected);
       }
     })
   }

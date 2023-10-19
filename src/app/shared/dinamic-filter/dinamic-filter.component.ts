@@ -17,7 +17,7 @@ import {
 } from '../model/filterModel';
 import { ActionResponse } from '../model/Response/DefaultResponse';
 import { regExps } from 'src/app/utils/Validators';
-import { DinamicService } from '../dinamic.service';
+import { DinamicService, dataToPass } from '../dinamic.service';
 
 @Component({
   selector: 'app-dinamic-filter',
@@ -141,15 +141,16 @@ export class DinamicFilterComponent {
   }
 
   actionClick(data: string): void {
-    if(data !== "download") {
+    if(data !== "download" && this.nameAdd !== "indicador") {
       let dataActionResponse: ActionResponse = { action: data, data };
       this.actionFilter.emit(dataActionResponse);
       return;
     }
-    this.sendDataToTable(true);
+    if(data === "add") data = `${data} ${this.nameAdd}`;
+    this.sendDataToTable({eventName: data, isEspecial : true});
   }
 
-  sendDataToTable(data: boolean) {
+  sendDataToTable(data: dataToPass) {
     this.service$.setData(data);
   }
 }

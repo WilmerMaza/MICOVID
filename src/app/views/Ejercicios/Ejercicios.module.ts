@@ -11,6 +11,8 @@ import { CreateEjercicioComponent } from './Components/create-ejercicio/create-e
 import { MaterialModule } from 'src/app/infraestructure/modules/material/material.module';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
+import { IndicadorComponent } from './Components/create-indicador/indicador.component';
+
 
 @NgModule({
   imports: [
@@ -28,7 +30,8 @@ import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.
     EjerciciosComponent,
     CreateEjercicioComponent,
     CreateSubgrupoComponent,
-    ViewEjericioComponent
+    ViewEjericioComponent,
+    IndicadorComponent
   ],
 
 })
