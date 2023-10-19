@@ -1,3 +1,9 @@
+<div class="cerrar">
+  <button mat-icon-button (click)="cerrar()"  >
+    <mat-icon style="color: rgba(0, 0, 0, 0.64);" >close</mat-icon>
+  </button>
+</div>
+
 <div class="createSubgrupo">
 
     <div class="tittle-subgrupo">
@@ -9,12 +15,9 @@
           <div class="row">Nombre</div>
           <div class="form-field">
               <input matInput formControlName="NameSubGrupo" class="field-input">
-              <mat-error class="Error">
-                <ng-container *ngIf="subGrupoForm.get('NameSubGrupo')?.hasError('required')">
-                  *Campo requerido
-                </ng-container>
-              </mat-error>
-   
+              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('NameSubGrupo')?.touched) && subGrupoForm.get('NameSubGrupo')?.hasError('required')">
+                *Campo requerido
+              </mat-error>    
           </div>
         </div>
   
@@ -22,11 +25,9 @@
           <div class="row">Abreviatura</div>
           <div class="form-field">
               <input matInput formControlName="abbreviation" class="field-input">
-              <mat-error class="Error">
-                <ng-container *ngIf="subGrupoForm.get('abbreviation')?.hasError('required')">
-                  *Campo requerido
-                </ng-container>
-              </mat-error>
+              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('abbreviation')?.touched) && subGrupoForm.get('abbreviation')?.hasError('required')">
+                *Campo requerido
+              </mat-error> 
           </div>
         </div>
   
@@ -34,11 +35,9 @@
           <div class="row">Descripción</div>
           <div class="form-field">
             <textarea matInput formControlName="Description" class="field-input custom-input"></textarea>
-              <mat-error class="Error">
-                <ng-container *ngIf="subGrupoForm.get('Description')?.hasError('required')">
-                  *Campo requerido
-                </ng-container>
-              </mat-error>
+            <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('Description')?.touched) && subGrupoForm.get('Description')?.hasError('required')">
+              *Campo requerido
+            </mat-error> 
           </div>
         </div>
   
@@ -50,15 +49,13 @@
                   {{ opcion.NameGrupo }}
                 </mat-option>
               </mat-select>
-              <mat-error class="Error">
-                <ng-container *ngIf="subGrupoForm.get('grupo')?.hasError('required')">
-                  *Campo requerido
-                </ng-container>
-              </mat-error>
+              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('grupo')?.touched) && subGrupoForm.get('grupo')?.hasError('required')">
+                *Campo requerido
+              </mat-error> 
           </div>
         </div>
         <div class="botones">
-        <button class="botones-input" type="submit" mat-raised-button color="primary">Crear</button>
+          <button class="botones-input" type="submit" mat-raised-button color="primary"  (click)="submitted = true; onCreateSubGrupo()">Crear</button>
         
         <button   style="color: #3f51b5;" class="botones-input" type="submit" mat-raised-button mat-dialog-close color="basic" >Volver</button>
       </div>

@@ -1,0 +1,30 @@
+.carousel-container {
+    perspective: 1200px; /* Ajusta la perspectiva según tu preferencia */
+    background-image: url(../../../../../assets/images/FondoVerEjercicio.png);
+  }
+  
+  .carousel {
+    display: flex;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  
+  .slide {
+    width: 300px; /* Ajusta el ancho de cada slide según tus necesidades */
+    height: 200px; /* Ajusta la altura de cada slide según tus necesidades */
+    margin: 0 10px;
+    background-color: #ccc; /* Color de fondo de los slides */
+    transform: rotateY(0deg);
+  }
+  
+  /* Establece diferentes transformaciones para cada slide */
+  .slide:nth-child(1) { transform: rotateY(0deg); }
+  .slide:nth-child(2) { transform: rotateY(120deg); }
+  .slide:nth-child(3) { transform: rotateY(240deg); }
+  /* Agrega más transformaciones para más slides */
+  
+  /* Cambia la perspectiva al hacer hover en el carrusel */
+  .carousel-container:hover .carousel {
+    transform: rotateY(45deg);
+  }
+  
