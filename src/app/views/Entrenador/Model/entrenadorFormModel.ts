@@ -18,7 +18,8 @@ export class entrenadorFormModel {
            email:new FormControl(null,[Validators.required,Validators.pattern(regExps["emailComplet"])]),
            password:new FormControl(null,[Validators.required,Validators.pattern(regExps["regexPassword"])]),
            phone:new FormControl(null,[Validators.required,Validators.pattern(regExps["telefonoRegex"])]),
-           gender:new FormControl(null,[Validators.required])
+           gender:new FormControl(null,[Validators.required]),
+           image:new FormControl(null),
          })
     }
 }

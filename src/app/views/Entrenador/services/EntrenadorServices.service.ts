@@ -1,5 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IHttpModel } from 'src/app/models/IHttp.Model';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import {requestEntrenador, requetEntrenador, resposeCreate} from 'src/app/views/Entrenador/Model/entrenadorModel'
 
@@ -23,4 +25,5 @@ export class EntrenadorServices {
     const endpoint = '/Entrenador/update';
     return this.micovid$.put(endpoint,bodyRequest)
   }
+
 }

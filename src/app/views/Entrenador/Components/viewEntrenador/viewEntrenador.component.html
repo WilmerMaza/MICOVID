@@ -6,7 +6,7 @@
     <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
       <div fxLayout="row"> <!-- Definición de la primera fila -->
         <div fxFlex="20%" class="center-content">
-          <img src="../../../assets/images/default.png">
+          <img [src]="imageUrl?imageUrl:'../../../assets/images/default.png'">
         </div>
         <div fxFlex="80%" class="content-card">
           <div fxLayout="column" fxLayoutGap="16px" class="contentData" fxFlex="80%">

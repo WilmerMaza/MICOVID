@@ -48,21 +48,20 @@ export interface Entrandor {
   createdAt: string;
   updatedAt: string;
   SportsInstitutionID: string;
+
+  password?: string;
 }
 
-
-export interface listInfo{
-  value: string,
-  code: string,
+export interface listInfo {
+  value: string;
+  code: string;
 }
 
-export interface viewModalEntrenador{
-  isVisible?: boolean,
-  data?: Entrandor,
-};
-
-export interface  eventsPaises{
-  value: string
+export interface viewModalEntrenador {
+  isVisible?: boolean;
+  data?: Entrandor;
 }
 
-
+export interface eventsPaises {
+  value: string;
+}

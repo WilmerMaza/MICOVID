@@ -125,8 +125,10 @@
   font-weight: 400;
   line-height: normal;
 }
-.img {
-  margin: 20%;
+img {
+  border-radius: 20px 0 0 20px;
+  width: 35vh;
+  height: 36vh;
 }
 
 .img:hover .masImg {
@@ -134,6 +136,12 @@
 }
 .img:hover .textImg {
   transform: scale(1.2); /* Hacemos que el símbolo "+" sea un poco más grande */
+}
+.img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .matforms {
@@ -259,4 +267,10 @@
 
 .Error{
   font-size: 12px;
+}
+
+@media (min-width: 3300px) {
+  img {
+    width: 38vh; /* Ajusta el porcentaje según tus necesidades */
+  }
 }
