@@ -51,6 +51,8 @@
 .center-content img {
   max-width: 100%; /* El contenedor no será más ancho que su contenedor principal */
   object-fit: cover;
+  width: 35vh;
+  height: 36vh;
 }
 
 .close-button {
@@ -127,3 +129,9 @@
   display: flex;
   align-items: flex-end;
 }
+@media (min-width: 3300px) {
+  img {
+    width: 38vh; /* Ajusta el porcentaje según tus necesidades */
+  }
+}
+

@@ -3,7 +3,6 @@ import { FormGroup, Validators } from '@angular/forms';
 import { entrenadorFormModel } from 'src/app/views/Entrenador/Model/entrenadorFormModel';
 import { EntrenadorServices } from '../../services/EntrenadorServices.service';
 import { CryptoService } from 'src/app/utils/crypto.service';
-import Swal from 'sweetalert2';
 import { gender, typeIdentification } from '../../Model/constantesEntrenador';
 import {
   NormaliceLowerValidators,
@@ -13,6 +12,7 @@ import {
 import {
   eventsPaises,
   listInfo,
+  resposeCreate,
   viewModalEntrenador,
 } from '../../Model/entrenadorModel';
 import {
@@ -25,7 +25,10 @@ import {
   Ipaises,
   PAISESCONST,
 } from 'src/app/models/PaisesConst';
-
+import { Toast } from 'src/app/utils/alert_Toast';
+import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
+import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import { ImageLoader } from 'src/app/utils/readerBlodImg';
 @Component({
   selector: 'app-createEntrenador',
   templateUrl: './createEntrenador.component.html',
@@ -51,8 +54,16 @@ export class CreateEntrenadorComponent {
   public isEdit: boolean = false;
   public activeDepto: boolean = true;
   public activeCity: boolean = true;
+  public selectedFiles: File;
+  public imageSelected: boolean = false;
+  public selectedImageURL: string = '';
+  public imageUrl: string = '';
+  tooltipText: string = 'Esta es una imagen de muestra';
 
-  constructor(private entrenadorServices$: EntrenadorServices) {}
+  constructor(
+    private entrenadorServices$: EntrenadorServices,
+    private imagenFuntionsService$: ImagenFuntionsService
+  ) {}
 
   closeCard(): void {
     this.showViewEntrenador = false;
@@ -62,44 +73,26 @@ export class CreateEntrenadorComponent {
   dataIni(value: viewModalEntrenador): void {
     if (!Validar.isNullOrUndefined(value.data)) {
       const {
-        birtDate,
-        city,
-        email,
-        gender,
-        identification,
-        institutionNameStudy,
-        name,
-        nationality,
-        phone,
-        stateordepartmen,
-        studyLevelMax,
-        typeIdentification,
+        data: { nationality, stateordepartmen },
+      } = value;
+      const {
+        ID,
+        createdAt,
+        updatedAt,
+        SportsInstitutionID,
+        ...dataEntrandor
       } = value.data;
-      const data = {
-        birtDate: birtDate,
-        city: city,
-        email: email,
-        gender: gender,
-        identification: identification,
-        institutionNameStudy: institutionNameStudy,
-        name: name,
-        nationality: nationality,
-        phone: phone,
-        stateordepartmen: stateordepartmen,
-        studyLevelMax: studyLevelMax,
-        typeIdentification: typeIdentification,
-        password: '',
-      };
+      dataEntrandor.password = '';
       const state = {
         value: nationality,
       };
       const citys = {
         value: stateordepartmen,
       };
-
+      this.viewImage(dataEntrandor.image);
       this.universalCiudadesApis(citys);
       this.universalEstadoApis(state);
-      this.entrenadorForm.setValue(data);
+      this.entrenadorForm.setValue(dataEntrandor);
       this.isEdit = true;
       this.quitarValidacion();
     } else {
@@ -108,11 +101,20 @@ export class CreateEntrenadorComponent {
     }
   }
 
+  viewImage(nameImg: string | undefined): void {
+    if (nameImg) {
+      const imageLoader = new ImageLoader(this.imagenFuntionsService$);
+      imageLoader.loadImage(nameImg, (imageUrl) => {
+        this.selectedImageURL = imageUrl;
+      });
+    }
+  }
+
   universalCiudadesApis(event: eventsPaises): void {
     this.activeCity = false;
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
-      (item: Iciudades) => item.state_name === value
+      (item: Iciudades) => item.state_name.toLowerCase() === value.toLowerCase()
     )?.city_name;
   }
 
@@ -120,7 +122,8 @@ export class CreateEntrenadorComponent {
     this.activeDepto = false;
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
-      (item: Iestados) => item.country_name === value
+      (item: Iestados) =>
+        item.country_name.toLowerCase() === value.toLowerCase()
     )?.estados;
   }
 
@@ -135,11 +138,15 @@ export class CreateEntrenadorComponent {
   defaulCarrusel(): void {
     this.entrenadorForm.reset();
     this.currentPage = 0;
+    this.selectedFiles = new File([], 'empty.txt');
+    this.imageSelected = false;
+    this.selectedImageURL = '';
     this.CreateEntrenador.emit(true);
   }
 
   quitarValidacion(): void {
     this.entrenadorForm.get('password')?.clearValidators();
+    this.entrenadorForm.get('password')?.disable();
     this.entrenadorForm.get('password')?.updateValueAndValidity();
   }
 
@@ -155,40 +162,75 @@ export class CreateEntrenadorComponent {
     if (this.entrenadorForm.invalid) {
       return;
     }
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      },
-    });
 
     const { value } = this.entrenadorForm;
     const encryptedData = this.cryptoService$
       .Encript(this.entrenadorForm.get('password')?.value)
       .toString();
 
-      NormaliceLowerValidators.normaliceData(value);
+    const { stateordepartmen, city, nationality, image } = value;
+    NormaliceLowerValidators.normaliceData(value);
 
     const formEntrenador = this.isEdit
       ? {
-          ...this.entrenadorForm.value,
+          ...value,
+          stateordepartmen,
+          city,
+          nationality,
+          image: Validar.isNullOrUndefined(this.selectedFiles)
+            ? image
+            : this.selectedFiles.name,
+          deleteImg: Validar.isNullOrUndefined(this.selectedFiles) ? '' : image,
         }
       : {
-          ...this.entrenadorForm.value,
+          ...value,
           password: encryptedData,
+          image: Validar.isNullOrUndefined(this.selectedFiles)
+            ? ''
+            : this.selectedFiles.name,
+          stateordepartmen,
+          city,
+          nationality,
         };
+
+    const formData = new FormData();
+
+    if (!Validar.isNullOrUndefined(this.selectedFiles)) {
+      formData.append('file', this.selectedFiles);
+    }
+
     this.entrenadorServices$[
       this.isEdit ? 'updateEntrenador' : 'createEntrenador'
     ](formEntrenador).subscribe(
-      async (res) => {
-        await Toast.fire({
+      async (res: resposeCreate) => {
+        if (!Validar.isNullOrUndefined(this.selectedFiles)) {
+          this.uploadImg(formData);
+        } else {
+          Toast.fire({
+            icon: 'success',
+            title: res.Menssage,
+          });
+          this.defaulCarrusel();
+        }
+      },
+      (respError): void => {
+        const {
+          error: { error },
+        } = respError;
+        Toast.fire({
+          icon: 'error',
+          title: error,
+        });
+      }
+    );
+  }
+
+  uploadImg(formData: FormData): void {
+    this.imagenFuntionsService$.subirImg(formData).subscribe(
+      (respuesta: responseUploadMode) => {
+        Toast.fire({
           icon: 'success',
-          title: `${res.Menssage}`,
+          title: respuesta.msg,
         });
         this.defaulCarrusel();
       },
@@ -202,5 +244,23 @@ export class CreateEntrenadorComponent {
         });
       }
     );
+  }
+
+  onFilesSelected(event: any): void {
+    const {
+      target: { files },
+    } = event;
+
+    this.selectedFiles = files[0];
+
+    const file = files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImageURL = e.target.result;
+        this.imageSelected = true; // Establecer imageSelected en true
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }

@@ -138,17 +138,17 @@
   }
 
   .btnAdd:active {
-    box-shadow: inset 1px 1px 5px black ;
+    box-shadow: inset 1px 1px 5px black;
   }
 
-  .btnAdd:hover{
+  .btnAdd:hover {
     background: rgb(223, 223, 224);
-    box-shadow: 1px 1px 5px black
+    box-shadow: 1px 1px 5px black;
   }
 
   .calendarGrid {
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 
   .eventosCalendar {

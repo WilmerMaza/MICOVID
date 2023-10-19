@@ -5,19 +5,24 @@
     </button>
     <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
       <div fxLayout="row"> <!-- Definición de la primera fila -->
-        <div fxFlex="20%" class="center-content">
+        <div fxFlex="20%" class="center-content image-container">
           <div class="img">
-            <p class="masImg">+</p>
-            <p class="textImg">Añadir foto</p>
-          </div>
+            <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
+            <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
+              <p class="masImg">+</p>
+              <p class="textImg">Añadir foto</p>
+            </label>
 
+            <label for="upload" class="uploadlabel" *ngIf="selectedImageURL">
+              <span title="Haz clic para cambiar la imagen">
+                <img [src]="selectedImageURL" />
+              </span>
+            </label>
+          </div>
         </div>
         <div fxFlex="80%" class="content-card">
 
-
-
           <!-- Carousel  -->
-
 
           <div fxFill #contentPanel class="contendorCarousel">
             <div class="carousel">
@@ -134,8 +139,9 @@
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
 
 
-                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"  [disabled]="activeDepto"
-                            (selectionChange)="universalCiudadesApis($event)" matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
+                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"
+                            [disabled]="activeDepto" (selectionChange)="universalCiudadesApis($event)"
+                            matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
                             <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
                               {{ opcion.state_name }}
                             </mat-option>
@@ -154,7 +160,8 @@
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <mat-select formControlName="city" name="city" class="inputmat" matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
+                          <mat-select formControlName="city" name="city" class="inputmat"
+                            matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
                             <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
                               {{ opcion.city_name }}
                             </mat-option>
