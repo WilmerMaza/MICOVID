@@ -38,12 +38,17 @@ export class EjerciciosComponent implements OnInit {
     private router: Router
   ) 
   {
+    this.selectNumber();
+  } 
+
+  selectNumber():void {
       this.dinamicService$.selectNumber$.subscribe((data: number) => {
         this.selectItemCount = data;
         if(data > 1) this.nameAdd = 'indicador';
         else this.nameAdd = 'ejercicio';
       })
-  } 
+  }
+    
 
   ngOnInit():void {
     this.getEjercicios();  
