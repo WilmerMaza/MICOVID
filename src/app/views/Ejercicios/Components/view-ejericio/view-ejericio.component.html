@@ -1,10 +1,52 @@
-<div class="carousel-container">
-  <button (click)="prevSlide()" class="carousel-button left">❮</button>
-  <div class="carousel-slide" [ngStyle]="{'transform': 'translateX(' + slideIndex * -100 + '%)'}">
-    <div *ngFor="let presentation of presentations" class="carousel-item">
-      {{ presentation.title }}
-      <!-- Agrega aquí el contenido de cada presentación -->
+<div class="contentViewEjercicio">
+<div class="cerrar">
+  <button mat-icon-button (click)="cerrar()"  >
+    <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
+  </button>
+</div>
+
+<div class="item">
+
+  <button class="viewImage" (click)="abrirImagen()">
+
+  </button>
+  <div   class="tittleEjercicio" >
+    {{data.Name}} ({{data.Abbreviation}})
+  </div>
+  <div    class="dataEjercicio"> 
+    <p class="dataEjecicioItem" >
+      Grupo:  {{data.SubGrupo.Grupo.NameGrupo}}
+    </p>
+    <p class="dataEjecicioItem" >
+      SubGrupo: {{data.SubGrupo.NameSubGrupo}}
+    </p>
+       <p class="dataEjecicioItem" >
+
+      Tipo de relación: {{data.Relationship}}
+    </p>
+       <p class="dataEjecicioItem" >
+
+      Unidad de medida de calidad: Repeticiones
+    </p>
+       <p class="dataEjecicioItem" >
+
+      Unidad de medida de cantidad: Repeticiones
+    </p>
+  </div >
+
+  <div class="despcritionEjercicio">
+    <div class="despcritionEjercicioItem">
+      Descripción:
+    </div>
+    <div class="textDescription">
+      <ng-container *ngIf="data.Description.length > maxLength; else shortDescription">
+        {{ showFullDescription ? data.Description : (data.Description | slice:0:maxLength) }}
+        <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
+      </ng-container>
+      <ng-template #shortDescription>
+        {{ data.Description }}
+      </ng-template>
     </div>
   </div>
-  <button (click)="nextSlide()" class="carousel-button right">❯</button>
+</div>
 </div>

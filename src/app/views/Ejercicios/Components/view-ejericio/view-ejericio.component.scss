@@ -1,30 +1,101 @@
-.carousel-container {
-    perspective: 1200px; /* Ajusta la perspectiva según tu preferencia */
+.contentViewEjercicio {
     background-image: url(../../../../../assets/images/FondoVerEjercicio.png);
+    background-size: cover;
+    height: -webkit-fill-available;
   }
-  
-  .carousel {
+
+  .viewImage{
+    background-image: url(../../../../../assets/images/ejemploEjercicio.png);
+    position: relative;
     display: flex;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+  }
+
+  .item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90%;
+  }
+
+  .cerrar{
+    display: flex;
+    flex-direction: row-reverse;
   }
   
-  .slide {
-    width: 300px; /* Ajusta el ancho de cada slide según tus necesidades */
-    height: 200px; /* Ajusta la altura de cada slide según tus necesidades */
-    margin: 0 10px;
-    background-color: #ccc; /* Color de fondo de los slides */
-    transform: rotateY(0deg);
+  .dataEjecicioItem{
+    border-radius: 10px;
+    background-color: white;
+    font-family: Inria Sans;
+    font-size: 12px;
+    font-weight: 700;
+    width: fit-content;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 5px 5px;
   }
-  
-  /* Establece diferentes transformaciones para cada slide */
-  .slide:nth-child(1) { transform: rotateY(0deg); }
-  .slide:nth-child(2) { transform: rotateY(120deg); }
-  .slide:nth-child(3) { transform: rotateY(240deg); }
-  /* Agrega más transformaciones para más slides */
-  
-  /* Cambia la perspectiva al hacer hover en el carrusel */
-  .carousel-container:hover .carousel {
-    transform: rotateY(45deg);
+
+  .dataEjercicio{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #0C4CC8;
+    padding-left: 15px;
+  }
+
+  .tittleEjercicio{
+    font-family: Inria Sans;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 37px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+    padding: 10px 0px 10px 0px;
+    width: 90%;
+  }
+
+  .despcritionEjercicio{
+    font-family: Inria Sans;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+    overflow-y: auto;
+    padding: 0px 15px 0px 15px;
+    width: 100%;
+  }
+
+  .textDescription{
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .textOption{
+    color: white;
+    text-decoration: none; 
+  }
+
+  .textOption:hover {
+    text-decoration: underline; 
+  }
+
+  .icon-button {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
   }
   

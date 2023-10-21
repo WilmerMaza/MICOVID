@@ -103,7 +103,7 @@ export class EjerciciosComponent implements OnInit {
         const dataResponse = {
           ...data,
         };
-        this.openModalEjercicio();
+        this.openModalEjercicio(data);
       break;
       case 'download':
         if(this.data.length > 1) 
@@ -190,13 +190,10 @@ export class EjerciciosComponent implements OnInit {
     });
   }
 
-  openModalEjercicio(): void {
+  openModalEjercicio(data:Ejercicio): void {
     const dialogRef = new MatDialogConfig (); 
-    dialogRef.data = {      
-        combinate: this.combinate,
-        dataEjercicios: this.combinate ? this.data : ''    
-    }; 
-    dialogRef.width = '450px';
+    dialogRef.data = data;   
+    dialogRef.width = '400px';
     dialogRef.height = '550px'
     this.dialog.open(ViewEjericioComponent, dialogRef);
 
