@@ -40,6 +40,7 @@ export class DinamicFilterComponent {
     this.jsonData = value;
   }
   @Input('showDownload') showDownload = true;
+  @Input('showCombinate') showCombinate = true;
   @Input("showSelection") showSelection = true;
   @Input('showButtonAdd') showButtonAdd = true;
   @Input('showLateralPanel') showLateralPanel = true;
@@ -141,7 +142,7 @@ export class DinamicFilterComponent {
   }
 
   actionClick(data: string): void {
-    if(data !== "download" && this.nameAdd !== "indicador") {
+    if((data !== "download" && data !== "combinate") && this.nameAdd !== "indicador") {
       let dataActionResponse: ActionResponse = { action: data, data };
       this.actionFilter.emit(dataActionResponse);
       return;

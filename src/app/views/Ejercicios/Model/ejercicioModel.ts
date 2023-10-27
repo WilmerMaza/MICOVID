@@ -34,7 +34,20 @@ export interface Grupo {
     SubGrupo: SubGrupo;
     SubGrupoAbbreviation?: string;
     GrupoAbbreviation?: string;
+    Calidad: calidadCantidadModel;
+    Cantidad: calidadCantidadModel;
   }
+
+  export interface viewEjercicio {
+    data: Ejercicio;
+    dataEjercicio: Ejercicio[];
+  }
+
+interface calidadCantidadModel{
+  Description: string;
+  Name: string;
+  ID: string;
+}
 
   
 export interface combinateDialogModel {

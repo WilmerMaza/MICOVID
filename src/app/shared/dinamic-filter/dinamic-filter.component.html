@@ -21,6 +21,11 @@
       (click)="actionClick('download')">
       Descargar
     </div>
+    <div *ngIf="showCombinate" class="container-download" [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }"
+       (click)="actionClick('combinate')">
+       Combinar
+    </div>
+
 
     <div *ngIf="showSelection" class="container-selection">
       {{ selectItemCount }}

@@ -24,6 +24,7 @@ export class EjerciciosComponent implements OnInit {
   public filtros = jsonData;
   public nameAdd: string = 'ejercicio';
   public isDownload: boolean = true;
+  public isCombinate: boolean = true;
   public dataEjercicio: Ejercicio[];
   public dataEjercicioAll: Ejercicio[];
   public dialogRef: MatDialogRef<CreateEjercicioComponent>;
@@ -105,7 +106,7 @@ export class EjerciciosComponent implements OnInit {
         };
         this.openModalEjercicio(data);
       break;
-      case 'download':
+      case 'combinate':
         if(this.data.length > 1) 
         {
           this.combinate = true;
@@ -192,9 +193,12 @@ export class EjerciciosComponent implements OnInit {
 
   openModalEjercicio(data:Ejercicio): void {
     const dialogRef = new MatDialogConfig (); 
-    dialogRef.data = data;   
-    dialogRef.width = '400px';
-    dialogRef.height = '550px'
+    dialogRef.data = { 
+      data: data,
+      dataEjercicio: this.dataEjercicio
+    }  
+    dialogRef.width = '850px';
+    dialogRef.height = '850px'
     this.dialog.open(ViewEjericioComponent, dialogRef);
 
   }
