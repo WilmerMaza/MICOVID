@@ -12,6 +12,7 @@ import { MaterialModule } from 'src/app/infraestructure/modules/material/materia
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
 import { IndicadorComponent } from './Components/create-indicador/indicador.component';
+import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -24,14 +25,15 @@ import { IndicadorComponent } from './Components/create-indicador/indicador.comp
     MatIconModule,
     SharedModuleModule,
     MaterialModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    SwiperModule
   ],
   declarations: [
     EjerciciosComponent,
     CreateEjercicioComponent,
     CreateSubgrupoComponent,
     ViewEjericioComponent,
-    IndicadorComponent
+    IndicadorComponent,
   ],
 
 })
