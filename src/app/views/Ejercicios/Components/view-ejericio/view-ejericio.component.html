@@ -1,299 +1,76 @@
-<!-- <div class="slider-effectCoverflow">
+<div class="slider-effectCoverflow">
+  <div class="cerrar">
+    <button mat-icon-button (click)="cerrar()">
+      <mat-icon style="color: rgba(255, 255, 255, 0.64)">close</mat-icon>
+    </button>
+  </div>
+  <swiper
+    [effect]="'coverflow'"
+    [grabCursor]="true"
+    [centeredSlides]="true"
+    [slidesPerView]="'auto'"
+    [coverflowEffect]="{
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    }"
+    [pagination]="true"
+    [navigation]="true"
+    [initialSlide]="initCarousel"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide *ngFor="let item of data.dataEjercicio; let ind = index">
+      <div class="contentViewEjercicio">
+        <div class="item">
+          <button class="viewImage" [ngClass]="{zoom: zoomImage && index === ind}" (click)="abrirImagen(ind)"></button>
+          <div class="tittleEjercicio">
+            {{ item.Name }} ({{ item.Abbreviation }})
+          </div>
+          <div class="dataEjercicio">
+            <p class="dataEjecicioItem">
+              Grupo: {{ item.SubGrupo.Grupo.NameGrupo }}
+            </p>
+            <p class="dataEjecicioItem">
+              SubGrupo: {{ item.SubGrupo.NameSubGrupo }}
+            </p>
+            <p class="dataEjecicioItem">
+              Tipo de relación: {{ item.Relationship }}
+            </p>
+            <p class="dataEjecicioItem">
+              Unidad de medida de calidad: {{ item.Calidad.Name }}
+            </p>
+            <p class="dataEjecicioItem">
+              Unidad de medida de cantidad: {{ item.Cantidad.Name }}
+            </p>
+          </div>
 
-  <swiper [effect]="'coverflow'" [grabCursor]="true" [centeredSlides]="true" [slidesPerView]="'auto'"
-      [coverflowEffect]="{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier : 1,
-          slideShadows: true
-          }" [pagination]="true" [navigation]="true" [initialSlide]="2"  class="mySwiper">
-
-                  <ng-template swiperSlide>
-                    <div class="contentViewEjercicio">
-                      <div class="cerrar">
-                        <button mat-icon-button (click)="cerrar()"  >
-                          <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
-                        </button>
-                      </div>
-                      
-                      <div class="item">
-                      
-                        <button class="viewImage" (click)="abrirImagen()">
-                      
-                        </button>
-                        <div   class="tittleEjercicio" >
-                          {{data.data.Name}} ({{data.data.Abbreviation}})
-                        </div>
-                        <div    class="dataEjercicio"> 
-                          <p class="dataEjecicioItem" >
-                            Grupo:  {{data.data.SubGrupo.Grupo.NameGrupo}}
-                          </p>
-                          <p class="dataEjecicioItem" >
-                            SubGrupo: {{data.data.SubGrupo.NameSubGrupo}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Tipo de relación: {{data.data.Relationship}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de calidad: {{data.data.Calidad.Name}}
-                              </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de cantidad: {{data.data.Cantidad.Name}}
-                          </p>
-                        </div >
-                      
-                        <div class="despcritionEjercicio">
-                          <div class="despcritionEjercicioItem">
-                            Descripción:
-                          </div>
-                          <div class="textDescription">
-                            <ng-container *ngIf="data.data.Description.length > maxLength; else shortDescription">
-                              {{ showFullDescription ?data.data.Description : (data.data.Description | slice:0:maxLength) }}
-                              <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
-                            </ng-container>
-                            <ng-template #shortDescription>
-                              {{ data.data.Description }}
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                  </ng-template>
-                  <ng-template swiperSlide>
-                    <div class="contentViewEjercicio">
-                      <div class="cerrar">
-                        <button mat-icon-button (click)="cerrar()"  >
-                          <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
-                        </button>
-                      </div>
-                      
-                      <div class="item">
-                      
-                        <button class="viewImage" (click)="abrirImagen()">
-                      
-                        </button>
-                        <div   class="tittleEjercicio" >
-                          {{data.data.Name}} ({{data.data.Abbreviation}})
-                        </div>
-                        <div    class="dataEjercicio"> 
-                          <p class="dataEjecicioItem" >
-                            Grupo:  {{data.data.SubGrupo.Grupo.NameGrupo}}
-                          </p>
-                          <p class="dataEjecicioItem" >
-                            SubGrupo: {{data.data.SubGrupo.NameSubGrupo}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Tipo de relación: {{data.data.Relationship}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de calidad: {{data.data.Calidad.Name}}
-                              </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de cantidad: {{data.data.Cantidad.Name}}
-                          </p>
-                        </div >
-                      
-                        <div class="despcritionEjercicio">
-                          <div class="despcritionEjercicioItem">
-                            Descripción:
-                          </div>
-                          <div class="textDescription">
-                            <ng-container *ngIf="data.data.Description.length > maxLength; else shortDescription">
-                              {{ showFullDescription ?data.data.Description : (data.data.Description | slice:0:maxLength) }}
-                              <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
-                            </ng-container>
-                            <ng-template #shortDescription>
-                              {{ data.data.Description }}
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                  </ng-template>
-                  <ng-template swiperSlide>
-                    <div class="contentViewEjercicio">
-                      <div class="cerrar">
-                        <button mat-icon-button (click)="cerrar()"  >
-                          <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
-                        </button>
-                      </div>
-                      
-                      <div class="item">
-                      
-                        <button class="viewImage" (click)="abrirImagen()">
-                      
-                        </button>
-                        <div   class="tittleEjercicio" >
-                          {{data.data.Name}} ({{data.data.Abbreviation}})
-                        </div>
-                        <div    class="dataEjercicio"> 
-                          <p class="dataEjecicioItem" >
-                            Grupo:  {{data.data.SubGrupo.Grupo.NameGrupo}}
-                          </p>
-                          <p class="dataEjecicioItem" >
-                            SubGrupo: {{data.data.SubGrupo.NameSubGrupo}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Tipo de relación: {{data.data.Relationship}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de calidad: {{data.data.Calidad.Name}}
-                              </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de cantidad: {{data.data.Cantidad.Name}}
-                          </p>
-                        </div >
-                      
-                        <div class="despcritionEjercicio">
-                          <div class="despcritionEjercicioItem">
-                            Descripción:
-                          </div>
-                          <div class="textDescription">
-                            <ng-container *ngIf="data.data.Description.length > maxLength; else shortDescription">
-                              {{ showFullDescription ?data.data.Description : (data.data.Description | slice:0:maxLength) }}
-                              <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
-                            </ng-container>
-                            <ng-template #shortDescription>
-                              {{ data.data.Description }}
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                  </ng-template>
-                  <ng-template swiperSlide>
-                    <div class="contentViewEjercicio">
-                      <div class="cerrar">
-                        <button mat-icon-button (click)="cerrar()"  >
-                          <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
-                        </button>
-                      </div>
-                      
-                      <div class="item">
-                      
-                        <button class="viewImage" (click)="abrirImagen()">
-                      
-                        </button>
-                        <div   class="tittleEjercicio" >
-                          {{data.data.Name}} ({{data.data.Abbreviation}})
-                        </div>
-                        <div    class="dataEjercicio"> 
-                          <p class="dataEjecicioItem" >
-                            Grupo:  {{data.data.SubGrupo.Grupo.NameGrupo}}
-                          </p>
-                          <p class="dataEjecicioItem" >
-                            SubGrupo: {{data.data.SubGrupo.NameSubGrupo}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Tipo de relación: {{data.data.Relationship}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de calidad: {{data.data.Calidad.Name}}
-                              </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de cantidad: {{data.data.Cantidad.Name}}
-                          </p>
-                        </div >
-                      
-                        <div class="despcritionEjercicio">
-                          <div class="despcritionEjercicioItem">
-                            Descripción:
-                          </div>
-                          <div class="textDescription">
-                            <ng-container *ngIf="data.data.Description.length > maxLength; else shortDescription">
-                              {{ showFullDescription ?data.data.Description : (data.data.Description | slice:0:maxLength) }}
-                              <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
-                            </ng-container>
-                            <ng-template #shortDescription>
-                              {{ data.data.Description }}
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                  </ng-template>
-                
-              </swiper>
-</div>  -->
-
-
- <div class="slider-effectCoverflow">
-
-  <swiper [effect]="'coverflow'" [grabCursor]="true" [centeredSlides]="true" [slidesPerView]="'auto'"
-      [coverflowEffect]="{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier : 1,
-          slideShadows: true
-          }" [pagination]="true" [navigation]="true"  [initialSlide]="initCarousel"  class="mySwiper">
-
-                  <ng-template swiperSlide  *ngFor="let item of data.dataEjercicio">
-                    <div class="contentViewEjercicio">
-                      <div class="cerrar">
-                        <button mat-icon-button (click)="cerrar()"  >
-                          <mat-icon style="color: rgba(255, 255, 255, 0.64);" >close</mat-icon>
-                        </button>
-                      </div>
-                      
-                      <div class="item">
-                      
-                        <button class="viewImage" (click)="abrirImagen()">
-                      
-                        </button>
-                        <div   class="tittleEjercicio" >
-                          {{item.Name}} ({{item.Abbreviation}})
-                        </div>
-                        <div    class="dataEjercicio"> 
-                          <p class="dataEjecicioItem" >
-                            Grupo:  {{item.SubGrupo.Grupo.NameGrupo}}
-                          </p>
-                          <p class="dataEjecicioItem" >
-                            SubGrupo: {{item.SubGrupo.NameSubGrupo}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Tipo de relación: {{item.Relationship}}
-                          </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de calidad: {{item.Calidad.Name}}
-                              </p>
-                             <p class="dataEjecicioItem" >
-                      
-                            Unidad de medida de cantidad: {{item.Cantidad.Name}}
-                          </p>
-                        </div >
-                      
-                        <div class="despcritionEjercicio">
-                          <div class="despcritionEjercicioItem">
-                            Descripción:
-                          </div>
-                          <div class="textDescription">
-                            <ng-container *ngIf="item.Description.length > maxLength; else shortDescription">
-                              {{ showFullDescription ? item.Description : (item.Description | slice:0:maxLength) }}
-                              <a class="textOption" (click)="toggleDescription()">{{ showFullDescription ? 'Ver menos' : 'Ver más' }}</a>
-                            </ng-container>
-                            <ng-template #shortDescription>
-                              {{ item.Description }}
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                  </ng-template>
-              </swiper>
-</div> 
+          <div class="despcritionEjercicio">
+            <div class="despcritionEjercicioItem">Descripción:</div>
+            <div class="textDescription">
+              <ng-container
+                *ngIf="
+                  item.Description.length > maxLength;
+                  else shortDescription
+                "
+              >
+                {{
+                  showFullDescription
+                    ? item.Description
+                    : (item.Description | slice : 0 : maxLength)
+                }}
+                <a class="textOption" (click)="toggleDescription()">{{
+                  showFullDescription ? "Ver menos" : "Ver más"
+                }}</a>
+              </ng-container>
+              <ng-template #shortDescription>
+                {{ item.Description }}
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+</div>

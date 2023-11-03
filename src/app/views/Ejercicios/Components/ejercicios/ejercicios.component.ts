@@ -6,7 +6,7 @@ import { jsonData } from '../../Model/dataFilterEjercicios';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { CreateEjercicioComponent } from '../create-ejercicio/create-ejercicio.component';
 import { EjercicioServices } from '../../services/ejercicioServices.service'
-import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse } from '../../Model/ejercicioModel'
+import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse, viewEjercicio } from '../../Model/ejercicioModel'
 import { every } from 'rxjs';
 import { ViewEjericioComponent } from '../view-ejericio/view-ejericio.component';
 import { DinamicService } from 'src/app/shared/dinamic.service';
@@ -32,6 +32,8 @@ export class EjerciciosComponent implements OnInit {
   public combinate: boolean;
   public data: Ejercicio[]
   
+  //----view image------------
+  public dataValuesImage: viewEjercicio
 
   constructor(
     public dialog: MatDialog,
@@ -101,10 +103,11 @@ export class EjerciciosComponent implements OnInit {
     this.data = data;
     switch (action || action2) {
       case 'ver':
-        const dataResponse = {
-          ...data,
-        };
-        this.openModalEjercicio(data);
+        var values = { 
+              data: data,
+              dataEjercicio: this.dataEjercicio
+            } 
+          this.dataValuesImage = values;
       break;
       case 'combinate':
         if(this.data.length > 1) 
@@ -191,16 +194,8 @@ export class EjerciciosComponent implements OnInit {
     });
   }
 
-  openModalEjercicio(data:Ejercicio): void {
-    const dialogRef = new MatDialogConfig (); 
-    dialogRef.data = { 
-      data: data,
-      dataEjercicio: this.dataEjercicio
-    }  
-    dialogRef.width = '850px';
-    dialogRef.height = '850px'
-    this.dialog.open(ViewEjericioComponent, dialogRef);
-
+  actionCloseImage(event: boolean):void {
+    this.dataValuesImage.dataEjercicio = [];
   }
 
 }
