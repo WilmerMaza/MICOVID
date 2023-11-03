@@ -12,3 +12,7 @@
       </section>
     </div>
   </div>
+
+<app-view-ejericio *ngIf="dataValuesImage?.dataEjercicio?.length" [dataSource]="dataValuesImage" (actionClose)="actionCloseImage($event)">
+</app-view-ejericio>
+
