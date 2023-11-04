@@ -103,9 +103,17 @@
       </div>
 
       <div class="contet-input">
-        <div class="row"> </div>
-        <div class="form-field">
-            <input matInput formControlName="visualIlustration" class="field-input" value="image.jpg" >
+        <div class="input-file">
+            <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
+            <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
+                <mat-icon class="icon">upload_file</mat-icon>
+            </label>
+            <label  *ngIf="!selectedImageURL">
+              <div class="textImg">Subir foto o video del ejercicio</div>
+            </label>
+            <label class="content-image" *ngIf="selectedImageURL">
+              <div class="nameImage">    {{selectedFiles.name}}</div>  <div><button class="button-image" (click)="removeImage()"> X </button></div>
+            </label>
         </div>
       </div>
       <div class="botonCrearContent">

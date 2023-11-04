@@ -8,8 +8,10 @@ import { Ejercicio, SubGrupo, SubGrupoResponse, combinateDialogModel } from '../
 import { UnitsofmeasurementsModel, UnitsofmeasurementsResponse } from '../../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../../Model/createEjercicioModel'
 import { TypeRelationModel, TypeRelation } from '../../Model/typeRelation'
-import { responseModel } from '../../Model/reponseModel';
+import { responseModel, responseUploadMode } from '../../Model/reponseModel';
 import { Toast } from 'src/app/utils/alert_Toast';
+import { Validators } from 'src/app/utils/Validators';
+import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
 
 
 @Component({
@@ -27,11 +29,18 @@ export class CreateEjercicioComponent implements OnInit{
   public dataTypeRelation: TypeRelationModel[] = TypeRelation;
   public submitted: boolean = false;
   public tittleName: string;
+  public selectedImageURL: string = '';
+  public selectedFiles: File;
+  public selectFile: File;
+  public imageSelected: boolean = false;
+
 
   constructor(private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
   public dialogRef: MatDialogRef<CreateSubgrupoComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: combinateDialogModel  )   {   }
+  @Inject(MAT_DIALOG_DATA) public data: combinateDialogModel,
+  private imagenFuntionsService$: ImagenFuntionsService
+  )   {   }
 
   ngOnInit() {
     this.message = this.dialog;
@@ -50,14 +59,16 @@ export class CreateEjercicioComponent implements OnInit{
     if (this.submitted && this.ejercicioForm.valid) {
       const { name, description, abbreviation,
         subgrupo, relationship, cantidad,
-      calidadPromedio } = this.ejercicioForm.value;
+      calidadPromedio, image } = this.ejercicioForm.value;
 
        this.dataCreateEjercicio = {
         ...this.dataCreateEjercicio,
           Name: name,
           Description: description,
           Abbreviation: abbreviation,
-          VisualIllustration: 'imagen.jpg',
+          VisualIllustration: Validators.isNullOrUndefined(this.selectedFiles)
+          ? 'imagen.jpg'
+          : this.selectedFiles.name,
           Relationship: relationship,
           SubGrupoID: subgrupo,
           UnidTypes: [
@@ -71,6 +82,10 @@ export class CreateEjercicioComponent implements OnInit{
             }
           ],
        }
+       const formData = new FormData();
+       if (!Validators.isNullOrUndefined(this.selectedFiles)) {
+        formData.append('file', this.selectedFiles);
+      }
         const { combinate,
           dataEjercicios } = this.data;
        if( combinate ){
@@ -82,6 +97,9 @@ export class CreateEjercicioComponent implements OnInit{
         (this.dataCreateEjercicio).
        subscribe( async (res: responseModel) => {
         if (res.success) {
+          if (!Validators.isNullOrUndefined(this.selectedFiles)) {
+            this.uploadImg(formData);
+          } 
           await Toast.fire({
             icon: 'success',
             title: res.msg
@@ -96,6 +114,32 @@ export class CreateEjercicioComponent implements OnInit{
        }
        })
     }
+}
+
+removeImage(): void{
+  this.selectedFiles = this.selectFile;
+  this.selectedImageURL = '';
+}
+
+uploadImg(formData: FormData): void {
+  this.imagenFuntionsService$.subirImg(formData).subscribe(
+    (respuesta: responseUploadMode) => {
+      Toast.fire({
+        icon: 'success',
+        title: respuesta.msg,
+      });
+      this.dialogRef.close(true);
+    },
+    (respError): void => {
+      const {
+        error: { error },
+      } = respError;
+      Toast.fire({
+        icon: 'error',
+        title: error,
+      });
+    }
+  );
 }
 
 onCreateEjercicio(): void {
@@ -117,6 +161,24 @@ getSubGrupos(): void{
   this.ejerciciosService$.GetSubGrupos().subscribe ( (res: SubGrupoResponse) =>{
     this.dataSubgrupo = res.item;
   })
+}
+
+onFilesSelected(event: any): void {
+  const {
+    target: { files },
+  } = event;
+
+  this.selectedFiles = files[0];
+
+  const file = files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.selectedImageURL = e.target.result;
+      this.imageSelected = true; // Establecer imageSelected en true
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
 openCrearSubgrupo(): void {

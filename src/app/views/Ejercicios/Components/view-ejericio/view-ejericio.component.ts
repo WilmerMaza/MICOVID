@@ -1,12 +1,17 @@
 import {
   Component,
   EventEmitter,
+  Inject,
   Input,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { viewEjercicio } from '../../Model/ejercicioModel';
+import { Ejercicio, viewEjercicio } from '../../Model/ejercicioModel';
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from 'swiper';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EjercicioServices } from '../../services/ejercicioServices.service';
+import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import { ImageLoader } from 'src/app/utils/readerBlodImg';
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 @Component({
@@ -22,8 +27,10 @@ export class ViewEjericioComponent {
   public data: viewEjercicio;
   public zoomImage: boolean = false;
   public index: number = 0;
-
-  constructor() {}
+  public imageUrl: string[] = [];
+  public dataEjercicios: Ejercicio[];
+  constructor(
+    private imagenFuntionsService$: ImagenFuntionsService) {}
 
   @Input('dataSource') set setDataSource(data: viewEjercicio) {
     this.data = data;
@@ -32,7 +39,29 @@ export class ViewEjericioComponent {
     );
   }
 
+    ngOnInit(): void {
+      this.initCarousel = this.data.dataEjercicio.findIndex(obj => obj.ID === this.data.data.ID);
+       this.dataEjercicios =this.data.dataEjercicio;
+      this.viewImage();
+    }
+
+
+
   @Output() actionClose = new EventEmitter<boolean>();
+
+    viewImage(): void {
+      let count = 0;
+      this.data.dataEjercicio.map((ejercicio: Ejercicio) =>{        
+        const { VisualIllustration } = ejercicio
+        if ( VisualIllustration != 'imagen.jpg' && VisualIllustration) {
+          const imageLoader = new ImageLoader(this.imagenFuntionsService$);
+          imageLoader.loadImage(VisualIllustration, (imageUrl) => {
+            this.dataEjercicios[count].VisualIllustration = imageUrl;
+          })
+        }
+        count++;   
+      })
+    }  
 
   toggleDescription(): void {
     this.showFullDescription = !this.showFullDescription;
