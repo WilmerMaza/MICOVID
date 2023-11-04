@@ -21,10 +21,12 @@
     [initialSlide]="initCarousel"
     class="mySwiper"
   >
-    <ng-template swiperSlide *ngFor="let item of data.dataEjercicio; let ind = index">
+    <ng-template swiperSlide *ngFor="let item of dataEjercicios; let ind = index">
       <div class="contentViewEjercicio">
         <div class="item">
-          <button class="viewImage" [ngClass]="{zoom: zoomImage && index === ind}" (click)="abrirImagen(ind)"></button>
+          <button class="viewImage" [ngClass]="{zoom: zoomImage && index === ind}" (click)="abrirImagen(ind)">
+            <img [src]="item.VisualIllustration != 'imagen.jpg'?item.VisualIllustration:'../../../../../assets/images/ejemploEjercicio.png'" alt="imagen de usuario inicial">
+          </button>
           <div class="tittleEjercicio">
             {{ item.Name }} ({{ item.Abbreviation }})
           </div>
