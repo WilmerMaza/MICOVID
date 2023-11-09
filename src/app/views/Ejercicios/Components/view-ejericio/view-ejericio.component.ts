@@ -29,6 +29,7 @@ export class ViewEjericioComponent {
   public index: number = 0;
   public imageUrl: string[] = [];
   public dataEjercicios: Ejercicio[];
+  public imageDefault: string = 'imagen.jpg';
   constructor(
     private imagenFuntionsService$: ImagenFuntionsService) {}
 
@@ -40,28 +41,45 @@ export class ViewEjericioComponent {
   }
 
     ngOnInit(): void {
-      this.initCarousel = this.data.dataEjercicio.findIndex(obj => obj.ID === this.data.data.ID);
-       this.dataEjercicios =this.data.dataEjercicio;
+      this.initData();
       this.viewImage();
+    }
+
+    initData(): void {
+      const { dataEjercicio, data  } = this.data
+      this.initCarousel =  dataEjercicio.findIndex(obj => obj.ID === data.ID);
+      this.dataEjercicios = dataEjercicio;
     }
 
 
 
   @Output() actionClose = new EventEmitter<boolean>();
 
-    viewImage(): void {
+    async viewImage(): Promise<void> {
       let count = 0;
-      this.data.dataEjercicio.map((ejercicio: Ejercicio) =>{        
-        const { VisualIllustration } = ejercicio
-        if ( VisualIllustration != 'imagen.jpg' && VisualIllustration) {
+      const imagePromises: Promise<void>[] = [];
+    
+      this.data.dataEjercicio.forEach((ejercicio: Ejercicio) => {
+        const { VisualIllustration } = ejercicio;
+        if (VisualIllustration !== this.imageDefault && VisualIllustration) {
           const imageLoader = new ImageLoader(this.imagenFuntionsService$);
-          imageLoader.loadImage(VisualIllustration, (imageUrl) => {
-            this.dataEjercicios[count].VisualIllustration = imageUrl;
-          })
+          const imagePromise = new Promise<void>((resolve) => {
+            imageLoader.loadImage(VisualIllustration, (imageUrl) => {
+              this.imageUrl[count] = imageUrl;
+              count++;
+              resolve();
+            });
+          });
+          imagePromises.push(imagePromise);
+        } else {
+          this.imageUrl[count] = this.imageDefault;
+          count++;
         }
-        count++;   
-      })
-    }  
+      });
+    
+      // Esperar a que se completen todas las promesas de carga de imágenes
+      await Promise.all(imagePromises); 
+    }
 
   toggleDescription(): void {
     this.showFullDescription = !this.showFullDescription;

@@ -25,7 +25,7 @@
       <div class="contentViewEjercicio">
         <div class="item">
           <button class="viewImage" [ngClass]="{zoom: zoomImage && index === ind}" (click)="abrirImagen(ind)">
-            <img [src]="item.VisualIllustration != 'imagen.jpg'?item.VisualIllustration:'../../../../../assets/images/ejemploEjercicio.png'" alt="imagen de usuario inicial">
+            <img [src]="imageUrl[ind] ? imageUrl[ind] : (item.VisualIllustration != 'imagen.jpg' ? item.VisualIllustration : '../../../../../assets/images/ejemploEjercicio.png')" alt="imagen de usuario inicial">
           </button>
           <div class="tittleEjercicio">
             {{ item.Name }} ({{ item.Abbreviation }})

@@ -57,7 +57,7 @@ export class CreateSubgrupoComponent implements OnInit {
       abreviatura: abbreviation,
       GrupoID: grupo    
     }
-
+    this.submitted = false;
       this.ejerciciosService$.CreateSubGrupo(this.subGrupo).
        subscribe( async (res: responseModel) => {
          if (res.success) {
