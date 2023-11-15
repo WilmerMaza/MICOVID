@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component'
 import { IndicadorComponent } from './Components/create-indicador/indicador.component';
-
+import { IndicatorsGuard } from '../../infraestructure/guard/indicatorsGuard';
 
 const routes: Routes = [
   {
@@ -14,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'Indicador',
-    component: IndicadorComponent
+    component: IndicadorComponent,
+    canActivate: [IndicatorsGuard]
   }
 ];
 

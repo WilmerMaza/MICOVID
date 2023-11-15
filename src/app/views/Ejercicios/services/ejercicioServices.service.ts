@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
-import { EjercicioResponse, GrupoResponse, SubGrupoResponse } from '../Model/ejercicioModel';
+import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse } from '../Model/ejercicioModel';
 import { subgrupoModel } from '../Model/subGrupoModel';
 import { UnitsofmeasurementsResponse } from '../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../Model/createEjercicioModel';
 import { responseModel } from '../Model/reponseModel';
+import { IndicatorModel } from '../Model/modelIndicators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,21 @@ import { responseModel } from '../Model/reponseModel';
 export class EjercicioServices {
 
   constructor(private micovid$: MicoviApiService) { }
+
+  private exercisesList: Ejercicio[] = [];
+
+  getExercisesList(): Array<Ejercicio>{
+    return this.exercisesList;
+  }
+
+  setExercisesList(listData: Ejercicio[]):void{
+    this.exercisesList = listData;
+  }
+
+  CreateIndicators(data: IndicatorModel):Observable<responseModel>{
+    const enpoint = '/indicators/create-indicators';
+    return this.micovid$.post(enpoint, data);
+  }
 
   GetEjercicios(): Observable<EjercicioResponse> {
     const endpoint = '/exercises/getAll-exercises';

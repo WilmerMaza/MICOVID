@@ -17,7 +17,7 @@
     <div *ngFor="let item of navItems">
       <div class="item_nav" [routerLink]="[item.url]"
         routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
+        [routerLinkActiveOptions]="{exact: false}"
       >
         <div class="content_item">
           <div class="content_icon">

@@ -1,1 +1,100 @@
-<p>indicador works!</p>
+<div id="content_create_indicador">
+    <div class="content_fondo"></div>
+    <div class="content_form_indicador">
+        <span class="title_indicador">Crear indicador</span>
+
+        <div class="forms" *ngIf="render">
+            <form [formGroup]="formIndicador" (ngSubmit)="!this.formIndicador.invalid ? createIndicator() : null">
+                <div class="content_form1">
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputname">Nombre</mat-label>
+                            <input matInput formControlName="name" required class="inputmat" id="inputname"/>
+                            <mat-error *ngIf="formIndicador.get('name')?.invalid">El nombre del indicador es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputabrevt">Abreviatura</mat-label>
+                            <input matInput formControlName="abrevt" required class="inputmat" id="inputabrevt"/>
+                            <mat-error *ngIf="formIndicador.get('abrevt')?.invalid">La abreviatura del indicador es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputdesc">Descripción</mat-label>
+                            <textarea matInput formControlName="description" class="inputmat" id="inputdesc"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="content_form2">
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputoption">Niveles de calificación</mat-label>
+                            <mat-select formControlName="levelCal" id="inputoption">
+                                <mat-option *ngFor="let item of levelsList" [value]="item.level" (click)="createTemplate(item.level)">{{item.level}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formIndicador.get('levelCal')?.invalid">Campo requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="content_nivel_form">
+                        <div>
+                            <div class="row-data">
+                                <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                    <mat-label for="inputnivel">Nivel</mat-label>
+                                    <input matInput formControlName="level" id="inputnivel"/>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-data">
+                                <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                    <mat-label for="inputlevelname">Nombre de nivel</mat-label>
+                                    <input matInput formControlName="nameLevel" required class="inputmat" id="inputlevelname"/>
+                                    <mat-error *ngIf="formIndicador.get('nameLevel')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-data">
+                                <mat-form-field class="matforms" appearance="outline" fxFlex>
+                                    <mat-label for="inputniveldesc">Descripción de nivel</mat-label>
+                                    <textarea matInput formControlName="descriptionLevel" class="inputmat" id="inputniveldesc"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="contentButtonControl">
+                            <div *ngFor="let item of countTemplates; let tab = index" [style.background-color]="isTheSame(tab) ? 'green' : 'blue'"></div>
+                        </div>
+                        <span *ngIf="siguiente" (click)="changeTab()">siguiente</span>
+                    </div>
+                </div>
+                <div class="content_form3">
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputporcentage">Porcentage absoluto</mat-label>
+                            <input matInput formControlName="absolute" type="number" required class="inputmat" id="inputporcentage"/>
+                            <mat-error *ngIf="formIndicador.get('absolute')?.invalid">Campo requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br><br>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-label for="inputsport">Seleccionar deportista/as</mat-label>
+                            <mat-select formControlName="sportman" id="inputsport">
+                                <mat-option *ngFor="let item of sportList" [value]="item.ID">{{item.name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formIndicador.get('sportman')?.invalid">Campo requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br><br> 
+                    <div class="buttons_ind">
+                        <button mat-stroked-button color="primary" type="submit">Crear indicador</button>
+                        <br><br>
+                        <button mat-raised-button class="button_cancel" type="button" (click)="goBack()">Cancelar</button>
+                    </div>      
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
