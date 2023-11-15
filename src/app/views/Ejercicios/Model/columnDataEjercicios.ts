@@ -30,6 +30,12 @@ export const columnsEjerciciosValue = [
         type: "text"
     },
     {
+      displayname: 'Indicadores',
+      name:'',
+      estado: true,
+      type: "buttons"
+    },
+    {
       displayname:'acción',
       estado:true,
       type: "action",

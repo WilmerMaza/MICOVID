@@ -106,3 +106,28 @@ table tr:first-child th /*To remove the last border*/
   text-align: center;
   font-weight: 500;
 }
+
+
+.content_buttons_indicators {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  button {
+    border-radius: 20px;
+    width: 60px;
+    border: none;
+    box-shadow: 0px 0px 3px;
+    font-weight: 500;
+  }
+  .buttonVer {
+    border:1px solid #0C4CC8;
+  }
+  .buttonCrear {
+    background-color: #0C4CC8;
+    color: white;
+  }
+
+  button:active {
+    box-shadow: none;
+  }
+}

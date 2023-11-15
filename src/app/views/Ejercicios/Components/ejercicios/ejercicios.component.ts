@@ -117,6 +117,14 @@ export class EjerciciosComponent implements OnInit {
         }
           break;
       case 'add indicador':
+        let dataArray = [];
+        if(!Array.isArray($event.data)){
+           dataArray.push($event.data);
+           $event.data = dataArray;
+        } 
+         
+         this.ejercicioServices$.setExercisesList($event.data);
+         
         this.router.navigate(["Ejercicios/Indicador"]);
         break;
       default:
