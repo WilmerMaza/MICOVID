@@ -7,6 +7,7 @@ import { Toast } from 'src/app/utils/alert_Toast';
 import { IndicatorModel, indicatorsFormModel, levelList, listSportMan, templateList } from '../../Model/modelIndicators'
 import { responseModel } from '../../Model/reponseModel';
 import { Router } from '@angular/router';
+import { Ejercicio } from '../../Model/ejercicioModel';
 @Component({
   selector: 'app-indicador',
   templateUrl: './indicador.component.html',
@@ -39,7 +40,7 @@ export class IndicadorComponent implements OnInit, AfterContentInit {
 
   getSportMan():void{
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
-      res.forEach((item) => {
+      res.forEach((item: Sportsman) => {
         this.sportList.push({name: item.name, ID: item.ID})
       })
     })
@@ -98,7 +99,7 @@ export class IndicadorComponent implements OnInit, AfterContentInit {
       absolute: this.formIndicador.get("absolute")?.value,
       sportman: this.formIndicador.get("sportman")?.value,
       levelList: this.countTemplates,
-      exercisesList: this.ejercicioServices$.getExercisesList().map((data) => data.ID),
+      exercisesList: this.ejercicioServices$.getExercisesList().map((data: Ejercicio) => data.ID),
       abrev:this.formIndicador.get("abrevt")?.value
     }
 
