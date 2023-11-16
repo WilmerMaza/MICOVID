@@ -43,5 +43,11 @@ export const columnsValue = [
         {action:'ver', text:'Ver'},
         {action:'Editar', text:'Editar'}
       ]
-    }
+    },
+    {
+      displayname: 'Indicadores',
+      name:'',
+      estado: true,
+      type: "buttons"
+    },
 ]
