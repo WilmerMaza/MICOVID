@@ -1,12 +1,12 @@
 .cerrar{
     text-align: end;
+    height: 20px;
 }
 
 .createSubgrupo{
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 20px 0px 20px 0px;
 
     .tittle-subgrupo{
         color: #0C4CC8;
@@ -19,14 +19,13 @@
     }
 
     .contet-input{
-        padding-top: 30px;
+        padding-top: 20px;
     }
 
     .row{
         color: #000000;
         font-family:  Inria Sans;
-        font-size: 21.58px;
-        font-size: 17px;
+        font-size: 20px;
         font-weight: 800;
         padding-left: 12px;
     }
@@ -34,9 +33,12 @@
     .field-input{
         border-radius: 10px;
         border: 1px solid #dfd4d4;
-        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 4px 1px rgb(0 0 0 / 42%);
         width: 100%;
         padding-left: 10px;
+        height: 35px;
+        background-color: #FBFBFB;
+        padding: 4px 10px;
     }
 
     .scroll-container{
@@ -59,8 +61,50 @@
     }
 
     .custom-input {
-        height: 150px; 
+        height: 110px; 
         overflow-y: auto; 
       }
 
+      hr {
+        border-color: #0016a3;
+        border-width: 1px;
+        border-style: solid;
+        margin-top: 40px;
+    }
+    .iconTooltip {
+        color: #0ddcf9
+      }
+
+    .floating-div {
+        border-radius: 20px;
+        width: 350px;
+        position: fixed;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 10000; 
+      }
+      
+      .tooltipTittle{
+        font-family: Inria Sans;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #0C4CC8;
+      }
+
+      .tooltipDescription{
+        font-family: Inria Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #000000;
+        text-align: justify;
+      }  
+      
 }

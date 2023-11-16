@@ -84,6 +84,9 @@
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('cantidad')?.touched) && ejercicioForm.get('cantidad')?.hasError('required')">
               *Campo requerido
             </mat-error>
+            <mat-error class="Error" *ngIf=" (submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value">
+              *U. de cantidad y Calidad/desempeño no pueden tener las mismas unidades
+            </mat-error>
         </div>
       </div>
       <div class="content-select">
@@ -98,6 +101,9 @@
             </mat-select>
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('calidadPromedio')?.hasError('required')">
               *Campo requerido
+            </mat-error>
+            <mat-error class="Error" *ngIf=" (submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value">
+              *U. de cantidad y Calidad/desempeño no pueden tener las mismas unidades
             </mat-error>
         </div>
       </div>

@@ -186,8 +186,8 @@ openCrearSubgrupo(): void {
   dialogRef.data = {      
       message: 'Este es un mensaje de texto.'    
   }; 
-  dialogRef.width = '517px';
-  dialogRef.height = '604px'
+  dialogRef.width = '480px';
+  dialogRef.height = '605px'
   this.dialogRef = this.dialog.open(CreateSubgrupoComponent, dialogRef);
 
   this.dialogRef.afterClosed().subscribe((result: boolean) => {

@@ -44,15 +44,39 @@
         <div class="contet-input">
           <div class="row">Grupo al que pertenece</div>
           <div class="form-field">
-              <mat-select formControlName="grupo" name="grupo" class="field-input">
-                <mat-option *ngFor="let opcion of grupoAll" [value]="opcion.ID">
-                  {{ opcion.NameGrupo }}
-                </mat-option>
-              </mat-select>
-              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('grupo')?.touched) && subGrupoForm.get('grupo')?.hasError('required')">
-                *Campo requerido
-              </mat-error> 
+            <mat-select formControlName="grupo" name="grupo" class="field-input">
+              <mat-option
+                *ngFor="let opcion of grupoAll"
+                [value]="opcion.ID"
+                (mouseover)="onMouseOver($event, opcion)"
+                (mouseleave)="onMouseLeave()"
+                class="option-container" style="    display: flex;
+                flex-direction: row-reverse;"
+                >
+                  <span>{{ opcion.NameGrupo }}</span>
+                  <mat-icon class="iconTooltip" style="color: #0ddcf9">info</mat-icon>
+              </mat-option>
+            </mat-select>
+            <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('grupo')?.touched) && subGrupoForm.get('grupo')?.hasError('required')">
+              *Campo requerido
+            </mat-error>
           </div>
+        </div>
+        
+        <div class="floating-div" *ngIf="showFloatingDiv" [style.left]="floatingDivStyle.left" [style.top]="floatingDivStyle.top">
+          <div class="tooltipTittle">
+            {{ floatingDivContentTittle }} ({{floatingDivContentAbb}})
+          </div> 
+          <div class="tooltipDescription" >
+            {{ floatingDivContent }}
+          </div> 
+        
+        </div>
+        
+        
+      
+        <div>
+          <hr >
         </div>
         <div class="botones">
           <button class="botones-input" type="submit" mat-raised-button color="primary"  (click)="submitted = true; onCreateSubGrupo()">Crear</button>

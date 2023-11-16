@@ -21,6 +21,11 @@ export class CreateSubgrupoComponent implements OnInit {
   public grupoAll: Grupo[];
   public subGrupo: subgrupoModel;
   public submitted: boolean = false;
+  public showFloatingDiv: boolean = false;
+  public  floatingDivStyle = { left: '100px', top: '0' };
+  public floatingDivContent: string = '';
+  public floatingDivContentTittle: string = '';
+  public floatingDivContentAbb: string = '';
 
   constructor(private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
@@ -37,6 +42,18 @@ export class CreateSubgrupoComponent implements OnInit {
     })
   }
 
+  onMouseOver(event: MouseEvent, opcion: Grupo) {
+    this.showFloatingDiv = true;
+    this.floatingDivStyle.left = `65%`;
+    this.floatingDivStyle.top = `210px`;
+    this.floatingDivContent = opcion.Description;
+    this.floatingDivContentTittle = opcion.NameGrupo !== undefined ? opcion.NameGrupo : '';
+    this.floatingDivContentAbb = opcion.Abbreviation;
+  }
+
+  onMouseLeave() {
+    this.showFloatingDiv = false;
+  }
   cerrar(): void {
     this.dialogRef.close(true);
   }
