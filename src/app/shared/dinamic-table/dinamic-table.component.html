@@ -61,11 +61,7 @@
             <div *ngIf="item.type !== 'date' && item.type.type !== 'buttons'">{{ element[item.name] }}</div>
             <div *ngIf="item.type === 'date'">{{ element[item.name] | date: item.attr}}</div>
             <div *ngIf="item.type === 'buttons'" class="content_buttons_indicators">
-              <button class="buttonCrear" *ngIf="element.HasIndicators === false; else templateButtons" (click)="dataAction('add indicador', element)">Crear</button>
-              <ng-template #templateButtons>
-                <button class="buttonCrear" (click)="dataAction('add indicador', element)">Crear</button>
-                <button class="buttonVer">Ver</button>
-              </ng-template>
+              <button [ngClass]="{buttonVer:element.HasIndicators, disabledButtonVer:!element.HasIndicators}"(click)="element.HasIndicators ? dataAction('ver indicador', element) : null">Ver</button>
             </div>
           </td>
         </ng-container>

@@ -122,12 +122,12 @@ table tr:first-child th /*To remove the last border*/
   .buttonVer {
     border:1px solid #0C4CC8;
   }
-  .buttonCrear {
-    background-color: #0C4CC8;
-    color: white;
+  .disabledButtonVer {
+    cursor:default;
+    color: darkgray;
   }
 
-  button:active {
+  .buttonVer:active {
     box-shadow: none;
   }
 }

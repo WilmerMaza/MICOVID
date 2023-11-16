@@ -48,7 +48,7 @@ export class EjerciciosComponent implements OnInit {
   selectNumber():void {
       this.dinamicService$.selectNumber$.subscribe((data: number) => {
         this.selectItemCount = data;
-        if(data > 1) this.nameAdd = 'indicador';
+        if(data >= 1) this.nameAdd = 'indicador';
         else this.nameAdd = 'ejercicio';
       })
   }

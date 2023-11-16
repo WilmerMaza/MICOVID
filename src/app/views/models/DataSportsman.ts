@@ -18,4 +18,5 @@ export interface Sportsman {
     gender: string;
     weight: string;
     height: string;
+    HasIndicators: boolean;
   }
