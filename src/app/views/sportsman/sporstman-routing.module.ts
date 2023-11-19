@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SportsmanComponent } from './sportsman.component';
+import { ViewIndicatorsComponent } from './Components/view-indicators/view-indicators.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
     data: {
       title: 'Sportsman'
     }
+  },
+  {
+    path: 'view',
+    component: ViewIndicatorsComponent,
   }
 ];
 

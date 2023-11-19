@@ -9,6 +9,7 @@ import { CreateSportsmanComponent } from './Components/create-sportsman/create-s
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { ViewIndicatorsComponent } from './Components/view-indicators/view-indicators.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
   declarations: [
     SportsmanComponent,
     CreateSportsmanComponent,
+    ViewIndicatorsComponent,
 
   ],
   bootstrap: [CreateSportsmanComponent],

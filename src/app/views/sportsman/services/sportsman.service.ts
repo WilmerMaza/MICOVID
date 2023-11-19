@@ -6,7 +6,7 @@ import { categoryModel } from '../../models/categoryModel'
 import { HistorialCategory } from '../../models/HistorialCategoryModel';
 import { SuccessResponse } from '../../models/SuccessResponse';
 import { DynamicObject } from 'src/app/shared/model/filterModel';
-
+import { DataIndicators } from "../Models/indicatorsModel";
 @Injectable({
   providedIn: 'root'
 })
@@ -43,5 +43,9 @@ export class SportsmanService {
     return this.micovid$.post(endpoint, data);     
   }
 
+  getAlldataIndicators(ID: string): Observable<DataIndicators>{
+    const url = `/indicators/get-indicators?id=${ID}`;
+    return this.micovid$.get(url);
+  }
   
 }
