@@ -12,6 +12,7 @@ import { DateValidators } from 'src/app/utils/Validators';
 import { Error } from '../models/errorsModel';
 import { listInfo } from '../Entrenador/Model/entrenadorModel';
 import { gender } from '../Entrenador/Model/constantesEntrenador';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class SportsmanComponent implements OnInit {
   }
   constructor(
     private sporsmanService$: SportsmanService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -97,6 +99,10 @@ export class SportsmanComponent implements OnInit {
       this.showSportsman = false
       this.showViewCreateSportsman = { isVisible: true,
         data: this.dataSingleAux };
+    }
+
+    if(event.action === 'ver indicador'){
+      this.router.navigate(["sportsman/view"], {queryParams: {id:data.ID}})
     }
   }
 

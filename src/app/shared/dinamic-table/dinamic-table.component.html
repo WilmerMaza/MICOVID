@@ -63,6 +63,9 @@
             <div *ngIf="item.type === 'buttons'" class="content_buttons_indicators">
               <button [ngClass]="{buttonVer:element.HasIndicators, disabledButtonVer:!element.HasIndicators}"(click)="element.HasIndicators ? dataAction('ver indicador', element) : null">Ver</button>
             </div>
+            <div *ngIf="item.type === 'button indicador'">
+              <button class="view-indicator" (click)="dataAction('ver indicador', element)">Ver indicador</button>
+            </div>
           </td>
         </ng-container>
       </ng-container>
