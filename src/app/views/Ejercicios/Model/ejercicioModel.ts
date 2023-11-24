@@ -36,6 +36,7 @@ export interface Grupo {
     GrupoAbbreviation?: string;
     Calidad: calidadCantidadModel;
     Cantidad: calidadCantidadModel;
+    Indicador?:string;
   }
 
   export interface viewEjercicio {

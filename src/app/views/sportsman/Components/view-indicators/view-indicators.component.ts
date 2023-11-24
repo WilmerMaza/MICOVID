@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SportsmanService } from '../../services/sportsman.service';
 import { ActivatedRoute } from '@angular/router';
-import { DataIndicators, SportsMan, columnsIndValue } from '../../Models/indicatorsModel';
+import { DataIndicators, Item, Level, SportsMan, columnsIndValue } from '../../Models/indicatorsModel';
 import { Ejercicio } from 'src/app/views/Ejercicios/Model/ejercicioModel';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
 import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from 'swiper';
 
+
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 @Component({
   selector: 'app-view-indicators',
   templateUrl: './view-indicators.component.html',
-  styleUrls: ['./view-indicators.component.scss']
+  styleUrls: ['./view-indicators.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ViewIndicatorsComponent implements OnInit {
   private routeId: string;
   public columns  = columnsIndValue;
+  public initCarousel: number = 1;
   public dataEjerc: Ejercicio[];
   public dataSportman:SportsMan;
   public imageUrl: string = '';
+  public level: Level[] = [];
+  public niveles: Level[] = [];
+  public indicadores : Item[] = [];
+  public showIndicators: Item[] = [];
+
   constructor(
     private service$: SportsmanService,
     private route$: ActivatedRoute,
@@ -29,21 +40,25 @@ export class ViewIndicatorsComponent implements OnInit {
     } = this.route$;
     this.routeId = queryParams['id'];
 
-    this.getDataIndicators();
+    this.getDataIndicators(this.routeId);
   }
 
-  getDataIndicators(): void{
-    this.service$.getAlldataIndicators(this.routeId).subscribe((data:DataIndicators) => {
+  getDataIndicators(id: string): void{
+    this.service$.getAlldataIndicators(id).subscribe((data:DataIndicators) => {
       let dataSourse:Ejercicio[] = [];
-      data.item.forEach((item) => {
-        const { Ejercicio : { SubGrupo}} = item
+      data.item.forEach((item: Item) => {
+        const { Ejercicio : { SubGrupo}} = item;
+        this.indicadores.push(item);
         item.Ejercicio.SubGrupoAbbreviation = SubGrupo.abreviatura;
         item.Ejercicio.GrupoAbbreviation = SubGrupo.Grupo.Abbreviation;
+        item.Ejercicio.Indicador = item.ID
         dataSourse.push(item.Ejercicio);
         this.dataSportman = item.SportsMan;
+        this.level.push(...item.Levels);
       })
       this.viewImage(this.dataSportman.image);
-      this.dataEjerc = dataSourse
+      this.dataEjerc = dataSourse;
+      
     })
   }
 
@@ -58,8 +73,24 @@ export class ViewIndicatorsComponent implements OnInit {
     }
   }
 
+  getActionEvent(event: ActionResponse): void{
+    const { action, data } = event;
+
+    if(action === "ver indicador"){
+        this.showIndicators = this.indicadores.filter((item: Item) => item.ID === data.Indicador);
+    }
+    
+  }
+
   goBack(): void{
     window.history.back();
+  }
+
+  cerrar(): void{
+    this.showIndicators = [];
+    this.indicadores = [];
+    this.getDataIndicators(this.routeId);
+    
   }
 
 }
