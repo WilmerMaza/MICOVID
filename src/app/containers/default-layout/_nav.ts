@@ -14,7 +14,7 @@ export class NavItem {
     {
       name: 'Entrenador',
       url: '/Entrenador',
-      iconComponent: { name: 'fitness_center' },
+      iconComponent: { name: 'how_to_reg' },
       badge: {
         color: 'info',
         text: 'NEW',
@@ -44,7 +44,7 @@ export class NavItem {
     {
       name: 'Plan Anual',
       url: '/plan-anual',
-      iconComponent: { name: 'widgets' },
+      iconComponent: { name: ' calendar_month' },
       badge: {
         color: 'info',
         text: 'NEW',
@@ -53,7 +53,7 @@ export class NavItem {
     {
       name: 'Ejercicios',
       url: '/Ejercicios',
-      iconComponent: { name: 'widgets' },
+      iconComponent: { name: 'fitness_center' },
       badge: {
         color: 'info',
         text: 'NEW',
