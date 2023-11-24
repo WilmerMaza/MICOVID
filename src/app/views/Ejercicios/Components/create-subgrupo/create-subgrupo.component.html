@@ -1,89 +1,86 @@
 <div class="cerrar">
-  <button mat-icon-button (click)="cerrar()"  >
-    <mat-icon style="color: rgba(0, 0, 0, 0.64);" >close</mat-icon>
-  </button>
+  <div class="content-x-close">
+    <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
+  </div>
 </div>
 
 <div class="createSubgrupo">
+  <div class="content-dialog">
+    <div class="tittle-subgrupo">Crear subgrupo</div>
 
-    <div class="tittle-subgrupo">
-      Crear subgrupo
-    </div>
     <div class="scroll-container">
       <form [formGroup]="subGrupoForm" (ngSubmit)="onSubmit()" class="form-container">
         <div class="contet-input">
           <div class="row">Nombre</div>
-          <div class="form-field">
-              <input matInput formControlName="NameSubGrupo" class="field-input">
-              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('NameSubGrupo')?.touched) && subGrupoForm.get('NameSubGrupo')?.hasError('required')">
-                *Campo requerido
-              </mat-error>    
+          <div class="row-data">
+            <mat-form-field class="matforms" appearance="outline" fxFlex>
+              <input matInput formControlName="NameSubGrupo" required class="inputmat" />
+              <mat-error *ngIf="subGrupoForm.get('NameSubGrupo')?.invalid">
+                *Campo requerido</mat-error>
+            </mat-form-field>
           </div>
         </div>
-  
+
         <div class="contet-input">
           <div class="row">Abreviatura</div>
-          <div class="form-field">
-              <input matInput formControlName="abbreviation" class="field-input">
-              <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('abbreviation')?.touched) && subGrupoForm.get('abbreviation')?.hasError('required')">
-                *Campo requerido
-              </mat-error> 
+          <div class="row-data">
+            <mat-form-field class="matforms" appearance="outline" fxFlex>
+              <input matInput formControlName="abbreviation" required class="inputmat" />
+              <mat-error *ngIf="subGrupoForm.get('abbreviation')?.invalid">
+                *Campo requerido</mat-error>
+            </mat-form-field>
           </div>
         </div>
-  
+
         <div class="contet-input">
           <div class="row">Descripción</div>
           <div class="form-field">
             <textarea matInput formControlName="Description" class="field-input custom-input"></textarea>
-            <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('Description')?.touched) && subGrupoForm.get('Description')?.hasError('required')">
-              *Campo requerido
-            </mat-error> 
-          </div>
-        </div>
-  
-        <div class="contet-input">
-          <div class="row">Grupo al que pertenece</div>
-          <div class="form-field">
-            <mat-select formControlName="grupo" name="grupo" class="field-input">
-              <mat-option
-                *ngFor="let opcion of grupoAll"
-                [value]="opcion.ID"
-                (mouseover)="onMouseOver($event, opcion)"
-                (mouseleave)="onMouseLeave()"
-                class="option-container" style="    display: flex;
-                flex-direction: row-reverse;"
-                >
-                  <span>{{ opcion.NameGrupo }}</span>
-                  <mat-icon class="iconTooltip" style="color: #0ddcf9">info</mat-icon>
-              </mat-option>
-            </mat-select>
-            <mat-error class="Error" *ngIf="(submitted || subGrupoForm.get('grupo')?.touched) && subGrupoForm.get('grupo')?.hasError('required')">
+            <mat-error class="Error" *ngIf="
+                (submitted || subGrupoForm.get('Description')?.touched) &&
+                subGrupoForm.get('Description')?.hasError('required')
+              ">
               *Campo requerido
             </mat-error>
           </div>
         </div>
-        
-        <div class="floating-div" *ngIf="showFloatingDiv" [style.left]="floatingDivStyle.left" [style.top]="floatingDivStyle.top">
-          <div class="tooltipTittle">
-            {{ floatingDivContentTittle }} ({{floatingDivContentAbb}})
-          </div> 
-          <div class="tooltipDescription" >
-            {{ floatingDivContent }}
-          </div> 
-        
+
+        <div class="select">
+          <div class="contet-input">
+            <div class="row">Grupo al que pertenece</div>
+            <div class="row-data">
+              <mat-form-field class="matforms" appearance="outline" fxFlex>
+                <mat-select formControlName="grupo">
+                  <mat-option *ngFor="let item of grupoAll" [value]="item.ID" class="option-container">
+                    <span>{{ item.NameGrupo }}</span>
+                    <mat-icon class="iconTooltip" (mouseleave)="onMouseLeave()"
+                      (mouseover)="onMouseOver($event, item)">info</mat-icon></mat-option>
+                </mat-select>
+                <mat-error *ngIf="subGrupoForm.get('grupo')?.invalid">
+                  *Campo requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="floating-div" *ngIf="showFloatingDiv">
+            <div class="tooltipTittle">
+              {{ floatingDivContentTittle }} ({{ floatingDivContentAbb }})
+            </div>
+            <div class="tooltipDescription">
+              {{ floatingDivContent }}
+            </div>
+          </div>
         </div>
-        
-        
-      
+
         <div>
-          <hr >
+          <hr />
         </div>
-        <div class="botones">
-          <button class="botones-input" type="submit" mat-raised-button color="primary"  (click)="submitted = true; onCreateSubGrupo()">Crear</button>
-        
-        <button   style="color: #3f51b5;" class="botones-input" type="submit" mat-raised-button mat-dialog-close color="basic" >Volver</button>
-      </div>
+
+        <div class="content-button">
+          <div class="button-close" matDialogClose>Cancelar</div>
+          <div class="button-add" (click)="onCreateSubGrupo()">Crear</div>
+        </div>
       </form>
     </div>
-  
   </div>
+</div>

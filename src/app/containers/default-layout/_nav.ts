@@ -1,8 +1,6 @@
 import { INavData } from '@coreui/angular';
 
-
 export class NavItem {
-
   public ItemsInstitution: INavData[] = [
     {
       name: 'Deportista',
@@ -21,7 +19,16 @@ export class NavItem {
         color: 'info',
         text: 'NEW',
       },
-    }
+    },
+    {
+      name: 'Complementos',
+      url: '/Complementos',
+      iconComponent: { name: 'widgets' },
+      badge: {
+        color: 'info',
+        text: 'NEW',
+      },
+    },
   ];
 
   public ItemsCoach: INavData[] = [
@@ -51,6 +58,15 @@ export class NavItem {
         color: 'info',
         text: 'NEW',
       },
-    }
+    },
+    {
+      name: 'Complementos',
+      url: '/Complementos',
+      iconComponent: { name: 'widgets' },
+      badge: {
+        color: 'info',
+        text: 'NEW',
+      },
+    },
   ];
 }

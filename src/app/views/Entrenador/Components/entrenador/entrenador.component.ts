@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { columnsEntrenadorValue } from 'src/app/views/Entrenador/Model/columnDataEntrenador';
-import { EntrenadorServices } from 'src/app/views/Entrenador/services/EntrenadorServices.service';
-import { filterEntrenadorValue } from 'src/app/views/Entrenador/Model/filtroDataEntrenador';
-import { filterResult } from 'src/app/shared/model/filterModel';
+import { Router } from '@angular/router';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
+import { filterResult } from 'src/app/shared/model/filterModel';
+import {
+  NormaliceUpperUnicosValidators,
+  NormaliceUpperValidators,
+} from 'src/app/utils/Validators';
+import { columnsEntrenadorValue } from 'src/app/views/Entrenador/Model/columnDataEntrenador';
+import { filterEntrenadorValue } from 'src/app/views/Entrenador/Model/filtroDataEntrenador';
+import { EntrenadorServices } from 'src/app/views/Entrenador/services/EntrenadorServices.service';
 import {
   Entrandor,
   listEntrenador,
   viewModalEntrenador,
 } from '../../Model/entrenadorModel';
-import {
-  NormaliceUpperUnicosValidators,
-  NormaliceUpperValidators,
-} from 'src/app/utils/Validators';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entrenador',

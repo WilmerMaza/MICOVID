@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   Router,
+  RouterStateSnapshot,
 } from '@angular/router';
-import { AuthService } from 'src/app/services/auth-service.service';
-import { DataUser } from 'src/app/views/pages/model/dataUserModel';
-import { Validators } from 'src/app/utils/Validators';
-import { firstValueFrom } from 'rxjs';
-import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
-import { userPlan } from 'src/app/views/pages/plans/model/PlanModel';
-import { Toast } from 'src/app/utils/alert_Toast';
 import * as moment from 'moment';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Toast } from 'src/app/utils/alert_Toast';
+import { DataUser } from 'src/app/views/pages/model/dataUserModel';
+import { userPlan } from 'src/app/views/pages/plans/model/PlanModel';
+import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
 
 @Injectable({
   providedIn: 'root',

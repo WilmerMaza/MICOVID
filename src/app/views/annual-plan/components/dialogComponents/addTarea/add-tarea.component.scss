@@ -10,7 +10,7 @@
 .content-dialog {
     padding: 5px 15px 10px 15px;
     text-align: center;
-    height: 366px;
+    height: 410px;
     font-family:Inria Sans;
     .content-x-close {
         display: flex;
@@ -72,6 +72,7 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        margin-top: 10px;
         .button-close {
             color: #0C4CC8;
             width: 86px;
@@ -133,3 +134,4 @@
 ::ng-deep.mdc-text-field--outlined .mdc-notched-outline{
     display: none !important;
 }
+

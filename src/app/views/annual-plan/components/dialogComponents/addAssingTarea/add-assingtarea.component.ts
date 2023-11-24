@@ -9,12 +9,11 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { AnnualPlanService } from '../../../Services/annual-plan.service';
-import { Toast } from '../../../../../utils/alert_Toast';
 import { DynamicError } from 'src/app/shared/model/filterModel';
-import { AddTareaComponent } from '../addTarea/add-tarea.component';
-import { Tarea, dataModelAssing } from '../../../models/eventsModel';
 import { resposeCreate } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import { Toast } from '../../../../../utils/alert_Toast';
+import { AnnualPlanService } from '../../../Services/annual-plan.service';
+import { Tarea, dataModelAssing } from '../../../models/eventsModel';
 
 @Component({
   selector: 'add-assingtarea',
@@ -101,11 +100,5 @@ export class AddAssingTareaComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  createtask(): void {
-    this.dialog.open(AddTareaComponent, {
-      width: '384px',
-    });
   }
 }

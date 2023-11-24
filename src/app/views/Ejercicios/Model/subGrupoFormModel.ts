@@ -7,7 +7,7 @@ export class subGrupoFormModel {
           NameSubGrupo:new FormControl(null,[Validators.required]),
            Description: new FormControl(null, [Validators.required]),
            abbreviation: new FormControl(null, [Validators.required]),
-           grupo: new FormControl(null, [Validators.required]),
+           grupo: new FormControl("", [Validators.required]),
          })
     }
 }

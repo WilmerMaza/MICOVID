@@ -6,34 +6,34 @@
   <div class="content-form">
     <div class="form_insert">
       <h4>{{titleInit}}</h4>
-      <form [formGroup]="addTaskForm">
+      <form [formGroup]="addCategoriaForm">
         <div class="content-input">
           <div class="content-input">
             <div class="row">Nombre</div>
             <div class="row-data">
               <mat-form-field class="matforms" appearance="outline" fxFlex>
                 <input matInput formControlName="name" required class="inputmat" />
-                <mat-error *ngIf="addTaskForm.get('name')?.invalid">El nombre de la tarea es requerido</mat-error>
+                <mat-error *ngIf="addCategoriaForm.get('name')?.invalid">El nombre de la tarea es requerido</mat-error>
               </mat-form-field>
             </div>
           </div>
         </div>
-        <div class="content-textArea">
-          <div class="row">Descripción del evento</div>
-          <div class="row-data">
-            <mat-form-field class="matforms" appearance="outline" fxFlex>
-              <textarea matInput formControlName="describe" required class="inputmat"></textarea>
-              <mat-error *ngIf="addTaskForm.get('describe')?.invalid">*requerido</mat-error>
-            </mat-form-field>
+
+        <div class="contet-input">
+          <div class="row">Descripción</div>
+          <div class="form-field">
+            <textarea matInput formControlName="descripcion" class="field-input custom-input"></textarea>
+            <mat-error class="Error" *ngIf="
+                ( addCategoriaForm.get('descripcion')?.touched) &&
+                addCategoriaForm.get('descripcion')?.hasError('required')
+              ">
+              *Campo requerido
+            </mat-error>
           </div>
         </div>
         <div>
-          <div class="row">Color:</div>
-          <mat-form-field appearance="outline">
-            <input matInput formControlName="color" type="color" />
-          </mat-form-field>
+          <hr />
         </div>
-
 
       </form>
       <div class="content-button">
