@@ -12,8 +12,8 @@ export interface Level {
 
 export interface SportsMan {
   ID: string;
-  name: string;
-  identification: string;
+  name?: string;
+  identification?: string;
   typeIdentification: string;
   weight: string;
   category: string;

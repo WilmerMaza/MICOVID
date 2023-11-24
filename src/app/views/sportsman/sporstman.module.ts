@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { ViewIndicatorsComponent } from './Components/view-indicators/view-indicators.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ViewIndicatorsComponent } from './Components/view-indicators/view-indic
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    SwiperModule
   ],
   declarations: [
     SportsmanComponent,
