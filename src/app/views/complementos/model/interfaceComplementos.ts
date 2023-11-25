@@ -18,3 +18,12 @@ export interface Item {
   createdAt: string
   updatedAt: string
 }
+
+export interface Etapas {
+  ID: string
+  name: string
+  descripcion: string
+  createdAt: string
+  updatedAt: string
+  EntrenadorID: string
+}

@@ -7,6 +7,7 @@ import {
   SubGrupo,
   SubGrupoResponse,
 } from 'src/app/views/Ejercicios/Model/ejercicioModel';
+import { AddEtapaComponent } from 'src/app/views/annual-plan/components/dialogComponents/addEtapa/add-etapa.component';
 import { AddTareaComponent } from 'src/app/views/annual-plan/components/dialogComponents/addTarea/add-tarea.component';
 import {
   dinamicTableComplements,
@@ -14,7 +15,7 @@ import {
 } from 'src/app/views/annual-plan/models/interfaceFormPlan';
 import { categoryModel } from 'src/app/views/models/categoryModel';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
-import { Grupo } from '../../model/interfaceComplementos';
+import { Etapas, Grupo } from '../../model/interfaceComplementos';
 import { ComplementosService } from '../../services/complementos.service';
 import { AddCategoriaComponent } from '../addCategoria/add-categoria.component';
 import { ViewTableComponent } from '../viewTable/viewTable.component';
@@ -61,6 +62,12 @@ export class ComplementosComponent implements OnInit {
     });
   }
 
+  createEtapa(): void {
+    this.dialog.open(AddEtapaComponent, {
+      width: '384px',
+    });
+  }
+
   async viewTable(nameTable: string): Promise<void> {
     let data = {
       name: nameTable,
@@ -76,7 +83,11 @@ export class ComplementosComponent implements OnInit {
           });
         break;
       case 'Etapas':
-        this.modal(data);
+        this.complementos$.getEtapas().subscribe((res: Etapas[]) => {
+          data.data = res;
+          this.modal(data);
+        });
+
         break;
       case 'Tareas':
         this.complementos$.getTaskEntrenador().subscribe((res: task) => {

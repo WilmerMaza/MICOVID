@@ -9,7 +9,8 @@
                     <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Categorías')">Ver
                         categorías</button>
                     <br>
-                    <button mat-raised-button color="primary" class="bttunSegundo" (click)="createCategoria()">Crear categoría</button>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)="createCategoria()">Crear
+                        categoría</button>
                 </div>
             </div>
             <div *ngIf="!isEscuela">
@@ -19,7 +20,8 @@
                 <div class="buttons">
                     <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Etapas')">Ver etapas</button>
                     <br>
-                    <button mat-raised-button color="primary" class="bttunSegundo">Crear etapas</button>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)="createEtapa()">Crear
+                        etapas</button>
                 </div>
             </div>
             <div *ngIf="!isEscuela">

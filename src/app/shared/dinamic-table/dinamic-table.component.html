@@ -16,7 +16,7 @@
       </ng-container>
 
       <ng-container [matColumnDef]="item.displayname" *ngFor="let item of displayedColumns">
-        <th  mat-header-cell *matHeaderCellDef >
+        <th mat-header-cell *matHeaderCellDef>
 
           {{ item.displayname=='noName'?' ': item.displayname| uppercase }}
         </th>
@@ -28,8 +28,19 @@
               <div class="point"></div>
             </div>
             <mat-menu #menuAction="matMenu">
-              <button *ngFor="let m of item.menu" mat-menu-item class="style_matmenu" (click)="dataAction(m, element)">
+              <button *ngFor="let m of item.menu ; let isIndexSubMenu = index" mat-menu-item class="style_matmenu"
+                (mouseover)="m.action ==='Menu'? mouseOver(isIndexSubMenu):null"
+                (click)="m.action !=='Menu'? dataAction(m, element):null"
+                [matMenuTriggerFor]="m.action ==='Menu'? SubMenu : null">
                 <span>{{ m.text }}</span>
+              </button>
+
+            </mat-menu>
+
+            <mat-menu #SubMenu="matMenu">
+              <button *ngFor="let sub of item.menu[indexSubMenu].menu " mat-menu-item class="style_matmenu"
+                (click)="dataAction(sub, element)">
+                <span>{{ sub.text }}</span>
               </button>
             </mat-menu>
           </td>
