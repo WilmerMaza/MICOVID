@@ -1,4 +1,4 @@
-#content-Etapa {
+#contentEtapa {
   :host {
     .mat-mdc-dialog-surface {
       overflow: hidden;
@@ -7,103 +7,100 @@
       --cui-gutter-x: 0;
     }
   }
-
-  .content-dialog {
-    padding: 5px 15px 10px 15px;
-    text-align: center;
-    height: 410px;
-    font-family: Inria Sans;
-    .content-x-close {
+  padding: 5px 15px 10px 15px;
+  text-align: center;
+  height: 410px;
+  font-family: Inria Sans;
+  .content-x-close {
+    display: flex;
+    justify-content: end;
+    margin: 0 -10px;
+    color: #0c4cc8;
+  }
+  .content-form {
+    display: flex;
+    justify-content: center;
+    height: 90%;
+    .form_insert {
+      width: 280px;
       display: flex;
-      justify-content: end;
-      margin: 0 -10px;
-      color: #0c4cc8;
-    }
-    .content-form {
-      display: flex;
-      justify-content: center;
-      height: 90%;
-      .form_insert {
-        width: 280px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        h4 {
-          color: #0c4cc8;
-          font-weight: 700;
-        }
-        form {
-          color: #000;
-          font-size: 18px;
-          font-weight: 700;
-          input,
-          textarea {
-            font-size: 14px;
-            font-weight: 400;
-          }
-        }
-      }
-      .input-date {
-        display: flex;
-        justify-content: space-between;
-        .date_init {
-          width: 130px;
-        }
-        .date_end {
-          width: 130px;
-        }
-        input {
-          font-size: 12px;
-        }
-      }
-      .content-textArea {
-        textarea {
-          width: 260px;
-          max-height: 71px;
-          height: 134px;
-        }
-        ::ng-deep .mat-mdc-text-field-wrapper {
-          height: 80px !important;
-        }
-      }
-    }
-
-    .content-button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      position: relative;
-      top: -15px;
-      .button-close {
+      flex-direction: column;
+      justify-content: space-around;
+      h4 {
         color: #0c4cc8;
-        width: 86px;
-        border: 1px solid #0c4cc8;
-        border-radius: 15px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
-        cursor: pointer;
+        font-weight: 700;
       }
-      .button-add {
-        color: white;
-        width: 86px;
-        border: 1px solid #0c4cc8;
-        background-color: #0c4cc8;
-        border-radius: 15px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
-        cursor: pointer;
+      form {
+        color: #000;
+        font-size: 18px;
+        font-weight: 700;
+        input,
+        textarea {
+          font-size: 14px;
+          font-weight: 400;
+        }
       }
     }
-    .closeButtonModal {
-      background: white;
+    .input-date {
       display: flex;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 250px;
+      justify-content: space-between;
+      .date_init {
+        width: 130px;
+      }
+      .date_end {
+        width: 130px;
+      }
+      input {
+        font-size: 12px;
+      }
     }
-    ::ng-deep.mat-mdc-icon-button svg {
-      width: 20px;
+    .content-textArea {
+      textarea {
+        width: 260px;
+        max-height: 71px;
+        height: 134px;
+      }
+      ::ng-deep .mat-mdc-text-field-wrapper {
+        height: 80px !important;
+      }
+    }
+  }
+
+  .content-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    top: -15px;
+    .button-close {
       color: #0c4cc8;
+      width: 86px;
+      border: 1px solid #0c4cc8;
+      border-radius: 15px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
+      cursor: pointer;
     }
+    .button-add {
+      color: white;
+      width: 86px;
+      border: 1px solid #0c4cc8;
+      background-color: #0c4cc8;
+      border-radius: 15px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
+      cursor: pointer;
+    }
+  }
+  .closeButtonModal {
+    background: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 250px;
+  }
+  ::ng-deep.mat-mdc-icon-button svg {
+    width: 20px;
+    color: #0c4cc8;
   }
 
   ::ng-deep .mat-mdc-text-field-wrapper {
