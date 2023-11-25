@@ -240,20 +240,73 @@
             }
           }
           
-          .cerrar {
-            background-color: #0c4cc8;
-            border-radius: 50%;
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            box-shadow: 2px 2px 2px;
-          }
-          
-          .cerrar:active {
-            box-shadow: -2px -2px 2px;
-          }
-          
         }
     }
+
+   #content-info-levels{
+      width: 100%;
+      padding: 20px 0;
+      overflow: auto;
+      position: relative;
+      .button-back{
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        button {
+          padding: 0 20px;
+          border: none;
+          border-radius: 15px;
+          color: #FFF;
+          background-color: #0C4CC8;
+        }
+      }
+      .header-level{
+        margin-bottom: 15px;
+        color: #FFF;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .name-exercicies{
+            width: 303px;
+            height: 28px;
+            border-radius: 15px;
+            background: #73F237;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
+            text-align: center;
+            padding-top: 2px;
+        }
+      }
+
+      .content-levels{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        .target-level{
+          width: 250px;
+          height: 366px;
+          flex-shrink: 0;
+          background-image: url(../../../../../assets/images/fondo-tarjeta-indicadores.png);
+          background-size: cover;
+          background-position: top;
+          border-radius: 18px;
+          color: white;
+          padding: 10px;
+          box-shadow: 0 0 5px black;
+          .name-level{
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+          }
+          .desc-level{
+            font-size: 14px;
+          }
+        }
+      }
+
+   } 
 
 }

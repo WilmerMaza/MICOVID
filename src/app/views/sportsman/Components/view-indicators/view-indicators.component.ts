@@ -24,9 +24,11 @@ export class ViewIndicatorsComponent implements OnInit {
   public dataSportman:SportsMan;
   public imageUrl: string = '';
   public level: Level[] = [];
-  public niveles: Level[] = [];
+  public niveles: Level[];
   public indicadores : Item[] = [];
   public showIndicators: Item[] = [];
+  public showLevels:boolean = false;
+  public nameEjerc: string;
 
   constructor(
     private service$: SportsmanService,
@@ -91,6 +93,16 @@ export class ViewIndicatorsComponent implements OnInit {
     this.indicadores = [];
     this.getDataIndicators(this.routeId);
     
+  }
+
+  showLevelsFunction(name:string, levels: Level[]):void{
+    this.niveles = levels;
+    this.nameEjerc = name;
+    this.showLevels = true;
+  }
+
+  outLevel():void{
+    this.showLevels = false;
   }
 
 }
