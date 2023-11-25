@@ -20,7 +20,7 @@
     <div class="header-indicador">
         <div class="line-blue"></div>
     </div>
-    <div class="container-indicator">
+    <div class="container-indicator" *ngIf="!showLevels;else templateLevel">
         <div class="carrousel-indicators">
             <div class="slider-effectCoverflow">
                 <swiper
@@ -75,7 +75,7 @@
                       </div>
                     </div>
                     <div class="footer-indicator">
-                        <div class="redirect-levels">
+                        <div class="redirect-levels" (click)="showLevelsFunction(item.Ejercicio.Name, item.Levels)">
                             <span>Ver niveles de clasificación del indicador</span>
                         </div>
                     </div>
@@ -85,5 +85,30 @@
               
         </div>
     </div>
+    <ng-template #templateLevel>
+      <div id="content-info-levels">
+        <div class="button-back">
+          <button (click)="outLevel()">Atras</button>
+        </div>
+        <div class="header-level">
+          <div class="name-exercicies">
+              {{nameEjerc | titlecase}}
+          </div>
+        </div>
+        <div class="content-levels">
+          <div *ngFor="let item of niveles" class="target-level">
+            <div class="name-level">
+              {{item.LevelName}}
+            </div>
+            <div class="desc-level">
+              <div>Descripción:</div>
+              <div>
+                {{item.Description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </ng-template>
 </div>
