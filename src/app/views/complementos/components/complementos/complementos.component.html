@@ -1,0 +1,50 @@
+<div class="gree-content" id="gree-content">
+    <div class="content">
+        <div class="grid-container" [ngClass]="{'grid-containerCenter': !isEscuela }">
+            <div *ngIf="isEscuela">
+                <div class="esfera">
+                    <img src="../../../../../assets/images/categorias.png" alt="">
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Categorías')">Ver
+                        categorías</button>
+                    <br>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)="createCategoria()">Crear categoría</button>
+                </div>
+            </div>
+            <div *ngIf="!isEscuela">
+                <div class="esfera">
+                    <img src="../../../../../assets/images/etapas.png" alt="">
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Etapas')">Ver etapas</button>
+                    <br>
+                    <button mat-raised-button color="primary" class="bttunSegundo">Crear etapas</button>
+                </div>
+            </div>
+            <div *ngIf="!isEscuela">
+                <div class="esfera">
+                    <img src="../../../../../assets/images/tareas.png" alt="">
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Tareas')">Ver tareas</button>
+                    <br>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)=" createtask()">Crear
+                        tareas</button>
+                </div>
+            </div>
+            <div *ngIf="!isEscuela">
+                <div class="esfera">
+                    <img src="../../../../../assets/images/subgrupos.png" alt="">
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Subgrupos')">Ver
+                        subgrupos</button>
+                    <br>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)=" openSubgrupo()">Crear
+                        subgrupos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

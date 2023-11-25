@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { Moment } from 'moment';
+import 'moment/locale/es';
 import { Validators } from 'src/app/utils/Validators';
+import { AnnualPlanService } from '../../Services/annual-plan.service';
 import {
   Data,
   Events,
@@ -10,14 +14,9 @@ import {
   fechaTask,
   itemEvents,
   modalDataEvent,
-
 } from '../../models/eventsModel';
-import { Moment } from 'moment';
-import 'moment/locale/es';
-import { AnnualPlanService } from '../../Services/annual-plan.service';
-import { AddAssingTareaComponent } from '../dialogComponents/addAssingTarea/add-assingtarea.component';
-import { MatDialog } from '@angular/material/dialog';
 import { task } from '../../models/interfaceFormPlan';
+import { AddAssingTareaComponent } from '../dialogComponents/addAssingTarea/add-assingtarea.component';
 
 @Component({
   selector: 'app-tareasxmicro',
@@ -41,7 +40,7 @@ export class TareasxmicroComponent implements OnInit {
   public fechaFin: string = '';
   public numMicrociclo: string = '';
   private microcicloId: string = '';
-  public colorTarget: string[] = ['#C80C0C', '#10C80C', '#C80C0C', '#FFE926'];
+
   private events: Events;
   public diasFechas: fechaTask[] = [];
 
@@ -89,65 +88,65 @@ export class TareasxmicroComponent implements OnInit {
     const { number, mes } = item;
     const eventsDays: events[] = [];
     const dayPositions: { [day: string]: number } = {}; // Lleva un seguimiento de las posiciones por día
+    if (this.events) {
+      this.events.forEach((event: itemEvents) => {
+        const { start, end } = event;
 
-    this.events.forEach((event: itemEvents) => {
-      const { start, end } = event;
-
-      if (Validators.isNullOrUndefined(end)) {
-        event.end = start;
-      }
-
-      const endSingle = Validators.isNullOrUndefined(end) ? start : end;
-      const fechaInicio = moment(start);
-      const fechaFin = moment(endSingle);
-      const startDay = fechaInicio.format('DD');
-      const startMonth = fechaInicio.format('MM'); // Obtén el mes de inicio del evento
-
-      // Calcula la cantidad de días que dura el evento
-      const durationDays = fechaFin.diff(fechaInicio, 'days') + 1;
-
-      // Verifica si el evento abarca varios días
-      if (durationDays > 1) {
-        // Verifica si es un nuevo día y reinicia la posición
-        if (!dayPositions[startDay]) {
-          dayPositions[startDay] = 1;
+        if (Validators.isNullOrUndefined(end)) {
+          event.end = start;
         }
 
-        // Asigna la posición al evento en el primer día
-        event.position = dayPositions[startDay];
+        const endSingle = Validators.isNullOrUndefined(end) ? start : end;
+        const fechaInicio = moment(start);
+        const fechaFin = moment(endSingle);
+        const startDay = fechaInicio.format('DD');
+        const startMonth = fechaInicio.format('MM'); // Obtén el mes de inicio del evento
 
-        // Incrementa la posición para el próximo evento en el mismo día
-        dayPositions[startDay]++;
+        // Calcula la cantidad de días que dura el evento
+        const durationDays = fechaFin.diff(fechaInicio, 'days') + 1;
 
-        // Actualiza las posiciones para los días siguientes
-        for (let i = 1; i < durationDays; i++) {
-          const nextDay = moment(start).add(i, 'days').format('DD');
-          dayPositions[nextDay] = dayPositions[startDay];
+        // Verifica si el evento abarca varios días
+        if (durationDays > 1) {
+          // Verifica si es un nuevo día y reinicia la posición
+          if (!dayPositions[startDay]) {
+            dayPositions[startDay] = 1;
+          }
+
+          // Asigna la posición al evento en el primer día
+          event.position = dayPositions[startDay];
+
+          // Incrementa la posición para el próximo evento en el mismo día
+          dayPositions[startDay]++;
+
+          // Actualiza las posiciones para los días siguientes
+          for (let i = 1; i < durationDays; i++) {
+            const nextDay = moment(start).add(i, 'days').format('DD');
+            dayPositions[nextDay] = dayPositions[startDay];
+          }
+        } else {
+          // El evento dura un solo día, verifica si es un nuevo día y reinicia la posición
+          if (!dayPositions[startDay]) {
+            dayPositions[startDay] = 1;
+          }
+
+          // Asigna la posición al evento
+          event.position = dayPositions[startDay];
+
+          // Incrementa la posición para el próximo evento en el mismo día
+          dayPositions[startDay]++;
         }
-      } else {
-        // El evento dura un solo día, verifica si es un nuevo día y reinicia la posición
-        if (!dayPositions[startDay]) {
-          dayPositions[startDay] = 1;
+        event.durationDays = durationDays;
+
+        // Obtén el mes de la fecha actual (item)
+        const currentMonth = mes;
+
+        // Verifica si el evento pertenece al día actual y al mismo mes
+        const numberDay = parseInt(startDay);
+        if (number === numberDay && currentMonth === startMonth) {
+          eventsDays.push(event);
         }
-
-        // Asigna la posición al evento
-        event.position = dayPositions[startDay];
-
-        // Incrementa la posición para el próximo evento en el mismo día
-        dayPositions[startDay]++;
-      }
-      event.durationDays = durationDays;
-      event.color = this.colorTarget[Math.floor(Math.random() * 4)];
-
-      // Obtén el mes de la fecha actual (item)
-      const currentMonth = mes;
-
-      // Verifica si el evento pertenece al día actual y al mismo mes
-      const numberDay = parseInt(startDay);
-      if (number === numberDay && currentMonth === startMonth) {
-        eventsDays.push(event);
-      }
-    });
+      });
+    }
 
     return eventsDays;
   }
@@ -156,11 +155,16 @@ export class TareasxmicroComponent implements OnInit {
     this.annualPlanService$
       .getMicrocicloTask(microcicloID)
       .subscribe((res: TareasMicrociclo[]) => {
-
-        const eventos = res.map((  { fechaInicio, fechaFin ,Tarea:{name}}:TareasMicrociclo ) => ({
+        const eventos = res.map(
+          ({
+            fechaInicio,
+            fechaFin,
+            Tarea: { name, color },
+          }: TareasMicrociclo) => ({
             title: name,
             start: fechaInicio,
             end: fechaFin,
+            color: color,
           })
         );
 

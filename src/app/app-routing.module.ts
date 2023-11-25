@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
-import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/components/register.component';
 import { JwtGuard } from './infraestructure/guard/JwtGuard';
 import { PlanGuard } from './infraestructure/guard/PlanGuard';
+import { UserAndJwtGuard } from './infraestructure/guard/UserandJwtGuard';
 import { IgnoreLoginGuard } from './infraestructure/guard/ignoreLoginGuard';
+import { LoginComponent } from './views/pages/login/login.component';
+import { Page404Component } from './views/pages/page404/page404.component';
+import { Page500Component } from './views/pages/page500/page500.component';
 import { PlansComponent } from './views/pages/plans/components/plans.component';
 import { PortalEntradaComponent } from './views/pages/portal-entrada/portal-entrada.component';
-import { UserAndJwtGuard } from './infraestructure/guard/UserandJwtGuard';
+import { RegisterComponent } from './views/pages/register/components/register.component';
 
 const routes: Routes = [
   {
@@ -81,6 +81,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/Ejercicios/Ejercicios.module').then(
             (m) => m.EjerciciosModule
+          ),
+      },
+      {
+        path: 'Complementos',
+        loadChildren: () =>
+          import('./views/Complementos/complementos.module').then(
+            (m) => m.ComplementosModule
           ),
       },
     ],

@@ -1,0 +1,20 @@
+<div class="content-dialog">
+    <div class="content-x-close">
+        <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
+    </div>
+
+    <div class="content-table">
+        <div class="tableContent">
+            <h4 class="textInicial">{{titleInit}}</h4>
+            <div>
+                <hr [ngClass]="{'hrCustum':  modalName === 'Subgrupos' }" />
+            </div>
+
+            <section class="tableContentDinamic">
+                <app-dinamic-table [isCheckBox]="false" [columns]="column" [dataSource]="dataSet"
+                    [isPaginador]="false"></app-dinamic-table>
+            </section>
+        </div>
+
+    </div>
+</div>

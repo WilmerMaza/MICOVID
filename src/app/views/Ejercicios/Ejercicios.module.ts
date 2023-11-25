@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { NgxMaskModule } from 'ngx-mask';
-import { EjerciciosRoutingModule } from './Ejercicios-routing.module';
-import { CreateSubgrupoComponent } from './Components/create-subgrupo/create-subgrupo.component';
-import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component';
-import { CreateEjercicioComponent } from './Components/create-ejercicio/create-ejercicio.component';
 import { MaterialModule } from 'src/app/infraestructure/modules/material/material.module';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
-import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
+import { SwiperModule } from 'swiper/angular';
+import { AddCategoriaComponent } from '../Complementos/components/addCategoria/add-categoria.component';
+import { CreateEjercicioComponent } from './Components/create-ejercicio/create-ejercicio.component';
 import { IndicadorComponent } from './Components/create-indicador/indicador.component';
-import { SwiperComponent, SwiperModule } from 'swiper/angular';
+import { CreateSubgrupoComponent } from './Components/create-subgrupo/create-subgrupo.component';
+import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component';
+import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
+import { EjerciciosRoutingModule } from './Ejercicios-routing.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { SwiperComponent, SwiperModule } from 'swiper/angular';
     CreateSubgrupoComponent,
     ViewEjericioComponent,
     IndicadorComponent,
+    AddCategoriaComponent
   ],
 
 })

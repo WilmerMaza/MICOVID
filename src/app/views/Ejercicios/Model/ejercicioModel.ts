@@ -18,6 +18,7 @@ export interface Grupo {
     EntrenadorID: string;
     Grupo: Grupo;
     abreviatura?: string;
+    grupoName?:string;
   }
   
   export interface Ejercicio {

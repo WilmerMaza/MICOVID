@@ -5,39 +5,38 @@ import {
   Validators as validForm,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Toast } from '../../../../../utils/alert_Toast';
-import { AnnualPlanService } from '../../../Services/annual-plan.service';
 
 import { DynamicError } from 'src/app/shared/model/filterModel';
+import { Toast } from 'src/app/utils/alert_Toast';
 import { resposeCreate } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import { AddTareaComponent } from 'src/app/views/annual-plan/components/dialogComponents/addTarea/add-tarea.component';
+import { ComplementosService } from '../../services/complementos.service';
 
 @Component({
-  selector: 'app-add-tarea',
-  templateUrl: './add-tarea.component.html',
-  styleUrls: ['./add-tarea.component.scss'],
+  selector: 'app-add-categoria',
+  templateUrl: './add-categoria.component.html',
+  styleUrls: ['./add-categoria.component.scss'],
 })
-export class AddTareaComponent {
-  public addTaskForm: FormGroup;
-  public titleInit: string = 'Crear tarea';
+export class AddCategoriaComponent {
+  public addCategoriaForm: FormGroup;
+  public titleInit: string = 'Crear categoria';
 
-  selectedColor = new FormControl('');
   constructor(
     public dialogRef: MatDialogRef<AddTareaComponent>,
-    private annualPlanService$: AnnualPlanService
+    private complementos$: ComplementosService
   ) {
-    this.addTaskForm = new FormGroup({
+    this.addCategoriaForm = new FormGroup({
       name: new FormControl('', [validForm.required]),
-      describe: new FormControl('', [validForm.required]),
-      color: new FormControl('')
+      descripcion: new FormControl('', [validForm.required]),
     });
   }
 
   createTask(): void {
     const request = {
-      ...this.addTaskForm.value,
+      ...this.addCategoriaForm.value,
     };
 
-    this.annualPlanService$.createTask(request).subscribe(
+    this.complementos$.crearCategoria(request).subscribe(
       (data: resposeCreate) => {
         Toast.fire({
           icon: 'success',
@@ -59,7 +58,7 @@ export class AddTareaComponent {
   }
 
   alertTrigger(): void {
-    this.addTaskForm.markAllAsTouched();
+    this.addCategoriaForm.markAllAsTouched();
   }
 
   onNoClick(): void {
