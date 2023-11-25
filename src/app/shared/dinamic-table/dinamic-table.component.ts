@@ -32,8 +32,11 @@ export class DinamicTableComponent implements AfterViewInit {
   public columnsToDisplay: string[] = [];
   public dataSource = new MatTableDataSource<any>([]);
   public selection = new SelectionModel<any>(true, []);
+  public indexSubMenu: number = 0;
   @Input('isCheckBox') isCheckBox = false;
   @Input('isPaginador') isPaginador = true;
+
+  m: any;
   @Input('columns') set setColumns(value: any[]) {
     this.displayedColumns = value;
     this.setColumn();
@@ -122,5 +125,9 @@ export class DinamicTableComponent implements AfterViewInit {
       data: row,
     };
     this.actionEvent.emit(actionReturn);
+  }
+
+  mouseOver(index: number): void {
+    this.indexSubMenu = index;
   }
 }

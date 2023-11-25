@@ -1,0 +1,46 @@
+<div class="content-dialog" id="contentEtapa">
+  <div class="content-x-close">
+    <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
+  </div>
+
+  <div class="content-form">
+    <div class="form_insert">
+      <h4>{{titleInit}}</h4>
+      <form [formGroup]="addEtapaForm">
+        <div class="content-input">
+          <div class="content-input">
+            <div class="row">Nombre</div>
+            <div class="row-data">
+              <mat-form-field class="matforms" appearance="outline" fxFlex>
+                <input matInput formControlName="name" required class="inputmat" />
+                <mat-error *ngIf="addEtapaForm.get('name')?.invalid">El nombre de la tarea es requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="contet-input">
+          <div class="row">Descripción</div>
+          <div class="form-field">
+            <textarea matInput formControlName="descripcion" class="field-input custom-input"></textarea>
+            <mat-error class="Error" *ngIf="
+                ( addEtapaForm.get('descripcion')?.touched) &&
+                addEtapaForm.get('descripcion')?.hasError('required')
+              ">
+              *Campo requerido
+            </mat-error>
+          </div>
+        </div>
+        <div>
+          <hr />
+        </div>
+
+      </form>
+      <div class="content-button">
+        <div class="button-close" matDialogClose>Cancelar</div>
+        <div class="button-add" (click)="createTask()">Crear</div>
+      </div>
+    </div>
+
+  </div>
+</div>

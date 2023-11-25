@@ -5,7 +5,7 @@ import { SubGrupoResponse } from '../../Ejercicios/Model/ejercicioModel';
 import { resposeCreate } from '../../Entrenador/Model/entrenadorModel';
 import { task } from '../../annual-plan/models/interfaceFormPlan';
 import { categoryModel } from '../../models/categoryModel';
-import { Grupo, categoriaRequest } from '../model/interfaceComplementos';
+import { Etapas, Grupo, categoriaRequest } from '../model/interfaceComplementos';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +44,15 @@ export class ComplementosService {
   }
   getGrupo(idGrupo: string): Observable<Grupo> {
     const endpoint = `/exercises/get-Grupo/${idGrupo}`;
+    return this.micovid$.get(endpoint);
+  }
+
+  crearEtapa(request: categoriaRequest): Observable<resposeCreate> {
+    const endpoint = `/Etapa/create`;
+    return this.micovid$.post(endpoint, request);
+  }
+  getEtapas(): Observable<Etapas[]> {
+    const endpoint = `/Etapa/getAll`;
     return this.micovid$.get(endpoint);
   }
 }

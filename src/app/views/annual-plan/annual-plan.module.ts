@@ -8,12 +8,12 @@ import { AnnualPlanRoutingModule } from './annual-plan-routing.module';
 import { AnnualPlanComponent } from './components/annual-plan.component';
 import { AddAnnualPlanComponent } from './components/dialogComponents/addAnnualPlan/add-annual-plan.component';
 import { AddAssingTareaComponent } from './components/dialogComponents/addAssingTarea/add-assingtarea.component';
+import { AddEtapaComponent } from './components/dialogComponents/addEtapa/add-etapa.component';
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
 import { AddTareaComponent } from './components/dialogComponents/addTarea/add-tarea.component';
 import { MacrocicloComponent } from './components/macrociclo/macrociclo.component';
 import { MicrocicloComponent } from './components/microciclo/microciclo.component';
 import { TareasxmicroComponent } from './components/tareasxmicro/tareasxmicro.component';
-
 @NgModule({
   declarations: [
     AnnualPlanComponent,
@@ -24,6 +24,7 @@ import { TareasxmicroComponent } from './components/tareasxmicro/tareasxmicro.co
     TareasxmicroComponent,
     AddAssingTareaComponent,
     AddTareaComponent,
+    AddEtapaComponent,
   ],
   imports: [
     CommonModule,

@@ -30,7 +30,7 @@ export class ViewTableComponent implements OnInit {
 
   typeTable(): void {
     const { name, data } = this.data;
-    this.titleInit = `${name} exisitentes`;
+    this.titleInit = `${name} existentes`;
     this.modalName = name;
     this.columnaTable(name);
     this.dataSet = data;

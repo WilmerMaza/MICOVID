@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { SportsmanService } from './services/sportsman.service'
-import { AuthService } from 'src/app/services/auth-service.service';
-import { Sportsman } from '../models/DataSportsman'
-import { HistorialCategory, visible } from '../models/HistorialCategoryModel'
-import { columnsValue } from '../models/columnDataSportman'
-import { categoryModel } from '../models/categoryModel'
-import { SportsmanData, jsonData } from '../models/dataFilterSportsman'
+import { Router } from '@angular/router';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { DateValidators } from 'src/app/utils/Validators';
-import { Error } from '../models/errorsModel';
-import { listInfo } from '../Entrenador/Model/entrenadorModel';
 import { gender } from '../Entrenador/Model/constantesEntrenador';
-import { Router } from '@angular/router';
+import { listInfo } from '../Entrenador/Model/entrenadorModel';
+import { Sportsman } from '../models/DataSportsman';
+import { HistorialCategory, visible } from '../models/HistorialCategoryModel';
+import { categoryModel } from '../models/categoryModel';
+import { columnsValue } from '../models/columnDataSportman';
+import { SportsmanData, jsonData } from '../models/dataFilterSportsman';
+import { Error } from '../models/errorsModel';
+import { SportsmanService } from './services/sportsman.service';
 
 
 @Component({
@@ -81,7 +80,9 @@ export class SportsmanComponent implements OnInit {
       data  : { birtDate },
       data,
     } = event;
-    if (action == 'ver') {
+
+    
+    if (action == 'verDeportista') {
       this.birdData = DateValidators.parseDate(birtDate);
       const generoItem = this.generos.find((generoSet: listInfo) => generoSet.code === data.gender);
       if (generoItem) {
@@ -101,7 +102,7 @@ export class SportsmanComponent implements OnInit {
         data: this.dataSingleAux };
     }
 
-    if(event.action === 'ver indicador'){
+    if(action === 'verIndicadores'){
       this.router.navigate(["sportsman/view"], {queryParams: {id:data.ID}})
     }
   }
