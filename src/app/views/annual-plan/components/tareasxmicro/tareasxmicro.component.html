@@ -12,8 +12,8 @@
         </div>
       </div>
       <div>
-        <div  class="contenCalendar" style="overflow: hidden;">
-          <table class="calendarTable calendarGrid" id="idCalendar" >
+        <div class="contenCalendar" style="overflow: hidden;">
+          <table class="calendarTable calendarGrid" id="idCalendar">
             <thead>
               <tr>
                 <th *ngFor="let item of diasFechas">
@@ -21,7 +21,7 @@
                     <div class="theadText">
                       <span class="btnAdd" (click)="assigntask(item)">
                         <mat-icon>add_circle_outline</mat-icon>
-                        <span>Asignar tarea</span>
+                        <span>Asignar actividad</span>
                       </span>
                     </div>
                     <span></span>
@@ -35,8 +35,8 @@
                 <td *ngFor="let item of diasFechas" class="filasCalendar">
                   <div class="calendarGrid">
                     <div *ngFor="let event of eventsDay(item) ;" [style.grid-row]="event.position"
-                     [style.width]="((event.durationDays ? event.durationDays : 1)  * 100)+'%'"
-                     [style.background]="event.color" class="eventosCalendar"  [ngClass] = "{
+                      [style.width]="((event.durationDays ? event.durationDays : 1)  * 100)+'%'"
+                      [style.background]="event.color" class="eventosCalendar" [ngClass]="{
                       'evento-multiple-dias': (event.durationDays ? event.durationDays: 1) > 1
                     }">
                       {{event.title}}

@@ -18,7 +18,7 @@ import { resposeCreate } from 'src/app/views/Entrenador/Model/entrenadorModel';
 })
 export class AddTareaComponent {
   public addTaskForm: FormGroup;
-  public titleInit: string = 'Crear tarea';
+  public titleInit: string = 'Crear Actividad';
 
   selectedColor = new FormControl('');
   constructor(
@@ -28,7 +28,7 @@ export class AddTareaComponent {
     this.addTaskForm = new FormGroup({
       name: new FormControl('', [validForm.required]),
       describe: new FormControl('', [validForm.required]),
-      color: new FormControl('')
+      color: new FormControl(''),
     });
   }
 

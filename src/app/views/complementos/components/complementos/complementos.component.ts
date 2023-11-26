@@ -89,7 +89,7 @@ export class ComplementosComponent implements OnInit {
         });
 
         break;
-      case 'Tareas':
+      case 'Actividades':
         this.complementos$.getTaskEntrenador().subscribe((res: task) => {
           data.data = res;
           this.modal(data);

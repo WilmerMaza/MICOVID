@@ -5,9 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  dinamicTableComplements
-} from 'src/app/views/annual-plan/models/interfaceFormPlan';
+import { dinamicTableComplements } from 'src/app/views/annual-plan/models/interfaceFormPlan';
 import { columnsDefault, columnsSubgrupo } from '../../model/columnDataTable';
 
 @Component({
@@ -21,9 +19,7 @@ export class ViewTableComponent implements OnInit {
   public column = [{}];
   public dataSet = [{}];
   public modalName: string = '';
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: dinamicTableComplements
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: dinamicTableComplements) {}
   ngOnInit(): void {
     this.typeTable();
   }
@@ -44,7 +40,7 @@ export class ViewTableComponent implements OnInit {
       case 'Etapas':
         this.column = columnsDefault;
         break;
-      case 'Tareas':
+      case 'Actividades':
         this.column = columnsDefault;
         break;
       case 'Subgrupos':
