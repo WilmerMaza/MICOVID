@@ -56,7 +56,10 @@ export class CreateEjercicioComponent implements OnInit{
   }
 
   onSubmit() {
-    if (this.submitted && this.ejercicioForm.valid) {
+    const {cantidad,
+    calidadPromedio } = this.ejercicioForm.value;
+
+    if (this.submitted && this.ejercicioForm.valid && cantidad != calidadPromedio) {
       const { name, description, abbreviation,
         subgrupo, relationship, cantidad,
       calidadPromedio, image } = this.ejercicioForm.value;
