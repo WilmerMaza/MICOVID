@@ -25,7 +25,7 @@ export class AddAssingTareaComponent {
   public categoriesList: Tarea[] = [];
   public minDate: Date;
   public maxDate: Date;
-  public titleInit: string = 'Asignar tarear';
+  public titleInit: string = 'Asignar actividad';
 
   constructor(
     public dialogRef: MatDialogRef<AddAssingTareaComponent>,

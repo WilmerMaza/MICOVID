@@ -8,13 +8,13 @@
       <h4>{{titleInit}}</h4>
       <form [formGroup]="addTaskForm">
         <div class="content-input">
-          <div class="row">Tareas existentes</div>
+          <div class="row">Actividades existentes</div>
           <div class="row-data">
             <mat-form-field class="matforms" appearance="outline" fxFlex>
               <mat-select formControlName="task">
                 <mat-option *ngFor="let item of categoriesList" [value]="item.ID">{{item.name}}</mat-option>
               </mat-select>
-              <mat-error *ngIf="addTaskForm.get('task')?.invalid">La Tarea es requerida</mat-error>
+              <mat-error *ngIf="addTaskForm.get('task')?.invalid">La actividad es requerida</mat-error>
             </mat-form-field>
           </div>
         </div>

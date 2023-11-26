@@ -13,6 +13,10 @@
     #3776f2 55.62%,
     #0ddcf9 91.67%
   ); /* Reemplaza #00ff00 por el color que desees */
+
+  ::ng-deep.sidebar-brand {
+    background: none !important;
+  }
 }
 
 .saludoSesion {
@@ -26,7 +30,7 @@
   margin: auto !important;
 }
 
-.item_nav{
+.item_nav {
   font-family: Inria Sans;
   width: 95%;
   display: flex;
@@ -37,7 +41,7 @@
   margin: 5px 0px;
 }
 
-.item_nav:hover{
+.item_nav:hover {
   cursor: pointer;
 }
 
@@ -59,7 +63,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
-  .content-img{
+  .content-img {
     border: 2px solid #37cdf2;
     border-radius: 50%;
     padding: 2px;
@@ -78,10 +82,18 @@
 
 .active {
   background-color: white;
-  color: #0C4CC8;
+  color: #0c4cc8;
   transform: scale(1.1);
-  border-radius:  0px 15px 15px 0px;
+  border-radius: 0px 15px 15px 0px;
   box-shadow: 0 1px 5px rgb(27, 27, 27);
+}
+
+.conten-img {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.8;
+  width: 256px !important;
+  overflow: hidden;
 }
 
 :host {
@@ -97,8 +109,6 @@
     .container-sm,
     .container {
       max-width: 100%;
-
-
     }
   }
 }
