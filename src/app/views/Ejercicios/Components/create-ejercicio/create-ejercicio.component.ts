@@ -55,8 +55,11 @@ export class CreateEjercicioComponent implements OnInit{
     this.tittleName = combinate ? 'Crear ejercicio combinado' : 'Crear ejercicio'
   }
 
-  onSubmit() {
-    if (this.submitted && this.ejercicioForm.valid) {
+  onSubmit(): void {
+    const {cantidad,
+    calidadPromedio } = this.ejercicioForm.value;
+
+    if (this.submitted && this.ejercicioForm.valid && cantidad != calidadPromedio) {
       const { name, description, abbreviation,
         subgrupo, relationship, cantidad,
       calidadPromedio, image } = this.ejercicioForm.value;

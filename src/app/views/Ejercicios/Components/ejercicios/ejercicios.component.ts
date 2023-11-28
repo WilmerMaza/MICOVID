@@ -193,8 +193,8 @@ export class EjerciciosComponent implements OnInit {
         combinate: this.combinate,
         dataEjercicios: this.combinate ? this.data : ''    
     }; 
-    dialogRef.width = '517px';
-    dialogRef.height = '604px'
+    dialogRef.width = '510px';
+    dialogRef.height = '590px'
     this.dialogRef = this.dialog.open(CreateEjercicioComponent, dialogRef);
     this.dialogRef.afterClosed().subscribe((result: boolean) => {
       if( result )

@@ -1,4 +1,4 @@
-<div class="createEjercicio" style="border-radius: 30px;">
+<div class="createEjercicio">
   <div class="cerrar">
     <button mat-icon-button (click)="cerrar()"  >
       <mat-icon style="color: antiquewhite;" >close</mat-icon>
@@ -33,7 +33,7 @@
       <div class="contet-input">
         <div class="row">descripción</div>
         <div class="form-field">
-            <textarea matInput  formControlName="description" class="field-input" style="height: 100px;"></textarea>
+            <textarea matInput  formControlName="description" class="field-input descripition"></textarea>
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('description')?.touched) && ejercicioForm.get('description')?.hasError('required')">
               *Campo requerido
             </mat-error>
@@ -84,9 +84,6 @@
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('cantidad')?.touched) && ejercicioForm.get('cantidad')?.hasError('required')">
               *Campo requerido
             </mat-error>
-            <mat-error class="Error" *ngIf=" (submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value">
-              *U. de cantidad y Calidad/desempeño no pueden tener las mismas unidades
-            </mat-error>
         </div>
       </div>
       <div class="content-select">
@@ -102,13 +99,15 @@
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('calidadPromedio')?.hasError('required')">
               *Campo requerido
             </mat-error>
-            <mat-error class="Error" *ngIf=" (submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value">
+            <mat-error class="Error" *ngIf="ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value
+             && ejercicioForm.get('calidadPromedio')?.value != null" 
+            >
               *U. de cantidad y Calidad/desempeño no pueden tener las mismas unidades
             </mat-error>
         </div>
       </div>
 
-      <div class="contet-input">
+      <div class="contet-input contet-input-archive">
         <div class="input-file">
             <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
             <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
