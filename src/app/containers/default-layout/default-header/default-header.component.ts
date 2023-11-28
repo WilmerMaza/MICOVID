@@ -47,7 +47,6 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
 
   personSesicion(): void {
     this.sesicion = this.sesicion ? false : true;
-    console.log(this.sesicion);
   }
 
   transformindicador(key: string): string {
