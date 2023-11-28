@@ -33,7 +33,7 @@
       <div class="contet-input">
         <div class="row">descripción</div>
         <div class="form-field">
-            <textarea matInput  formControlName="description" class="field-input" style="height: 45px;"></textarea>
+            <textarea matInput  formControlName="description" class="field-input descripition"></textarea>
             <mat-error class="Error" *ngIf="(submitted || ejercicioForm.get('description')?.touched) && ejercicioForm.get('description')?.hasError('required')">
               *Campo requerido
             </mat-error>
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <div class="contet-input" style="padding-top: 18px;">
+      <div class="contet-input contet-input-archive">
         <div class="input-file">
             <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
             <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
