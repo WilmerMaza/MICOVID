@@ -1,282 +1,286 @@
-.peso-estatura{
-  display: flex;
-  justify-content: space-between;
-}
+#sportsmansCreate {
+  margin: 1% !important;
+  display: flex !important;
+  justify-content: center !important;
 
-.container {
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 30px !important;
+    border-radius: 14px !important;
+    border-color: white !important;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   }
+
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
+    position: relative !important;
+    top: -10px !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 4px;
+  }
+
+  ::ng-deep.mdc-dialog__container {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  ::ng-deep.mdc-text-field--outlined .mdc-notched-outline {
+    display: none !important;
+  }
+  ::ng-deep .matforms .mat-mdc-text-field-wrapper {
+    background-color: white !important;
+  }
+
   .container-view {
     width: 100%;
     height: 100%;
     justify-content: center;
     border-radius: 20px;
+    .close-button {
+      color: #ffffff;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1;
+    }
+
+    .close-button:focus {
+      outline: none;
+    }
   }
-  
-  ::ng-deep .full-height {
+  ::ng-deep.full-height {
     padding: 0 !important;
   }
-  .content-card {
-    background: linear-gradient(
-      265.16deg,
-      #0ddcf9 -0.06%,
-      #3776f2 49.85%,
-      #0c4cc8 92.38%
-    );
-  
-    border-radius: 0px 20px 20px 0px;
-  }
-  
-  .row {
-    color: #ffffff;
-    font-size: 15px;
-    margin-left: 0px;
-    font-family: Inria Sans;
-  }
-  .row-data {
-    color: #ffffff;
-    font-weight: bold;
-    font-family: Inria Sans;
-    font-size: 15px;
-  }
-  .center-content {
-    max-width: 100%; /* El contenedor no será más ancho que su contenedor principal */
-    height: auto;
-    overflow: hidden;
-    background-size: cover;
-  }
-  .center-content img {
-    max-width: 100%; /* El contenedor no será más ancho que su contenedor principal */
-    object-fit: cover;
-  }
-  
-  .close-button {
-    color: #ffffff;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1;
-  }
-  
-  .close-button:focus {
-    outline: none;
-  }
-  ::ng-deep .contentInfo {
-    margin: 1%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  // ::ng-deep .container-view {
-  //   max-width: 1296px;
-  // }
-  
-  ::ng-deep .container {
-    max-width: 100% !important;
-  }
-  
-  .contentData {
-    padding: 10px 20px 10px 30px;
-  }
-  
-  #name {
-    color: #fff;
-    font-family: "Inria Sans";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  
-  .columns {
-    border-radius: 17px;
-    background-color: #ffffff;
-    border: none;
-    width: 5% !important;
-    height: 100% !important;
-    color: #0c4cc8 !important;
-    font-size: 10.2px;
-    font-family: "Inria Sans";
-    font-weight: bold;
-  }
-  .botones {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    width: 150px;
-    justify-content: space-between;
-  }
-  
-  .masImg {
-    font-size: 150px;
-    padding: 0;
-    margin: 0;
-    color: #0c4cc8;
-    line-height: 0.7;
-    text-align: center;
-  }
-  
-  .textImg {
-    color: #0c4cc8;
-    text-align: center;
-    font-family: Inria Sans;
-    font-size: 17.36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  .img {
-    margin: 20%;
-  }
-  
-  .img:hover .masImg {
-    transform: scale(1.2); /* Hacemos que el símbolo "+" sea un poco más grande */
-  }
-  .img:hover .textImg {
-    transform: scale(1.2); /* Hacemos que el símbolo "+" sea un poco más grande */
-  }
-  
-  .matforms {
-    width: 100%;
-  }
-  
-  .inputmat {
-    padding: 2px;
-  }
-  
-  ::ng-deep .mat-mdc-text-field-wrapper {
-    height: 30px !important;
-    border-radius: 10px !important;
-    border-color: white !important;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  ::ng-deep
-    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
-    .mat-mdc-form-field-infix {
-    padding: 2px !important;
-  }
-  
-  .inputUsuario .mat-form-field-flex {
-    padding: 0; /* Ajusta el relleno interno */
-  }
-  
-  ::ng-deep .mat-form-field.mat-focused .mat-form-field-underline {
-    border-color: transparent !important;
-  }
-  .row {
-    margin-bottom: 1.5%;
-    font-family: Inria Sans;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  
-  .btones {
-    justify-content: space-between !important;
-  
-    .slice {
-      width: 30px; // Ancho fijo para los botones, ajusta según tus necesidades
+  .full-height {
+    .center-content {
+      max-width: 100%;
+      height: auto;
+      overflow: hidden;
+      background-size: cover;
+      .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+
+        .uploadlabelcustom {
+          .masImg {
+            font-size: 150px;
+            padding: 0;
+            margin: 0;
+            color: #0c4cc8;
+            line-height: 0.7;
+            text-align: center;
+          }
+
+          .textImg {
+            color: #0c4cc8;
+            text-align: center;
+            font-family: Inria Sans;
+            font-size: 17.36px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+        }
+        .uploadlabel {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-width: 50px;
+            min-height: 50px;
+          }
+        }
+      }
+
+      .img:hover .masImg {
+        transform: scale(1.2);
+      }
+      .img:hover .textImg {
+        transform: scale(1.2);
+      }
     }
-  
-    // Estilo para los elementos invisibles
-    .invisible-button {
-      visibility: hidden;
-      width: 0;
+
+    .content-card {
+      background: linear-gradient(
+        265.16deg,
+        #0ddcf9 -0.06%,
+        #3776f2 49.85%,
+        #0c4cc8 92.38%
+      );
+      border-radius: 0px 20px 20px 0px;
+      .contendorCarousel {
+        height: 80% !important;
+        min-height: 80% !important;
+        padding: 2% 3%;
+        .carousel {
+          .form-carousel {
+            .row {
+              color: #ffffff;
+              font-size: 15px;
+              font-family: Inria Sans;
+              font-style: normal;
+              font-weight: 700;
+              margin-left: 0px;
+              margin-bottom: 1.5%;
+              line-height: normal;
+            }
+
+            .row-data {
+              color: #ffffff;
+              font-weight: bold;
+              font-family: Inria Sans;
+              font-size: 15px;
+
+              .matforms {
+                width: 100%;
+                .inputmat {
+                  padding: 2px;
+                }
+                .Error {
+                  font-size: 12px;
+                }
+              }
+            }
+
+            .peso-estatura {
+              display: flex;
+              justify-content: space-between;
+              .row {
+                color: #ffffff;
+                font-size: 15px;
+                font-family: Inria Sans;
+                font-style: normal;
+                font-weight: 700;
+                margin-left: 0px;
+                margin-bottom: 1.5%;
+                line-height: normal;
+              }
+              .row-data {
+                color: #ffffff;
+                font-weight: bold;
+                font-family: Inria Sans;
+                font-size: 15px;
+
+                .matforms {
+                  width: 100%;
+                  .inputmat {
+                    padding: 2px;
+                  }
+                  .Error {
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .btones {
+        justify-content: space-between !important;
+
+        .widthBtnLeft {
+          display: flex;
+          align-items: flex-end;
+          margin: 1%;
+          width: 10%;
+          .slice {
+            border-radius: 50%;
+            border: none;
+            width: 30px;
+            height: 28px;
+            margin: 1%;
+          }
+          .invisible-button {
+            visibility: hidden;
+            width: 0;
+          }
+        }
+        .mat-mdc-radio-button.mat-accent {
+          --mdc-radio-disabled-selected-icon-color: #fff;
+          --mdc-radio-disabled-unselected-icon-color: #fff;
+          --mdc-radio-unselected-hover-icon-color: #ffffff;
+          --mdc-radio-unselected-icon-color: rgb(255 255 255);
+          --mdc-radio-unselected-pressed-icon-color: rgb(255 255 255);
+          --mdc-radio-selected-focus-icon-color: #0c4cc8;
+          --mdc-radio-selected-hover-icon-color: #0c4cc8;
+          --mdc-radio-selected-icon-color: #0c4cc8;
+          --mdc-radio-selected-pressed-icon-color: #0c4cc8;
+          --mat-radio-ripple-color: #ffffff;
+          --mat-radio-checked-ripple-color: #0c4cc8;
+          --mat-radio-disabled-label-color: rgb(255 255 255);
+        }
+
+        ::ng-deep.mdc-radio__outer-circle {
+          background-color: white;
+        }
+
+        ::ng-deep.mat-mdc-radio-button
+          .mdc-radio
+          .mdc-radio__native-control:enabled:checked
+          + .mdc-radio__background
+          .mdc-radio__outer-circle {
+          background: #0c4cc8;
+        }
+
+        .widthBtnRigh {
+          display: flex;
+          align-items: flex-end;
+          margin: 1%;
+          width: 10%;
+          justify-content: flex-end;
+          .slice {
+            border-radius: 50%;
+            border: none;
+            width: 30px;
+            height: 28px;
+            margin: 1%;
+          }
+        }
+
+        .contentBtnCrear {
+          margin: 1%;
+          width: 10%;
+          display: flex;
+          justify-content: flex-end;
+          .btnCrear {
+            height: 100% !important;
+            border-radius: 15px;
+            background: #ffff;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+            color: #0c4cc8;
+            text-align: center;
+            font-family: Inria Sans;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin: 1% !important;
+          }
+        }
+      }
     }
-  
-    // Agrega estilos adicionales según sea necesario
   }
-  .contendorCarousel {
-    height: 80% !important;
-    min-height: 80% !important;
-    padding: 2% 3%;
-  }
-  
-  .slice {
-    border-radius: 50%;
-    border: none;
-    width: 28px;
-    height: 28px;
-    margin: 1%;
-  }
-  
-  .btnCrear {
-    height: 100% !important;
-    border-radius: 15px;
-    background: #ffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
-    color: #0c4cc8;
-    text-align: center;
-    font-family: Inria Sans;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 1% !important;
-  }
-  
-  .contentBtnCrear {
-    margin: 1%;
-    width: 10%;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .widthBtnLeft {
-    display: flex;
-    align-items: flex-end;
-    margin: 1%;
-    width: 10%;
-  }
-  
-  .widthBtnRigh {
-    display: flex;
-    align-items: flex-end;
-    margin: 1%;
-    width: 10%;
-    justify-content: flex-end;
-  }
-  
-  ::ng-deep .mat-mdc-radio-button.mat-accent {
-    --mdc-radio-selected-focus-icon-color: #0c4cc8;
-    --mdc-radio-selected-hover-icon-color: #0c4cc8;
-    --mdc-radio-selected-icon-color: #0c4cc8;
-    --mdc-radio-selected-pressed-icon-color: #0c4cc8;
-    --mat-radio-ripple-color: #0c4cc8;
-    --mat-radio-checked-ripple-color: #0c4cc8;
-  }
-  
-  ::ng-deep .matforms .mat-mdc-text-field-wrapper {
-    background-color: white !important;
-  }
-  
-  ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
-    position: relative !important;
-    top: -10px !important;
-  }
-  
-  
-  ::ng-deep .mat-radio-button-custom.mat-radio-checked .mat-radio-outer-circle,
-  .mat-radio-button-custom.mat-radio-checked .mat-radio-inner-circle {
-    background-color: blue; /* Cambia a azul cuando se selecciona */
-  }
-  
-  /* Cuando los radio buttons están seleccionados */
-  ::ng-deep  .mat-radio-button-custom:not(.mat-radio-checked) .mat-radio-outer-circle,
-  .mat-radio-button-custom:not(.mat-radio-checked) .mat-radio-inner-circle {
-    background-color: white; /* Cambia a blanco cuando están deseleccionados */
-  }
-  
-  .Error{
-    font-size: 12px;
-  }  
+}

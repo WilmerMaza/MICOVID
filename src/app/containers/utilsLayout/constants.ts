@@ -18,7 +18,7 @@ export const objectStikyUser:stiky[] = [
       roll: "Entrenador",
       text: "Entrenador",
       color: "#0DDCF9",
-      textColor: '#3776F2',
+      textColor: 'white',
       showLinkPlan: false
     }
 ];

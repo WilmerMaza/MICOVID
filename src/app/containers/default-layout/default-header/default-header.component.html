@@ -2,26 +2,17 @@
 <ng-container>
   <c-container [fluid]="true">
     <div class="buttomheader" style="display:flex; align-items: center;">
-      
-    <button
-      toggle="visible"
-      cHeaderToggler
-      [cSidebarToggle]="sidebarId"
-      class="ps-1 text-primary" 
-    >
-      <svg cIcon name="cilMenu" size="lg"></svg>
-    </button>
-  
-    <button
-      [routerLink]="['/home']"
-      toggle="visible"
-      cHeaderToggler
-      class="ps-1 text-primary button_house"
-      style="display: flex;"
-    >
-    <mat-icon style="color: #0C4CC8;"   fontIcon="home"></mat-icon>
-    </button>
-      <div [ngStyle]="{'background-color': stickyUser?.color, color: stickyUser?.textColor}" class="stikyUser" >
+
+      <button toggle="visible" cHeaderToggler [cSidebarToggle]="sidebarId" class="ps-1 text-primary"
+        (click)="personSesicion()">
+        <svg cIcon name="cilMenu" size="lg"></svg>
+      </button>
+
+      <button [routerLink]="['/home']" toggle="visible" cHeaderToggler class="ps-1 text-primary button_house"
+        style="display: flex;">
+        <mat-icon style="color: #0C4CC8;" fontIcon="home"></mat-icon>
+      </button>
+      <div [ngStyle]="{'background-color': stickyUser?.color, color: stickyUser?.textColor}" class="stikyUser">
         {{stickyUser?.text | uppercase}}
       </div>
     </div>
@@ -41,6 +32,9 @@
 <ng-template #userDropdown>
   <c-dropdown alignment="end" variant="nav-item">
     <button cButton color="" [caret]="false" cDropdownToggle class="py-0">
+      <c-avatar *ngIf="sesicion" cTextColor="primary" shape="rounded-1" size="md"
+        [src]=" selectedImageURL == ''?'../../assets/images/default.png': selectedImageURL" status="success">
+      </c-avatar>
       <mat-icon style="color: #0C4CC8; font-size: 30px;">arrow_drop_down</mat-icon>
     </button>
     <ul cDropdownMenu class="pt-0 pr-5 w-auto">
@@ -102,7 +96,7 @@
         <hr cDropdownDivider />
       </li>
       <li *ngIf="stickyUser?.showLinkPlan">
-        <a routerLink="./plans" cDropdownItem >
+        <a routerLink="./plans" cDropdownItem>
           <svg cIcon class="me-2" name="cilCreditCard"></svg>
           Planes
           <c-badge class="ms-2 float-end" color="primary"> new </c-badge>
@@ -114,7 +108,7 @@
       <li>
         <a routerLink="./" cDropdownItem (click)="logout()">
           <svg cIcon class="me-2" name="cilLockLocked"></svg>
-          Lock Account
+          Cerrar Sesión
         </a>
       </li>
       <li></li>
