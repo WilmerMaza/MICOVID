@@ -53,13 +53,18 @@ export class ViewIndicatorsComponent implements OnInit {
         this.indicadores.push(item);
         item.Ejercicio.SubGrupoAbbreviation = SubGrupo.abreviatura;
         item.Ejercicio.GrupoAbbreviation = SubGrupo.Grupo.Abbreviation;
-        item.Ejercicio.Indicador = item.ID
+        item.Ejercicio.Indicador = item.ID;
         dataSourse.push(item.Ejercicio);
         this.dataSportman = item.SportsMan;
         this.level.push(...item.Levels);
       })
       this.viewImage(this.dataSportman.image);
-      this.dataEjerc = dataSourse;
+      this.dataEjerc = dataSourse.reduce((acc: Ejercicio[], current: Ejercicio) => {
+          if(!acc.some((obj:Ejercicio) => obj.ID === current.ID)){
+              acc.push(current);
+          }
+          return acc
+      }, [])
       
     })
   }
@@ -79,7 +84,8 @@ export class ViewIndicatorsComponent implements OnInit {
     const { action, data } = event;
 
     if(action === "ver indicador"){
-        this.showIndicators = this.indicadores.filter((item: Item) => item.ID === data.Indicador);
+        this.showIndicators = this.indicadores.filter((item: Item) => item.EjercicioID === data.ID);
+        this.nameEjerc = data.Name
     }
     
   }

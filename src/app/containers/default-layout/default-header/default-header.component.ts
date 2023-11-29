@@ -57,6 +57,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
         : NormaliceUpperUnicosValidators.normaliceData(routeChild[1]);
     switch (route) {
       case 'Sportsman':
+      case 'View':
         return 'Deportista';
       case 'Plan-anual':
         return 'Plan anual';

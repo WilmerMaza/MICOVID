@@ -22,6 +22,11 @@
     </div>
     <div class="container-indicator" *ngIf="!showLevels;else templateLevel">
         <div class="carrousel-indicators">
+          <div class="header-indicator">
+            <div class="name-exercicies">
+                {{nameEjerc | titlecase}}
+            </div>
+          </div>
             <div class="slider-effectCoverflow">
                 <swiper
                   [effect]="'coverflow'"
@@ -40,13 +45,8 @@
                   [initialSlide]="initCarousel"
                   class="mySwiper"
                 >
-                  <ng-template swiperSlide *ngFor="let item of indicadores; let ind = index">
+                  <ng-template swiperSlide *ngFor="let item of showIndicators; let ind = index">
 
-                    <div class="header-indicator">
-                        <div class="name-exercicies">
-                            {{item.Ejercicio.Name | titlecase}}
-                        </div>
-                    </div>
                     <div class="contentViewIndicador">
                       <div class="close-button">
                         <button mat-icon-button (click)="cerrar()">
