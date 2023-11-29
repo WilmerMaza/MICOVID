@@ -42,7 +42,7 @@
                 border-radius: 15px;
                 background-color: #0C4CC8;
                 padding: 0 10px;
-                box-shadow: 0 0 3px 3px gray;
+                box-shadow: 0 0 3px gray;
             }
             button:active {
                 box-shadow: 0 0 0px 0px gray;
@@ -90,27 +90,27 @@
 
     .container-indicator{
         width: 100%;  
+        .header-indicator{
+          margin: 15px 0;
+          color: #FFF;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .name-exercicies{
+              width: 303px;
+              height: 28px;
+              border-radius: 15px;
+              background: #73F237;
+              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
+              text-align: center;
+              padding-top: 2px;
+          }
+      }
         .slider-effectCoverflow {
             width: 100%;
             text-align: center;
             padding: 20px 0;
-            .header-indicator{
-                margin-bottom: 15px;
-                color: #FFF;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .name-exercicies{
-                    width: 303px;
-                    height: 28px;
-                    border-radius: 15px;
-                    background: #73F237;
-                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
-                    text-align: center;
-                    padding-top: 2px;
-                }
-            }
             .footer-indicator{
                 margin-top: 15px;
                 color: #FFF;

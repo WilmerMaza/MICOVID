@@ -89,7 +89,7 @@ export const columnsIndValue = [
       type: "text"
   },
   {
-    displayname:'Acción',
+    displayname:'noName',
     estado:true,
     type: 'button indicador',
     menu:[]
