@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { INavData } from '@coreui/angular';
-import { NavItem } from './_nav';
 import { Router } from '@angular/router';
+import { INavData } from '@coreui/angular';
 import { AuthService } from 'src/app/services/auth-service.service';
-import { DataUser } from 'src/app/views/pages/model/dataUserModel';
-import { NormaliceUpperUnicosValidators } from 'src/app/utils/Validators';
 import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import { NormaliceUpperUnicosValidators } from 'src/app/utils/Validators';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
+import { DataUser } from 'src/app/views/pages/model/dataUserModel';
+import { NavItem } from './_nav';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,8 +32,9 @@ export class DefaultLayoutComponent implements OnInit {
       this.userName = NormaliceUpperUnicosValidators.normaliceData(
         account === 'Admin' ? institutionName : name
       );
-
-      this.viewImage(image);
+      if (image !== 'defaul.png') {
+        this.viewImage(image);
+      }
     });
   }
 
@@ -41,10 +42,8 @@ export class DefaultLayoutComponent implements OnInit {
     if (nameImg) {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
       imageLoader.loadImage(nameImg, (imageUrl) => {
-
         this.imageUrl = imageUrl;
       });
-
     }
   }
 }

@@ -1,26 +1,32 @@
-<div class="container-mat-card contentInfo">
+<div class="contentInfo" id="sportsmansCreate">
   <mat-card class="container-view" *ngIf="showViewSportsman">
     <button mat-icon-button class="close-button" (click)="closeCard()">
       <mat-icon>close</mat-icon>
     </button>
     <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
-      <div fxLayout="row"> <!-- Definición de la primera fila -->
+      <div fxLayout="row">
+
         <div fxFlex="20%" class="center-content">
           <div class="img">
-            <p class="masImg">+</p>
-            <p class="textImg">Añadir foto</p>
+            <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
+            <label for="upload" class="uploadlabelcustom" *ngIf="!selectedImageURL">
+              <p class="masImg">+</p>
+              <p class="textImg">Añadir foto</p>
+            </label>
+
+            <label for="upload" class="uploadlabel" *ngIf="selectedImageURL">
+              <span title="Haz clic para cambiar la imagen">
+                <img [src]="selectedImageURL" />
+              </span>
+            </label>
           </div>
-
         </div>
+
         <div fxFlex="80%" class="content-card">
-
-
-
           <!-- Carousel  -->
-
-
           <div fxFill #contentPanel class="contendorCarousel">
             <div class="carousel">
+
               <form [formGroup]="sportsmansForm">
 
                 <div class="form-carousel" *ngIf="currentPage === 0">
@@ -41,17 +47,17 @@
                         </mat-form-field>
                       </div>
                     </div>
-            
+
                     <div fxFlex="30">
                       <div class="row">Tipo de Documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <mat-select formControlName="typeIdentification" class="inputmat">
                             <mat-option *ngFor="let identification of typeIdentification" [value]="identification.code">
-                              {{ identification.code+' - '+identification.value  }}
+                              {{ identification.code+' - '+identification.value }}
                             </mat-option>
                           </mat-select>
-                         
+
                           <mat-error class="Error">
                             <ng-container *ngIf="sportsmansForm.get('typeIdentification')?.hasError('required')">
                               *Campo requerido
@@ -99,6 +105,7 @@
 
                 <!-- Vista 2: Formulario con 4 campos -->
                 <div class="form-carousel" *ngIf="currentPage === 1">
+
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
@@ -123,28 +130,30 @@
                     <div fxFlex="30">
                       <div class="row">Departamento de nacimiento</div>
                       <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <mat-select formControlName="department" name="department" class="inputmat"  [disabled]="activeDepto"
-                          (selectionChange)="universalCiudadesApis($event)" matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
-                          <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
-                            {{ opcion.state_name }}
-                          </mat-option>
-                        </mat-select>
-                        <mat-error class="Error">
-                          <ng-container *ngIf="sportsmansForm.get('department')?.hasError('required')">
-                            *Campo requerido
-                          </ng-container>
-                        </mat-error>
+                        <mat-form-field class="matforms" appearance="outline" fxFlex matTooltip="Selecciona un Pais"
+                          [matTooltipDisabled]="activeDepto">
+                          <mat-select formControlName="department" name="department" class="inputmat"
+                            (selectionChange)="universalCiudadesApis($event)">
+                            <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
+                              {{ opcion.state_name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error class="Error">
+                            <ng-container *ngIf="sportsmansForm.get('department')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
 
-                    
+
                     <div fxFlex="30">
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline">
-                          <mat-select formControlName="city" name="city" class="inputmat" matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
+                        <mat-form-field class="matforms" appearance="outline" matTooltip="Selecciona un Departamento"
+                          [matTooltipDisabled]="activeCity">
+                          <mat-select formControlName="city" name="city" class="inputmat">
                             <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
                               {{ opcion.city_name }}
                             </mat-option>
@@ -158,13 +167,9 @@
                       </div>
                     </div>
 
-
- 
-
                   </div>
 
-                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center" >
-
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
                     <div fxFlex="30" class="peso-estatura">
                       <div fxFlex="35">
                         <div class="row">Peso (Kg)</div>
@@ -223,7 +228,7 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
                           <mat-select formControlName="category" class="inputmat">
-                            <mat-option *ngFor="let categoria of categorias" [value]="categoria.name">
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                               {{ categoria.name }}
                             </mat-option>
                           </mat-select>
@@ -271,6 +276,7 @@
                         </mat-form-field>
                       </div>
                     </div>
+
                     <div fxFlex="30">
                       <div class="row">Institución deportiva</div>
                       <div class="row-data">
@@ -284,11 +290,10 @@
                         </mat-form-field>
                       </div>
                     </div>
+
                   </div>
 
-
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
-
                     <div fxFlex="30">
                       <div class="row">Disciplina deportiva</div>
                       <div class="row-data">
@@ -309,7 +314,8 @@
                         <mat-form-field class="matforms" appearance="outline">
                           <input matInput formControlName="email" />
                           <mat-error class="Error">
-                            <ng-container *ngIf="sportsmansForm.get('email')?.hasError('required')   || sportsmansForm.get('email')?.touched">
+                            <ng-container
+                              *ngIf="sportsmansForm.get('email')?.hasError('required')   || sportsmansForm.get('email')?.touched">
                               *Campo requerido
                             </ng-container>
                             <ng-container *ngIf="sportsmansForm.get('email')?.hasError('pattern')">
@@ -324,14 +330,15 @@
                       <div class="row">Teléfono</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="phone" type="text" mask="(000) 000 00 00"/>
+                          <input matInput formControlName="phone" type="text" mask="(000) 000 00 00" />
                           <mat-error class="Error">
-                            <ng-container *ngIf="sportsmansForm.get('phone')?.hasError('required')   || sportsmansForm.get('phone')?.touched">
+                            <ng-container
+                              *ngIf="sportsmansForm.get('phone')?.hasError('required')   || sportsmansForm.get('phone')?.touched">
                               *Campo requerido
                             </ng-container>
                             <ng-container *ngIf="sportsmansForm.get('phone')?.hasError('pattern')">
                               *Campo inválido
-                            </ng-container>                            
+                            </ng-container>
                           </mat-error>
                         </mat-form-field>
                       </div>
@@ -342,10 +349,6 @@
 
 
               </form>
-              <!-- Vista 1: Formulario con 5 campos -->
-
-
-              <!-- Radio buttons para navegar entre las vistas -->
 
             </div>
 
@@ -370,7 +373,6 @@
                 <mat-radio-button class="mat-radio-button-custom" [value]="1"></mat-radio-button>
                 <mat-radio-button class="mat-radio-button-custom" [value]="2"></mat-radio-button>
               </mat-radio-group>
-
             </div>
 
 

@@ -1,22 +1,45 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { sportsmanFormModel } from '../../../models/sportsmanFormModel'
 import { FormGroup } from '@angular/forms';
-import { ControlItem, SportsmanData } from '../../../models/dataFilterSportsman'
-import Swal from 'sweetalert2';
-import { SportsmanService } from '../../services/sportsman.service';
+import {
+  eventsPaises,
+  listInfo,
+} from 'src/app/views/Entrenador/Model/entrenadorModel';
 import { visible } from 'src/app/views/models/HistorialCategoryModel';
-import { Error } from 'src/app/views/models/errorsModel';
-import {  eventsPaises, listInfo } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import {
+  ControlItem,
+  SportsmanData,
+} from '../../../models/dataFilterSportsman';
+import { sportsmanFormModel } from '../../../models/sportsmanFormModel';
+import { SportsmanService } from '../../services/sportsman.service';
 
-import { Validators as Validar } from 'src/app/utils/Validators';
+import {
+  CIUDADESCONST,
+  CityName,
+  ESTADOSCONST,
+  Estado,
+  Iciudades,
+  Iestados,
+  Ipaises,
+  PAISESCONST,
+} from 'src/app/models/PaisesConst';
+import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import {
+  NormaliceLowerValidators,
+  Validators as Validar,
+} from 'src/app/utils/Validators';
+import { Toast } from 'src/app/utils/alert_Toast';
+import { ImageLoader } from 'src/app/utils/readerBlodImg';
+import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
+import {
+  gender,
+  typeIdentification,
+} from 'src/app/views/Entrenador/Model/constantesEntrenador';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
-import { CIUDADESCONST, CityName, ESTADOSCONST, Estado, Iciudades, Iestados, Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
-import { gender, typeIdentification } from 'src/app/views/Entrenador/Model/constantesEntrenador';
 
 @Component({
   selector: 'app-create-sportsman',
   templateUrl: './create-sportsman.component.html',
-  styleUrls: ['./create-sportsman.component.scss']
+  styleUrls: ['./create-sportsman.component.scss'],
 })
 export class CreateSportsmanComponent implements OnInit {
   @Input('viewActive') set setView(value: visible) {
@@ -37,27 +60,43 @@ export class CreateSportsmanComponent implements OnInit {
   public isEdit: boolean = false;
   public listEstados: Estado[] | undefined = [];
   public dataID: string;
-  public activeDepto: boolean = true;
-  public activeCity: boolean = true;
+  public activeDepto: boolean = false;
+  public activeCity: boolean = false;
   public listPaises: Ipaises[] = PAISESCONST;
   public listCiudades: CityName[] | undefined = [];
+  public selectedImageURL: string = '';
+  public imageSelected: boolean = false;
+  public selectedFiles: File;
 
   constructor(
     private sporsmanService$: SportsmanService,
-  ) { }
-  async ngOnInit():Promise<void> {
-    this.categorias = this.dataCreateSportsman.find((item: SportsmanData) => item.property === 'category')?.control || [];
+    private imagenFuntionsService$: ImagenFuntionsService
+  ) {}
+  async ngOnInit(): Promise<void> {
+    this.categorias =
+      this.dataCreateSportsman.find(
+        (item: SportsmanData) => item.property === 'category'
+      )?.control || [];
     this.generos = gender;
     this.typeIdentification = typeIdentification;
   }
-  closeCard() : void{
+  closeCard(): void {
     this.showViewSportsman = false;
     this.defaulCarrusel();
   }
 
-   defaulCarrusel(): void {
+  defaulCarrusel(): void {
     this.sportsmansForm.reset();
     this.currentPage = 0;
+    this.selectedFiles = new File([], 'empty.txt');
+    this.imageSelected = false;
+    this.selectedImageURL = '';
+    this.listEstados = [];
+    this.listCiudades = [];
+    this.sportsmansForm.get('city')?.disable();
+    this.sportsmansForm.get('department')?.disable();
+    this.activeDepto = false;
+    this.activeCity = false;
     this.CreateSportsman.emit(true);
   }
 
@@ -80,8 +119,8 @@ export class CreateSportsmanComponent implements OnInit {
         studyLevelMax,
         typeIdentification,
         weight,
-        height
-
+        height,
+        image,
       } = value.data;
       const data = {
         birtDate,
@@ -100,7 +139,8 @@ export class CreateSportsmanComponent implements OnInit {
         typeIdentification,
         weight,
         height,
-        category
+        category,
+        image,
       };
       const state = {
         value: nationality,
@@ -108,6 +148,7 @@ export class CreateSportsmanComponent implements OnInit {
       const citys = {
         value: department,
       };
+      this.viewImage(image);
       this.universalCiudadesApis(citys);
       this.universalEstadoApis(state);
       this.sportsmansForm.setValue(data);
@@ -118,22 +159,32 @@ export class CreateSportsmanComponent implements OnInit {
     }
   }
 
-  universalCiudadesApis(event: eventsPaises):void {
-    this.activeCity = false;
+  universalCiudadesApis(event: eventsPaises): void {
+    this.activeCity = true;
+    this.sportsmansForm.get('city')?.enable();
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
-      (item:Iciudades) => item.state_name === value
+      (item: Iciudades) => item.state_name === value
     )?.city_name;
   }
 
-  universalEstadoApis(event: eventsPaises):void {
-    this.activeDepto = false;
+  universalEstadoApis(event: eventsPaises): void {
+    this.activeDepto = true;
+    this.sportsmansForm.get('department')?.enable();
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
-      (item:Iestados) => item.country_name === value
+      (item: Iestados) => item.country_name === value
     )?.estados;
   }
 
+  viewImage(nameImg: string | undefined): void {
+    if (nameImg) {
+      const imageLoader = new ImageLoader(this.imagenFuntionsService$);
+      imageLoader.loadImage(nameImg, (imageUrl) => {
+        this.selectedImageURL = imageUrl;
+      });
+    }
+  }
   setCurrentPageL(): void {
     this.currentPage = this.currentPage - 1;
   }
@@ -142,39 +193,64 @@ export class CreateSportsmanComponent implements OnInit {
     this.currentPage = this.currentPage + 1;
   }
 
-  createSportsman(): void {
+  async createSportsman(): Promise<void> {
     if (this.sportsmansForm.valid) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      },
-    });
+      const {
+        value: { image, department, city, nationality, category },
+        value,
+      } = this.sportsmansForm;
 
-    const formSportsman = {
-      ...this.sportsmansForm.value,
-      image: 'default.png',
-      category: this.sportsmansForm.value.category,
-      CategoriumID: this.categorias.find(item => item.name == this.sportsmansForm.value.category)?.code,
-      ID: this.dataID
-    };
-      this.sporsmanService$[this.isEdit?"updateSportsman":"createSportsman"](formSportsman).subscribe(
-        async (res: SuccessResponse ) => {
-          await Toast.fire({
-            icon: 'success',
-            title: `${res.Message}`,
-          });
-          this.sportsmansForm.reset();
-          this.currentPage = 0;
-          this.CreateSportsman.emit(true);
+      NormaliceLowerValidators.normaliceData(value);
 
+      const formSportsman = this.isEdit
+        ? {
+            ...value,
+            image: Validar.isNullOrUndefined(this.selectedFiles)
+              ? image
+              : this.selectedFiles.name,
+            department,
+            city,
+            nationality,
+            category: category.value,
+            CategoriumID: category.code,
+            ID: this.dataID,
+            deleteImg: Validar.isNullOrUndefined(this.selectedFiles)
+              ? ''
+              : image,
+          }
+        : {
+            ...value,
+            image: Validar.isNullOrUndefined(this.selectedFiles)
+              ? 'default.png'
+              : this.selectedFiles.name,
+            category: category.value,
+            CategoriumID: category.code,
+            department,
+            city,
+            nationality,
+          };
+
+      const formData = new FormData();
+
+      if (!Validar.isNullOrUndefined(this.selectedFiles)) {
+        formData.append('file', this.selectedFiles);
+      }
+      this.sporsmanService$[
+        this.isEdit ? 'updateSportsman' : 'createSportsman'
+      ](formSportsman).subscribe(
+        async (res: SuccessResponse) => {
+          if (!Validar.isNullOrUndefined(this.selectedFiles)) {
+            this.uploadImg(formData);
+          } else {
+            await Toast.fire({
+              icon: 'success',
+              title: `${res.Message}`,
+            });
+          }
+
+          this.defaulCarrusel();
         },
-        (respError: Error): void => {
+        (respError): void => {
           const { error } = respError;
           Toast.fire({
             icon: 'error',
@@ -183,7 +259,46 @@ export class CreateSportsmanComponent implements OnInit {
         }
       );
     } else {
-       this.sportsmansForm.markAllAsTouched();
+      this.sportsmansForm.markAllAsTouched();
+    }
+  }
+
+  uploadImg(formData: FormData): void {
+    this.imagenFuntionsService$.subirImg(formData).subscribe(
+      (respuesta: responseUploadMode) => {
+        Toast.fire({
+          icon: 'success',
+          title: respuesta.msg,
+        });
+        this.defaulCarrusel();
+      },
+      (respError): void => {
+        const {
+          error: { error },
+        } = respError;
+        Toast.fire({
+          icon: 'error',
+          title: error,
+        });
+      }
+    );
+  }
+
+  onFilesSelected(event: any): void {
+    const {
+      target: { files },
+    } = event;
+
+    this.selectedFiles = files[0];
+
+    const file = files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImageURL = e.target.result;
+        this.imageSelected = true; // Establecer imageSelected en true
+      };
+      reader.readAsDataURL(file);
     }
   }
 }

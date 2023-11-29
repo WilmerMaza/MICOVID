@@ -1,18 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ClassToggleService, HeaderComponent } from '@coreui/angular';
-import { AuthService } from 'src/app/services/auth-service.service';
-import { NormaliceUpperUnicosValidators, Validators } from 'src/app/utils/Validators';
-import { DataUser } from 'src/app/views/pages/model/dataUserModel';
-import { PlansService } from 'src/app/views/pages/plans/services/plans.service';
-import { SessionService } from 'src/app/views/pages/services/session.service';
-import { objectStikyUser, stiky } from '../../utilsLayout/constants'
 import { NavigationEnd, Router } from '@angular/router';
+import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { filter } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import {
+  NormaliceUpperUnicosValidators,
+  Validators,
+} from 'src/app/utils/Validators';
+import { ImageLoader } from 'src/app/utils/readerBlodImg';
+import { DataUser } from 'src/app/views/pages/model/dataUserModel';
+import { SessionService } from 'src/app/views/pages/services/session.service';
+import { objectStikyUser, stiky } from '../../utilsLayout/constants';
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
-  styleUrls:['./default-header.component.scss']
+  styleUrls: ['./default-header.component.scss'],
 })
 export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   @Input() sidebarId: string = 'sidebar';
@@ -22,32 +26,51 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newNotifications = new Array(5);
   public namePerson?: string = '';
   public stickyUser: stiky | undefined;
-  public indicadoRuta:string;
+  public indicadoRuta: string;
+  public sesicion: boolean = false;
+  public selectedImageURL: string = '';
   constructor(
     private classToggler: ClassToggleService,
     private session$: SessionService,
     private Auth$: AuthService,
-    private router: Router
+    private router: Router,
+    private imagenFuntionsService$: ImagenFuntionsService
   ) {
     super();
 
-    router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
-      this.indicadoRuta = this.transformindicador(router.url.split("?")[0]);
-    });
+    router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        this.indicadoRuta = this.transformindicador(router.url.split('?')[0]);
+      });
   }
 
-  transformindicador(key: string): string{
-    let routeChild = key.split("/");
-    let route = routeChild.length > 2 ? 
-    NormaliceUpperUnicosValidators.normaliceData(routeChild[2]): 
-    NormaliceUpperUnicosValidators.normaliceData(routeChild[1]);
+  personSesicion(): void {
+    this.sesicion = this.sesicion ? false : true;
+  }
+
+  transformindicador(key: string): string {
+    let routeChild = key.split('/');
+    let route =
+      routeChild.length > 2
+        ? NormaliceUpperUnicosValidators.normaliceData(routeChild[2])
+        : NormaliceUpperUnicosValidators.normaliceData(routeChild[1]);
     switch (route) {
-      case "Sportsman":
-        return "Deportista"
-      case "Plan-anual":
-        return "Plan anual"
+      case 'Sportsman':
+        return 'Deportista';
+      case 'Plan-anual':
+        return 'Plan anual';
       default:
         return route;
+    }
+  }
+
+  viewImage(nameImg: string | undefined): void {
+    if (nameImg) {
+      const imageLoader = new ImageLoader(this.imagenFuntionsService$);
+      imageLoader.loadImage(nameImg, (imageUrl) => {
+        this.selectedImageURL = imageUrl;
+      });
     }
   }
 
@@ -57,14 +80,16 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
 
   personName(): void {
     this.Auth$.getDataUser.subscribe((res: DataUser) => {
-      const { institutionName, name, account } = res;
+      const { institutionName, name, account, image } = res;
       this.namePerson = Validators.isNullOrUndefined(institutionName)
         ? name
         : institutionName;
 
-      this.stickyUser = objectStikyUser.find(data => data.roll === account);
+      this.stickyUser = objectStikyUser.find((data) => data.roll === account);
+      if (image !== 'defaul.png') {
+        this.viewImage(image);
+      }
     });
-
   }
 
   logout(): void {

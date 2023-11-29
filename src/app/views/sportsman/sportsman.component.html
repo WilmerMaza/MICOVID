@@ -1,32 +1,34 @@
 <div id="sportsman">
   <!-- aqui inicia la visualizacion individual -->
   <div class="conten-table">
-    <div>
-  <app-create-sportsman 
-  [viewActive]="showViewCreateSportsman"
-  [dataCategory]="dataCreateSportsman" *ngIf="showViewCreateSportsman"
-  (CreateSportsman)="reloadData()">
-</app-create-sportsman>
 
+    <div>
+      <app-create-sportsman [viewActive]="showViewCreateSportsman" [dataCategory]="dataCreateSportsman"
+        *ngIf="showViewCreateSportsman" (CreateSportsman)="reloadData()">
+      </app-create-sportsman>
     </div>
 
-    <div class="containerFilter">  <!--  aca inicia el uso del filtro  -->
-      <app-dinamic-filter  [isDownload]="isDownload" [nameAdd]="nameAdd"
-        [dataFilter]="jsonFilter" (filterResult)="getDataFilter($event)" (actionFilter)="getActionEvent($event)">
+    <div class="containerFilter"> <!--  aca inicia el uso del filtro  -->
+      <app-dinamic-filter [isDownload]="isDownload" [nameAdd]="nameAdd" [dataFilter]="jsonFilter"
+        (filterResult)="getDataFilter($event)" (actionFilter)="getActionEvent($event)">
         loading..
       </app-dinamic-filter>
     </div>
+
     <div class="conten-table1">
       <div class="conten-table2">
-        <div class="container-mat-card contentInfo" *ngIf="showSportsman">  <!--  aca inicia la vista del deportista-->
+        <div class="container-mat-card contentInfo" *ngIf="showSportsman"> <!--  aca inicia la vista del deportista-->
           <mat-card class="container-view">
             <button mat-icon-button class="close-button" (click)="closeCard()">
               <mat-icon>close</mat-icon>
             </button>
             <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
-              <div fxLayout="row"> <!-- Definición de la primera fila -->
+              <div fxLayout="row">
+                <!-- Definición de la primera fila -->
                 <div fxFlex="20%" class="center-content">
-                  <img src="../../../assets/images/default.png">
+                  <div class="contenImg"> <img [src]=" selectedImageURL == ''?'../../../assets/images/default.png': selectedImageURL">
+                  </div>
+
                 </div>
                 <div fxFlex="80%" class="content-card">
                   <div fxLayout="column" fxLayoutGap="16px" class="contentData"> <!-- Contenedor de las columnas -->
@@ -101,15 +103,16 @@
           </mat-card>
         </div>
 
-        <div class="container">  <!--  aca inicia el uso de la tabla -->
+        <div class="container"> <!--  aca inicia el uso de la tabla -->
           <app-dinamic-table [isCheckBox]="isCheck" [columns]="data" [dataSource]="dataSportman"
             (actionEvent)="getActionEvent($event)">
           </app-dinamic-table>
         </div>
+
       </div>
-      <div class="content-timeline" *ngIf="showSportsman">  <!--  aca inicia el historial categorico -->
+      <div class="content-timeline" *ngIf="showSportsman"> <!--  aca inicia el historial categorico -->
         <div class="tittle-timeline">
-             Historial Categorico 
+          Historial Categorico
         </div>
         <div class="timeline">
           <div class="timeline-line"></div>
