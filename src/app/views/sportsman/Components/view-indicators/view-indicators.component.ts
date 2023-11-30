@@ -17,6 +17,7 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
   encapsulation: ViewEncapsulation.None,
 })
 export class ViewIndicatorsComponent implements OnInit {
+  public showModule:boolean=false;
   private routeId: string;
   public columns  = columnsIndValue;
   public initCarousel: number = 1;
@@ -57,6 +58,7 @@ export class ViewIndicatorsComponent implements OnInit {
         dataSourse.push(item.Ejercicio);
         this.dataSportman = item.SportsMan;
         this.level.push(...item.Levels);
+        this.showModule = true;
       })
       this.viewImage(this.dataSportman.image);
       this.dataEjerc = dataSourse.reduce((acc: Ejercicio[], current: Ejercicio) => {
