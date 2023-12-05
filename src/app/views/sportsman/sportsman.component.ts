@@ -53,6 +53,7 @@ export class SportsmanComponent implements OnInit {
     this.generos = gender;
     this.getSportsman();
     this.getCategory();
+    this.actionShowSportmanByIndicator();
   }
 
   calculateCirclePosition(index: number): number {
@@ -223,5 +224,25 @@ export class SportsmanComponent implements OnInit {
         }
       }
     );
+  }
+
+  actionShowSportmanByIndicator():void{
+    const dataSportman = [...this.sporsmanService$.getSportmanInfoRedirect()];
+    if(dataSportman.length > 0){
+      const data = dataSportman[0];
+      const { birtDate } = data;
+      this.birdData = DateValidators.parseDate(birtDate);
+      const generoItem = this.generos.find(
+        (generoSet: listInfo) => generoSet.code === data.gender
+      );
+      if (generoItem) {
+        data.gender = generoItem.value;
+      }
+
+      this.viewImage(data.image);
+      this.showSportsman = true;
+      this.dataSingle = data;
+      this.historyCategorico(data);
+    }
   }
 }

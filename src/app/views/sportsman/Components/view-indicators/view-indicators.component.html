@@ -6,10 +6,10 @@
         <div class="data-sportman">
             <h1>{{dataSportman.name}}</h1>
             <p>CC {{dataSportman.identification}}</p>
-            <button>ver tarjeta de deportista</button>
+            <button (click)="actionFunction()">ver tarjeta de deportista</button>
         </div>
         <div class="x-back" (click)="goBack()">
-            <mat-icon color="primary">clear</mat-icon>
+          <mat-icon>arrow_back</mat-icon>
         </div>
     </div>
     <app-dinamic-table *ngIf="showIndicators.length === 0; else containerLevels" [isCheckBox]="false" [columns]="columns" [dataSource]="dataEjerc"
@@ -48,11 +48,6 @@
                   <ng-template swiperSlide *ngFor="let item of showIndicators; let ind = index">
 
                     <div class="contentViewIndicador">
-                      <div class="close-button">
-                        <button mat-icon-button (click)="cerrar()">
-                          <mat-icon>close</mat-icon>
-                        </button>
-                      </div>
                       <div class="item">
                         <div class="header-item">
                             {{item.IndicatorsName | titlecase}} ({{item.Abbreviation}})

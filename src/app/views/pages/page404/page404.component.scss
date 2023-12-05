@@ -1,0 +1,91 @@
+#body-404{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: black;
+
+    .content-module-404{
+        position: relative;
+        top: 100px;
+        height: 400px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        animation: animateColor 5s linear infinite;
+
+        .cloud {
+            position: relative;
+            width: 300px;
+            z-index: 100;
+            filter: drop-shadow(0 0 35px #0f0);
+
+            h2{
+                position: absolute;
+                white-space: nowrap;
+                color: black;
+                transform: translateX(-50%);
+                font-size: 2em;
+                z-index: 1000;
+                font-weight: 400;
+                padding: 0 10px;
+                border-radius: 10px;
+                text-transform: uppercase;
+                background: #0f0;
+                right: -140px;
+            }
+            
+        }
+    }
+
+    
+    .image-micovi {
+        width: 300px;
+        height: 400px;
+        background-image: url(/assets/images/título_20230710140333.png);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .content-module-404 .cloud h2::before {
+        content: '';
+        position: absolute;
+        top: -115px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 100px;
+        width: 120%;
+        height: 100px;
+        background: #0f0;
+    }
+
+    .content-module-404 .cloud h2::after{
+        content: '404';
+        text-align: center;
+        font-size: 100px;
+        position: absolute;
+        top: -150px;
+        left: 25px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50px;
+        background: #0f0;
+        box-shadow: 120px -30px 0 40px #0f0;
+    }
+
+    @keyframes animateColor {
+        0%{
+            filter: hue-rotate(0deg);
+        }
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+
+
+}

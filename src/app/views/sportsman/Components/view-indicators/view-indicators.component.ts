@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SportsmanService } from '../../services/sportsman.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataIndicators, Item, Level, SportsMan, columnsIndValue } from '../../Models/indicatorsModel';
 import { Ejercicio } from 'src/app/views/Ejercicios/Model/ejercicioModel';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
@@ -34,7 +34,8 @@ export class ViewIndicatorsComponent implements OnInit {
   constructor(
     private service$: SportsmanService,
     private route$: ActivatedRoute,
-    private imagenFuntionsService$: ImagenFuntionsService
+    private imagenFuntionsService$: ImagenFuntionsService,
+    private redirect$: Router
     ){}
 
   ngOnInit(): void {
@@ -111,6 +112,12 @@ export class ViewIndicatorsComponent implements OnInit {
 
   outLevel():void{
     this.showLevels = false;
+  }
+
+  actionFunction():void{
+    this.service$.setSportmanInfoRedirect(this.dataSportman);
+
+    this.redirect$.navigate(['/sportsman']);
   }
 
 }
