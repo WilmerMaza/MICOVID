@@ -30,12 +30,9 @@ export const columnsEjerciciosValue = [
         type: "text"
     },
     {
-      displayname:'acción',
+      displayname:'noName',
       estado:true,
-      type: "action",
-      menu:[
-        {action:'ver', text:'Ver'},
-        {action:'Editar', text:'Editar'},
-      ]
+      type: 'button Ver',
+      menu:[]
     }
 ]

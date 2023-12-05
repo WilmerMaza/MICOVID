@@ -98,11 +98,10 @@ export class EjerciciosComponent implements OnInit {
       action: { action },
       data,
     } = $event;
-
     const action2 = $event.action
     this.data = data;
     switch (action || action2) {
-      case 'ver':
+      case 'ver ejercicio':
         var values = { 
               data: data,
               dataEjercicio: this.dataEjercicio
