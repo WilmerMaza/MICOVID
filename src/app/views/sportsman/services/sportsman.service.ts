@@ -12,6 +12,19 @@ import { DataIndicators } from "../Models/indicatorsModel";
 })
 export class SportsmanService {
   constructor(private micovid$: MicoviApiService) {}
+  private redirectSportmanInfo:Sportsman[]=[];
+
+  getSportmanInfoRedirect():Sportsman[]{
+    const data = [...this.redirectSportmanInfo];
+    this.redirectSportmanInfo = [];
+    return data;
+  }
+
+  setSportmanInfoRedirect(data : Sportsman):void{
+    this.redirectSportmanInfo = [];
+    this.redirectSportmanInfo.push(data);
+  }
+
   getSportsman(): Observable<Sportsman[]>{
     const endpoint = '/sportMan/getAll';
     return this.micovid$.get(endpoint);
