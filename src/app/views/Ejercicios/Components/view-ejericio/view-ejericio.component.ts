@@ -56,29 +56,26 @@ export class ViewEjericioComponent {
   @Output() actionClose = new EventEmitter<boolean>();
 
     async viewImage(): Promise<void> {
-      let count = 0;
       const imagePromises: Promise<void>[] = [];
     
-      this.data.dataEjercicio.forEach((ejercicio: Ejercicio) => {
+      this.data.dataEjercicio.forEach((ejercicio: Ejercicio, index: number) => {
         const { VisualIllustration } = ejercicio;
         if (VisualIllustration !== this.imageDefault && VisualIllustration) {
           const imageLoader = new ImageLoader(this.imagenFuntionsService$);
           const imagePromise = new Promise<void>((resolve) => {
             imageLoader.loadImage(VisualIllustration, (imageUrl) => {
-              this.imageUrl[count] = imageUrl;
-              count++;
+              this.imageUrl[index] = imageUrl;
               resolve();
             });
           });
           imagePromises.push(imagePromise);
         } else {
-          this.imageUrl[count] = this.imageDefault;
-          count++;
+          this.imageUrl[index] = this.imageDefault; // Usar el índice directamente
         }
       });
     
       // Esperar a que se completen todas las promesas de carga de imágenes
-      await Promise.all(imagePromises); 
+      await Promise.all(imagePromises);
     }
 
   toggleDescription(): void {

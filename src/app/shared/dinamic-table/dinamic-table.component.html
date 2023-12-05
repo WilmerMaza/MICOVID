@@ -62,6 +62,9 @@
                 <mat-icon class='closeButtonModal' (click)="dataAction('eliminar', element)">close</mat-icon>
               </div>
             </div>
+            <div *ngIf="item.type === 'button Ver'">
+              <button class="view-indicator" (click)="dataAction('ver ejercicio', element)">Ver</button>
+            </div>
           </td>
         </ng-container>
 
