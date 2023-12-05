@@ -15,7 +15,7 @@ export class Page404Component implements OnInit {
     },20)
   }
 
-  rainFunction(){
+  rainFunction(): void{
     const style = document.createElement('style');
     style.type = 'text/css';
 
