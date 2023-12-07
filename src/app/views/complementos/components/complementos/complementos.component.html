@@ -48,6 +48,18 @@
                         subgrupos</button>
                 </div>
             </div>
+            <div *ngIf="!isEscuela">
+                <div class="esfera esf-disciplina">
+                    <img src="../../../../../assets/images/icon-disciplina.png" alt="">
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button class="bttunPrimero" (click)=" viewTable('Disciplinas')">Ver
+                        disciplinas</button>
+                    <br>
+                    <button mat-raised-button color="primary" class="bttunSegundo" (click)="crearDisciplina()">Crear
+                        disciplina</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

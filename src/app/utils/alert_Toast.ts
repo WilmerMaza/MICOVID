@@ -13,10 +13,11 @@ export const Toast = Swal.mixin({
   })
 
 export const customOptions: SweetAlertOptions = {
-  title: 'Muchas gracias por confiar en MICOVI',
+  title: '',
   width: 600,
-  padding: '3em',
-  background: '#fff',
+  imageUrl: '../../../../assets/images/registro.png',
+  background:'#00000000',
+  imageWidth:600,
   timer:50000,
   showConfirmButton:false,
   backdrop: `

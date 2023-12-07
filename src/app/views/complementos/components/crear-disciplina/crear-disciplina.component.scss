@@ -1,0 +1,178 @@
+:host {
+    .mat-mdc-dialog-surface {
+      overflow: hidden;
+    }
+    .row {
+      --cui-gutter-x: 0;
+    }
+  }
+  
+  .content-dialog {
+    padding: 5px 15px 10px 15px;
+    text-align: center;
+    height: 410px;
+    font-family: Inria Sans;
+    .content-x-close {
+      display: flex;
+      justify-content: end;
+      margin: 0 -10px;
+      color: #0c4cc8;
+    }
+    .content-form {
+      display: flex;
+      justify-content: center;
+      height: 90%;
+      .form_insert {
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h4 {
+          color: #0c4cc8;
+          font-weight: 700;
+        }
+        form {
+          color: #000;
+          font-size: 18px;
+          font-weight: 700;
+          input,
+          textarea {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+        .row-data .matforms {
+          width: 100%;
+        }
+      }
+      .input-date {
+        display: flex;
+        justify-content: space-between;
+        .date_init {
+          width: 130px;
+        }
+        .date_end {
+          width: 130px;
+        }
+        input {
+          font-size: 12px;
+        }
+      }
+      .content-textArea {
+        textarea {
+          width: 260px;
+          max-height: 71px;
+          height: 134px;
+        }
+        ::ng-deep .mat-mdc-text-field-wrapper {
+          height: 80px !important;
+        }
+      }
+    }
+  
+    .content-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      position: relative;
+      top: -15px;
+      .button-close {
+        color: #0c4cc8;
+        width: 86px;
+        border: 1px solid #0c4cc8;
+        border-radius: 15px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
+        cursor: pointer;
+      }
+      .button-add {
+        color: white;
+        width: 86px;
+        border: 1px solid #0c4cc8;
+        background-color: #0c4cc8;
+        border-radius: 15px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.295);
+        cursor: pointer;
+      }
+    }
+    .closeButtonModal {
+      background: white;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 250px;
+    }
+    ::ng-deep.mat-mdc-icon-button svg {
+      width: 20px;
+      color: #0c4cc8;
+    }
+  }
+  
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 30px !important;
+    border-radius: 14px !important;
+    border-color: white !important;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
+    position: relative !important;
+    top: -10px !important;
+  }
+  
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 4px;
+  }
+  
+  ::ng-deep.mdc-dialog__container {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  ::ng-deep.mdc-text-field--outlined .mdc-notched-outline {
+    display: none !important;
+  }
+  
+  .contet-input {
+    .row {
+      color: #000000;
+      font-family: Inria Sans;
+      font-size: 18px;
+      font-weight: 800;
+      padding-left: 12px;
+    }
+    .field-input {
+      border-radius: 10px;
+      border: 1px solid #dfd4d4;
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      padding-left: 10px;
+      height: 35px;
+      background-color: #ffffff;
+      padding: 4px 10px;
+    }
+    .custom-input {
+      height: 40px;
+      border: none;
+      overflow-y: auto;
+    }
+    .custom-input:focus {
+      outline: none;
+    }
+  }
+  
+  hr {
+    border-color: #0c4cc8;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 1;
+    margin: 10% 0;
+  }
+  
