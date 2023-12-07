@@ -9,6 +9,7 @@ import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ComplementosRoutingModule } from './complementos-routing.module';
 import { ComplementosComponent } from './components/complementos/complementos.component';
 import { ViewTableComponent } from './components/viewTable/viewTable.component';
+import { CrearDisciplinaComponent } from './components/crear-disciplina/crear-disciplina.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +23,7 @@ import { ViewTableComponent } from './components/viewTable/viewTable.component';
   declarations: [
     ComplementosComponent,
     ViewTableComponent,
+    CrearDisciplinaComponent,
     
   ],
 })

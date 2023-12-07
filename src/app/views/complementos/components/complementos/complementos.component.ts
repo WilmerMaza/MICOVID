@@ -19,6 +19,7 @@ import { Etapas, Grupo } from '../../model/interfaceComplementos';
 import { ComplementosService } from '../../services/complementos.service';
 import { AddCategoriaComponent } from '../addCategoria/add-categoria.component';
 import { ViewTableComponent } from '../viewTable/viewTable.component';
+import { CrearDisciplinaComponent } from '../crear-disciplina/crear-disciplina.component';
 
 @Component({
   selector: 'app-complementos',
@@ -66,6 +67,12 @@ export class ComplementosComponent implements OnInit {
     this.dialog.open(AddEtapaComponent, {
       width: '384px',
     });
+  }
+
+  crearDisciplina():void{
+    this.dialog.open(CrearDisciplinaComponent, {
+      width: '384px',
+    })
   }
 
   async viewTable(nameTable: string): Promise<void> {
@@ -125,7 +132,10 @@ export class ComplementosComponent implements OnInit {
           }
         });
         break;
-
+      case 'Disciplinas':
+        data.data = [];
+        this.modal(data);
+        break;
       default:
         break;
     }
