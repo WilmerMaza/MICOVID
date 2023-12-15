@@ -42,7 +42,7 @@ export class CreateEjercicioComponent implements OnInit{
     private router: Router
   )   {   }
 
-  ngOnInit() {
+  ngOnInit(): void {
    
     this.getSubGrupos();
     this.unitsofmeasurements();
