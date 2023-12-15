@@ -38,6 +38,7 @@ export interface Grupo {
     Calidad: calidadCantidadModel;
     Cantidad: calidadCantidadModel;
     Indicador?:string;
+    LinkEjercicios?: string;
   }
 
   export interface viewEjercicio {

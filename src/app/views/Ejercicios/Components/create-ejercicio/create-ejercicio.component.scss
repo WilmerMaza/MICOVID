@@ -1,18 +1,78 @@
-.createEjercicio {
-    background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
-    background-size: 100% auto; 
-    background-repeat: no-repeat;
-    background-position: top; 
-    max-height: fit-content; 
-    max-height: 500px; 
+#createEjercicio {
+  width: calc( 100% - 20px);
+  height: calc( 90vh - 20px);
+  position: relative;
+  background-color: white;
+  margin: 10px;
+  border-radius: 15px;
+  overflow: hidden;
+  min-width: 710px;
 
-    .cerrar{
+  .content_fondo {
+    width: 741px;
+    height: 590px;
+    background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right:-300px;
+}
+
+.iconVolver{
+  width: 35px;
+  float: right;
+  position: relative;
+  color: white;
+  border: 3px solid white;
+  border-radius: 20px;
+  height: 35px;
+  margin: 10px 10px 0px 0px;
+  display: flex;
+  background-color: #0C4CC8;
+  align-items: center;
+}
+
+.forms{
+    padding-top: 20px;
+    min-width: 500px;
+    background-color: white;
+    border-radius: 50px 0px;
+}
+
+.forms-general{
+  display: flex;
+  flex-direction: column;
+}
+
+.column1{
+  max-width: 300px;
+}
+
+.content_form_createEjercicio{
+  margin: 20px 71px;
+  position: relative;
+  width: 600px;
+  .title_createEjercicio{
+      color: #0C4CC8;
+      font-family: Inria Sans;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+  }
+}
+
+    .content-forms-input{
       display: flex;
-      flex-direction: row-reverse;
+      flex-direction: row;
+    }
+
+    .content-select{
+      padding: 0px 50px 15px 0px;
     }
     
     .botonCrear{
-      background-color:  #73F237;
+      background-color:  #0C4CC8;
       font-family: Inria Sans;
       font-size: 20px;
       font-weight: 500;
@@ -21,7 +81,8 @@
       color: #FFFFFFFF;
     }
     .botonCrearContent{
-      text-align: center;          
+      position: relative;
+      right: -210px;    
     }
     .scroll-container {
       max-height: 460px; 
@@ -45,9 +106,6 @@
       flex-direction: column;
     }
     .contet-input {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
       padding: 0px 50px 15px 0px;
     }
 
@@ -59,7 +117,7 @@
       padding-right: 35px;
       font-family: Inria Sans;
       font-weight: 800;
-      color: #35113b;
+      color: #000000;
       padding-right: 15px;
     }
     
@@ -70,11 +128,6 @@
       width: 270px;
     }
 
-    .content-select{
-      display: flex;
-      justify-content: flex-end;
-      padding: 0px 48px 20px 0px;
-    }
 
     .field-select{
       width: 270px;
@@ -82,11 +135,10 @@
     }
 
      .row{
-      padding: inherit;
       font-family: Inria Sans;
       font-weight: 800;
-      color: #35113b;
-      padding-right: 25px;
+      color: #000000;
+      padding-left: 10px
      }
 
      .form-field{
@@ -108,11 +160,16 @@
      }
 
      .crearSubgr{
-      background: linear-gradient(180deg, #0DDCF9 15.62%, #0C4CC8 100%);
+      background: #0C4CC8;
       color: #FFFFFF;
       font-weight: 500;
       border: none;
-      border-radius: 15px;
+      border-radius: 18px;
+      height: 15px;
+      display: flex;
+      width: 60px;
+      align-items: center;
+      justify-content: center;
      }
 
      .Error{
@@ -124,7 +181,7 @@
       border: 2px solid #0c4cc8;
       border-radius: 20px;
       width: 280px;
-      height: 120px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -169,9 +226,11 @@
       justify-content: space-between;
       flex-wrap: nowrap
     }
-}
 
-::ng-deep.mdc-dialog__container {
-  border-radius: 30px;
-  overflow: hidden;
+    .tittleCombinate{
+      width: 600px;
+      background-color: white;
+      border-radius: 0px 50px;
+    }
+
 }

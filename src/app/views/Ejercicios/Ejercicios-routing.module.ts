@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component'
 import { IndicadorComponent } from './Components/create-indicador/indicador.component';
 import { IndicatorsGuard } from '../../infraestructure/guard/indicatorsGuard';
+import { CreateEjercicioComponent } from './Components/create-ejercicio/create-ejercicio.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
     path: 'Indicador',
     component: IndicadorComponent,
     canActivate: [IndicatorsGuard]
-  }
+  },
+  {
+    path: 'NewEjercicio',
+    component: CreateEjercicioComponent
+  },
 ];
 
 @NgModule({

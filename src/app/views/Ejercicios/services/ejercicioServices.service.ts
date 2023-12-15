@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
-import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse } from '../Model/ejercicioModel';
+import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse, combinateDialogModel } from '../Model/ejercicioModel';
 import { subgrupoModel } from '../Model/subGrupoModel';
 import { UnitsofmeasurementsResponse } from '../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../Model/createEjercicioModel';
@@ -16,6 +16,12 @@ export class EjercicioServices {
   constructor(private micovid$: MicoviApiService) { }
 
   private exercisesList: Ejercicio[] = [];
+  private datosFuente = new BehaviorSubject<combinateDialogModel>({ combinate: false, dataEjercicios: [] });
+  datosActualesEjercicios = this.datosFuente.asObservable();
+
+  dataNewEjercicios(nuevosDatos: combinateDialogModel) {
+    this.datosFuente.next(nuevosDatos);
+  }
 
   getExercisesList(): Array<Ejercicio>{
     return this.exercisesList;
