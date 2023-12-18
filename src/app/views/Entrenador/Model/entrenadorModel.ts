@@ -50,6 +50,7 @@ export interface Entrandor {
   SportsInstitutionID: string;
 
   password?: string;
+  passwordVerificate?: string;
 }
 
 export interface listInfo {

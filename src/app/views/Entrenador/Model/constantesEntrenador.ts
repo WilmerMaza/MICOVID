@@ -11,6 +11,33 @@ export const gender: Array<listInfo> = [
   },
 ];
 
+export const entradorNivelEducativo: Array<listInfo> = [
+  {
+    value: 'Técnico',
+    code: 'tecnico',
+  },
+  {
+    value: 'Tecnólogo',
+    code: 'tecnologo',
+  },
+  {
+    value: 'Profesional',
+    code: 'profesional',
+  },
+  {
+    value: 'Máster',
+    code: 'master',
+  },
+  {
+    value: 'Doctorado',
+    code: 'doctorado',
+  },
+  {
+    value: 'Otro',
+    code: 'otro',
+  },
+];
+
 export const typeIdentification: Array<listInfo> = [
   {
     value: 'Cédula de ciudadanía',

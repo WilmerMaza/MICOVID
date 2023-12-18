@@ -1,11 +1,11 @@
-<div class="container-mat-card contentInfo">
-  <mat-card class="container-view" *ngIf="showViewEntrenador">
-    <button mat-icon-button class="close-button" (click)="closeCard()">
+<div id="CreateEntrenador">
+  <mat-card class="container-view-EntrenadorCreate" *ngIf="showViewEntrenador">
+    <button mat-icon-button class="close-button-createEntrenador" (click)="closeCard()">
       <mat-icon>close</mat-icon>
     </button>
-    <mat-card-content fxFill class="full-height" fxLayout="column" fxLayoutGap="16px">
+    <mat-card-content fxFill class="ContentCreateEntrenador" fxLayout="column" fxLayoutGap="16px">
       <div fxLayout="row"> <!-- Definición de la primera fila -->
-        <div fxFlex="20%" class="center-content image-container">
+        <div fxFlex="20%" class="center-content-createEntrenador">
           <div class="img">
             <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
             <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
@@ -20,15 +20,15 @@
             </label>
           </div>
         </div>
-        <div fxFlex="80%" class="content-card">
+        <div fxFlex="80%" class="content-card-CreateEntrenador">
 
           <!-- Carousel  -->
 
-          <div fxFill #contentPanel class="contendorCarousel">
-            <div class="carousel">
+          <div fxFill #contentPanel class="contendorCarouselCreateEntrenador">
+            <div class="carouselCreateEntrenador">
               <form [formGroup]="entrenadorForm">
                 <!-- Vista 1: Formulario con 4 campos -->
-                <div class="form-carousel" *ngIf="currentPage === 0">
+                <div class="form-carousel-createEntrenador" *ngIf="currentPage === 0">
 
                   <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center center">
 
@@ -36,7 +36,7 @@
                       <div class="row">Nombre completo</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="name" required class="inputmat" />
+                          <input matInput formControlName="name" required class="inputmat" placeholder="Ejemplo: Juan Pérez"/>
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('name')?.hasError('required')">
                               *Campo requerido
@@ -50,7 +50,7 @@
                       <div class="row">Tipo. Documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <mat-select formControlName="typeIdentification" name="typeIdentification" class="inputmat">
+                          <mat-select formControlName="typeIdentification" name="typeIdentification" class="inputmat"  placeholder=" Seleccione">
                             <mat-option *ngFor="let opcion of typeIdentificationlist" [value]="opcion.code">
                               {{ opcion.code +' - '+opcion.value}}
                             </mat-option>
@@ -73,7 +73,7 @@
                       <div class="row">Número de documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="identification" required class="inputmat" />
+                          <input matInput formControlName="identification" required class="inputmat" placeholder="Ejemplo: 12345678" />
                           <mat-error class="Error">
 
                             <ng-container *ngIf="entrenadorForm.get('identification')?.hasError('required')">
@@ -109,7 +109,7 @@
                 </div>
 
                 <!-- Vista 2: Formulario con 6 campos -->
-                <div class="form-carousel" *ngIf="currentPage === 1">
+                <div class="form-carousel-createEntrenador" *ngIf="currentPage === 1">
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
@@ -118,7 +118,7 @@
                         <mat-form-field class="matforms" appearance="outline">
 
 
-                          <mat-select formControlName="nationality" name="nationality" class="inputmat"
+                          <mat-select formControlName="nationality" name="nationality" class="inputmat"  placeholder=" Seleccione"
                             (selectionChange)="universalEstadoApis($event)">
                             <mat-option *ngFor="let opcion of listPaises" [value]="opcion.country_name">
                               {{ opcion.country_name }}
@@ -136,12 +136,12 @@
                     <div fxFlex="30">
                       <div class="row">Departamento de nacimiento</div>
                       <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                        <mat-form-field class="matforms" appearance="outline" fxFlex matTooltip="Selecciona un Pais"
+                          [matTooltipDisabled]="activeDepto">
 
 
-                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"
-                            [disabled]="activeDepto" (selectionChange)="universalCiudadesApis($event)"
-                            matTooltip="Selecciona un Pais" [matTooltipDisabled]="!activeDepto">
+                          <mat-select formControlName="stateordepartmen" name="stateordepartmen" class="inputmat"  placeholder=" Seleccione"
+                            (selectionChange)="universalCiudadesApis($event)">
                             <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
                               {{ opcion.state_name }}
                             </mat-option>
@@ -159,9 +159,9 @@
                     <div fxFlex="30">
                       <div class="row">Ciudad de nacimiento</div>
                       <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline">
-                          <mat-select formControlName="city" name="city" class="inputmat"
-                            matTooltip="Selecciona un Departamento" [matTooltipDisabled]="!activeCity">
+                        <mat-form-field class="matforms" appearance="outline" matTooltip="Selecciona un Departamento"
+                          [matTooltipDisabled]="activeCity">
+                          <mat-select formControlName="city" name="city" class="inputmat"  placeholder=" Seleccione">
                             <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
                               {{ opcion.city_name }}
                             </mat-option>
@@ -186,7 +186,7 @@
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
 
 
-                          <mat-select formControlName="gender" name="gender" class="inputmat">
+                          <mat-select formControlName="gender" name="gender" class="inputmat"  placeholder=" Seleccione">
                             <mat-option *ngFor="let opcion of genderlist" [value]="opcion.code">
                               {{ opcion.value }}
                             </mat-option>
@@ -206,8 +206,21 @@
                     <div fxFlex="30">
                       <div class="row">Máximo nivel de estudio alcanzado</div>
                       <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="studyLevelMax" class="inputmat" />
+                      
+
+                        <mat-form-field class="matforms" appearance="outline" placeholder=" Seleccione" fxFlex >
+                          <mat-select formControlName="studyLevelMax" name="studyLevelMax" class="inputmat" placeholder=" Seleccione">
+                            <mat-option *ngFor="let opcion of entrenadorNivel" [value]="opcion.code">
+                              {{ opcion.value }}
+                            </mat-option>
+                          </mat-select>
+
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('studyLevelMax')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -216,7 +229,7 @@
                       <div class="row">Institución donde estudió</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="institutionNameStudy" required class="inputmat" />
+                          <input matInput formControlName="institutionNameStudy" required class="inputmat" placeholder="Ejemplo: Universidad XYZ"/>
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('institutionNameStudy')?.hasError('required')">
                               *Campo requerido
@@ -233,14 +246,14 @@
 
                 </div>
                 <!-- Vista 3: Formulario con 3 campos -->
-                <div class="form-carousel" *ngIf="currentPage === 2">
+                <div class="form-carousel-createEntrenador" *ngIf="currentPage === 2">
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
 
                     <div fxFlex="30">
                       <div class="row">Correo eléctronico</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="email" />
+                          <input matInput formControlName="email"  placeholder="Ejemplo: usuario@dominio.com"/>
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('email')?.hasError('required')">
                               *Campo requerido
@@ -254,11 +267,11 @@
                     </div>
 
 
-                    <div fxFlex="30" *ngIf="!isEdit">
+                    <div fxFlex="30" >
                       <div class="row">Contraseña</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="password" class="inputmat" type="password" />
+                          <input matInput formControlName="password" class="inputmat" type="password" placeholder="Ingrese su contraseña" />
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('password')?.hasError('required')">
                               *Campo requerido
@@ -271,6 +284,31 @@
                       </div>
                     </div>
 
+                    <div fxFlex="30">
+                      <div class="row"> Confirmar contraseña</div>
+                      <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline">
+                          <input matInput formControlName="passwordVerificate" class="inputmat" type="password" placeholder="Confirme su contraseña"
+                            (ngModelChange)="validatePassword()" />
+                          <mat-error class="Error">
+                            <ng-container *ngIf="entrenadorForm.get('passwordVerificate')?.hasError('required')">
+                              *Campo requerido
+                            </ng-container>
+                            <ng-container *ngIf="entrenadorForm.get('passwordVerificate')?.hasError('pattern')">
+                              Minimo 8 caracteres, con combinación de mayúsculas, minúsculas, números y símbolos.
+                            </ng-container>
+                            <ng-container
+                              *ngIf="entrenadorForm.get('passwordVerificate')?.hasError('passwordMismatch')">
+                              Las contraseñas no coinciden, vuelve a intentar.
+                            </ng-container>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start" style="padding-left: 3%">
 
                     <div fxFlex="30">
                       <div class="row">Teléfono</div>
@@ -300,8 +338,8 @@
 
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="center" class="btones">
-            <div class="widthBtnLeft">
+          <div fxLayout="row" fxLayoutAlign="center" class="btones-createEntrenador">
+            <div class="widthBtnLeft-createEntrenador">
               <button class="slice" [ngClass]="{'invisible-button': currentPage == 0}" (click)="setCurrentPageL()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                   <path d="M14.2002 15.1971L0.200195 8.0231L14.2002 0.67407L7.7252 8.0231L14.2002 15.1971Z"
@@ -324,7 +362,7 @@
 
 
 
-            <div class="widthBtnRigh" *ngIf="currentPage !== 2">
+            <div class="widthBtnRigh-createEntrenador" *ngIf="currentPage !== 2">
               <button class="slice" (click)="setCurrentPageR()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                   <path d="M0.799805 0.799194L14.7998 7.97324L0.799805 15.3223L7.2748 7.97324L0.799805 0.799194Z"
@@ -336,7 +374,7 @@
             </div>
 
 
-            <div class="contentBtnCrear" *ngIf="currentPage === 2">
+            <div class="contentBtnCrear-createEntrenador" *ngIf="currentPage === 2">
               <button mat-button class="btnCrear" (click)="createEntrenador()">{{isEdit?'Guardar':'Crear'}}</button>
             </div>
 

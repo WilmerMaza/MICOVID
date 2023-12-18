@@ -40,7 +40,7 @@ export class SportsmanComponent implements OnInit {
   public birdData: string;
   public generos: listInfo[];
   public selectedImageURL: string = '';
-  public isDownload = this.data.length !== 0;
+  public isDownload: boolean;
   public nameAdd: string = 'deportista';
 
   constructor(
@@ -226,9 +226,9 @@ export class SportsmanComponent implements OnInit {
     );
   }
 
-  actionShowSportmanByIndicator():void{
+  actionShowSportmanByIndicator(): void {
     const dataSportman = [...this.sporsmanService$.getSportmanInfoRedirect()];
-    if(dataSportman.length > 0){
+    if (dataSportman.length > 0) {
       const data = dataSportman[0];
       const { birtDate } = data;
       this.birdData = DateValidators.parseDate(birtDate);
