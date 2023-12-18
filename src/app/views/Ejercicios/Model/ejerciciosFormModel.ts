@@ -12,6 +12,7 @@ export class ejerciciosFormModel {
            cantidad: new FormControl(null, [Validators.required]),
            calidadPromedio: new FormControl(null, [Validators.required]),
            visualIlustration: new FormControl(null),
+           linkEjercicios: new FormControl(null),
          })
     }
 }

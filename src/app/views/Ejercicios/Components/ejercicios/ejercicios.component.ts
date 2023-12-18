@@ -3,10 +3,10 @@ import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { columnsEjerciciosValue } from '../../Model/columnDataEjercicios'
 import { filterResult } from 'src/app/shared/model/filterModel';
 import { jsonData } from '../../Model/dataFilterEjercicios';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateEjercicioComponent } from '../create-ejercicio/create-ejercicio.component';
 import { EjercicioServices } from '../../services/ejercicioServices.service'
-import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse, viewEjercicio } from '../../Model/ejercicioModel'
+import { Ejercicio, EjercicioResponse, Grupo, GrupoResponse, combinateDialogModel, viewEjercicio } from '../../Model/ejercicioModel'
 import { every } from 'rxjs';
 import { ViewEjericioComponent } from '../view-ejericio/view-ejericio.component';
 import { DinamicService } from 'src/app/shared/dinamic.service';
@@ -187,18 +187,12 @@ export class EjerciciosComponent implements OnInit {
   }
 
   openModal(): void {
-    const dialogRef = new MatDialogConfig (); 
-    dialogRef.data = {      
+    const data:combinateDialogModel  = {      
         combinate: this.combinate,
-        dataEjercicios: this.combinate ? this.data : ''    
+        dataEjercicios: this.combinate ? this.data : []    
     }; 
-    dialogRef.width = '510px';
-    dialogRef.height = '590px'
-    this.dialogRef = this.dialog.open(CreateEjercicioComponent, dialogRef);
-    this.dialogRef.afterClosed().subscribe((result: boolean) => {
-      if( result )
-      {this.getEjercicios();}
-    });
+    this.ejercicioServices$.dataNewEjercicios(data);
+    this.router.navigate(['Ejercicios/NewEjercicio']);
   }
 
   actionCloseImage(event: boolean):void {

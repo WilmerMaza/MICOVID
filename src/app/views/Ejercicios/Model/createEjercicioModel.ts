@@ -12,5 +12,6 @@
     SubGrupoID: string;
     UnidTypes: UnitMeasurement[];
     ListIDExercises?: string[];
+    LinkEjercicios?: string;
   }
   
