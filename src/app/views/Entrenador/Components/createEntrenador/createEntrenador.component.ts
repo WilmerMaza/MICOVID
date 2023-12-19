@@ -1,20 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { entrenadorFormModel } from 'src/app/views/Entrenador/Model/entrenadorFormModel';
-import { EntrenadorServices } from '../../services/EntrenadorServices.service';
-import { CryptoService } from 'src/app/utils/crypto.service';
-import { gender, typeIdentification } from '../../Model/constantesEntrenador';
-import {
-  NormaliceLowerValidators,
-  Validators as Validar,
-  regExps,
-} from 'src/app/utils/Validators';
-import {
-  eventsPaises,
-  listInfo,
-  resposeCreate,
-  viewModalEntrenador,
-} from '../../Model/entrenadorModel';
 import {
   CIUDADESCONST,
   CityName,
@@ -25,10 +10,29 @@ import {
   Ipaises,
   PAISESCONST,
 } from 'src/app/models/PaisesConst';
-import { Toast } from 'src/app/utils/alert_Toast';
-import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
 import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
+import {
+  NormaliceLowerValidators,
+  Validators as Validar,
+  regExps,
+} from 'src/app/utils/Validators';
+import { Toast } from 'src/app/utils/alert_Toast';
+import { CryptoService } from 'src/app/utils/crypto.service';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
+import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
+import { entrenadorFormModel } from 'src/app/views/Entrenador/Model/entrenadorFormModel';
+import {
+  entradorNivelEducativo,
+  gender,
+  typeIdentification,
+} from '../../Model/constantesEntrenador';
+import {
+  eventsPaises,
+  listInfo,
+  resposeCreate,
+  viewModalEntrenador,
+} from '../../Model/entrenadorModel';
+import { EntrenadorServices } from '../../services/EntrenadorServices.service';
 @Component({
   selector: 'app-createEntrenador',
   templateUrl: './createEntrenador.component.html',
@@ -49,15 +53,17 @@ export class CreateEntrenadorComponent {
   public listCiudades: CityName[] | undefined = [];
   public listEstados: Estado[] | undefined = [];
   public genderlist: Array<listInfo> = gender;
+  public entrenadorNivel: Array<listInfo> = entradorNivelEducativo;
   public typeIdentificationlist: Array<listInfo> = typeIdentification;
   public isActiveCrear: boolean = true;
   public isEdit: boolean = false;
-  public activeDepto: boolean = true;
-  public activeCity: boolean = true;
+  public activeDepto: boolean = false;
+  public activeCity: boolean = false;
   public selectedFiles: File;
   public imageSelected: boolean = false;
   public selectedImageURL: string = '';
   public imageUrl: string = '';
+  private veryficatePass: boolean = false;
   tooltipText: string = 'Esta es una imagen de muestra';
 
   constructor(
@@ -73,16 +79,19 @@ export class CreateEntrenadorComponent {
   dataIni(value: viewModalEntrenador): void {
     if (!Validar.isNullOrUndefined(value.data)) {
       const {
-        data: { nationality, stateordepartmen },
+        data: { nationality, stateordepartmen, studyLevelMax },
       } = value;
       const {
         ID,
         createdAt,
         updatedAt,
         SportsInstitutionID,
+
         ...dataEntrandor
       } = value.data;
       dataEntrandor.password = '';
+      dataEntrandor.passwordVerificate = '';
+      dataEntrandor.studyLevelMax = studyLevelMax.toLowerCase();
       const state = {
         value: nationality,
       };
@@ -110,8 +119,25 @@ export class CreateEntrenadorComponent {
     }
   }
 
+  validatePassword():void {
+    const password = this.entrenadorForm.get('password')?.value;
+    const confirmPassword =
+      this.entrenadorForm.get('passwordVerificate')?.value;
+
+    if (password !== confirmPassword) {
+      this.entrenadorForm
+        .get('passwordVerificate')
+        ?.setErrors({ passwordMismatch: true });
+      this.veryficatePass = true;
+    } else {
+      this.entrenadorForm.get('passwordVerificate')?.setErrors(null);
+      this.veryficatePass = false;
+    }
+  }
+
   universalCiudadesApis(event: eventsPaises): void {
-    this.activeCity = false;
+    this.activeCity = true;
+    this.entrenadorForm.get('city')?.enable();
     const { value } = event;
     this.listCiudades = CIUDADESCONST.find(
       (item: Iciudades) => item.state_name.toLowerCase() === value.toLowerCase()
@@ -119,7 +145,8 @@ export class CreateEntrenadorComponent {
   }
 
   universalEstadoApis(event: eventsPaises): void {
-    this.activeDepto = false;
+    this.activeDepto = true;
+    this.entrenadorForm.get('stateordepartmen')?.enable();
     const { value } = event;
     this.listEstados = ESTADOSCONST.find(
       (item: Iestados) =>
@@ -141,13 +168,20 @@ export class CreateEntrenadorComponent {
     this.selectedFiles = new File([], 'empty.txt');
     this.imageSelected = false;
     this.selectedImageURL = '';
+    this.entrenadorForm.get('city')?.disable();
+    this.entrenadorForm.get('stateordepartmen')?.disable();
+    this.activeDepto = false;
+    this.activeCity = false;
     this.CreateEntrenador.emit(true);
   }
 
   quitarValidacion(): void {
     this.entrenadorForm.get('password')?.clearValidators();
+    this.entrenadorForm.get('passwordVerificate')?.clearValidators();
     this.entrenadorForm.get('password')?.disable();
+    this.entrenadorForm.get('passwordVerificate')?.disable();
     this.entrenadorForm.get('password')?.updateValueAndValidity();
+    this.entrenadorForm.get('passwordVerificate')?.updateValueAndValidity();
   }
 
   // Función para restablecer la validación
@@ -156,10 +190,17 @@ export class CreateEntrenadorComponent {
       .get('password')
       ?.setValidators([Validators.pattern(regExps['regexPassword'])]);
     this.entrenadorForm.get('password')?.updateValueAndValidity();
+    this.entrenadorForm.get('password')?.enable();
+    this.entrenadorForm.get('passwordVerificate')?.enable();
   }
 
   createEntrenador(): void {
+    this.entrenadorForm.markAllAsTouched();
     if (this.entrenadorForm.invalid) {
+      return;
+    }
+
+    if (this.veryficatePass) {
       return;
     }
 

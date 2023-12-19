@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -82,8 +82,7 @@ export class DinamicTableComponent implements AfterViewInit {
       this.selection.clear();
       return;
     }
-
-    this.selection.select(...this.dataSource.data);
+     this.selection.select(...this.dataSource.data);
   }
 
   checkboxLabel(row?: any): string {

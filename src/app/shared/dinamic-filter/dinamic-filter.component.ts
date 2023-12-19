@@ -1,30 +1,31 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
-  ElementRef,
   EventEmitter,
-  HostListener,
   Input,
+  NgZone,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
-import {
-  JsonDataItem,
-  DynamicObject,
-  filterResult,
-  ControlItem,
-} from '../model/filterModel';
-import { ActionResponse } from '../model/Response/DefaultResponse';
 import { regExps } from 'src/app/utils/Validators';
 import { DinamicService, dataToPass } from '../dinamic.service';
+import { ActionResponse } from '../model/Response/DefaultResponse';
+import {
+  ControlItem,
+  DynamicObject,
+  JsonDataItem,
+  filterResult,
+} from '../model/filterModel';
 
 @Component({
   selector: 'app-dinamic-filter',
   templateUrl: './dinamic-filter.component.html',
   styleUrls: ['./dinamic-filter.component.scss'],
 })
-export class DinamicFilterComponent {
+export class DinamicFilterComponent  implements AfterViewInit{
   public textForm: FormGroup;
   public showFilter: boolean = false;
   public jsonData: JsonDataItem[] = [];
@@ -40,7 +41,7 @@ export class DinamicFilterComponent {
     this.jsonData = value;
   }
   @Input('showDownload') showDownload = true;
-  @Input('showCombinate') showCombinate = true;
+  @Input('showCombinate') showCombinate = false;
   @Input("showSelection") showSelection = true;
   @Input('showButtonAdd') showButtonAdd = true;
   @Input('showLateralPanel') showLateralPanel = true;
@@ -48,14 +49,22 @@ export class DinamicFilterComponent {
   @Output() filterResult = new EventEmitter<filterResult>();
   @Output() actionFilter = new EventEmitter<ActionResponse>();
 
-  constructor(private formBuilder: FormBuilder, private service$ : DinamicService) {
+  constructor(private formBuilder: FormBuilder, private service$ : DinamicService,private cdr: ChangeDetectorRef, private zone: NgZone) {
     this.textForm = this.formBuilder.group({
       textInput: ['', Validators.pattern(regExps['special'])],
     });
+  }
 
-    this.service$.selectNumber$.subscribe(data => {
-        this.selectItemCount = data
-    })
+
+  ngAfterViewInit() {
+    this.zone.runOutsideAngular(() => {
+      this.service$.selectNumber$.subscribe(data => {
+        this.zone.run(() => {
+          this.selectItemCount = data;
+          this.cdr.detectChanges();
+        });
+      });
+    });
   }
 
   onSubmit(): void {
@@ -64,8 +73,8 @@ export class DinamicFilterComponent {
       this.textForm.reset();
     }
   }
-
-  otherOnSubmit():void{
+  
+  otherOnSubmit(): void {
     if (this.textForm.valid) {
       this.sendDataFilter();
       this.clearInput = true;
