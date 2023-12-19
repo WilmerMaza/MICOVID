@@ -119,7 +119,7 @@ export class CreateEntrenadorComponent {
     }
   }
 
-  validatePassword() {
+  validatePassword():void {
     const password = this.entrenadorForm.get('password')?.value;
     const confirmPassword =
       this.entrenadorForm.get('passwordVerificate')?.value;
