@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
+import { Etapas } from 'src/app/views/Complementos/model/interfaceComplementos';
+import { ComplementosService } from 'src/app/views/Complementos/services/complementos.service';
 import { AnnualPlanService } from '../../Services/annual-plan.service';
 import { columnsEntrenadorValue } from '../../models/columnsTableMicro';
+import { Data } from '../../models/eventsModel';
 import { Item, Macrociclo, Microciclo } from '../../models/interfaceFormPlan';
-import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
+import { AddAssingEtapaComponent } from '../dialogComponents/addAssingEtapa/add-assingetapa.component';
 
 @Component({
   selector: 'app-microciclo',
@@ -19,7 +24,9 @@ export class MicrocicloComponent implements OnInit {
 
   constructor(
     private route$: ActivatedRoute,
-    private service$: AnnualPlanService
+    private service$: AnnualPlanService,
+    private complementos$: ComplementosService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -58,11 +65,31 @@ export class MicrocicloComponent implements OnInit {
         };
         break;
       case 'asignar':
+
+      this.assingEtapa(data)
         break;
 
       default:
         break;
     }
+  }
+
+  assingEtapa(data: Data): void {
+    this.complementos$.getEtapas().subscribe((res: Etapas[])  => {
+      const request = {
+        etapas: res,
+        data: data
+      };
+
+      let dialogRef = this.dialog.open(AddAssingEtapaComponent, {
+        width: '384px',
+        height: '200px',
+        data: request
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        this.getAllInfoModule();
+      });
+    });
   }
 
   goBack(): void {

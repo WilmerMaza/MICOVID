@@ -1,0 +1,29 @@
+<div class="content-dialog">
+  <div class="content-x-close">
+    <mat-icon class='closeButtonModal' matDialogClose>close</mat-icon>
+  </div>
+
+  <div class="content-form">
+    <div class="form_insert">
+      <h4>{{titleInit}}</h4>
+      <form [formGroup]="addEtapaForm">
+        <div class="content-input">
+         
+          <div class="row-data">
+            <mat-form-field class="matforms" appearance="outline" fxFlex>
+              <mat-select formControlName="etapa">
+                <mat-option *ngFor="let item of EtapasList" [value]="item.ID">{{item.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="addEtapaForm.get('etapa')?.invalid">La Etapa es requerida</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="content-button">
+        <div class="button-close" matDialogClose>Cancelar</div>
+        <div class="button-add" (click)="assingEtapa()">Asignar</div>
+      </div>
+    </div>
+
+  </div>
+</div>
