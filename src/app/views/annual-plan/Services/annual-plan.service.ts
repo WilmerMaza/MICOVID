@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MicoviApiService } from '../../../services/micovi-api.service';
 import { AuthService } from 'src/app/services/auth-service.service';
-import { DataUser } from '../../pages/model/dataUserModel';
+import { MicoviApiService } from '../../../services/micovi-api.service';
+import { requestEtapaAssing, requestTareasAssing, resposeCreate } from '../../Entrenador/Model/entrenadorModel';
 import { categoryModel } from '../../models/categoryModel';
+import { DataUser } from '../../pages/model/dataUserModel';
+import { TareasMicrociclo } from '../models/eventsModel';
 import {
   Item,
   ItemMacro,
@@ -15,8 +17,6 @@ import {
   RootPlanById,
   task,
 } from '../models/interfaceFormPlan';
-import { resposeCreate } from '../../Entrenador/Model/entrenadorModel';
-import { TareasMicrociclo } from '../models/eventsModel';
 
 @Injectable({
   providedIn: 'root',
@@ -81,9 +81,14 @@ export class AnnualPlanService {
     return this.micovid$.get(endpoint);
   }
 
-  assingTask(data: any): Observable<resposeCreate> {
+  assingTask(data: requestTareasAssing): Observable<resposeCreate> {
     const endpoint = '/Tareas/assignTasks';
     return this.micovid$.post(endpoint, data);
+  }
+
+  assingEtapa(data: requestEtapaAssing): Observable<resposeCreate> {
+    const endpoint = '/Etapa/AssingEtapa';
+    return this.micovid$.put(endpoint, data);
   }
 
   createTask(data: any): Observable<resposeCreate> {

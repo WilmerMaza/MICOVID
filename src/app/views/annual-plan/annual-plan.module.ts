@@ -7,6 +7,7 @@ import { SharedModuleModule } from '../../shared/shared-module.module';
 import { AnnualPlanRoutingModule } from './annual-plan-routing.module';
 import { AnnualPlanComponent } from './components/annual-plan.component';
 import { AddAnnualPlanComponent } from './components/dialogComponents/addAnnualPlan/add-annual-plan.component';
+import { AddAssingEtapaComponent } from './components/dialogComponents/addAssingEtapa/add-assingetapa.component';
 import { AddAssingTareaComponent } from './components/dialogComponents/addAssingTarea/add-assingtarea.component';
 import { AddEtapaComponent } from './components/dialogComponents/addEtapa/add-etapa.component';
 import { AddMacroComponent } from './components/dialogComponents/addMacro/add-macro.component';
@@ -25,6 +26,7 @@ import { TareasxmicroComponent } from './components/tareasxmicro/tareasxmicro.co
     AddAssingTareaComponent,
     AddTareaComponent,
     AddEtapaComponent,
+    AddAssingEtapaComponent
   ],
   imports: [
     CommonModule,

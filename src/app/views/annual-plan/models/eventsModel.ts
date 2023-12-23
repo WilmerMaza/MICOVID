@@ -1,3 +1,5 @@
+import { Etapas } from "../../Complementos/model/interfaceComplementos";
+
 export interface events {
   title: string;
   start: string;
@@ -59,6 +61,12 @@ export interface dataModelAssing {
   fecha: Fecha;
   MicrocicloID: string;
 }
+
+export interface dataModelAssingEtapa {
+  etapas: Etapas[];
+  data: Data,
+}
+
 
 export interface Tarea {
   ID: string;

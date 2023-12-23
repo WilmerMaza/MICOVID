@@ -28,6 +28,18 @@ export interface resposeCreate {
   Menssage: string;
 }
 
+export interface requestTareasAssing{
+  MicrocicloID: string;
+  TareaID: string;
+  fechaInicio: Date;
+  fechaFin: Date;
+}
+
+export interface requestEtapaAssing {
+  MicrocicloID: string;
+  MacrocicloID: string;
+  EtapaID: string;
+}
 export type listEntrenador = Entrandor[];
 
 export interface Entrandor {

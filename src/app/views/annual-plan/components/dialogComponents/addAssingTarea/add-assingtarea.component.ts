@@ -61,6 +61,12 @@ export class AddAssingTareaComponent {
   }
 
   assingTask(): void {
+
+    if (!this.addTaskForm.valid) {
+      this.addTaskForm.markAllAsTouched();
+      return
+    }
+
     const { MicrocicloID } = this.data;
     const {
       value: { date_end, task },
