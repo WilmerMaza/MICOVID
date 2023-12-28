@@ -35,6 +35,7 @@ import {
   typeIdentification,
 } from 'src/app/views/Entrenador/Model/constantesEntrenador';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
+import { categoryModel } from 'src/app/views/models/categoryModel';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -44,7 +45,7 @@ import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 export class CreateSportsmanComponent implements OnInit {
   @Input('viewActive') set setView(value: visible) {
     this.showViewSportsman = value.isVisible;
-    this.dataIni(value);
+    this.getcategorys(value);
   }
   @Input('dataCategory') set dataCategory(value: SportsmanData[]) {
     this.dataCreateSportsman = value;
@@ -85,6 +86,22 @@ export class CreateSportsmanComponent implements OnInit {
     this.defaulCarrusel();
   }
 
+   getcategorys(value: visible): void {
+    this.sporsmanService$.getAllCategory().subscribe((res: categoryModel[]) => {
+      this.categorias = res.map((categorias: categoryModel) => {
+        const { ID, name } = categorias;
+        const item = {
+          name: name,
+          value: name,
+          code: ID,
+        };
+        return item;
+      });
+
+      this.dataIni(value);
+    });
+  }
+
   defaulCarrusel(): void {
     this.sportsmansForm.reset();
     this.currentPage = 0;
@@ -101,6 +118,7 @@ export class CreateSportsmanComponent implements OnInit {
   }
 
   dataIni(value: visible): void {
+ 
     if (!Validar.isNullOrUndefined(value.data)) {
       const {
         birtDate,
@@ -122,6 +140,11 @@ export class CreateSportsmanComponent implements OnInit {
         height,
         image,
       } = value.data;
+
+      const Categorium = this.categorias.find(
+        (categoria: ControlItem) => categoria.name === category
+      );
+      
       const data = {
         birtDate,
         city,
@@ -139,7 +162,7 @@ export class CreateSportsmanComponent implements OnInit {
         typeIdentification,
         weight,
         height,
-        category,
+        category: Categorium,
         image,
       };
       const state = {

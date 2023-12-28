@@ -3,312 +3,315 @@
 @import "swiper/scss/pagination";
 @import "swiper/css/effect-coverflow";
 
-#view-indicators{
-    margin: 20px;
-    background-color:#FFF;
-    border-radius: 15px;
-    .info-sportman{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 40px;
-        margin-bottom: 20px;
-        padding: 20px;
-        position: relative;
-        .content-image {
-            width: 134px;
-            height: 134px;
-            flex-shrink: 0;
-            fill: rgba(217, 217, 217, 0.00);
-            stroke-width: 2.436px;
-            stroke: #0C4CC8;
-            filter: drop-shadow(0px 3.2484846115112305px 3.2484846115112305px rgba(0, 0, 0, 0.25));
-            border-radius: 50%;
-            border:2px solid #0C4CC8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            img{
-                text-align: center;
-            }
-        }
-        .data-sportman{
-            font-weight: 500;
-            color: #0C4CC8;
-            button{
-                color: #FFF;
-                border: none;
-                border-radius: 15px;
-                background-color: #0C4CC8;
-                padding: 0 10px;
-                box-shadow: 0 0 3px gray;
-            }
-            button:active {
-                box-shadow: 0 0 0px 0px gray;
-            }
-        }
-        .x-back{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            cursor: pointer;
-            color: #0C4CC8;
-            border: solid 2px;
-        }
-        .x-back:active{
-            background-color: darkgray;
-        }
+#view-indicators {
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  .info-sportman {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
+    padding-top: 40px;
+    margin-left: 30px;
+    position: relative;
+    .content-image {
+      width: 134px;
+      height: 134px;
+      flex-shrink: 0;
+      fill: rgba(217, 217, 217, 0);
+      stroke-width: 2.436px;
+      stroke: #0c4cc8;
+      filter: drop-shadow(
+        0px 3.2484846115112305px 3.2484846115112305px rgba(0, 0, 0, 0.25)
+      );
+      border-radius: 50%;
+      border: 2px solid #0c4cc8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      img {
+        text-align: center;
+        width: 134px;
+        height: 134px;
+      }
     }
+    .data-sportman {
+      font-weight: 500;
+      color: #0c4cc8;
+      button {
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        background-color: #0c4cc8;
+        padding: 0 10px;
+        box-shadow: 0 0 3px gray;
+      }
+      button:active {
+        box-shadow: 0 0 0px 0px gray;
+      }
+    }
+    .x-back {
+      position: absolute;
+      top: 10px;
+      left: -12px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #0c4cc8;
+      border: solid 2px;
+    }
+    .x-back:active {
+      background-color: darkgray;
+    }
+  }
 
-    .header-indicador{
+  .header-indicador {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .line-blue {
+      border: 2px solid #0c4cc8;
+      width: 90%;
+    }
+    .header-indicator {
+      margin-top: 10px;
+      color: #fff;
+      width: 303px;
+      height: 28px;
+      border-radius: 15px;
+      background: #73f237;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+      text-align: center;
+    }
+  }
+
+  .container-indicator {
+    width: 100%;
+    .header-indicator {
+      margin: 15px 0;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .name-exercicies {
+        width: 303px;
+        height: 28px;
+        border-radius: 15px;
+        background: #73f237;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+        text-align: center;
+        padding-top: 2px;
+      }
+    }
+    .slider-effectCoverflow {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      .footer-indicator {
+        margin-top: 15px;
+        color: #fff;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .redirect-levels {
+          width: 320px;
+          height: 28px;
+          border-radius: 15px;
+          background: #0c4cc8;
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+          text-align: center;
+          padding-top: 2px;
+        }
+      }
+      .swiper {
+        width: 90%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        height: 550px;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 783px;
+        height: 365px;
+        .viewImage {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80%;
+          height: 200px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 15px;
+          padding: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+          }
+        }
+
+        .swiper-slide img {
+          display: block;
+          width: 100%;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: white;
+          background-color: black;
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          opacity: 50%;
+        }
+
+        .swiper-pagination-bullet-activel {
+          background-color: white;
+        }
+
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+
+      .contentViewIndicador {
+        background-image: url(../../../../../assets/images/fondo-tarjeta-indicadores.png);
+        background-size: cover;
+        height: -webkit-fill-available;
+        padding: 40px 0px 10px 0px;
+        border-radius: 30px;
+        position: relative;
+        .close-button {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+
+      .item {
+        width: 90%;
+        height: 90%;
+        padding: 0px 20px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .line-blue{
-            border: 2px solid #0C4CC8;
-            width: 90%;
-
+        text-align: start;
+        color: #fff;
+        font-family: Inria Sans;
+        font-style: normal;
+        line-height: normal;
+        position: relative;
+        .header-item {
+          font-size: 38px;
+          font-weight: 700;
+          margin-bottom: 10px;
         }
-        .header-indicator{
-            margin-top: 10px;
-            color: #FFF;
-            width: 303px;
-            height: 28px;
-            border-radius: 15px;
-            background: #73F237;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
-            text-align: center;
-        }
-    }
-
-    .container-indicator{
-        width: 100%;  
-        .header-indicator{
-          margin: 15px 0;
-          color: #FFF;
-          width: 100%;
+        .footer-levels {
           display: flex;
-          justify-content: center;
-          align-items: center;
-          .name-exercicies{
-              width: 303px;
-              height: 28px;
-              border-radius: 15px;
-              background: #73F237;
-              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
-              text-align: center;
-              padding-top: 2px;
-          }
-      }
-        .slider-effectCoverflow {
-            width: 100%;
+          font-size: 20px;
+          font-weight: 700;
+          gap: 40px;
+          position: absolute;
+          bottom: 0;
+          .levels,
+          .porcentaje {
             text-align: center;
-            padding: 20px 0;
-            .footer-indicator{
-                margin-top: 15px;
-                color: #FFF;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .redirect-levels{
-                    width: 320px;
-                    height: 28px;
-                    border-radius: 15px;
-                    background:#0C4CC8;
-                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
-                    text-align: center;
-                    padding-top: 2px;
-                }
-            }
-            .swiper {
-              width: 90%;
-              padding-top: 50px;
-              padding-bottom: 50px;
-              height: 550px;
-            }
-          
-            .swiper-slide {
-                background-position: center;
-                background-size: cover;
-                width: 783px;
-                height: 365px;
-            .viewImage{
-              position: relative;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 80%;
-              height: 200px;
-              background-size: cover;
-              background-repeat: no-repeat;
-              background-position: center;
-              border-radius: 15px;
-              padding: 0;
-          
-              img{
-                width: 100%;
-                height: 100%;
-                border-radius: 15px;
-              }
-            }
-          
-            .swiper-slide img {
-              display: block;
-              width: 100%;
-            }
-          
-            .swiper-button-next,
-            .swiper-button-prev {
-              color: white;
-              background-color: black;
-              width: 40px;
-              height: 40px;
-              border-radius: 100%;
-              opacity: 50%;
-            }
-          
-            .swiper-pagination-bullet-activel {
-              background-color: white;
-            }
-          
-            .swiper-pagination-bullet {
-              width: 10px;
-              height: 10px;
-            }
-          
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-              font-size: 15px;
-              font-weight: bold;
+            .cantidad {
+              color: #0ddcf9;
+              font-size: 70px;
+              margin: -10px;
             }
           }
-          
-          .contentViewIndicador {
-            background-image: url(../../../../../assets/images/fondo-tarjeta-indicadores.png);
-            background-size: cover;
-            height: -webkit-fill-available;
-            padding: 40px 0px 10px 0px;
-            border-radius: 30px;
-            position: relative;
-            .close-button{
-              position: absolute;
-              right: 0;
-              top: 0;
-            }
-          }
-          
-          .item {
-            width: 90%;
-            height: 90%;
-            padding: 0px 20px;
-            display: flex;
-            flex-direction: column;
-            text-align: start;
-            color: #FFF;
-            font-family: Inria Sans;
-            font-style: normal;
-            line-height: normal;
-            position: relative;
-            .header-item {
-              font-size: 38px;
-              font-weight: 700;
-              margin-bottom:10px ;
-            }
-            .footer-levels{
-              display: flex;
-              font-size: 20px;
-              font-weight: 700;
-              gap: 40px;
-              position: absolute;
-              bottom: 0;
-              .levels, .porcentaje{
-                text-align: center;
-                .cantidad {
-                  color: #0DDCF9;
-                  font-size: 70px;
-                  margin: -10px;
-                }
-              }
-            }
-          }
-          
         }
+      }
+    }
+  }
+
+  #content-info-levels {
+    width: 100%;
+    padding: 20px 0;
+    overflow: auto;
+    position: relative;
+    .button-back {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      button {
+        padding: 0 20px;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        background-color: #0c4cc8;
+      }
+    }
+    .header-level {
+      margin-bottom: 15px;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .name-exercicies {
+        width: 303px;
+        height: 28px;
+        border-radius: 15px;
+        background: #73f237;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+        text-align: center;
+        padding-top: 2px;
+      }
     }
 
-   #content-info-levels{
-      width: 100%;
+    .content-levels {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
       padding: 20px 0;
-      overflow: auto;
-      position: relative;
-      .button-back{
-        position: absolute;
-        top: 5px;
-        left: 10px;
-        button {
-          padding: 0 20px;
-          border: none;
-          border-radius: 15px;
-          color: #FFF;
-          background-color: #0C4CC8;
+      .target-level {
+        width: 250px;
+        height: 366px;
+        flex-shrink: 0;
+        background-image: url(../../../../../assets/images/fondo-tarjeta-indicadores.png);
+        background-size: cover;
+        background-position: top;
+        border-radius: 18px;
+        color: white;
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        .name-level {
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 15px;
+        }
+        .desc-level {
+          font-size: 14px;
         }
       }
-      .header-level{
-        margin-bottom: 15px;
-        color: #FFF;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .name-exercicies{
-            width: 303px;
-            height: 28px;
-            border-radius: 15px;
-            background: #73F237;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.00);
-            text-align: center;
-            padding-top: 2px;
-        }
-      }
-
-      .content-levels{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 0;
-        .target-level{
-          width: 250px;
-          height: 366px;
-          flex-shrink: 0;
-          background-image: url(../../../../../assets/images/fondo-tarjeta-indicadores.png);
-          background-size: cover;
-          background-position: top;
-          border-radius: 18px;
-          color: white;
-          padding: 10px;
-          box-shadow: 0 0 5px black;
-          .name-level{
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-          }
-          .desc-level{
-            font-size: 14px;
-          }
-        }
-      }
-
-   } 
-
+    }
+  }
 }
