@@ -90,7 +90,7 @@ export class SportsmanComponent implements OnInit {
   }
 
   viewImage(nameImg: string | undefined): void {
-    if (nameImg) {
+    if (nameImg && nameImg !== 'Default.png') {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
       imageLoader.loadImage(nameImg, (imageUrl) => {
         this.selectedImageURL = imageUrl;

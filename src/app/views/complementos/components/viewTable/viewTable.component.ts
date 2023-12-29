@@ -46,7 +46,11 @@ export class ViewTableComponent implements OnInit {
       case 'Subgrupos':
         this.column = columnsSubgrupo;
         break;
+        case 'Disciplinas':
+        this.column = columnsDefault;
+        break;
       default:
+        this.column = columnsDefault;
         break;
     }
   }

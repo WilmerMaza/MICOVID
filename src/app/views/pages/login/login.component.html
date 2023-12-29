@@ -20,6 +20,7 @@
               formControlName="username"
               required
               class="inputmat"
+              autocomplete="username"
             />
             <mat-error *ngIf="loginForm.get('username')?.invalid"
               >username is required</mat-error
@@ -35,6 +36,7 @@
               matInput
               formControlName="password"
               required
+              autocomplete="current-password"
               class="inputmat"
               type="password"
             />

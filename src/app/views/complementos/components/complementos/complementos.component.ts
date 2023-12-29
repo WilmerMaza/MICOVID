@@ -15,11 +15,11 @@ import {
 } from 'src/app/views/annual-plan/models/interfaceFormPlan';
 import { categoryModel } from 'src/app/views/models/categoryModel';
 import { DataUser } from 'src/app/views/pages/model/dataUserModel';
-import { Etapas, Grupo } from '../../model/interfaceComplementos';
+import { Diciplinas, Etapas, Grupo } from '../../model/interfaceComplementos';
 import { ComplementosService } from '../../services/complementos.service';
 import { AddCategoriaComponent } from '../addCategoria/add-categoria.component';
-import { ViewTableComponent } from '../viewTable/viewTable.component';
 import { CrearDisciplinaComponent } from '../crear-disciplina/crear-disciplina.component';
+import { ViewTableComponent } from '../viewTable/viewTable.component';
 
 @Component({
   selector: 'app-complementos',
@@ -133,8 +133,10 @@ export class ComplementosComponent implements OnInit {
         });
         break;
       case 'Disciplinas':
-        data.data = [];
-        this.modal(data);
+        this.complementos$.getDiciplina().subscribe((res: Diciplinas[]) => {
+          data.data = res;
+          this.modal(data);
+        });
         break;
       default:
         break;

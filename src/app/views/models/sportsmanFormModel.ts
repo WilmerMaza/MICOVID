@@ -30,8 +30,7 @@ export class sportsmanFormModel {
       category: new FormControl('', [Validators.required]),
       studyLevelMax: new FormControl(null, [Validators.required]),
       institutionNameStudy: new FormControl(null, [Validators.required]),
-      sportInstition: new FormControl(null, [Validators.required]),
-      athleticDiscipline: new FormControl(null, [Validators.required]),
+      DiciplinaID: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [
         Validators.required,
         Validators.pattern(regExps['emailComplet']),

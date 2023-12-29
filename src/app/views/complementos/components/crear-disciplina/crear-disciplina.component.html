@@ -22,10 +22,10 @@
           <div class="contet-input">
             <div class="row">Descripción</div>
             <div class="form-field">
-              <textarea matInput formControlName="descripcion" class="field-input custom-input"></textarea>
+              <textarea matInput formControlName="describe" class="field-input custom-input"></textarea>
               <mat-error class="Error" *ngIf="
-                  ( addDisciplinaForm.get('descripcion')?.touched) &&
-                  addDisciplinaForm.get('descripcion')?.hasError('required')
+                  ( addDisciplinaForm.get('describe')?.touched) &&
+                  addDisciplinaForm.get('describe')?.hasError('required')
                 ">
                 *Campo requerido
               </mat-error>

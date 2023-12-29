@@ -26,7 +26,8 @@
               <div fxLayout="row">
                 <!-- Definición de la primera fila -->
                 <div fxFlex="20%" class="center-content">
-                  <div class="contenImg"> <img [src]=" selectedImageURL == ''?'../../../assets/images/default.png': selectedImageURL">
+                  <div class="contenImg"> <img
+                      [src]=" selectedImageURL == ''?'../../../assets/images/default.png': selectedImageURL">
                   </div>
 
                 </div>
@@ -75,13 +76,13 @@
                       </div>
                       <div fxFlex="auto">
                         <div class="row">Institución deportiva</div>
-                        <div class="row-data">{{dataSingle.sportInstition}}</div>
+                        <div class="row-data">{{dataSingle.SportsInstitution?.institutionName}}</div>
                       </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="16px"> <!-- Definición de la cuarta fila -->
                       <div fxFlex="auto">
                         <div class="row">Disciplina deportiva</div>
-                        <div class="row-data">{{dataSingle.athleticDiscipline}}</div>
+                        <div class="row-data">{{dataSingle.Diciplina?.name}}</div>
                       </div>
                       <div fxFlex="auto">
                         <div class="row">Correo</div>
