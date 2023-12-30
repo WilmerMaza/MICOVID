@@ -29,6 +29,8 @@ import {
 } from 'src/app/utils/Validators';
 import { Toast } from 'src/app/utils/alert_Toast';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
+import { Diciplinas } from 'src/app/views/Complementos/model/interfaceComplementos';
+import { ComplementosService } from 'src/app/views/Complementos/services/complementos.service';
 import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
 import {
   gender,
@@ -68,10 +70,12 @@ export class CreateSportsmanComponent implements OnInit {
   public selectedImageURL: string = '';
   public imageSelected: boolean = false;
   public selectedFiles: File;
+  public diciplinasList: Diciplinas[] = [];
 
   constructor(
     private sporsmanService$: SportsmanService,
-    private imagenFuntionsService$: ImagenFuntionsService
+    private imagenFuntionsService$: ImagenFuntionsService,
+    private complementos$: ComplementosService
   ) {}
   async ngOnInit(): Promise<void> {
     this.categorias =
@@ -80,13 +84,14 @@ export class CreateSportsmanComponent implements OnInit {
       )?.control || [];
     this.generos = gender;
     this.typeIdentification = typeIdentification;
+    this.getDiciplinas();
   }
   closeCard(): void {
     this.showViewSportsman = false;
     this.defaulCarrusel();
   }
 
-   getcategorys(value: visible): void {
+  getcategorys(value: visible): void {
     this.sporsmanService$.getAllCategory().subscribe((res: categoryModel[]) => {
       this.categorias = res.map((categorias: categoryModel) => {
         const { ID, name } = categorias;
@@ -117,12 +122,16 @@ export class CreateSportsmanComponent implements OnInit {
     this.CreateSportsman.emit(true);
   }
 
+  getDiciplinas(): void {
+    this.complementos$.getDiciplina().subscribe((res: Diciplinas[]) => {
+      this.diciplinasList = res;
+    });
+  }
+
   dataIni(value: visible): void {
- 
     if (!Validar.isNullOrUndefined(value.data)) {
       const {
         birtDate,
-        sportInstition,
         city,
         department,
         category,
@@ -133,18 +142,18 @@ export class CreateSportsmanComponent implements OnInit {
         name,
         nationality,
         phone,
-        athleticDiscipline,
         studyLevelMax,
         typeIdentification,
         weight,
         height,
         image,
+        DiciplinaID,
       } = value.data;
 
       const Categorium = this.categorias.find(
         (categoria: ControlItem) => categoria.name === category
       );
-      
+
       const data = {
         birtDate,
         city,
@@ -156,8 +165,7 @@ export class CreateSportsmanComponent implements OnInit {
         nationality,
         phone,
         department,
-        athleticDiscipline,
-        sportInstition,
+        DiciplinaID,
         studyLevelMax,
         typeIdentification,
         weight,
@@ -201,7 +209,7 @@ export class CreateSportsmanComponent implements OnInit {
   }
 
   viewImage(nameImg: string | undefined): void {
-    if (nameImg) {
+    if (nameImg && nameImg !== 'Default.png') {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
       imageLoader.loadImage(nameImg, (imageUrl) => {
         this.selectedImageURL = imageUrl;

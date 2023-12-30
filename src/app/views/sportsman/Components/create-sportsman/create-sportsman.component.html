@@ -52,7 +52,7 @@
                       <div class="row">Tipo de Documento</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <mat-select formControlName="typeIdentification" class="inputmat">
+                          <mat-select formControlName="typeIdentification" class="inputmat" placeholder=" Seleccione">
                             <mat-option *ngFor="let identification of typeIdentification" [value]="identification.code">
                               {{ identification.code+' - '+identification.value }}
                             </mat-option>
@@ -113,7 +113,7 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
                           <mat-select formControlName="nationality" name="nationality" class="inputmat"
-                            (selectionChange)="universalEstadoApis($event)">
+                            placeholder=" Seleccione" (selectionChange)="universalEstadoApis($event)">
                             <mat-option *ngFor="let opcion of listPaises" [value]="opcion.country_name">
                               {{ opcion.country_name }}
                             </mat-option>
@@ -133,7 +133,7 @@
                         <mat-form-field class="matforms" appearance="outline" fxFlex matTooltip="Selecciona un Pais"
                           [matTooltipDisabled]="activeDepto">
                           <mat-select formControlName="department" name="department" class="inputmat"
-                            (selectionChange)="universalCiudadesApis($event)">
+                            placeholder=" Seleccione" (selectionChange)="universalCiudadesApis($event)">
                             <mat-option *ngFor="let opcion of listEstados" [value]="opcion.state_name">
                               {{ opcion.state_name }}
                             </mat-option>
@@ -153,7 +153,7 @@
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" matTooltip="Selecciona un Departamento"
                           [matTooltipDisabled]="activeCity">
-                          <mat-select formControlName="city" name="city" class="inputmat">
+                          <mat-select formControlName="city" name="city" class="inputmat" placeholder=" Seleccione">
                             <mat-option *ngFor="let opcion of listCiudades" [value]="opcion.city_name">
                               {{ opcion.city_name }}
                             </mat-option>
@@ -209,7 +209,7 @@
                       <div class="row">Genero</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <mat-select formControlName="gender" class="inputmat">
+                          <mat-select formControlName="gender" class="inputmat" placeholder=" Seleccione">
                             <mat-option *ngFor="let genero of generos" [value]="genero.code">
                               {{ genero.value }}
                             </mat-option>
@@ -227,7 +227,7 @@
                       <div class="row">Categoría</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <mat-select formControlName="category" class="inputmat">
+                          <mat-select formControlName="category" class="inputmat" placeholder=" Seleccione">
                             <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                               {{ categoria.name }}
                             </mat-option>
@@ -278,12 +278,17 @@
                     </div>
 
                     <div fxFlex="30">
-                      <div class="row">Institución deportiva</div>
+                      <div class="row">Disciplina deportiva</div>
                       <div class="row-data">
+
                         <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="sportInstition" required class="inputmat" />
+                          <mat-select formControlName="DiciplinaID" class="inputmat" placeholder=" Seleccione">
+                            <mat-option *ngFor="let diciplinas of diciplinasList" [value]="diciplinas.ID">
+                              {{ diciplinas.name }}
+                            </mat-option>
+                          </mat-select>
                           <mat-error class="Error">
-                            <ng-container *ngIf="sportsmansForm.get('sportInstition')?.hasError('required')">
+                            <ng-container *ngIf="sportsmansForm.get('DiciplinaID')?.hasError('required')">
                               *Campo requerido
                             </ng-container>
                           </mat-error>
@@ -294,19 +299,7 @@
                   </div>
 
                   <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
-                    <div fxFlex="30">
-                      <div class="row">Disciplina deportiva</div>
-                      <div class="row-data">
-                        <mat-form-field class="matforms" appearance="outline" fxFlex>
-                          <input matInput formControlName="athleticDiscipline" required class="inputmat" />
-                          <mat-error class="Error">
-                            <ng-container *ngIf="sportsmansForm.get('athleticDiscipline')?.hasError('required')">
-                              *Campo requerido
-                            </ng-container>
-                          </mat-error>
-                        </mat-form-field>
-                      </div>
-                    </div>
+
 
                     <div fxFlex="30">
                       <div class="row">Correo eléctronico</div>
