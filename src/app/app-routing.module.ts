@@ -51,42 +51,42 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then(
+          import('src/app/views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
       },
       {
         path: 'sportsman',
         loadChildren: () =>
-        import('./views/sportsman/sporstman.module').then(
+        import('src/app/views/sportsman/sporstman.module').then(
           (m) => m.SportManModule
         ),
       },
       {
         path: 'Entrenador',
         loadChildren: () =>
-          import('./views/Entrenador/Entrenador.module').then(
+          import('src/app/views/Entrenador/Entrenador.module').then(
             (m) => m.EntrenadorModule
           ),
       },
       {
         path: 'plan-anual',
         loadChildren: () =>
-          import('./views/annual-plan/annual-plan.module').then(
+          import('src/app/views/annual-plan/annual-plan.module').then(
             (m) => m.AnnualPlanModule
           ),
       },
       {
         path: 'Ejercicios',
         loadChildren: () =>
-          import('./views/Ejercicios/Ejercicios.module').then(
+          import('src/app/views/Ejercicios/Ejercicios.module').then(
             (m) => m.EjerciciosModule
           ),
       },
       {
         path: 'Complementos',
         loadChildren: () =>
-          import('./views/Complementos/complementos.module').then(
+          import('src/app/views/Complementos/complementos.module').then(
             (m) => m.ComplementosModule
           ),
       },
