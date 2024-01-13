@@ -33,6 +33,10 @@ export class AddTareaComponent {
   }
 
   createTask(): void {
+    if (this.addTaskForm.invalid) {
+      this.alertTrigger();
+      return;
+    }
     const request = {
       ...this.addTaskForm.value,
     };
