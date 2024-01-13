@@ -32,6 +32,10 @@ export class AddCategoriaComponent {
   }
 
   createTask(): void {
+    if (this.addCategoriaForm.invalid) {
+      this.alertTrigger();
+      return;
+    }
     const request = {
       ...this.addCategoriaForm.value,
     };

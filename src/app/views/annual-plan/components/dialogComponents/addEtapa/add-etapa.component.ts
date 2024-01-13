@@ -31,6 +31,10 @@ export class AddEtapaComponent {
   }
 
   createTask(): void {
+    if (this.addEtapaForm.invalid) {
+      this.alertTrigger();
+      return;
+    }
     const request = {
       ...this.addEtapaForm.value,
     };

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import 'moment/locale/es';
+import { firstValueFrom } from 'rxjs';
 import { Validators } from 'src/app/utils/Validators';
 import { AnnualPlanService } from '../../Services/annual-plan.service';
 import {
@@ -54,10 +55,10 @@ export class TareasxmicroComponent implements OnInit {
     this.showViewTareas = false;
     this.closeCardView.emit(false);
   }
-  dataMicrociclo(data: Data): void {
+  async dataMicrociclo(data: Data): Promise<void> {
     const { date_initial, date_end, number_micro, ID } = data;
     this.microcicloId = ID;
-    this.searchTareasMicro(this.microcicloId);
+    await this.searchTareasMicro(this.microcicloId);
 
     const dateinitial = moment(date_initial);
     const dateFinal = moment(date_end);
@@ -151,25 +152,25 @@ export class TareasxmicroComponent implements OnInit {
     return eventsDays;
   }
 
-  searchTareasMicro(microcicloID: string): void {
-    this.annualPlanService$
-      .getMicrocicloTask(microcicloID)
-      .subscribe((res: TareasMicrociclo[]) => {
-        const eventos = res.map(
-          ({
-            fechaInicio,
-            fechaFin,
-            Tarea: { name, color },
-          }: TareasMicrociclo) => ({
-            title: name,
-            start: fechaInicio,
-            end: fechaFin,
-            color: color,
-          })
-        );
+  async searchTareasMicro(microcicloID: string): Promise<void> {
+    const res = await firstValueFrom(
+      this.annualPlanService$.getMicrocicloTask(microcicloID)
+    );
 
-        this.events = eventos as Events;
-      });
+    const eventos = res.map(
+      ({
+        fechaInicio,
+        fechaFin,
+        Tarea: { name, color },
+      }: TareasMicrociclo) => ({
+        title: name,
+        start: fechaInicio,
+        end: fechaFin,
+        color: color,
+      })
+    );
+
+    this.events = eventos as Events;
   }
 
   assigntask(fechaData: fechaTask): void {

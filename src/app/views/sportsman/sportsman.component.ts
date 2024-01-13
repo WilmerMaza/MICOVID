@@ -5,8 +5,7 @@ import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { filterResult } from 'src/app/shared/model/filterModel';
 import {
   DateValidators,
-  NormaliceUpperUnicosValidators,
-  NormaliceUpperValidators,
+  NormaliceUpperUnicosValidators
 } from 'src/app/utils/Validators';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
 import { gender } from '../Entrenador/Model/constantesEntrenador';
@@ -83,8 +82,9 @@ export class SportsmanComponent implements OnInit {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
       res.forEach((item: Sportsman) => {
         item.name = NormaliceUpperUnicosValidators.normaliceData(item.name);
+        item.gender = NormaliceUpperUnicosValidators.normaliceData(item.gender);
+        item.typeIdentification = item.typeIdentification.toLocaleUpperCase();
       });
-      NormaliceUpperValidators.normaliceData(res);
       this.transformGenre(res);
     });
   }
