@@ -28,7 +28,7 @@ export class AddMacroComponent {
   ){
     this.addMacroForm = new FormGroup({
       name:new FormControl('',[validForm.required]),
-      date_initial: new FormControl({value:'', disabled:true}, [validForm.required]),
+      date_initial: new FormControl({value:'', disabled:false}, [validForm.required]),
       date_end: new FormControl(Date, [validForm.required]),
       detail: new FormControl('', [validForm.required])
     })
