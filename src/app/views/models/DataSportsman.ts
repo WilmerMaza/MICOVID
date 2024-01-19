@@ -21,6 +21,7 @@ export interface Sportsman {
   HasIndicators: boolean;
   Diciplina?: Diciplina;
   SportsInstitution?: SportsInstitution;
+  age?:string;
 }
 
 export interface Diciplina {

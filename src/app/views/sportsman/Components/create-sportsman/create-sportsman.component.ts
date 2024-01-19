@@ -38,6 +38,7 @@ import {
 } from 'src/app/views/Entrenador/Model/constantesEntrenador';
 import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 import { categoryModel } from 'src/app/views/models/categoryModel';
+import { calcularEdad } from 'src/app/utils/UtilFunctions';
 
 @Component({
   selector: 'app-create-sportsman',
@@ -227,11 +228,13 @@ export class CreateSportsmanComponent implements OnInit {
   async createSportsman(): Promise<void> {
     if (this.sportsmansForm.valid) {
       const {
-        value: { image, department, city, nationality, category },
+        value: { image, department, city, nationality, category, birtDate },
         value,
       } = this.sportsmansForm;
 
       NormaliceLowerValidators.normaliceData(value);
+
+      let edad = calcularEdad(birtDate);
 
       const formSportsman = this.isEdit
         ? {
@@ -242,6 +245,7 @@ export class CreateSportsmanComponent implements OnInit {
             department,
             city,
             nationality,
+            age: edad,
             category: category.value,
             CategoriumID: category.code,
             ID: this.dataID,
@@ -259,6 +263,7 @@ export class CreateSportsmanComponent implements OnInit {
             department,
             city,
             nationality,
+            age: edad,
           };
 
       const formData = new FormData();
