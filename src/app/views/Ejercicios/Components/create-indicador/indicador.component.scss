@@ -1,105 +1,184 @@
-#content_create_indicador{
-    width: calc( 100% - 20px);
-    height: calc( 90vh - 20px);
-    position: relative;
-    background-color: white;
-    margin: 10px;
-    border-radius: 15px;
-    overflow: hidden;
-    .content_fondo {
-        width: 741px;
-        height: 590px;
-        background-image: url(../../../../../assets/images/fondo_indicador.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 0;
-    }
-    .content_form_indicador{
-        margin: 35px 71px;
-        position: relative;
-        .title_indicador{
-            color: #0C4CC8;
-            font-family: Inria Sans;
-            font-size: 50px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-        }
-        .forms {
-            margin-top: 80px;
-            form {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-    
-                div{
-                    height: max-content;
-                    width: 100%;
-                    textarea{
-                        min-height: 200px;
-                        max-height: 210px;
-                        height: 290px;
-                    }
-                }
-                .content_form2{
-                    .content_nivel_form{
-                        padding: 20px;
-                        border: 1px solid #0C4CC8;
-                        border-radius: 10px;
-                        position: relative;
-                        span {
-                            position: absolute;
-                            right: 10px;
-                            bottom: 5px;
-                            padding: 0px 8px;
-                            box-shadow: 1px 1px 5px;
-                            border-radius: 20px;
-                            font-weight: 500;
-                            cursor: pointer;
-                        };
-                        span:active{
-                            transform: scale(.9);
-                        }
-                        textarea {
-                            min-height: 130px;
-                            max-height: 132px;
-                            height: 131px;
-                        }
-                        .contentButtonControl{
-                            display: flex;
-                            text-align: -webkit-center;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 10px;
-                           ::ng-deep.ng-star-inserted{
-                                width: 10px !important;
-                                height: 10px;
-                                background-color: #0C4CC8;
-                                border-radius: 50%;
-                                cursor: pointer;
-                                .activeButton {
-                                    background-color: black;
-                                }
-                            }
-                        }
+#content_create_indicador {
+  height: calc(100vh - 100px);
+  background-color: white;
+  margin: 16px;
+  border-radius: 15px;
+  overflow-y: auto;
+  position: relative;
 
-                    }
-                }
-                .content_form3{
-                    .buttons_ind{
-                        display: flex;
-                        flex-direction: column;
-                        .button_cancel{
-                            background-color: #0C4CC8;
-                            color: white;
-                            font-weight: 500;
-                        }
-                    }
-                }
+  .content_fondo {
+    width: 52%;
+    height: 60%;
+    background-image: url(../../../../../assets/images/fondo_indicador.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+  }
+
+  .content_form_indicador {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .title_indicador {
+      margin-left: 71px;
+      margin-top: 35px;
+      color: #0c4cc8;
+      font-family: Inria Sans;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    .forms-indicador {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      flex-wrap: nowrap;
+      flex-direction: row;
+      gap: 32px;
+      padding: 4% 5%;
+
+      .content_form1,
+      .content_form2,
+      .content_form3 {
+        width: 100%;
+      }
+      ::ng-deep .mat-mdc-text-field-wrapper {
+        height: 30px !important;
+        border-radius: 14px !important;
+        border: 1px solid #0c4cc8;
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+      }
+
+      ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
+        position: relative !important;
+        top: -10px !important;
+      }
+
+      ::ng-deep
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+        .mat-mdc-form-field-infix {
+        padding-top: 4px;
+      }
+
+      ::ng-deep.mdc-dialog__container {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      ::ng-deep.mdc-text-field--outlined .mdc-notched-outline {
+        display: none !important;
+      }
+      ::ng-deep .matforms .mat-mdc-text-field-wrapper {
+        background-color: white !important;
+      }
+
+      .content-input {
+        .row {
+          color: #000000;
+          font-family: Inria Sans;
+          font-size: 18px;
+          font-weight: 800;
+          padding-left: 12px;
+        }
+        .field-input {
+          border-radius: 10px;
+          border: 1px solid #0c4cc8;
+          box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+          width: 100%;
+          padding-left: 10px;
+          height: 35px;
+          background-color: #ffffff;
+          padding: 4px 10px;
+        }
+        .custom-input {
+          height: 15vh;
+          overflow-y: auto;
+        }
+        .custom-input-nivel {
+          height: calc(100% - 100px);
+          overflow-y: auto;
+        }
+
+        .custom-input:focus {
+          outline: none;
+        }
+      }
+
+      .content_form2 {
+        .isRequeridoNivelfrom {
+          border: 1px solid red !important;
+        }
+        .content_nivel_form {
+          padding: 20px;
+          border: 1px solid #0c4cc8;
+          border-radius: 10px;
+          position: relative;
+          background: #fbfbfb;
+          height: calc(100% - 80px);
+          span {
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            padding: 0px 8px;
+            box-shadow: 1px 1px 5px;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+          }
+          span:active {
+            transform: scale(0.9);
+          }
+
+          .contentButtonControl {
+            display: flex;
+            text-align: -webkit-center;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            ::ng-deep.ng-star-inserted {
+              width: 10px;
+              height: 10px;
+
+              border-radius: 50%;
+              cursor: pointer;
+              .activeButton {
+                background-color: black;
+              }
             }
+          }
+
+          .tabSelectNivel {
+            height: 12px !important;
+            width: 12px !important;
+            background: #ffffff !important;
+            box-shadow: inset 0px 0px 3px 0px rgb(0 0 0 / 35%);
+          }
         }
+      }
+      .content_form3 {
+        .buttons_ind {
+          display: flex;
+          flex-direction: column;
+          .button_crear {
+            border-radius: 15px;
+            box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 23%);
+            border: none;
+          }
+          .button_cancel {
+            background-color: #0c4cc8;
+            color: white;
+            font-weight: 500;
+            border-radius: 15px;
+          }
+        }
+      }
     }
-
-
+  }
 }
