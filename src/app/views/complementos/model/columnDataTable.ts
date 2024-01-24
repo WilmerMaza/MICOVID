@@ -4,7 +4,13 @@ export const columnsDefault = [
     name: 'name',
     estado: true,
     type: 'text',
-  }
+  },
+  {
+    displayname: 'acción',
+    estado: true,
+    type: 'action',
+    module:'complements'
+  },
   
 ];
 
@@ -26,6 +32,12 @@ export const columnsSubgrupo = [
     name: 'grupoName',
     estado: true,
     type: 'text',
+  },
+  {
+    displayname: 'acción',
+    estado: true,
+    type: 'action',
+    module:'complements'
   },
 
 ];

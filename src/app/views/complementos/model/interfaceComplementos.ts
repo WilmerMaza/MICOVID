@@ -1,10 +1,32 @@
 export interface categoriaRequest {
   name: string;
-  descripcion: string;
+  descripcion?: string;
 }
+
+export interface editComplement extends categoriaRequest {
+  ID: string;
+}
+
+export interface editTareaComplement extends editComplement {
+  describe: string;
+  color: string;
+}
+
+export interface editSubGrupoComplement  {
+  ID: string;
+  Description: string;
+  NameSubGrupo: string;
+  abreviatura: string;
+  GrupoID: string;
+}
+
 export interface diciplinaRequest {
   name: string;
   describe: string;
+}
+
+export interface editDisciplinaRequest extends diciplinaRequest {
+  ID: string;
 }
 
 export type responseGrupo = Grupo[]

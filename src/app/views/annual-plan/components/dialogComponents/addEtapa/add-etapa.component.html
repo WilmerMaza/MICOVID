@@ -38,7 +38,7 @@
       </form>
       <div class="content-button">
         <div class="button-close" matDialogClose>Cancelar</div>
-        <div class="button-add" (click)="createTask()">Crear</div>
+        <div class="button-add" (click)="isEdit ? EditEtapa() : createTask()">{{isEdit ? 'Editar' : 'Crear'}}</div>
       </div>
     </div>
 

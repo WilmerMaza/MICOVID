@@ -35,7 +35,7 @@ export class DinamicTableComponent implements AfterViewInit {
   public indexSubMenu: number = 0;
   @Input('isCheckBox') isCheckBox = false;
   @Input('isPaginador') isPaginador = true;
-
+  @Input('editComplement') editComplement = false;
   m: any;
   @Input('columns') set setColumns(value: any[]) {
     this.displayedColumns = value;
