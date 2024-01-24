@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Toast } from 'src/app/utils/alert_Toast';
 import { Grupo, GrupoResponse } from '../../Model/ejercicioModel';
 import { responseModel } from '../../Model/reponseModel';
 import { subGrupoFormModel } from '../../Model/subGrupoFormModel';
 import { subgrupoModel } from '../../Model/subGrupoModel';
 import { EjercicioServices } from '../../services/ejercicioServices.service';
+import { editSubGrupoComplement } from 'src/app/views/Complementos/model/interfaceComplementos';
+import { DynamicError } from 'src/app/shared/model/filterModel';
+import { resposeCreate } from 'src/app/views/Entrenador/Model/entrenadorModel';
+import { ComplementosService } from 'src/app/views/Complementos/services/complementos.service';
 
 @Component({
   selector: 'app-create-subgrupo',
@@ -24,16 +28,41 @@ export class CreateSubgrupoComponent implements OnInit {
   public floatingDivContent: string = '';
   public floatingDivContentTittle: string = '';
   public floatingDivContentAbb: string = '';
+  public titleInit: string = 'Crear subgrupo';
+  private grupoSelect: Grupo | undefined;
+  public isEdit : boolean = false;
 
-  constructor(
+  constructor(@Inject(MAT_DIALOG_DATA) public data: editSubGrupoComplement,
     private dialog: MatDialog,
     private ejerciciosService$: EjercicioServices,
-    private dialogRef: MatDialogRef<CreateSubgrupoComponent>
+    private dialogRef: MatDialogRef<CreateSubgrupoComponent>,
+    private complementos$: ComplementosService
   ) {}
 
   ngOnInit(): void {
     this.message = this.dialog;
     this.getGrupos();
+    if(this.data !== null) {
+      this.editTask();
+    }
+  }
+
+  editTask(): void{
+    const { ID, NameSubGrupo, Description, GrupoID, abreviatura } = this.data;
+    this.isEdit = true;
+    this.titleInit = 'Editar subgrupo'
+    if(ID !== ''){
+      this.subGrupoForm.get('grupo')?.setValidators([Validators.nullValidator]);
+      this.subGrupoForm.get('grupo')?.updateValueAndValidity();
+      this.subGrupoForm.patchValue({NameSubGrupo});
+      this.subGrupoForm.patchValue({Description});
+      this.subGrupoForm.patchValue({abbreviation:abreviatura});
+      
+      this.ejerciciosService$.GetGrupos().subscribe((res: GrupoResponse) => {
+        this.grupoSelect = res.item.find((item) => item.ID === GrupoID);
+      });
+      
+    }
   }
 
   getGrupos(): void {
@@ -93,6 +122,48 @@ export class CreateSubgrupoComponent implements OnInit {
             });
           }
         });
+    }
+  }
+
+  onSubmitEdit(): void {
+    if (this.subGrupoForm.valid) {
+      const { Description, NameSubGrupo, abbreviation, grupo } =
+        this.subGrupoForm.value;
+
+      let idGrupo = grupo;
+
+      if(grupo === ""){
+        idGrupo = this.grupoSelect?.ID;
+      }
+
+      const request: editSubGrupoComplement = {
+        NameSubGrupo: NameSubGrupo,
+        Description: Description,
+        abreviatura: abbreviation,
+        GrupoID: idGrupo,
+        ID: this.data.ID
+      };
+
+      this.complementos$.editarSubGrupo(request).subscribe(
+        (data: resposeCreate) => {
+          Toast.fire({
+            icon: 'success',
+            title: data.Menssage,
+          });
+          this.dialogRef.close();
+        },
+        (dataError: DynamicError<any>) => {
+          const {
+            error: { msg },
+          } = dataError;
+  
+          Toast.fire({
+            icon: 'error',
+            title: msg,
+          });
+        }
+      );
+      
     }
   }
 }

@@ -6,7 +6,7 @@
 
 <div class="createSubgrupo">
   <div class="content-dialog">
-    <div class="tittle-subgrupo">Crear subgrupo</div>
+    <div class="tittle-subgrupo">{{titleInit}}</div>
 
     <div class="scroll-container">
       <form [formGroup]="subGrupoForm" (ngSubmit)="onSubmit()" class="form-container">
@@ -78,7 +78,7 @@
 
         <div class="content-button">
           <div class="button-close" matDialogClose>Cancelar</div>
-          <div class="button-add" (click)="onCreateSubGrupo()">Crear</div>
+          <div class="button-add" (click)="isEdit ? onSubmitEdit() :onCreateSubGrupo()">{{isEdit ? "Editar" : "Crear"}}</div>
         </div>
       </form>
     </div>

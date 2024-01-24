@@ -11,6 +11,10 @@ import {
   Grupo,
   categoriaRequest,
   diciplinaRequest,
+  editComplement,
+  editDisciplinaRequest,
+  editSubGrupoComplement,
+  editTareaComplement,
 } from '../model/interfaceComplementos';
 
 @Injectable({
@@ -71,5 +75,30 @@ export class ComplementosService {
   crearDiciplina(request: diciplinaRequest): Observable<resposeCreate> {
     const endpoint = `/Diciplinas/create`;
     return this.micovid$.post(endpoint, request);
+  }
+
+  editarEtapa(data: editComplement): Observable<resposeCreate> {
+    const endpoint = `/Etapa/update`;
+    return this.micovid$.put(endpoint, data);
+  }
+
+  editarSubGrupo(data: editSubGrupoComplement):Observable<resposeCreate>{
+    const endpoint = `/exercises/update-subgrupo`;
+    return this.micovid$.put(endpoint, data);
+  }
+
+  editarTarea(data: editTareaComplement): Observable<resposeCreate> {
+    const endpoint = `/Tareas/update`;
+    return this.micovid$.put(endpoint, data);
+  }
+
+  editarDiciplina(data: editDisciplinaRequest):Observable<resposeCreate>{
+    const endpoint = `/Diciplinas/update`;
+    return this.micovid$.put(endpoint, data);
+  }
+
+  editarCategoria(data: editComplement): Observable<resposeCreate>{
+    const endpoint = `/Categoria/update-category`;
+    return this.micovid$.put(endpoint, data);
   }
 }

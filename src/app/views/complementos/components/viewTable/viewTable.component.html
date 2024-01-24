@@ -12,7 +12,7 @@
 
             <section class="tableContentDinamic">
                 <app-dinamic-table [isCheckBox]="false" [columns]="column" [dataSource]="dataSet"
-                    [isPaginador]="false"></app-dinamic-table>
+                    [isPaginador]="false" [editComplement]="true" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
             </section>
         </div>
 
