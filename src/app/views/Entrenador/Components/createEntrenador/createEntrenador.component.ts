@@ -65,6 +65,8 @@ export class CreateEntrenadorComponent {
   public imageUrl: string = '';
   private veryficatePass: boolean = false;
   tooltipText: string = 'Esta es una imagen de muestra';
+  public prefijoPhone:string = "+57";
+  public maskPhone:string = "00 0000 0000"; 
 
   constructor(
     private entrenadorServices$: EntrenadorServices,
@@ -148,10 +150,20 @@ export class CreateEntrenadorComponent {
     this.activeDepto = true;
     this.entrenadorForm.get('stateordepartmen')?.enable();
     const { value } = event;
+    this.getMaskPhonecountry(value);
     this.listEstados = ESTADOSCONST.find(
       (item: Iestados) =>
         item.country_name.toLowerCase() === value.toLowerCase()
     )?.estados;
+  }
+
+  getMaskPhonecountry(country: string) : void {
+    PAISESCONST.forEach((value) => {
+      if(value.country_name === country){
+        this.prefijoPhone = value.country_phone_code;
+        this.maskPhone = value.mask_phone_code;
+      }
+    })
   }
 
   setCurrentPageR(): void {
@@ -209,9 +221,10 @@ export class CreateEntrenadorComponent {
       .Encript(this.entrenadorForm.get('password')?.value)
       .toString();
 
-    const { stateordepartmen, city, nationality, image } = value;
+    const { stateordepartmen, city, nationality, image, phone } = value;
     NormaliceLowerValidators.normaliceData(value);
 
+    let telef = `${this.prefijoPhone} ${phone}`
     const formEntrenador = this.isEdit
       ? {
           ...value,
@@ -222,6 +235,7 @@ export class CreateEntrenadorComponent {
             ? image
             : this.selectedFiles.name,
           deleteImg: Validar.isNullOrUndefined(this.selectedFiles) ? '' : image,
+          phone: telef
         }
       : {
           ...value,
@@ -232,6 +246,7 @@ export class CreateEntrenadorComponent {
           stateordepartmen,
           city,
           nationality,
+          phone: telef
         };
 
     const formData = new FormData();
