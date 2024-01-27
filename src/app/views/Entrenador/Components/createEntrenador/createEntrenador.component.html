@@ -314,8 +314,11 @@
                       <div class="row">Teléfono</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <input matInput formControlName="phone" type="text" mask="(000) 000 00 00"
-                            placeholder="Ingrese su número de teléfono" />
+                          <div class="input-phone">
+                            <input class="phone-prefix" matInput  type="text" [placeholder]="prefijoPhone" disabled/>
+                            <input matInput formControlName="phone" type="text" [mask]="maskPhone"
+                              placeholder="Ingrese su número de teléfono" />
+                          </div>
 
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('phone')?.hasError('required')">

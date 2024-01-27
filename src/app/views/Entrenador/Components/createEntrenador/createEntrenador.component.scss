@@ -235,4 +235,15 @@
       }
     }
   }
+  .input-phone {
+    display: flex;
+    input {
+      color: black;
+    }
+    .phone-prefix {
+      width: 60px;
+      margin-left: -10px;
+      text-align: center;
+    }
+  }
 }
