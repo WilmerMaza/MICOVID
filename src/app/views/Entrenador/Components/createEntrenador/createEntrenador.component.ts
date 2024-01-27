@@ -158,10 +158,11 @@ export class CreateEntrenadorComponent {
   }
 
   getMaskPhonecountry(country: string) : void {
-    PAISESCONST.forEach((value) => {
-      if(value.country_name === country){
-        this.prefijoPhone = value.country_phone_code;
-        this.maskPhone = value.mask_phone_code;
+    PAISESCONST.forEach((value: Ipaises) => {
+      const { country_name, country_phone_code, mask_phone_code } = value;
+      if(country_name === country){
+        this.prefijoPhone = country_phone_code;
+        this.maskPhone = mask_phone_code;
       }
     })
   }
