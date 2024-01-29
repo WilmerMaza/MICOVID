@@ -5,7 +5,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 80px;
+        height: 60px;
         background-color: #ffff;
         background-image: linear-gradient(to right, transparent, transparent, rgba(0,0,0,0.3), transparent, transparent);
         background-position: bottom;
@@ -31,7 +31,7 @@
         background-color: #ffff;
     }
     .ButtonIngresar{
-        width: 218px;
+        width: 200px;
         height: 40px;
         color: white;
         background: #0C4CC8 !important; 
@@ -42,7 +42,7 @@
 
     .bannerContent{
         padding-left: 100px;
-        margin: 20px;
+        margin: 10px;
         height: auto;
         border-radius: 20px;
         background-image: url('/assets/images/fondoBanner.png');
