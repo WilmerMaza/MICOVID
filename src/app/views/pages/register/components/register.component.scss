@@ -1,12 +1,12 @@
 #content-register {
     width: 100%;
-    height: 100vh !important;
     display: flex;
     background-image: url(/assets/images/Frame_fondo_login.webp);
     background-size: cover;
     align-items: center;
     justify-content: center;
     background-position: center;
+    height: 100%!important;
 
     .logoInternoMini{
         display: none;
@@ -17,7 +17,7 @@
         font-family: Arial, sans-serif; /* Cambiar el tipo de letra */
         font-size: 10px; /* Tamaño de fuente */
         font-weight: italic; /* Peso de fuente en negrita */
-        margin-top: 5px; /* Espacio superior para separar el mensaje del campo de entrada */
+        margin-top: 4px; /* Espacio superior para separar el mensaje del campo de entrada */
       }
   
       /* Estilos para el borde rojo del input cuando hay errores */
@@ -27,18 +27,18 @@
 
     .group_register {
         display: flex;
-        width: 1000px;
-        height: 596px;
+        width: 80%;
+        height: 70%;
         border-radius: 15px 0px 0px 15px;
         background-color: white;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        overflow: hidden;
+        overflow: auto;
         border: 10px solid white;
     }
 
     .inputRegister {
-        max-width: 250px;
-        height: 30px;
+        max-width: 200px;
+        height: 25px;
         flex-shrink: 0;
         border-radius: 10px;
         background: #F8F8F8;
@@ -48,9 +48,9 @@
     }
 
     .logoInterno {
-        height: 230px;
-        position: absolute;
-        right: -48%;
+        height: 120px;
+        position: relative;
+        right: -13%;
         filter: drop-shadow(0 0 0.45rem black);
     }
 
@@ -77,19 +77,29 @@
     }
 
     .tittleRegister {
-        margin-top: 10px;
+        margin-top: 36px;
         color: #000000;
-        font-size: 34px;
+        font-size: 40px;
         font-weight: bold;
         font-style: normal;
         line-height: normal;
-        width: 245px;
-        height: 38px;
+        width: 226px;
+        height: 65px;
     }
+    
+   @media screen and (max-width: 768px) {
+        .titleRegister {
+            font-size: 24px;
+            width: 80%;
+            height: 3em;
+        }
+    }  
+    
+    
 
     .contentInput {
-        padding-left: 60px;
-        width: 70%;
+        padding-left: 20px;
+        width: 60%;
         display: flex;
         flex-direction: column;
     }
@@ -120,13 +130,13 @@
 
     .buttonSend {
         border: none;
-        height: 31px;
+        height: 28px;
         flex-shrink: 0;
         border-radius: 15px;
         background: linear-gradient(180deg, #0DDCF9 15.63%, #0C4CC8 100%);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #ffffff;
-        width: 250px;
+        width: 210px;
         font-size: 20px;
         font-style: normal;
         font-weight: bold;
@@ -140,7 +150,7 @@
         margin-top: 27px;
     }
 
-    @media screen and (max-width: 990px) {
+    @media screen and (max-width: 600px) {
         .logoInterno {            
             display: none;
         }
@@ -154,8 +164,8 @@
         }
            
         .group_register {
-            width: 560px;
-            height: 653px;
+            width: 460px;
+            height: 500px;
             display: flex;
             flex-direction: column;
             border-radius: 45px;
@@ -164,8 +174,8 @@
 
         .contentInput{
             width: 100%;
-            height: 400px;
-            padding-left: 0;
+            // height: 400px;
+            padding-left: 20px;
         }
 
         .content-form {
@@ -178,7 +188,7 @@
                 font-weight: 400;
             }
             input {
-                width: 230px;
+                width: 160px;
             }
         }
 
@@ -187,7 +197,7 @@
         }
 
         .inputRegister {
-            max-width: 200px;
+            max-width: 150px;
         }
     }
 
@@ -258,5 +268,11 @@
     appearance: none; 
     padding-right: 20px; 
   }
+  /* Estilos para la barra desplegable */
+.dropdown-menu {
+    right: 100;
+    left: auto;
+  }
+  
 
 }
