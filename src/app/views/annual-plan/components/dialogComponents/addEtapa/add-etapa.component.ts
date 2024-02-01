@@ -20,7 +20,7 @@ import { resposeCreate } from 'src/app/views/Entrenador/Model/entrenadorModel';
 export class AddEtapaComponent implements OnInit {
   public addEtapaForm: FormGroup;
   public titleInit: string = 'Crear etapa';
-  public isEdit: boolean = true;
+  public isEdit: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: editComplement,
     public dialogRef: MatDialogRef<AddEtapaComponent>,
