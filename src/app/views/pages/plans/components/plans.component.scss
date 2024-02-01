@@ -50,6 +50,7 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    
 
     .target {
         width: 182px;
@@ -159,4 +160,23 @@
         height: 1000px;
         border-radius: 0;
     }
+}
+
+@media (max-width: 780px) {
+    .product_target{
+        width: 100%;
+        margin:50px
+    }
+}
+
+@media (max-width: 545px) {
+    .product_target{
+        margin: 0px;
+        padding: 0px 20px;
+    }
+    .content_page{
+        padding-top: 200px;
+    }
+    
+
 }
