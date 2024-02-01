@@ -3,6 +3,7 @@ export interface PlanAnualForm {
   CategoriumID?: string;
   date_initial?: string;
   date_end?: string;
+  DiciplinaID?: string;
 }
 
 export interface RootPlan {

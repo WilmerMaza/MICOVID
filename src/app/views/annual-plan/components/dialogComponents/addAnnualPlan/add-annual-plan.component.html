@@ -27,6 +27,17 @@
                         </mat-form-field>
                     </div>
                 </div>
+                <div class="content-input">
+                    <div class="row">Disciplina</div>
+                    <div class="row-data">
+                        <mat-form-field class="matforms" appearance="outline" fxFlex>
+                            <mat-select formControlName="DiciplinaID">
+                                <mat-option *ngFor="let item of diciplinasList" [value]="item.ID">{{item.name}}</mat-option>
+                              </mat-select>
+                            <mat-error *ngIf="addPlanAnualForm.get('DiciplinaID')?.invalid">La disciplina es requerida</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <div class="content-input content_date">
                     <div class="date">
                         <div class="row">Fecha de inicio</div>
