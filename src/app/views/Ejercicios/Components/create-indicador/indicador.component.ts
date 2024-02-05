@@ -3,14 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Validators } from 'src/app/utils/Validators';
 import { Toast } from 'src/app/utils/alert_Toast';
-import { Sportsman } from 'src/app/views/models/DataSportsman';
-import { SportsmanService } from 'src/app/views/sportsman/services/sportsman.service';
 import { Ejercicio } from '../../Model/ejercicioModel';
 import {
   IndicatorModel,
   indicatorsFormModel,
   levelList,
-  listSportMan,
   templateList,
 } from '../../Model/modelIndicators';
 import { responseModel } from '../../Model/reponseModel';
@@ -22,7 +19,7 @@ import { EjercicioServices } from '../../services/ejercicioServices.service';
 })
 export class IndicadorComponent implements OnInit {
   public formIndicador: FormGroup = new indicatorsFormModel().formIndicators();
-  public sportList: listSportMan[] = [];
+
   public levelsList: levelList[] = [{ level: 2 }, { level: 3 }, { level: 5 }];
   public countTemplates: templateList[];
   public countLeves: Array<number> = [];
@@ -31,23 +28,33 @@ export class IndicadorComponent implements OnInit {
   public level: number = 0;
   public isRequeridoNivel: boolean = false;
 
+  public numberIndicador: number | undefined = 1;
+
   constructor(
     private ejercicioServices$: EjercicioServices,
-    private sporsmanService$: SportsmanService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getSportMan();
+    this.getNumberIndicador();
   }
 
-  getSportMan(): void {
-    this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
-      res.forEach((item: Sportsman) => {
-        this.sportList.push({ name: item.name, ID: item.ID });
-      });
-    });
-  }
+  getNumberIndicador = (): void => {
+    if (
+      Validators.isNullOrUndefined(
+        this.ejercicioServices$.getExercisesList()[0].Indicadores
+      )
+    ) {
+      this.numberIndicador = 1;
+    } else if (
+      this.ejercicioServices$.getExercisesList()[0].Indicadores === 0
+    ) {
+      this.numberIndicador = 1;
+    } else {
+      this.numberIndicador =
+        this.ejercicioServices$.getExercisesList()[0]?.Indicadores + 1;
+    }
+  };
 
   createTemplate(level: number): void {
     this.countTemplates = new Array(level);

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
+import { DynamicObject } from 'src/app/shared/model/filterModel';
 import { Sportsman } from '../../models/DataSportsman';
-import { categoryModel } from '../../models/categoryModel'
 import { HistorialCategory } from '../../models/HistorialCategoryModel';
 import { SuccessResponse } from '../../models/SuccessResponse';
-import { DynamicObject } from 'src/app/shared/model/filterModel';
-import { DataIndicators } from "../Models/indicatorsModel";
+import { categoryModel } from '../../models/categoryModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +55,7 @@ export class SportsmanService {
     return this.micovid$.post(endpoint, data);     
   }
 
-  getAlldataIndicators(ID: string): Observable<DataIndicators>{
+  getAlldataIndicators(ID: string): Observable<any>{
     const url = `/indicators/get-indicators?id=${ID}`;
     return this.micovid$.get(url);
   }

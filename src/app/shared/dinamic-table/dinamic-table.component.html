@@ -17,7 +17,8 @@
 
       <ng-container [matColumnDef]="item.displayname" *ngFor="let item of displayedColumns">
         <th mat-header-cell *matHeaderCellDef>
-          <div *ngIf="item.displayname=='noName' || item?.module =='complements';else displayHeader"><span> </span></div>
+          <div *ngIf="item.displayname=='noName' || item?.module =='complements';else displayHeader"><span> </span>
+          </div>
           <ng-template #displayHeader>{{item.displayname| uppercase}}</ng-template>
         </th>
         <ng-container *ngIf="item.displayname === 'acción'">
@@ -40,12 +41,13 @@
                   [matMenuTriggerFor]="m.action ==='Menu'? SubMenu : null">
                   <span>{{ m.text }}</span>
                 </button>
-  
+
               </mat-menu>
-  
+
               <mat-menu #SubMenu="matMenu">
                 <button *ngFor="let sub of item.menu[indexSubMenu].menu " mat-menu-item class="style_matmenu"
-                  (click)="dataAction(sub, element)" [disabled]="sub.action === 'verIndicadores' && !element.HasIndicators">
+                  (click)="dataAction(sub, element)"
+                  [disabled]="sub.action === 'verIndicadores' && !element.HasIndicators">
                   <span>{{ sub.text }}</span>
                 </button>
               </mat-menu>
@@ -68,6 +70,12 @@
               <div class="content-x-close">
                 <mat-icon class='closeButtonModal' (click)="dataAction('eliminar', element)">close</mat-icon>
               </div>
+            </div>
+            <div *ngIf="item.type === 'check'">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(element) && dataActionCheck($event)  : null"
+                [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+              </mat-checkbox>
             </div>
             <div *ngIf="item.type === 'button Ver'">
               <button class="view-indicator" (click)="dataAction('ver ejercicio', element)">Ver</button>
