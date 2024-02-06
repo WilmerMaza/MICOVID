@@ -4,7 +4,7 @@ import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import { SuccessResponse } from '../../models/SuccessResponse';
 import { UnitsofmeasurementsResponse } from '../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../Model/createEjercicioModel';
-import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse, combinateDialogModel } from '../Model/ejercicioModel';
+import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse, asingDeportista, combinateDialogModel } from '../Model/ejercicioModel';
 import { IndicatorModel } from '../Model/modelIndicators';
 import { responseModel } from '../Model/reponseModel';
 import { subgrupoModel } from '../Model/subGrupoModel';
@@ -74,7 +74,7 @@ export class EjercicioServices {
     return this.micovid$.post(endpoint, data);  
   }
 
-  assignExercies(data: any) : Observable <SuccessResponse>{
+  assignExercies(data: asingDeportista) : Observable <SuccessResponse>{
     const endpoint = '/exercises/assignExercise';
     return this.micovid$.post(endpoint, data);  
   }

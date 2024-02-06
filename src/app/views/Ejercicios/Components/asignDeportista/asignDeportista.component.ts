@@ -7,6 +7,7 @@ import { regExps } from 'src/app/utils/Validators';
 import { Toast } from 'src/app/utils/alert_Toast';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
 import { Sportsman } from 'src/app/views/models/DataSportsman';
+import { SuccessResponse } from 'src/app/views/models/SuccessResponse';
 import { columnsTableAsign } from '../../Model/columnTableAsing';
 import { Ejercicio, asingDeportista } from '../../Model/ejercicioModel';
 import { EjercicioServices } from '../../services/ejercicioServices.service';
@@ -46,8 +47,8 @@ export class AsignDeportistaComponent implements OnInit {
     this.dataSportman = sportman;
     this.exerciesSelect = exercise;
   }
-  getActionEvent(event: ActionResponse) {
-    const { action, data } = event;
+  getActionEvent(event: ActionResponse): void {
+    const { data } = event;
     this.sportSelect = data;
 
     if (this.sportSelect.length > 0) {
@@ -109,13 +110,13 @@ export class AsignDeportistaComponent implements OnInit {
       return;
     }
 
-    const requestAsing = {
+    const requestAsing: asingDeportista = {
       sportman: this.sportSelect,
       exercise: this.exerciesSelect,
     };
 
     this.ejercicioServices$.assignExercies(requestAsing).subscribe(
-      (res) => {
+      (res: SuccessResponse) => {
         Toast.fire({
           icon: 'success',
           title: res.Message,

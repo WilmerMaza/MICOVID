@@ -6,6 +6,7 @@ import { Sportsman } from '../../models/DataSportsman';
 import { HistorialCategory } from '../../models/HistorialCategoryModel';
 import { SuccessResponse } from '../../models/SuccessResponse';
 import { categoryModel } from '../../models/categoryModel';
+import { responseAssing } from '../Models/indicatorsModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -55,7 +56,7 @@ export class SportsmanService {
     return this.micovid$.post(endpoint, data);     
   }
 
-  getAlldataIndicators(ID: string): Observable<any>{
+  getAlldataIndicators(ID: string): Observable<responseAssing>{
     const url = `/indicators/get-indicators?id=${ID}`;
     return this.micovid$.get(url);
   }

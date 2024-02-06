@@ -1,4 +1,4 @@
-import { SportsMan } from "../../sportsman/Models/indicatorsModel";
+import { Sportsman } from "../../models/DataSportsman";
 
 export interface Grupo {
     ID: string;
@@ -75,6 +75,6 @@ export interface combinateDialogModel {
   }  
 
   export interface asingDeportista {
-    sportman :SportsMan[],
+    sportman :Sportsman[],
     exercise : Ejercicio[]
   }

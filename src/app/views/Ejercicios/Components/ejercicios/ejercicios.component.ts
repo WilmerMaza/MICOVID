@@ -7,7 +7,7 @@ import { filterResult } from 'src/app/shared/model/filterModel';
 import { Sportsman } from 'src/app/views/models/DataSportsman';
 import { SportsmanService } from 'src/app/views/sportsman/services/sportsman.service';
 import { columnsEjerciciosValue } from '../../Model/columnDataEjercicios';
-import { jsonData } from '../../Model/dataFilterEjercicios';
+import { EjerciciosData, jsonData } from '../../Model/dataFilterEjercicios';
 import {
   Ejercicio,
   EjercicioResponse,
@@ -82,10 +82,10 @@ export class EjerciciosComponent implements OnInit {
       this.grupoAll = res.item;
 
       const grupo = this.filtros.findIndex(
-        (section) => section.title === 'Grupo'
+        (section: EjerciciosData) => section.title === 'Grupo'
       );
       if (grupo !== -1) {
-        this.grupoAll.forEach((item) => {
+        this.grupoAll.forEach((item: Grupo) => {
           this.filtros[grupo].control.push({
             name: item.NameGrupo || '',
             value: item.ID,
@@ -169,56 +169,64 @@ export class EjerciciosComponent implements OnInit {
     const isOpenAbreviacion = isOpen('Abreviación');
     const isOpenTipoRelacion = isOpen('Tipo de Relación');
 
-    this.dataEjercicio = this.dataEjercicioAll.filter((item) => {
-      let results = [];
+    this.dataEjercicio = this.dataEjercicioAll.filter(
+      ({
+        Relationship,
+        Name,
+        SubGrupo,
+        SubGrupo: { Grupo },
+        Abbreviation,
+      }: Ejercicio) => {
+        let results: boolean[] = [];
 
-      if (
-        filterData['Name'] &&
-        !item.Name.toLowerCase().includes(filterData['Name'].toLowerCase())
-      ) {
-        results.push(false);
+        if (
+          filterData['Name'] &&
+          !Name.toLowerCase().includes(filterData['Name'].toLowerCase())
+        ) {
+          results.push(false);
+        }
+
+        if (
+          isOpenGrupo &&
+          filterData['nameGrupo'].length > 0 &&
+          !filterData['nameGrupo'].includes(Grupo.ID)
+        ) {
+          results.push(false);
+        }
+
+        if (
+          isOpenSubGrupo &&
+          filterData['nameSubGrupo'] &&
+          !SubGrupo.NameSubGrupo.toLowerCase().includes(
+            filterData['nameSubGrupo'].toLowerCase()
+          )
+        ) {
+          results.push(false);
+        }
+
+        if (
+          isOpenAbreviacion &&
+          filterData['abbreviation'] &&
+          !Abbreviation.toLowerCase().includes(
+            filterData['abbreviation'].toLowerCase()
+          )
+        ) {
+          results.push(false);
+        }
+
+        if (
+          isOpenTipoRelacion &&
+          filterData['relationship'].length > 0 &&
+          !filterData['relationship'].some((relation: string) =>
+            Relationship.includes(relation)
+          )
+        ) {
+          results.push(false);
+        }
+
+        return results.length === 0; // Es válido si no hay resultados falsos
       }
-
-      if (
-        isOpenGrupo &&
-        filterData['nameGrupo'].length > 0 &&
-        !filterData['nameGrupo'].includes(item.SubGrupo.Grupo.ID)
-      ) {
-        results.push(false);
-      }
-
-      if (
-        isOpenSubGrupo &&
-        filterData['nameSubGrupo'] &&
-        !item.SubGrupo.NameSubGrupo.toLowerCase().includes(
-          filterData['nameSubGrupo'].toLowerCase()
-        )
-      ) {
-        results.push(false);
-      }
-
-      if (
-        isOpenAbreviacion &&
-        filterData['abbreviation'] &&
-        !item.Abbreviation.toLowerCase().includes(
-          filterData['abbreviation'].toLowerCase()
-        )
-      ) {
-        results.push(false);
-      }
-
-      if (
-        isOpenTipoRelacion &&
-        filterData['relationship'].length > 0 &&
-        !filterData['relationship'].some((relation: string) =>
-          item.Relationship.includes(relation)
-        )
-      ) {
-        results.push(false);
-      }
-
-      return results.length === 0; // Es válido si no hay resultados falsos
-    });
+    );
   }
 
   openModal(): void {
@@ -230,7 +238,7 @@ export class EjerciciosComponent implements OnInit {
     this.router.navigate(['Ejercicios/NewEjercicio']);
   }
 
-  asignDeportista(data: any): void {
+  asignDeportista(data: Ejercicio[]): void {
     this.sporsmanService$.getSportsman().subscribe((res: Sportsman[]) => {
       const dataModal = {
         sportman: res,
