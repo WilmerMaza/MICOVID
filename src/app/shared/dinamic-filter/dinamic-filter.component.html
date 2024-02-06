@@ -1,29 +1,36 @@
 <div id="dinamic-filter">
   <div class="container-everythings">
-    <div>
+
+    <div *ngIf="!viewBtonFilter" class="container-add" (click)="actionClick('asignar')">
+      <button mat-raised-button class="btnAñadir">
+        Asignar Deportista
+      </button>
+    </div>
+
+    <div *ngIf="viewBtonFilter">
       <form [formGroup]="textForm">
         <div class="content-form-field">
-          <mat-form-field appearance="outline"  class="content-form-field" fxFlex>
-            <mat-icon *ngIf="showLateralPanel; else other_content" class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
-              matPrefix>search</mat-icon>
-              <ng-template #other_content>
-                <mat-icon *ngIf="!clearInput"  class="material-icons-outlined mat-gray icon-filter" (click)="otherOnSubmit()"
-                matPrefix>search</mat-icon>
-                <mat-icon *ngIf="clearInput"  class="material-icons-outlined mat-gray icon-filter" (click)="clearFilterAction()"
-                matPrefix>clear</mat-icon>
-              </ng-template>
+          <mat-form-field appearance="outline" class="content-form-field" fxFlex>
+            <mat-icon *ngIf="showLateralPanel; else other_content" class="material-icons-outlined mat-gray icon-filter"
+              (click)="onSubmit()" matPrefix>search</mat-icon>
+            <ng-template #other_content>
+              <mat-icon *ngIf="!clearInput" class="material-icons-outlined mat-gray icon-filter"
+                (click)="otherOnSubmit()" matPrefix>search</mat-icon>
+              <mat-icon *ngIf="clearInput" class="material-icons-outlined mat-gray icon-filter"
+                (click)="clearFilterAction()" matPrefix>clear</mat-icon>
+            </ng-template>
             <input matInput formControlName="textInput" class="textInput" placeholder="Buscar..." />
           </mat-form-field>
         </div>
       </form>
     </div>
-    <div *ngIf="showDownload" class="container-download" [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }"
-      (click)="actionClick('download')">
+    <div *ngIf="showDownload" class="container-download"
+      [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }" (click)="actionClick('download')">
       Descargar
     </div>
-    <div *ngIf="showCombinate" class="container-download" [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }"
-       (click)="actionClick('combinate')">
-       Combinar
+    <div *ngIf="showCombinate" class="container-download"
+      [ngClass]="{ activeDownload: isDownload, enableDownload: !isDownload }" (click)="actionClick('combinate')">
+      Combinar
     </div>
 
 
@@ -32,9 +39,10 @@
       {{ selectItemCount > 1 ? "Seleccionados" : "Seleccionado" }}
     </div>
 
-    <div *ngIf="showLateralPanel" class="content-filters" (click)="showFilterToggle()">
+    <div *ngIf="showLateralPanel && viewBtonFilter" class="content-filters" (click)="showFilterToggle()">
       <button mat-button class="btnFiltrar">Filtrar</button>
     </div>
+
     <div class="container-prueba" *ngIf="showFilter">
       <div class="blockExitFilter" (click)="showFilterToggle()"></div>
       <div class="prueba-absolute" [ngClass]="{ showfilter: showFilter }">
@@ -70,7 +78,7 @@
                 </div>
                 <section *ngIf="item.typeFilter === 'check' ">
                   <mat-checkbox *ngFor="let check of item.control" [disabled]="!item.disable" class="Content-check"
-                    [(ngModel)]="check.code" >
+                    [(ngModel)]="check.code">
                     <div>
                       <span class="nameControl">{{ check.name }}</span>
                     </div>
@@ -78,10 +86,10 @@
                 </section>
                 <section *ngIf="item.typeFilter === 'input' ">
                   <mat-form-field appearance="outline" class="content-form-field" fxFlex>
-                  <mat-icon class="material-icons-outlined mat-gray icon-filter"
-                    matPrefix>search</mat-icon>
-                  <input matInput  class="textInput" placeholder="Buscar..." [disabled]="!item.disable"  [(ngModel)]="item.control[0].value" name="{{item.property}}"/>
-                </mat-form-field>
+                    <mat-icon class="material-icons-outlined mat-gray icon-filter" matPrefix>search</mat-icon>
+                    <input matInput class="textInput" placeholder="Buscar..." [disabled]="!item.disable"
+                      [(ngModel)]="item.control[0].value" name="{{item.property}}" />
+                  </mat-form-field>
                 </section>
               </mat-expansion-panel>
             </mat-accordion>
@@ -108,8 +116,11 @@
     </div>
 
     <div *ngIf="showButtonAdd" class="container-add" (click)="actionClick('add')">
-      <button mat-raised-button class="btnAñadir">
+      <button mat-raised-button class="btnAñadir" *ngIf="viewBtonFilter">
         + Añadir {{ nameAdd }}
+      </button>
+      <button mat-raised-button *ngIf="!viewBtonFilter" class="btnAñadir">
+        + Añadir indicador
       </button>
     </div>
   </div>

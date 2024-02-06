@@ -3,14 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
-import { Ejercicio } from 'src/app/views/Ejercicios/Model/ejercicioModel';
+import { Sportsman } from 'src/app/views/models/DataSportsman';
 import SwiperCore, { EffectCoverflow, Navigation, Pagination } from 'swiper';
 import {
-  DataIndicators,
+  EjercicioIndicadores,
   Item,
+  ItemAssing,
   Level,
-  SportsMan,
   columnsIndValue,
+  responseAssing,
 } from '../../Models/indicatorsModel';
 import { SportsmanService } from '../../services/sportsman.service';
 
@@ -26,8 +27,8 @@ export class ViewIndicatorsComponent implements OnInit {
   private routeId: string;
   public columns = columnsIndValue;
   public initCarousel: number = 1;
-  public dataEjerc: Ejercicio[];
-  public dataSportman: SportsMan;
+  public dataEjerc: EjercicioIndicadores[];
+  public dataSportman: ItemAssing;
   public imageUrl: string = '';
   public level: Level[] = [];
   public niveles: Level[];
@@ -53,32 +54,24 @@ export class ViewIndicatorsComponent implements OnInit {
   }
 
   getDataIndicators(id: string): void {
-    this.service$.getAlldataIndicators(id).subscribe((data: DataIndicators) => {
-      let dataSourse: Ejercicio[] = [];
-      data.item.forEach((item: Item) => {
-        const {
-          Ejercicio: { SubGrupo },
-        } = item;
-        this.indicadores.push(item);
-        item.Ejercicio.SubGrupoAbbreviation = SubGrupo.abreviatura;
-        item.Ejercicio.GrupoAbbreviation = SubGrupo.Grupo.Abbreviation;
-        item.Ejercicio.Indicador = item.ID;
-        dataSourse.push(item.Ejercicio);
-        this.dataSportman = item.SportsMan;
-        this.level.push(...item.Levels);
-        this.showModule = true;
+    this.service$
+      .getAlldataIndicators(id)
+      .subscribe(({ item, item: { Ejercicios } }: responseAssing) => {
+        this.dataSportman = item;
+        Ejercicios.forEach((itemEjercicio: EjercicioIndicadores) => {
+          const {
+            Indicadores,
+            SubGrupo,
+            SubGrupo: { Grupo },
+          } = itemEjercicio;
+          itemEjercicio.SubGrupoAbbreviation = SubGrupo.abreviatura;
+          itemEjercicio.GrupoAbbreviation = Grupo.Abbreviation;
+          this.indicadores = this.indicadores.concat(Indicadores);
+          this.showModule = true;
+        });
+        this.viewImage(this.dataSportman.image);
+        this.dataEjerc = Ejercicios;
       });
-      this.viewImage(this.dataSportman.image);
-      this.dataEjerc = dataSourse.reduce(
-        (acc: Ejercicio[], current: Ejercicio) => {
-          if (!acc.some((obj: Ejercicio) => obj.ID === current.ID)) {
-            acc.push(current);
-          }
-          return acc;
-        },
-        []
-      );
-    });
   }
 
   viewImage(nameImg: string | undefined): void {
@@ -143,7 +136,11 @@ export class ViewIndicatorsComponent implements OnInit {
   }
 
   actionFunction(): void {
-    this.service$.setSportmanInfoRedirect(this.dataSportman);
+    const sportmanData: Sportsman = {
+      ...this.dataSportman,
+      sportInstition: '',
+    };
+    this.service$.setSportmanInfoRedirect(sportmanData);
 
     this.redirect$.navigate(['/sportsman']);
   }

@@ -8,13 +8,13 @@ import { MaterialModule } from 'src/app/infraestructure/modules/material/materia
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { SwiperModule } from 'swiper/angular';
 import { AddCategoriaComponent } from '../Complementos/components/addCategoria/add-categoria.component';
+import { AsignDeportistaComponent } from './Components/asignDeportista/asignDeportista.component';
 import { CreateEjercicioComponent } from './Components/create-ejercicio/create-ejercicio.component';
 import { IndicadorComponent } from './Components/create-indicador/indicador.component';
 import { CreateSubgrupoComponent } from './Components/create-subgrupo/create-subgrupo.component';
 import { EjerciciosComponent } from './Components/ejercicios/ejercicios.component';
 import { ViewEjericioComponent } from './Components/view-ejericio/view-ejericio.component';
 import { EjerciciosRoutingModule } from './Ejercicios-routing.module';
-
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { EjerciciosRoutingModule } from './Ejercicios-routing.module';
     SharedModuleModule,
     MaterialModule,
     NgxMaskModule.forRoot(),
-    SwiperModule
+    SwiperModule,
   ],
   declarations: [
     EjerciciosComponent,
@@ -35,8 +35,8 @@ import { EjerciciosRoutingModule } from './Ejercicios-routing.module';
     CreateSubgrupoComponent,
     ViewEjericioComponent,
     IndicadorComponent,
-    AddCategoriaComponent
+    AddCategoriaComponent,
+    AsignDeportistaComponent,
   ],
-
 })
 export class EjerciciosModule {}

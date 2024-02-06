@@ -6,7 +6,7 @@ import {
   Input,
   NgZone,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
@@ -25,42 +25,66 @@ import {
   templateUrl: './dinamic-filter.component.html',
   styleUrls: ['./dinamic-filter.component.scss'],
 })
-export class DinamicFilterComponent  implements AfterViewInit{
+export class DinamicFilterComponent implements AfterViewInit {
   public textForm: FormGroup;
   public showFilter: boolean = false;
   public jsonData: JsonDataItem[] = [];
-  public clearInput : boolean = false;
+  public clearInput: boolean = false;
   public selectItemCount: number = 0;
+  public viewBtonFilter: boolean = true;
+  public nameAdd: string = '';
   @ViewChild(MatAccordion)
   acc!: MatAccordion;
   @ViewChild(MatExpansionPanel) pannel?: MatExpansionPanel;
 
   @Input('isDownload') isDownload = false;
-  @Input('nameAdd') nameAdd = '';
+  @Input('nameAdd') set nameAddDinamic(value: string) {
+    this.zone.runOutsideAngular(() => {
+      this.zone.run(() => {
+        this.nameAdd = value;
+        this.cdr.detectChanges();
+      });
+    });
+  }
+  @Input('isButtonEjercicio') isButtonEjercicio = false;
+
   @Input('dataFilter') set setDataFilter(value: JsonDataItem[]) {
     this.jsonData = value;
   }
   @Input('showDownload') showDownload = true;
   @Input('showCombinate') showCombinate = false;
-  @Input("showSelection") showSelection = true;
+  @Input('showSelection') showSelection = true;
   @Input('showButtonAdd') showButtonAdd = true;
   @Input('showLateralPanel') showLateralPanel = true;
 
   @Output() filterResult = new EventEmitter<filterResult>();
   @Output() actionFilter = new EventEmitter<ActionResponse>();
 
-  constructor(private formBuilder: FormBuilder, private service$ : DinamicService,private cdr: ChangeDetectorRef, private zone: NgZone) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service$: DinamicService,
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone
+  ) {
     this.textForm = this.formBuilder.group({
       textInput: ['', Validators.pattern(regExps['special'])],
     });
   }
 
-
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
-      this.service$.selectNumber$.subscribe(data => {
+      this.service$.selectNumber$.subscribe((data) => {
         this.zone.run(() => {
           this.selectItemCount = data;
+          if (this.selectItemCount > 0 && this.isButtonEjercicio === true) {
+            this.viewBtonFilter = false;
+            this.nameAdd = 'indicador';
+          } else {
+            this.viewBtonFilter = true;
+            this.nameAdd =
+              this.isButtonEjercicio === true ? 'ejercicio' : this.nameAdd;
+          }
+
           this.cdr.detectChanges();
         });
       });
@@ -73,7 +97,7 @@ export class DinamicFilterComponent  implements AfterViewInit{
       this.textForm.reset();
     }
   }
-  
+
   otherOnSubmit(): void {
     if (this.textForm.valid) {
       this.sendDataFilter();
@@ -81,7 +105,7 @@ export class DinamicFilterComponent  implements AfterViewInit{
     }
   }
 
-  clearFilterAction():void{
+  clearFilterAction(): void {
     this.textForm.reset();
     this.actionClick('clearFilter');
     this.clearInput = false;
@@ -133,7 +157,7 @@ export class DinamicFilterComponent  implements AfterViewInit{
   clearItemFilter(item: JsonDataItem): void {
     item.control.forEach((elem: ControlItem) => {
       if (elem.code) elem.code = '';
-      if(elem.value) elem.value ='';
+      if (elem.value) elem.value = '';
     });
   }
 
@@ -151,13 +175,18 @@ export class DinamicFilterComponent  implements AfterViewInit{
   }
 
   actionClick(data: string): void {
-    if((data !== "download" && data !== "combinate") && this.nameAdd !== "indicador") {
+    if (
+      data !== 'download' &&
+      data !== 'combinate' &&
+      this.nameAdd !== 'indicador'
+    ) {
       let dataActionResponse: ActionResponse = { action: data, data };
       this.actionFilter.emit(dataActionResponse);
       return;
     }
-    if(data === "add") data = `${data} ${this.nameAdd}`;
-    this.sendDataToTable({eventName: data, isEspecial : true});
+
+    if (data === 'add') data = `${data} ${this.nameAdd}`;
+    this.sendDataToTable({ eventName: data, isEspecial: true });
   }
 
   sendDataToTable(data: dataToPass) {

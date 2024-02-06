@@ -1,3 +1,5 @@
+import { Sportsman } from "../../models/DataSportsman";
+
 export interface Grupo {
     ID: string;
     NameGrupo?: string;
@@ -38,6 +40,7 @@ export interface Grupo {
     Calidad: calidadCantidadModel;
     Cantidad: calidadCantidadModel;
     Indicador?:string;
+    Indicadores:number;
     LinkEjercicios?: string;
   }
 
@@ -70,3 +73,8 @@ export interface combinateDialogModel {
   export interface SubGrupoResponse {
     item: SubGrupo[];
   }  
+
+  export interface asingDeportista {
+    sportman :Sportsman[],
+    exercise : Ejercicio[]
+  }

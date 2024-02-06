@@ -1,0 +1,77 @@
+<div class="contenTotalAsing">
+
+  <div id="asingDeportista" [ngClass]="{ 'asingDeportistaLarge': isLarge }">
+    <div class="contentBtnHeader">
+      <div class="btnBuscar">
+        <form [formGroup]="textForm">
+          <div class="content-form-field">
+            <mat-form-field appearance="outline" class="content-form-field" fxFlex>
+              <mat-icon class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
+                matPrefix>search</mat-icon>
+              <ng-template #other_content>
+                <mat-icon *ngIf="!clearInput" class="material-icons-outlined mat-gray icon-filter"
+                  (click)="otherOnSubmit()" matPrefix>search</mat-icon>
+                <mat-icon *ngIf="clearInput" class="material-icons-outlined mat-gray icon-filter"
+                  (click)="clearFilterAction()" matPrefix>clear</mat-icon>
+              </ng-template>
+              <input matInput formControlName="textInput" class="textInput" placeholder="Buscar..." />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+
+      <button mat-icon-button class="close-button" matDialogClose>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+
+    <div class="contentAsing">
+      <div class="title">
+        Asignar deportista
+      </div>
+      <div class="contentTable">
+        <app-dinamic-table [isCheckBox]="false" [columns]="column" [dataSource]="dataSportman" [isPaginador]="false"
+          [editComplement]="false" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
+      </div>
+      <div class="buttons_asing">
+        <button mat-stroked-button color="primary" class="button_crear" (click)="asingSpormant()">Asignar</button>
+        <br><br>
+        <button mat-raised-button class="button_cancel" type="button" (click)=" largeModal()">Ver mas</button>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="isLarge" class="viewAsing">
+
+    <div class="contentView">
+
+      <div class="headTitle">
+        Deportistas
+      </div>
+      <hr class="lineaBlue">
+      <div class="contenDataView">
+
+        <div class="deportistasView" *ngFor="let item of sportSelect">
+          <div class="info-sportman">
+            <div class="content-image">
+              <img
+                [src]="isImgBase(item.image)?item.image:'https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7'"
+                alt="imagen del deportista">
+            </div>
+            <div class="data-sportman">
+              <p class="name">{{item.name}}</p>
+              <p> <span class="type">{{item.typeIdentification | uppercase}}</span> {{item.identification}}</p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

@@ -1,5 +1,5 @@
 <div id="content_create_indicador">
-    <div class="content_fondo"></div>
+    <!-- <div class="content_fondo"></div> -->
     <div class="content_form_indicador">
         <div class="title_indicador">Crear indicador</div>
         <form [formGroup]="formIndicador">
@@ -105,7 +105,6 @@
                                 [ngClass]="{'tabSelectNivel':active === tab}">
                             </div>
                         </div>
-                        <!-- <span *ngIf="siguiente" (click)="changeTab(tab)">siguiente</span> -->
                     </div>
                 </div>
 
@@ -122,8 +121,12 @@
                         </div>
                     </div>
 
-                    <br><br>
+                    <div class="contentNumero">
+                        <div class="textIndicador">Indicador</div>
+                        <div class="numberIndicador">N.° <span class="number">{{numberIndicador}}</span></div>
 
+                    </div>
+                    <br>
                     <div class="buttons_ind">
                         <button mat-stroked-button color="primary" class="button_crear"
                             (click)="createIndicator()">Crear indicador</button>

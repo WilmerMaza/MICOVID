@@ -1,0 +1,227 @@
+::ng-deep .cdk-overlay-pane.asingDeportista {
+  min-width: 300px;
+  min-height: 490px;
+  .mat-mdc-dialog-surface.mdc-dialog__surface {
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.contenTotalAsing {
+  height: 100%;
+  display: flex;
+
+  .asingDeportistaLarge {
+    width: 50% !important;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    border-radius: 30px;
+    .contentBtnHeader {
+      width: 44% !important;
+      margin: 2% 3% !important;
+      .btnBuscar {
+        width: 60% !important;
+      }
+    }
+  }
+
+  #asingDeportista {
+    background: linear-gradient(164deg, #0c4cc8 11.33%, #0ddcf9 65.89%);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    font-family: "Inria Sans";
+    .contentBtnHeader {
+      width: 90%;
+      position: absolute;
+      margin: 4% 6%;
+      display: flex;
+      justify-content: space-between;
+      .btnBuscar {
+        // position: absolute;
+        width: 60%;
+        //margin: 4% 6%;
+        input {
+          color: #fff;
+        }
+
+        ::ng-deep.mat-mdc-form-field-icon-prefix.ng-tns-c1205077789-4.ng-star-inserted,
+        ::ng-deep.mat-mdc-form-field-icon-prefix.ng-tns-c1205077789-3.ng-star-inserted {
+          position: relative;
+          top: -12px !important;
+        }
+        ::ng-deep.mat-mdc-form-field-subscript-wrapper {
+          display: none !important;
+        }
+        ::ng-deep .mat-mdc-text-field-wrapper {
+          height: 30px !important;
+          border-radius: 14px !important;
+          border-color: white !important;
+          box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+          background: rgba(255, 255, 255, 0.3);
+          color: #fff;
+        }
+        ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
+          position: relative !important;
+          top: -10px !important;
+        }
+
+        ::ng-deep
+          .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+          .mat-mdc-form-field-infix {
+          padding-top: 4px !important;
+        }
+
+        ::ng-deep.mdc-dialog__container {
+          border-radius: 12px;
+          overflow: hidden;
+        }
+
+        ::ng-deep.mdc-text-field--outlined .mdc-notched-outline {
+          display: none !important;
+        }
+      }
+
+      .close-button {
+        font-size: 10px;
+        color: #ffffff;
+        top: -15px;
+      }
+
+      .close-button:focus {
+        outline: none;
+      }
+    }
+
+    .contentAsing {
+      max-height: 100%;
+      height: 100%;
+      margin-top: 60px;
+      border-radius: 38px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .title {
+        color: #0c4cc8;
+        text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        font-size: 1.5em;
+        margin: 4%;
+      }
+      .contentTable {
+        width: 100%;
+        height: 63% !important;
+        min-width: 350px;
+        margin: 0 4%;
+        overflow-y: auto;
+        // height: 290px !important;
+        ::ng-deep.mat-mdc-row.mdc-data-table__row.cdk-row {
+          height: 22px !important;
+        }
+        ::ng-deep.mat-mdc-header-row.mdc-data-table__header-row.cdk-header-row {
+          height: 10px !important;
+        }
+        ::ng-deep.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Nombre-completo.mat-column-Nombre-completo.ng-star-inserted {
+          min-width: 200px;
+        }
+      }
+      .buttons_asing {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        .button_crear {
+          border-radius: 15px;
+          box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 23%);
+          border: none;
+          background: #fad541;
+          color: #ffff;
+          width: 50%;
+        }
+        .button_cancel {
+          background-color: #0c4cc8;
+          color: white;
+          font-weight: 500;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+  .viewAsing {
+    width: 20em;
+    height: auto;
+    transition: all 0.3s ease;
+
+    .contentView {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .headTitle {
+        color: #0c4cc8;
+        font-size: 25px;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+      .lineaBlue {
+        border: none;
+        height: 2px;
+        background: #0c4cc8;
+        margin: 0;
+        width: 80%;
+        opacity: 0.8;
+      }
+      .contenDataView {
+        overflow: auto;
+        width: 100%;
+        .info-sportman {
+          display: flex;
+          flex-direction: row;
+
+          gap: 5px;
+          padding-top: 20px;
+          margin-left: 30px;
+          .content-image {
+            width: 134px;
+            height: 134px;
+            flex-shrink: 0;
+            fill: rgba(217, 217, 217, 0);
+            stroke-width: 2.436px;
+            stroke: #0c4cc8;
+            filter: drop-shadow(
+              0px 3.2484846115112305px 3.2484846115112305px rgba(0, 0, 0, 0.25)
+            );
+            border-radius: 50%;
+            border: 2px solid #0c4cc8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            img {
+              text-align: center;
+              width: 134px;
+              height: 134px;
+            }
+          }
+          .data-sportman {
+            font-weight: 500;
+            color: #0c4cc8;
+            font-size: 1em;
+            .name,
+            .type {
+              margin: 0;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}

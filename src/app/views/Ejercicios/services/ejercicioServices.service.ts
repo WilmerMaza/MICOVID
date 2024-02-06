@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
-import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse, combinateDialogModel } from '../Model/ejercicioModel';
-import { subgrupoModel } from '../Model/subGrupoModel';
+import { SuccessResponse } from '../../models/SuccessResponse';
 import { UnitsofmeasurementsResponse } from '../Model/UnitsofmeasurementsModel';
 import { CreateEjercicioModel } from '../Model/createEjercicioModel';
-import { responseModel } from '../Model/reponseModel';
+import { Ejercicio, EjercicioResponse, GrupoResponse, SubGrupoResponse, asingDeportista, combinateDialogModel } from '../Model/ejercicioModel';
 import { IndicatorModel } from '../Model/modelIndicators';
+import { responseModel } from '../Model/reponseModel';
+import { subgrupoModel } from '../Model/subGrupoModel';
 
 @Injectable({
   providedIn: 'root'
@@ -73,4 +74,8 @@ export class EjercicioServices {
     return this.micovid$.post(endpoint, data);  
   }
 
+  assignExercies(data: asingDeportista) : Observable <SuccessResponse>{
+    const endpoint = '/exercises/assignExercise';
+    return this.micovid$.post(endpoint, data);  
+  }
 }
