@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -33,6 +33,7 @@ export class DinamicTableComponent implements AfterViewInit {
   public dataSource = new MatTableDataSource<any>([]);
   public selection = new SelectionModel<any>(true, []);
   public indexSubMenu: number = 0;
+
   @Input('isCheckBox') isCheckBox = false;
   @Input('isPaginador') isPaginador = true;
   @Input('editComplement') editComplement = false;
@@ -82,7 +83,7 @@ export class DinamicTableComponent implements AfterViewInit {
       this.selection.clear();
       return;
     }
-     this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.dataSource.data);
   }
 
   checkboxLabel(row?: any): string {
@@ -122,6 +123,15 @@ export class DinamicTableComponent implements AfterViewInit {
     const actionReturn: ActionResponse = {
       action,
       data: row,
+    };
+    this.actionEvent.emit(actionReturn);
+  }
+
+  dataActionCheck(action: any): void {
+
+    const actionReturn: ActionResponse = {
+      action,
+      data: this.selection.selected,
     };
     this.actionEvent.emit(actionReturn);
   }

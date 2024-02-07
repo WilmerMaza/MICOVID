@@ -1,88 +1,81 @@
 <div id="view-indicators">
-    <div *ngIf="showModule" class="info-sportman">
-        <div class="content-image">
-            <img [src]="imageUrl?imageUrl:'https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7'" alt="imagen del deportista">
-        </div>
-        <div class="data-sportman">
-            <h1>{{dataSportman.name}}</h1>
-            <p>CC {{dataSportman.identification}}</p>
-            <button (click)="actionFunction()">ver tarjeta de deportista</button>
-        </div>
-        <div class="x-back" (click)="goBack()">
-          <mat-icon>arrow_back</mat-icon>
-        </div>
+  <div *ngIf="showModule" class="info-sportman">
+    <div class="content-image">
+      <img
+        [src]="imageUrl?imageUrl:'https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7'"
+        alt="imagen del deportista">
     </div>
-    <app-dinamic-table *ngIf="showIndicators.length === 0; else containerLevels" [isCheckBox]="false" [columns]="columns" [dataSource]="dataEjerc"
-    (actionEvent)="getActionEvent($event)">
+    <div class="data-sportman">
+      <h1>{{dataSportman.name}}</h1>
+      <p>CC {{dataSportman.identification}}</p>
+      <button (click)="actionFunction()">ver tarjeta de deportista</button>
+    </div>
+    <div class="x-back" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </div>
+  </div>
+  <app-dinamic-table *ngIf="showIndicators.length === 0; else containerLevels" [isCheckBox]="false" [columns]="columns"
+    [dataSource]="dataEjerc" (actionEvent)="getActionEvent($event)">
   </app-dinamic-table>
 
   <ng-template #containerLevels>
     <div class="header-indicador">
-        <div class="line-blue"></div>
+      <div class="line-blue"></div>
     </div>
     <div class="container-indicator" *ngIf="!showLevels;else templateLevel">
-        <div class="carrousel-indicators">
-          <div class="header-indicator">
-            <div class="name-exercicies">
-                {{nameEjerc | titlecase}}
-            </div>
+      <div class="carrousel-indicators">
+        <div class="header-indicator">
+          <div class="name-exercicies">
+            {{nameEjerc | titlecase}}
           </div>
-            <div class="slider-effectCoverflow">
-                <swiper
-                  [effect]="'coverflow'"
-                  [grabCursor]="true"
-                  [centeredSlides]="true"
-                  [slidesPerView]="'auto'"
-                  [coverflowEffect]="{
+        </div>
+        <div class="slider-effectCoverflow">
+          <swiper [effect]="'coverflow'" [grabCursor]="true" [centeredSlides]="true" [slidesPerView]="'auto'"
+            [coverflowEffect]="{
                     rotate: 50,
                     stretch: 0,
                     depth: 200,
                     modifier: 1,
                     slideShadows: false
-                  }"
-                  [pagination]="false"
-                  [navigation]="true"
-                  [initialSlide]="initCarousel"
-                  class="mySwiper"
-                >
-                  <ng-template swiperSlide *ngFor="let item of showIndicators; let ind = index">
+                  }" [pagination]="false" [navigation]="true" [initialSlide]="initCarousel" class="mySwiper">
+            <ng-template swiperSlide *ngFor="let item of showIndicators; let ind = index">
 
-                    <div class="contentViewIndicador">
-                      <div class="item">
-                        <div class="header-item">
-                            {{item.IndicatorsName | titlecase}} ({{item.Abbreviation}})
-                        </div>
-                        <div class="body-description">
-                          <div>Descripción:</div>
-                          <br>
-                          <div>{{item.Description}}</div>
-                        </div>
-                        <div class="footer-levels">
-                          <div class="levels">
-                            <div class="cantidad">{{item.CalificationLevel}}</div>
-                            <div>Niveles de clasificación</div>
-                          </div>
-                          <div class="porcentaje">
-                            <div class="cantidad">{{item.AbsolutePercentage}}%</div>
-                            <div>Porcentaje absoluto</div>
-                          </div>
-                          <div class="porcentaje">
-                            <div class="cantidad">{{relativo(item.AbsolutePercentage)}}%</div>
-                            <div>Porcentaje relativo</div>
-                          </div>
-                        </div>
-                      </div>
+              <div class="contentViewIndicador">
+                <div class="item">
+                  <div class="header-item">
+                    {{item.IndicatorsName | titlecase}} ({{item.Abbreviation}})
+                  </div>
+                  <div class="body-description">
+                    <div>Descripción:</div>
+                    <br>
+                    <div>{{item.Description}}</div>
+                  </div>
+                  <div class="footer-levels">
+                    <div class="levels">
+                      <div class="cantidad">{{item.CalificationLevel}}</div>
+                      <div>Niveles de clasificación</div>
                     </div>
-                    <div class="footer-indicator">
-                        <div class="redirect-levels" (click)="showLevelsFunction(item.Ejercicio.Name, item.Levels)">
-                            <span>Ver niveles de clasificación del indicador</span>
-                        </div>
+                    <div class="porcentaje">
+                      <div class="cantidad">{{item.AbsolutePercentage}}%</div>
+                      <div>Porcentaje absoluto</div>
                     </div>
-                  </ng-template>
-                </swiper>
+                    <div class="porcentaje">
+                      <div class="cantidad">{{relativo(item.AbsolutePercentage)}}%</div>
+                      <div>Porcentaje relativo</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
+              <div class="footer-indicator">
+                <div class="redirect-levels" (click)="showLevelsFunction( item.IndicatorsName,item.Levels)">
+                  <span>Ver niveles de clasificación del indicador</span>
+                </div>
+              </div>
+            </ng-template>
+          </swiper>
         </div>
+
+      </div>
     </div>
     <ng-template #templateLevel>
       <div id="content-info-levels">
@@ -91,7 +84,7 @@
         </div>
         <div class="header-level">
           <div class="name-exercicies">
-              {{nameEjerc | titlecase}}
+            {{nameEjerc | titlecase}}
           </div>
         </div>
         <div class="content-levels">
