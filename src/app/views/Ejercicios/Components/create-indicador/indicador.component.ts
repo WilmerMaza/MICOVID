@@ -166,6 +166,10 @@ export class IndicadorComponent implements OnInit {
   };
 
   createIndicator(): void {
+    if (this.formIndicador.invalid) {
+      return;
+    }
+
     this.countTemplates[this.active] = {
       number: this.formIndicador.get('level')?.value,
       name: this.formIndicador.get('nameLevel')?.value,
