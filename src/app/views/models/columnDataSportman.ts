@@ -45,7 +45,7 @@ export const columnsValue = [
         text: 'Ver',
         menu: [
           { action: 'verDeportista', text: 'Deportista' },
-          { action: 'verIndicadores', text: 'Indicadores' },
+          { action: 'verEjercicios', text: 'Ejercicios' },
         ],
       },
       { action: 'Editar', text: 'Editar' },

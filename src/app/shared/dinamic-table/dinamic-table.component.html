@@ -47,7 +47,7 @@
               <mat-menu #SubMenu="matMenu">
                 <button *ngFor="let sub of item.menu[indexSubMenu].menu " mat-menu-item class="style_matmenu"
                   (click)="dataAction(sub, element)"
-                  [disabled]="sub.action === 'verIndicadores' && !element.HasIndicators">
+                  [disabled]="sub.action === 'verEjercicios' && !element.HasIndicators">
                   <span>{{ sub.text }}</span>
                 </button>
               </mat-menu>
