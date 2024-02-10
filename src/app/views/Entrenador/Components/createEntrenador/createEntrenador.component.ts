@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import {
   CIUDADESCONST,
@@ -38,7 +38,7 @@ import { EntrenadorServices } from '../../services/EntrenadorServices.service';
   templateUrl: './createEntrenador.component.html',
   styleUrls: ['./createEntrenador.component.scss'],
 })
-export class CreateEntrenadorComponent {
+export class CreateEntrenadorComponent implements OnInit {
   @Input('viewActive') set setView(value: viewModalEntrenador) {
     this.showViewEntrenador = value.isVisible;
     this.dataIni(value);
@@ -67,11 +67,17 @@ export class CreateEntrenadorComponent {
   tooltipText: string = 'Esta es una imagen de muestra';
   public prefijoPhone:string = "+57";
   public maskPhone:string = "00 0000 0000"; 
+  public placeHolderPhone: string = "+57 Colombia"
+  private validateRegex: RegExp;
 
   constructor(
     private entrenadorServices$: EntrenadorServices,
     private imagenFuntionsService$: ImagenFuntionsService
   ) {}
+
+  ngOnInit(): void {
+    this.generarExpresionRegular(this.maskPhone);
+  }
 
   closeCard(): void {
     this.showViewEntrenador = false;
@@ -121,6 +127,10 @@ export class CreateEntrenadorComponent {
     }
   }
 
+  hasErrorRegexp(controlName: string):boolean {
+    return !this.validateRegex?.test(this.entrenadorForm.get(controlName)?.value);
+  }
+
   validatePassword():void {
     const password = this.entrenadorForm.get('password')?.value;
     const confirmPassword =
@@ -161,10 +171,28 @@ export class CreateEntrenadorComponent {
     PAISESCONST.forEach((value: Ipaises) => {
       const { country_name, country_phone_code, mask_phone_code } = value;
       if(country_name === country){
+        this.generarExpresionRegular(mask_phone_code);
+        this.placeHolderPhone = `${country_phone_code} ${country_name}`;
         this.prefijoPhone = country_phone_code;
         this.maskPhone = mask_phone_code;
       }
     })
+  }
+
+  generarExpresionRegular(mask: string):void{
+    // Escapar caracteres especiales en la máscara
+    const escapedMask = mask.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    // Reemplazar '0' con '\d'
+    const regexString = escapedMask.replace(/0/g, '\\d');
+
+    const withoutSpace = regexString.replace(/\s/g, '')
+    // Construir la expresión regular completa
+    const regex = new RegExp('^' + withoutSpace + '$');
+    
+    this.validateRegex = regex;
+    this.entrenadorForm.get('phone')?.addValidators(Validators.pattern(regex));
+    this.entrenadorForm.get('phone')?.updateValueAndValidity();
   }
 
   setCurrentPageR(): void {

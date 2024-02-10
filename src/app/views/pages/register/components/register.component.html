@@ -237,7 +237,7 @@
                 Teléfono es obligatorio.
               </div>
               <div
-                *ngIf="hasError('phone', 'pattern') && isTouched('phone')"
+                *ngIf="hasErrorRegexp('phone') && isTouched('phone')"
                 class="error-message"
               >
                 El formato del teléfono no es válido.
