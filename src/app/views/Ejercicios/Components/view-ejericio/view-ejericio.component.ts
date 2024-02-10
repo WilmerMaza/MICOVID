@@ -63,7 +63,7 @@ export class ViewEjericioComponent {
         if (VisualIllustration !== this.imageDefault && VisualIllustration) {
           const imageLoader = new ImageLoader(this.imagenFuntionsService$);
           const imagePromise = new Promise<void>((resolve) => {
-            imageLoader.loadImage(VisualIllustration, (imageUrl) => {
+            imageLoader.loadImage(VisualIllustration, false, (imageUrl) => {
               this.imageUrl[index] = imageUrl;
               resolve();
             });

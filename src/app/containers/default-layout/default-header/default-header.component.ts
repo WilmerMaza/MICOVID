@@ -66,10 +66,10 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
     }
   }
 
-  viewImage(nameImg: string | undefined): void {
+  viewImage(nameImg: string | undefined, adminConsul: boolean): void {
     if (nameImg) {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
-      imageLoader.loadImage(nameImg, (imageUrl) => {
+      imageLoader.loadImage(nameImg, adminConsul, (imageUrl) => {
         this.selectedImageURL = imageUrl;
       });
     }
@@ -88,7 +88,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
 
       this.stickyUser = objectStikyUser.find((data) => data.roll === account);
       if (image !== 'defaul.png') {
-        this.viewImage(image);
+        this.viewImage(image, account === 'Admin');
       }
     });
   }

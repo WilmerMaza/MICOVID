@@ -77,7 +77,7 @@ export class AsignDeportistaComponent implements OnInit {
       ) {
         const imageLoader = new ImageLoader(this.imagenFuntionsService$);
         const imagePromise = new Promise<void>((resolve) => {
-          imageLoader.loadImage(image, (imageUrl) => {
+          imageLoader.loadImage(image, false, (imageUrl) => {
             this.sportSelect[index].image = imageUrl;
             resolve();
           });

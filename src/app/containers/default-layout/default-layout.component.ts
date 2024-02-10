@@ -33,15 +33,15 @@ export class DefaultLayoutComponent implements OnInit {
         account === 'Admin' ? institutionName : name
       );
       if (image !== 'defaul.png') {
-        this.viewImage(image);
+        this.viewImage(image, account === 'Admin');
       }
     });
   }
 
-  viewImage(nameImg: string | undefined): void {
+  viewImage(nameImg: string | undefined, userConsult: boolean): void {
     if (nameImg) {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
-      imageLoader.loadImage(nameImg, (imageUrl) => {
+      imageLoader.loadImage(nameImg, userConsult, (imageUrl) => {
         this.imageUrl = imageUrl;
       });
     }
