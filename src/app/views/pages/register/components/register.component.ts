@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   public placeholderSelect: string = "+57 Colombia";
   public prefijoPhone:string = "+57";
   public maskPhone:string = "00 0000 0000"; 
+  private validateRegex: RegExp;
 
   constructor(
     private registerSession$: RegisterService,
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit(): void {
       this.selectedFiles = new File([], 'empty.txt');
+      this.generarExpresionRegular(this.maskPhone);
     }
     
   enviarFormulario():void {
@@ -108,6 +110,10 @@ export class RegisterComponent implements OnInit {
     return this.register.get(controlName)?.hasError(errorName) || false;
   }
 
+  hasErrorRegexp(controlName: string):boolean {
+    return !this.validateRegex?.test(this.register.get(controlName)?.value);
+  }
+
   isTouched(controlName: string): boolean {
     return this.register.get(controlName)?.touched || false;
   }
@@ -134,16 +140,33 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  selectMask(event: any){
+  selectMask(event: any):void{
     const selectedCountry = event.target.value;
     PAISESCONST.forEach((value: Ipaises) => {
       const { country_name, country_phone_code, mask_phone_code } = value;
       if(country_name === selectedCountry){
+        this.generarExpresionRegular(mask_phone_code);
         this.prefijoPhone = country_phone_code;
         this.placeholderSelect = `${country_phone_code} ${selectedCountry}`;
         this.maskPhone = mask_phone_code;
       }
     })
+  }
+
+  generarExpresionRegular(mask: string):void{
+    // Escapar caracteres especiales en la máscara
+    const escapedMask = mask.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    // Reemplazar '0' con '\d'
+    const regexString = escapedMask.replace(/0/g, '\\d');
+
+    const withoutSpace = regexString.replace(/\s/g, '')
+    // Construir la expresión regular completa
+    const regex = new RegExp('^' + withoutSpace + '$');
+    
+    this.validateRegex = regex;
+    this.register.get('phone')?.addValidators(Validators.pattern(regex));
+    this.register.get('phone')?.updateValueAndValidity();
   }
 
   uploadImg(formData: FormData): void {
