@@ -77,7 +77,7 @@ export class ViewIndicatorsComponent implements OnInit {
   viewImage(nameImg: string | undefined): void {
     if (nameImg) {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
-      imageLoader.loadImage(nameImg, (imageUrl) => {
+      imageLoader.loadImage(nameImg, false, (imageUrl) => {
         this.imageUrl = imageUrl;
       });
     }
