@@ -1,158 +1,281 @@
 <div id="createEjercicio">
   <div class="content_fondo"></div>
-  <button class="iconVolver" (click)="volver()"><mat-icon>keyboard_backspace</mat-icon> </button>
+  <button class="iconVolver" (click)="volver()">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+
   <div class="content_form_createEjercicio">
-    <div class="title_createEjercicio" [ngClass]="{'tittleCombinate': combinate}">{{tittleName}}</div>
-
-    <div class="forms">
-      <form [formGroup]="ejercicioForm" (ngSubmit)="onSubmit()" class="form-container">
-        <div class="forms-general">
-          <div class="content-forms-input">
-            <div class="column1">
-              <div class="contet-input">
-                <div class="row">Nombre del ejercicio</div>
-                <div class="form-field">
-                  <input matInput formControlName="name" class="field-input">
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('name')?.touched) && ejercicioForm.get('name')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-
-              <div class="contet-input">
-                <div class="row">Abreviatura</div>
-                <div class="form-field">
-                  <input matInput formControlName="abbreviation" class="field-input">
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('abbreviation')?.touched) && ejercicioForm.get('abbreviation')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-
-              <div class="contet-input">
-                <div class="row">Descripción</div>
-                <div class="form-field">
-                  <textarea matInput formControlName="description" class="field-input descripition"></textarea>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('description')?.touched) && ejercicioForm.get('description')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-
-              <div class="content-select">
-                <div class="row-select  bottum-subgrupo">
-                  <span> Subgrupo </span>
-                </div>
-                <div class="select">
-                  <mat-select formControlName="subgrupo" name="subgrupo" class="field-select">
-                    <mat-option *ngFor="let opcion of dataSubgrupo" [value]="opcion.ID">
-                      {{ opcion.NameSubGrupo }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('subgrupo')?.touched) && ejercicioForm.get('subgrupo')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-
-              <div class="contet-input">
-                <div class="row">Link de apoyo del ejercicio</div>
-                <div class="form-field">
-                  <textarea matInput formControlName="linkEjercicios" class="field-input descripition"></textarea>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('linkEjercicios')?.touched) && ejercicioForm.get('linkEjercicios')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-            </div>
-
-            <div class="column2">
-              <div class="content-select">
-                <div class="row-select">
-                  <span> Tipo de relación</span>
-                </div>
-                <div class="select">
-                  <mat-select formControlName="relationship" name="relationship" class="field-select">
-                    <mat-option *ngFor="let opcion of dataTypeRelation" [value]="opcion.code">
-                      {{ opcion.name }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('relationship')?.touched) && ejercicioForm.get('relationship')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-              <div class="content-select">
-                <div class="row-select">
-                  <span> U. de cantidad </span>
-                </div>
-                <div class="select">
-                  <mat-select formControlName="cantidad" name="cantidad" class="field-select">
-                    <mat-option *ngFor="let opcion of dataUnitsofmeasurements" [value]="opcion.ID">
-                      {{ opcion.Name }} ({{opcion.Abbreviation}})
-                    </mat-option>
-                  </mat-select>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('cantidad')?.touched) && ejercicioForm.get('cantidad')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                </div>
-              </div>
-              <div class="content-select">
-                <div class="row-select">
-                  <span> Calidad/desempeño </span>
-                </div>
-                <div class="select">
-                  <mat-select formControlName="calidadPromedio" name="calidadPromedio" class="field-select">
-                    <mat-option *ngFor="let opcion of dataUnitsofmeasurements" [value]="opcion.ID">
-                      {{ opcion.Name }} ({{opcion.Abbreviation}})
-                    </mat-option>
-                  </mat-select>
-                  <mat-error class="Error"
-                    *ngIf="(submitted || ejercicioForm.get('calidadPromedio')?.touched) && ejercicioForm.get('calidadPromedio')?.hasError('required')">
-                    *Campo requerido
-                  </mat-error>
-                  <mat-error class="Error" *ngIf="ejercicioForm.get('cantidad')?.value == ejercicioForm.get('calidadPromedio')?.value
-                 && ejercicioForm.get('calidadPromedio')?.value != null">
-                    *U. de cantidad y Calidad/desempeño no pueden tener las mismas unidades
-                  </mat-error>
-                </div>
-              </div>
-
-              <div class="contet-input contet-input-archive">
-                <div class="row-select">
-                  <span> Subir Archivo </span>
-                </div>
-                <div class="input-file">
-                  <input type="file" id="upload" accept=".png, .jpg, .webp" (change)="onFilesSelected($event)" hidden />
-                  <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
-                    <mat-icon class="icon">upload_file</mat-icon>
-                  </label>
-                  <label *ngIf="!selectedImageURL">
-                    <div class="textImg">Subir foto o video del ejercicio</div>
-                  </label>
-                  <label class="content-image" *ngIf="selectedImageURL">
-                    <div class="nameImage"> {{selectedFiles.name}}</div>
-                    <div><button class="button-image" (click)="removeImage()"> X </button></div>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="botonCrearContent">
-            <button type="button" mat-button class="botonCrear" (click)="submitted = true; onCreateEjercicio()">Crear
-              ejercicio</button>
-          </div>
-        </div>
-      </form>
-
+    <div
+      class="title_createEjercicio"
+      [ngClass]="{ tittleCombinate: combinate }"
+    >
+      {{ tittleName }}
     </div>
 
+    <div class="forms-create-Ejercicio">
+      <form
+        [formGroup]="ejercicioForm"
+        (ngSubmit)="onSubmit()"
+        class="form-container"
+      >
+        <!-- <div class="forms-general"> -->
+        <!-- <div class="content-forms-input"> -->
+        <div class="column1">
+          <div class="contet-input">
+            <div class="row">Nombre del ejercicio</div>
+            <div class="form-field">
+              <mat-form-field class="matforms" appearance="outline" fxFlex>
+                <input
+                  matInput
+                  formControlName="name"
+                  required
+                  class="inputmat"
+                  id="inputname"
+                />
+                <mat-error *ngIf="ejercicioForm.get('name')?.invalid"
+                  >*Campo requerido</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="contet-input">
+            <div class="row">Abreviatura</div>
+            <div class="form-field">
+              <mat-form-field class="matforms" appearance="outline" fxFlex>
+                <input
+                  matInput
+                  formControlName="abbreviation"
+                  required
+                  class="inputmat"
+                  id="inputname"
+                />
+                <mat-error *ngIf="ejercicioForm.get('abbreviation')?.invalid"
+                  >*Campo requerido</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="contet-input">
+            <div class="row">Descripción</div>
+            <div class="form-field">
+              <textarea
+                matInput
+                formControlName="description"
+                class="field-input descripition"
+              ></textarea>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted || ejercicioForm.get('description')?.touched) &&
+                  ejercicioForm.get('description')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="content-select">
+            <div class="row-select bottum-subgrupo">
+              <span> Subgrupo </span>
+            </div>
+            <div class="select">
+              <mat-form-field class="matforms" appearance="outline">
+                <mat-select
+                  formControlName="subgrupo"
+                  name="subgrupo"
+                  class="field-select"
+                >
+                  <mat-option
+                    *ngFor="let opcion of dataSubgrupo"
+                    [value]="opcion.ID"
+                  >
+                    {{ opcion.NameSubGrupo }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted || ejercicioForm.get('subgrupo')?.touched) &&
+                  ejercicioForm.get('subgrupo')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="contet-input">
+            <div class="row">Link de apoyo del ejercicio</div>
+            <div class="form-field">
+              <textarea
+                matInput
+                formControlName="linkEjercicios"
+                class="field-input descripition"
+              ></textarea>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted || ejercicioForm.get('linkEjercicios')?.touched) &&
+                  ejercicioForm.get('linkEjercicios')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="column2">
+          <div class="content-select">
+            <div class="row-select">
+              <span> U. de cantidad </span>
+            </div>
+            <div class="select">
+              <mat-form-field class="matforms" appearance="outline">
+                <mat-select
+                  formControlName="cantidad"
+                  name="cantidad"
+                  class="field-select"
+                >
+                  <mat-option
+                    *ngFor="let opcion of dataUnitsofmeasurements"
+                    [value]="opcion.ID"
+                  >
+                    {{ opcion.Name }} ({{ opcion.Abbreviation }})
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted || ejercicioForm.get('cantidad')?.touched) &&
+                  ejercicioForm.get('cantidad')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+            </div>
+          </div>
+          <div class="content-select">
+            <div class="row-select">
+              <span> Calidad/desempeño </span>
+            </div>
+            <div class="select">
+              <mat-form-field class="matforms" appearance="outline">
+                <mat-select
+                  formControlName="calidadPromedio"
+                  name="calidadPromedio"
+                  class="field-select"
+                >
+                  <mat-option
+                    *ngFor="let opcion of dataUnitsofmeasurements"
+                    [value]="opcion.ID"
+                  >
+                    {{ opcion.Name }} ({{ opcion.Abbreviation }})
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted ||
+                    ejercicioForm.get('calidadPromedio')?.touched) &&
+                  ejercicioForm.get('calidadPromedio')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  ejercicioForm.get('cantidad')?.value ==
+                    ejercicioForm.get('calidadPromedio')?.value &&
+                  ejercicioForm.get('calidadPromedio')?.value != null
+                "
+              >
+                *U. de cantidad y Calidad/desempeño no pueden tener las mismas
+                unidades
+              </mat-error>
+            </div>
+          </div>
+          <div class="content-select">
+            <div class="row-select">
+              <span> Tipo de relación</span>
+            </div>
+            <div class="select">
+              <mat-form-field class="matforms" appearance="outline">
+                <mat-select
+                  formControlName="relationship"
+                  name="relationship"
+                  class="field-select"
+                >
+                  <mat-option
+                    *ngFor="let opcion of dataTypeRelation"
+                    [value]="opcion.code"
+                  >
+                    {{ opcion.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error
+                class="Error"
+                *ngIf="
+                  (submitted || ejercicioForm.get('relationship')?.touched) &&
+                  ejercicioForm.get('relationship')?.hasError('required')
+                "
+              >
+                *Campo requerido
+              </mat-error>
+            </div>
+          </div>
+          <div class="contet-input contet-input-archive">
+            <div class="row-select">
+              <span> Subir Archivo </span>
+            </div>
+            <div class="input-file">
+              <input
+                type="file"
+                id="upload"
+                accept=".png, .jpg, .webp"
+                (change)="onFilesSelected($event)"
+                hidden
+              />
+              <label for="upload" class="uploadlabel" *ngIf="!selectedImageURL">
+                <mat-icon class="icon">upload_file</mat-icon>
+              </label>
+              <label *ngIf="!selectedImageURL">
+                <div class="textImg">Subir foto del ejercicio</div>
+              </label>
+              <label class="content-image" *ngIf="selectedImageURL">
+                <div class="nameImage">{{ selectedFiles.name }}</div>
+                <div>
+                  <button class="button-image" (click)="removeImage()">
+                    X
+                  </button>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+        
+        <!-- </div>  -->
+      </form>
+    </div>
+    <div class="botonCrearContent">
+      <button
+        type="button"
+        mat-button
+        class="botonCrear"
+        (click)="submitted = true; onCreateEjercicio()"
+      >
+        Crear ejercicio
+      </button>
+    </div>
   </div>
 </div>

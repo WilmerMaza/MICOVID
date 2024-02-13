@@ -1,236 +1,384 @@
+// #createEjercicio {
+//   width: calc(100% - 20px);
+//   height: calc(93vh - 20px);
+//   position: relative;
+//   background-color: white;
+//   margin: 10px;
+//   border-radius: 15px;
+//   overflow: hidden;
+//   min-width: 710px;
+
+//   .content_fondo {
+//     width: 741px;
+//     height: 100%;
+//     background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     position: absolute;
+//     right: -300px;
+//   }
+
+//   .iconVolver {
+//     width: 35px;
+//     float: right;
+//     position: relative;
+//     color: white;
+//     border: 3px solid white;
+//     border-radius: 20px;
+//     height: 35px;
+//     margin: 10px 10px 0px 0px;
+//     display: flex;
+//     background-color: #0c4cc8;
+//     align-items: center;
+//   }
+
+//   .forms {
+//     padding-top: 20px;
+//     background-color: #ffffff94;
+//     border-radius: 50px 0px;
+//   }
+
+//   .column1 {
+//     max-width: 300px;
+//   }
+//   .column2 .content-select {
+//     padding: 5px;
+//   }
+
+//   .content_form_createEjercicio {
+//     margin: 20px 71px;
+//     position: relative;
+//     max-width: 620px;
+//     .title_createEjercicio {
+//       color: #000015;
+//       font-family: Inria Sans;
+//       font-size: 50px;
+//       font-style: normal;
+//       font-weight: 700;
+//       line-height: normal;
+//     }
+//   }
+
+//   .content-forms-input {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//   }
+
+//   .content-select {
+//     padding: 0px 50px 15px 0px;
+//   }
+
+//   .botonCrear {
+//     background-color: #0c4cc8;
+//     font-family: Inria Sans;
+//     font-size: 20px;
+//     font-weight: 500;
+//     width: 250px;
+//     border-radius: 10px;
+//     color: #ffffffff;
+//   }
+//   .botonCrearContent {
+//     text-align: center;
+//   }
+//   .scroll-container {
+//     max-height: 460px;
+//     overflow-y: auto;
+//     border: none;
+//   }
+//   :host {
+//     display: block;
+//     border: 2px solid #ccc;
+//     padding: 20px;
+//   }
+
+//   .tittle-ejercicio {
+//     font-size: 35px;
+//     color: #ffffff;
+//     font-family: sans-serif;
+//     padding: 0px 0px 20px 30px;
+//   }
+
+//   .contet-input {
+//     padding: 0px 50px 15px 0px;
+//   }
+
+//   .contet-input-archive {
+//     padding-top: 50px;
+//   }
+
+//   .row-select {
+//     padding-right: 35px;
+//     font-family: Inria Sans;
+//     font-weight: 800;
+//     color: #000000;
+//     padding-right: 15px;
+//   }
+
+//   .select {
+//     border: 2px solid #0c4cc8;
+//     border-radius: 10px;
+//     height: 30px;
+//     width: 270px;
+//   }
+
+//   .field-select {
+//     width: 270px;
+//     padding: 0px 10px 0px 12px;
+//   }
+
+//   .row {
+//     font-family: Inria Sans;
+//     font-weight: 800;
+//     color: #000000;
+//     padding-left: 10px;
+//   }
+
+//   .form-field {
+//     border-radius: 10px;
+//     border-color: aqua;
+//   }
+
+//   .field-input {
+//     background-color: #ffffff;
+//     border-radius: 10px;
+//     border: 2px solid #0c4cc8;
+//     width: 270px;
+//     padding: 5px 10px;
+//     height: 30px;
+//   }
+
+//   .descripition {
+//     height: 50px !important;
+//   }
+
+//   .crearSubgr {
+//     background: #0c4cc8;
+//     color: #ffffff;
+//     font-weight: 500;
+//     border: none;
+//     border-radius: 18px;
+//     height: 15px;
+//     display: flex;
+//     width: 60px;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+//   .Error {
+//     border-color: rgb(145, 53, 53);
+//     font-size: 14px;
+//   }
+
+//   .input-file {
+//     border: 2px solid #0c4cc8;
+//     border-radius: 20px;
+//     width: 280px;
+//     height: 100px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//   }
+
+//   .icon {
+//     width: 100%;
+//     height: 100%;
+//     font-size: 50px;
+//     color: #0c4cc8;
+//   }
+
+//   .textImg {
+//     color: #0c4cc8;
+//     font-family: Inria Sans;
+//     font-size: 10px;
+//     font-weight: 400;
+//     line-height: 12px;
+//   }
+
+//   .nameImage {
+//     word-break: break-all;
+//     font-family: Inria Sans;
+//     font-size: 10px;
+//   }
+
+//   .button-image {
+//     border: none;
+//     font-family: Inria Sans;
+//   }
+//   .button-image {
+//     display: flex;
+//   }
+
+//   .content-image {
+//     width: 100%;
+//     padding: 10px;
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+//     flex-wrap: nowrap;
+//   }
+
+//   .tittleCombinate {
+//     width: 600px;
+//     background-color: white;
+//     border-radius: 0px 50px;
+//   }
+// }
+
 #createEjercicio {
-  width: calc( 100% - 20px);
-  height: calc( 90vh - 20px);
-  position: relative;
-  background-color: white;
+  background: white;
   margin: 10px;
+  width: calc(100% - 40px);
+  height: 100%;
   border-radius: 15px;
-  overflow: hidden;
-  min-width: 710px;
+  font-family: inria sans;
 
+  .iconVolver {
+    width: 35px;
+    float: right;
+    position: relative;
+    color: white;
+    border: 3px solid white;
+    border-radius: 20px;
+    height: 35px;
+    margin: 10px 10px 0px 0px;
+    display: flex;
+    background-color: #0c4cc8;
+    align-items: center;
+  }
   .content_fondo {
-    width: 741px;
-    height: 590px;
-    background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    right:-300px;
-}
+        width: 741px;
+        height: 100%;
+        background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: -300px;
+      }
 
-.iconVolver{
-  width: 35px;
-  float: right;
-  position: relative;
-  color: white;
-  border: 3px solid white;
-  border-radius: 20px;
-  height: 35px;
-  margin: 10px 10px 0px 0px;
-  display: flex;
-  background-color: #0C4CC8;
-  align-items: center;
-}
-
-.forms{
-    padding-top: 20px;
-    min-width: 500px;
-    background-color: white;
-    border-radius: 50px 0px;
-}
-
-.forms-general{
-  display: flex;
-  flex-direction: column;
-}
-
-.column1{
-  max-width: 300px;
-}
-
-.content_form_createEjercicio{
-  margin: 20px 71px;
-  position: relative;
-  width: 600px;
-  .title_createEjercicio{
-      color: #0C4CC8;
-      font-family: Inria Sans;
-      font-size: 50px;
-      font-style: normal;
+  .content_form_createEjercicio {
+    .title_createEjercicio {
+      position: relative;
+      display: flex;
+      padding: 10px;
+      margin: 2px 47px;
+      top: 20px;
+      color: #0c4cc8;
+      font-size: 2.5em;
       font-weight: 700;
-      line-height: normal;
+      height: 80px;
+    }
+
+    .botonCrearContent {
+      text-align: center;
+      height: 64px;
+
+      .botonCrear {
+        background-color: #0c4cc8;
+        font-family: Inria Sans;
+        font-size: 20px;
+        font-weight: 500;
+        width: 250px;
+        border-radius: 10px;
+        color: #ffffffff;
+        margin: 10px;
+      }
+    }
+
+    .forms-create-Ejercicio {
+      background: #ffff;
+      width: auto;
+      height: 100%;
+      margin: 10px 75px;
+
+      .form-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minMax(224px, 1fr));
+        gap: 30px;
+
+        .field-input {
+          background-color: #ffffff;
+          border-radius: 10px;
+          border: 1px solid #0c4cc8;
+          width: 270px;
+          padding: 5px 10px;
+          height: 30px;
+        }
+
+        .descripition {
+          height: 50px !important;
+          width: 100%;
+        }
+
+        .input-file {
+          border: 1px solid #0c4cc8;
+          border-radius: 20px;
+          width: 100%;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+        .icon {
+          width: 100%;
+          height: 100%;
+          font-size: 50px;
+          color: #0c4cc8;
+        }
+
+        ::ng-deep .mat-mdc-text-field-wrapper {
+          height: 30px !important;
+          border-radius: 14px !important;
+          border: 1px solid #0c4cc8;
+          box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+          font-size: 12px;
+          font-weight: 400;
+        }
+
+        ::ng-deep .matforms .mat-mdc-form-field-icon-suffix {
+          position: relative !important;
+          top: -10px !important;
+        }
+
+        ::ng-deep
+          .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+          .mat-mdc-form-field-infix {
+          padding-top: 4px;
+        }
+
+        ::ng-deep.mdc-dialog__container {
+          border-radius: 12px;
+          overflow: hidden;
+        }
+
+        ::ng-deep.mdc-text-field--outlined .mdc-notched-outline {
+          display: none !important;
+        }
+        ::ng-deep .matforms .mat-mdc-text-field-wrapper {
+          background-color: white !important;
+        }
+        ::ng-deep.mat-mdc-form-field.matforms.mat-mdc-form-field-type-mat-select {
+          width: 100%;
+        }
+      }
+    }
   }
 }
-
-    .content-forms-input{
-      display: flex;
-      flex-direction: row;
-    }
-
-    .content-select{
-      padding: 0px 50px 15px 0px;
-    }
-    
-    .botonCrear{
-      background-color:  #0C4CC8;
-      font-family: Inria Sans;
-      font-size: 20px;
-      font-weight: 500;
-      width: 250px;
-      border-radius: 10px;
-      color: #FFFFFFFF;
-    }
-    .botonCrearContent{
-      position: relative;
-      right: -210px;    
-    }
-    .scroll-container {
-      max-height: 460px; 
-      overflow-y: auto; 
-      border: none;
-    }
-    :host {
-      display: block; 
-      border: 2px solid #ccc; 
-      padding: 20px; 
-    }
-
-    .tittle-ejercicio{
-      font-size: 35px;
-      color: #FFFFFF;
-      font-family: sans-serif;
-      padding: 0px 0px 20px 30px;
-    }
-    .form-container {
-      display: flex;
-      flex-direction: column;
-    }
-    .contet-input {
-      padding: 0px 50px 15px 0px;
-    }
-
-    .contet-input-archive{
-      padding-top: 18px;
-    }
-
-    .row-select{
-      padding-right: 35px;
-      font-family: Inria Sans;
-      font-weight: 800;
-      color: #000000;
-      padding-right: 15px;
-    }
-    
-    .select{
-      border: 2px solid #0c4cc8;
-      border-radius: 10px;
-      height: 30px;
-      width: 270px;
-    }
-
-
-    .field-select{
-      width: 270px;
-      padding: 0px 10px 0px 12px;
-    }
-
-     .row{
-      font-family: Inria Sans;
-      font-weight: 800;
-      color: #000000;
-      padding-left: 10px
-     }
-
-     .form-field{
-      border-radius: 10px;
-      border-color: aqua
-     }
-
-     .field-input{
-      background-color: #FFFFFF;
-      border-radius: 10px;
-      border: 2px solid #0c4cc8;
-      width: 270px;
-      padding: 5px 10px;
-      height: 30px;
-     }
-
-     .descripition{
-      height: 45px !important; 
-     }
-
-     .crearSubgr{
-      background: #0C4CC8;
-      color: #FFFFFF;
-      font-weight: 500;
-      border: none;
-      border-radius: 18px;
-      height: 15px;
-      display: flex;
-      width: 60px;
-      align-items: center;
-      justify-content: center;
-     }
-
-     .Error{
-      border-color: rgb(145, 53, 53);
-      font-size: 14px;
-     }
-
-     .input-file{
-      border: 2px solid #0c4cc8;
-      border-radius: 20px;
-      width: 280px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-     }
-
-     .icon{
-      width: 100%;
-      height: 100%;
-      font-size: 50px;
-      color: #0c4cc8;
-     }
-
-     .textImg{
-      color: #0c4cc8;
-      font-family: Inria Sans;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 12px;
-    }
-
-    .nameImage{
-      word-break: break-all;
-      font-family: Inria Sans;
-      font-size: 10px;
-    }
-
-    .button-image{
-      border: none;
-      font-family: Inria Sans;
-    }
-    .button-image{
-      display: flex;
-    }
-
-    .content-image{
-      width: 100%;
-      padding: 10px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: nowrap
-    }
-
-    .tittleCombinate{
-      width: 600px;
-      background-color: white;
-      border-radius: 0px 50px;
-    }
-
+@media only screen and (max-width: 900px) {
+  /* Ajusta el tamaño del texto para pantallas más grandes */
+  .title_createEjercicio {
+    font-size: 2.5em !important;
+  }
+}
+@media only screen and (max-height: 600px) {
+  /* Ajusta el tamaño del texto para pantallas más grandes */
+  .title_createEjercicio {
+    font-size: 2.5em !important;
+  }
 }
