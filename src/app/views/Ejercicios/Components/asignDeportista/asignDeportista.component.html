@@ -4,17 +4,16 @@
     <div class="contentBtnHeader">
       <div class="btnBuscar">
         <form [formGroup]="textForm">
-          <div class="content-form-field">
-            <mat-form-field appearance="outline" class="content-form-field" fxFlex>
-              <mat-icon class="material-icons-outlined mat-gray icon-filter" (click)="onSubmit()"
-                matPrefix>search</mat-icon>
+          <div class="content-form-fieldAsing">
+            <mat-form-field appearance="outline" class="content-form-fieldAsing" fxFlex>
+              <mat-icon class="material-icons-outlined mat-gray icon-filter" matPrefix>search</mat-icon>
               <ng-template #other_content>
                 <mat-icon *ngIf="!clearInput" class="material-icons-outlined mat-gray icon-filter"
-                  (click)="otherOnSubmit()" matPrefix>search</mat-icon>
+                  matPrefix>search</mat-icon>
                 <mat-icon *ngIf="clearInput" class="material-icons-outlined mat-gray icon-filter"
-                  (click)="clearFilterAction()" matPrefix>clear</mat-icon>
+                  matPrefix>clear</mat-icon>
               </ng-template>
-              <input matInput formControlName="textInput" class="textInput" placeholder="Buscar..." />
+              <input matInput formControlName="textInput" class="textInput" placeholder="Buscar Nombre" />
             </mat-form-field>
           </div>
         </form>
@@ -31,13 +30,13 @@
         Asignar deportista
       </div>
       <div class="contentTable">
-        <app-dinamic-table [isCheckBox]="false" [columns]="column" [dataSource]="dataSportman" [isPaginador]="false"
-          [editComplement]="false" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
+        <app-dinamic-table [isCheckBox]="false" [columns]="column" [dataSource]="dataSportmanFilter"
+          [isPaginador]="false" [editComplement]="false" (actionEvent)="getActionEvent($event)"></app-dinamic-table>
       </div>
       <div class="buttons_asing">
-        <button mat-stroked-button color="primary" class="button_crear" (click)="asingSpormant()">Asignar</button>
+        <button mat-stroked-button color="primary" class="button_crear" [ngClass]="{'button_crearLarge':isLarge}" (click)="asingSpormant()">Asignar</button>
         <br><br>
-        <button mat-raised-button class="button_cancel" type="button" (click)=" largeModal()">Ver mas</button>
+        <button  *ngIf="!isLarge " mat-raised-button class="button_cancel" type="button" (click)=" largeModal()">Ver mas</button>
       </div>
     </div>
 
@@ -45,7 +44,7 @@
   <div *ngIf="isLarge" class="viewAsing">
 
     <div class="contentView">
-
+      <button class="iconVolver" (click)="largeModal()"><mat-icon class="iconmat">keyboard_backspace</mat-icon> </button>
       <div class="headTitle">
         Deportistas
       </div>

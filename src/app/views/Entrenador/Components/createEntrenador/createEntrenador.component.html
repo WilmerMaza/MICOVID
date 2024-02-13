@@ -314,18 +314,13 @@
                       <div class="row">Teléfono</div>
                       <div class="row-data">
                         <mat-form-field class="matforms" appearance="outline">
-                          <div class="input-phone">
-                            <input class="phone-prefix" matInput  type="text" [placeholder]="prefijoPhone" disabled/>
-                            <input matInput formControlName="phone" type="text" [mask]="maskPhone"
-                              placeholder="Ingrese su número de teléfono" />
-                          </div>
-
+                            <input matInput formControlName="phone" type="text" [mask]="maskPhone" [placeholder]="placeHolderPhone" />
                           <mat-error class="Error">
                             <ng-container *ngIf="entrenadorForm.get('phone')?.hasError('required')">
                               *Campo requerido
                             </ng-container>
-                            <ng-container *ngIf="entrenadorForm.get('phone')?.hasError('pattern')">
-                              *Campo inválido
+                            <ng-container *ngIf="hasErrorRegexp('phone')">
+                              El formato del teléfono no es válido.
                             </ng-container>
                           </mat-error>
                         </mat-form-field>

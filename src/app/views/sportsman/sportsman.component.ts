@@ -92,7 +92,7 @@ export class SportsmanComponent implements OnInit {
   viewImage(nameImg: string | undefined): void {
     if (nameImg && nameImg !== 'Default.png') {
       const imageLoader = new ImageLoader(this.imagenFuntionsService$);
-      imageLoader.loadImage(nameImg, (imageUrl) => {
+      imageLoader.loadImage(nameImg, false, (imageUrl) => {
         this.selectedImageURL = imageUrl;
       });
     }
@@ -131,7 +131,7 @@ export class SportsmanComponent implements OnInit {
       };
     }
 
-    if (action === 'verIndicadores') {
+    if (action === 'verEjercicios') {
       this.router.navigate(['sportsman/view'], {
         queryParams: { id: data.ID },
       });

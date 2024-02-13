@@ -23,6 +23,7 @@ export class AsignDeportistaComponent implements OnInit {
   public isLarge: boolean = false;
   public imageUrl: string = '';
   public dataSportman: Sportsman[] = [];
+  public dataSportmanFilter: Sportsman[] = [];
   public sportSelect: Sportsman[] = [];
   public exerciesSelect: Ejercicio[] = [];
   public imageDefault: string = 'default.png';
@@ -40,11 +41,19 @@ export class AsignDeportistaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSporman();
+    this.subscribeFilter();
+  }
+
+  subscribeFilter(): void {
+    this.textForm.get('textInput')?.valueChanges.subscribe(() => {
+      this.sendDataFilter();
+    });
   }
 
   getSporman(): void {
     const { sportman, exercise } = this.data;
     this.dataSportman = sportman;
+    this.dataSportmanFilter = sportman;
     this.exerciesSelect = exercise;
   }
   getActionEvent(event: ActionResponse): void {
@@ -68,7 +77,7 @@ export class AsignDeportistaComponent implements OnInit {
       ) {
         const imageLoader = new ImageLoader(this.imagenFuntionsService$);
         const imagePromise = new Promise<void>((resolve) => {
-          imageLoader.loadImage(image, (imageUrl) => {
+          imageLoader.loadImage(image, false, (imageUrl) => {
             this.sportSelect[index].image = imageUrl;
             resolve();
           });
@@ -83,22 +92,10 @@ export class AsignDeportistaComponent implements OnInit {
   isImgBase = (image: string): boolean =>
     image.includes('data:image') ? true : false;
 
-  onSubmit(): void {
-    if (this.textForm.valid) {
-      this.sendDataFilter();
-      this.textForm.reset();
-    }
-  }
-  sendDataFilter(): void {}
-  otherOnSubmit(): void {
-    if (this.textForm.valid) {
-      this.sendDataFilter();
-      this.clearInput = true;
-    }
-  }
-  clearFilterAction(): void {
-    this.textForm.reset();
-    this.clearInput = false;
+  sendDataFilter(): void {
+    this.dataSportmanFilter = this.dataSportman.filter((item: Sportsman) =>
+      item.name.includes(this.textForm.get('textInput')?.value)
+    );
   }
 
   largeModal(): void {
