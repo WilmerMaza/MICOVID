@@ -73,6 +73,7 @@ export interface Microciclo {
   createdAt: Date;
   updatedAt: Date;
   MacrocicloID: string;
+  ID?: string;
 }
 
 export interface Macrociclo {

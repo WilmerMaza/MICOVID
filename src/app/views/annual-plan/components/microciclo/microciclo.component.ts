@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { DinamicService } from 'src/app/shared/dinamic.service';
 import { ActionResponse } from 'src/app/shared/model/Response/DefaultResponse';
 import { Etapas } from 'src/app/views/Complementos/model/interfaceComplementos';
 import { ComplementosService } from 'src/app/views/Complementos/services/complementos.service';
 import { AnnualPlanService } from '../../Services/annual-plan.service';
 import { columnsEntrenadorValue } from '../../models/columnsTableMicro';
-import { Data } from '../../models/eventsModel';
 import { Item, Macrociclo, Microciclo } from '../../models/interfaceFormPlan';
 import { AddAssingEtapaComponent } from '../dialogComponents/addAssingEtapa/add-assingetapa.component';
 
@@ -21,12 +21,15 @@ export class MicrocicloComponent implements OnInit {
   public columns = columnsEntrenadorValue;
   public dataSource: Microciclo[];
   public showViewTareas: any = { isVisible: false };
+  public masiveEtapa: boolean = false;
+  private microSelect: Microciclo[] = [];
 
   constructor(
     private route$: ActivatedRoute,
     private service$: AnnualPlanService,
     private complementos$: ComplementosService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private serviceDinamic$: DinamicService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +41,9 @@ export class MicrocicloComponent implements OnInit {
   }
 
   getAllInfoModule(): void {
+    this.microSelect = [];
+    this.masiveEtapa = false;
+
     this.service$
       .getAllMicrociclos(this.routeId)
       .subscribe((data: Item<Macrociclo>) => {
@@ -55,18 +61,22 @@ export class MicrocicloComponent implements OnInit {
       data,
     } = event;
 
-
     switch (action) {
       case 'ver':
         this.showViewTareas = {
           isVisible: true,
           data: data,
-          nameMacro: this.nameMacro
+          nameMacro: this.nameMacro,
         };
         break;
       case 'asignar':
+        this.microSelect.push(data);
+        this.assingEtapa(this.microSelect);
+        break;
 
-      this.assingEtapa(data)
+      case 'Select':
+        this.masiveEtapa = data.length > 0 ? true : false;
+        this.microSelect = data;
         break;
 
       default:
@@ -74,17 +84,21 @@ export class MicrocicloComponent implements OnInit {
     }
   }
 
-  assingEtapa(data: Data): void {
-    this.complementos$.getEtapas().subscribe((res: Etapas[])  => {
+  assingEtapaAction(): void {
+    this.assingEtapa(this.microSelect);
+  }
+
+  assingEtapa(data: Microciclo[]): void {
+    this.complementos$.getEtapas().subscribe((res: Etapas[]) => {
       const request = {
         etapas: res,
-        data: data
+        data: data,
       };
 
       let dialogRef = this.dialog.open(AddAssingEtapaComponent, {
         width: '384px',
         height: '200px',
-        data: request
+        data: request,
       });
       dialogRef.afterClosed().subscribe(() => {
         this.getAllInfoModule();
@@ -95,7 +109,7 @@ export class MicrocicloComponent implements OnInit {
   goBack(): void {
     window.history.back();
   }
-  closeCardTarea(event:boolean):void{
-    this.showViewTareas = {isVisible: event}
+  closeCardTarea(event: boolean): void {
+    this.showViewTareas = { isVisible: event };
   }
 }

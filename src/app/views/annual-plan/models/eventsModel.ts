@@ -1,4 +1,5 @@
 import { Etapas } from "../../Complementos/model/interfaceComplementos";
+import { Microciclo } from "./interfaceFormPlan";
 
 export interface events {
   title: string;
@@ -64,7 +65,7 @@ export interface dataModelAssing {
 
 export interface dataModelAssingEtapa {
   etapas: Etapas[];
-  data: Data,
+  data:  Microciclo[],
 }
 
 

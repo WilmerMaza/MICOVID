@@ -36,7 +36,7 @@ export interface requestTareasAssing{
 }
 
 export interface requestEtapaAssing {
-  MicrocicloID: string;
+  MicrocicloID?: string;
   MacrocicloID: string;
   EtapaID: string;
 }

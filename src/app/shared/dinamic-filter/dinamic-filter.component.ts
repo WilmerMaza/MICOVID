@@ -41,8 +41,7 @@ export class DinamicFilterComponent implements AfterViewInit {
   @Input('nameAdd') set nameAddDinamic(value: string) {
     this.zone.runOutsideAngular(() => {
       this.zone.run(() => {
-        this.nameAdd = value;
-        this.cdr.detectChanges();
+        this.nameAdd = value;     
       });
     });
   }

@@ -86,7 +86,7 @@ export class AnnualPlanService {
     return this.micovid$.post(endpoint, data);
   }
 
-  assingEtapa(data: requestEtapaAssing): Observable<resposeCreate> {
+  assingEtapa(data: requestEtapaAssing[]): Observable<resposeCreate> {
     const endpoint = '/Etapa/AssingEtapa';
     return this.micovid$.put(endpoint, data);
   }

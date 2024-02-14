@@ -14,7 +14,7 @@
       <mat-icon>arrow_back</mat-icon>
     </div>
   </div>
-  <app-dinamic-table *ngIf="showIndicators.length === 0; else containerLevels" [isCheckBox]="false" [columns]="columns"
+  <app-dinamic-table *ngIf="viewTableIndicador; else containerLevels" [isCheckBox]="false" [columns]="columns"
     [dataSource]="dataEjerc" (actionEvent)="getActionEvent($event)">
   </app-dinamic-table>
 
@@ -79,9 +79,6 @@
     </div>
     <ng-template #templateLevel>
       <div id="content-info-levels">
-        <div class="button-back">
-          <button (click)="outLevel()">Atras</button>
-        </div>
         <div class="header-level">
           <div class="name-exercicies">
             {{nameEjerc | titlecase}}
