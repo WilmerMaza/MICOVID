@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import {
   eventsPaises,
   listInfo,
@@ -72,6 +72,10 @@ export class CreateSportsmanComponent implements OnInit {
   public imageSelected: boolean = false;
   public selectedFiles: File;
   public diciplinasList: Diciplinas[] = [];
+  public prefijoPhone:string = "+57";
+  public maskPhone:string = "00 0000 0000"; 
+  public placeHolderPhone: string = "+57 Colombia";
+  private validateRegex: RegExp;
 
   constructor(
     private sporsmanService$: SportsmanService,
@@ -86,6 +90,7 @@ export class CreateSportsmanComponent implements OnInit {
     this.generos = gender;
     this.typeIdentification = typeIdentification;
     this.getDiciplinas();
+    this.generarExpresionRegular(this.maskPhone);
   }
   closeCard(): void {
     this.showViewSportsman = false;
@@ -204,9 +209,42 @@ export class CreateSportsmanComponent implements OnInit {
     this.activeDepto = true;
     this.sportsmansForm.get('department')?.enable();
     const { value } = event;
+    this.getMaskPhonecountry(value);
     this.listEstados = ESTADOSCONST.find(
       (item: Iestados) => item.country_name === value
     )?.estados;
+  }
+
+  hasErrorRegexp(controlName: string):boolean {
+    return !this.validateRegex?.test(this.sportsmansForm.get(controlName)?.value);
+  }
+
+  getMaskPhonecountry(country: string) : void {
+    PAISESCONST.forEach((value: Ipaises) => {
+      const { country_name, country_phone_code, mask_phone_code } = value;
+      if(country_name === country){
+        this.generarExpresionRegular(mask_phone_code);
+        this.placeHolderPhone = `${country_phone_code} ${country_name}`;
+        this.prefijoPhone = country_phone_code;
+        this.maskPhone = mask_phone_code;
+      }
+    })
+  }
+
+  generarExpresionRegular(mask: string):void{
+    // Escapar caracteres especiales en la máscara
+    const escapedMask = mask.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    // Reemplazar '0' con '\d'
+    const regexString = escapedMask.replace(/0/g, '\\d');
+
+    const withoutSpace = regexString.replace(/\s/g, '')
+    // Construir la expresión regular completa
+    const regex = new RegExp('^' + withoutSpace + '$');
+    
+    this.validateRegex = regex;
+    this.sportsmansForm.get('phone')?.addValidators(Validators.pattern(regex));
+    this.sportsmansForm.get('phone')?.updateValueAndValidity();
   }
 
   viewImage(nameImg: string | undefined): void {
