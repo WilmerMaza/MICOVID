@@ -1,19 +1,20 @@
 import { Component, Inject } from '@angular/core';
 import {
-    FormControl,
-    FormGroup,
-    Validators as validForm,
+  FormControl,
+  FormGroup,
+  Validators as validForm,
 } from '@angular/forms';
 import {
-    MAT_DIALOG_DATA,
-    MatDialog,
-    MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
 } from '@angular/material/dialog';
 
 import { DynamicError } from 'src/app/shared/model/filterModel';
+import { Validators } from 'src/app/utils/Validators';
 import { Etapas } from 'src/app/views/Complementos/model/interfaceComplementos';
 import { Toast } from '../../../../../utils/alert_Toast';
-import { resposeCreate } from '../../../../Entrenador/Model/entrenadorModel';
+import { requestEtapaAssing, resposeCreate } from '../../../../Entrenador/Model/entrenadorModel';
 import { AnnualPlanService } from '../../../Services/annual-plan.service';
 import { dataModelAssingEtapa } from '../../../models/eventsModel';
 
@@ -44,31 +45,34 @@ export class AddAssingEtapaComponent {
     this.setValueForm();
   }
 
-
   setValueForm(): void {
     const { etapas } = this.data;
-    this.EtapasList = etapas;
+    this.EtapasList = Validators.isNullOrUndefined(etapas) ? [] : etapas;
   }
 
   assingEtapa(): void {
-
     if (!this.addEtapaForm.valid) {
-      this.alertTrigger()
-      return
+      this.alertTrigger();
+      return;
     }
 
-    const { data:{ID,MacrocicloID} } = this.data;
     const {
-      value: { etapa},
+      value: { etapa },
     } = this.addEtapaForm;
 
-    const request = {
-      MicrocicloID : ID,
-      MacrocicloID,
-      EtapaID:etapa
-    };
+    const { data } = this.data;
 
-    this.annualPlanService$.assingEtapa(request).subscribe(
+    let assing: requestEtapaAssing[] = [];
+    data.forEach((microciclo) => {
+      const { ID, MacrocicloID } = microciclo;
+      assing.push({
+        MicrocicloID: ID,
+        MacrocicloID,
+        EtapaID: etapa,
+      });
+    });
+
+    this.annualPlanService$.assingEtapa(assing).subscribe(
       (data: resposeCreate) => {
         Toast.fire({
           icon: 'success',

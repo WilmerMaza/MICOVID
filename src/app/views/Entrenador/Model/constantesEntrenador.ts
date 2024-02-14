@@ -24,6 +24,11 @@ export const entradorNivelEducativo: Array<listInfo> = [
     value: 'Profesional',
     code: 'profesional',
   },
+  
+  {
+    value: 'Especialista',
+    code: 'especialista',
+  },
   {
     value: 'Máster',
     code: 'master',

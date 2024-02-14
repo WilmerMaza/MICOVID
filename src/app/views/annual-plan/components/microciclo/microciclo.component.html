@@ -1,17 +1,16 @@
 <div id="content_micro">
     <div class="content_body">
-        <div class="content_header_micro" (click)="goBack()" *ngIf="!showViewTareas.isVisible">
-            <div>
+
+        <div class="content_header_micro" *ngIf="!showViewTareas.isVisible">
+            <div class="header_micro" [ngClass]="{'header_microng':!masiveEtapa}" (click)="goBack()">
                 {{nameMacro}}
             </div>
+
+            <div class="header_asign" *ngIf="masiveEtapa" (click)="assingEtapaAction()"> Asignar Etapa</div>
         </div>
         <app-tareasxmicro [viewActive]="showViewTareas" (closeCardView)="closeCardTarea($event)"></app-tareasxmicro>
-        <app-dinamic-table
-     
-        [columns]="columns"
-        [dataSource]="dataSource"
-        (actionEvent)="getActionEvent($event)"
-        ></app-dinamic-table>
+        <app-dinamic-table [isCheckBox]="true" [columns]="columns" [dataSource]="dataSource"
+            (actionEvent)="getActionEvent($event)"></app-dinamic-table>
     </div>
 
 </div>

@@ -128,9 +128,8 @@ export class DinamicTableComponent implements AfterViewInit {
   }
 
   dataActionCheck(action: any): void {
-
     const actionReturn: ActionResponse = {
-      action,
+      action: { action: 'Select' },
       data: this.selection.selected,
     };
     this.actionEvent.emit(actionReturn);

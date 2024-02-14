@@ -36,6 +36,7 @@ export class ViewIndicatorsComponent implements OnInit {
   public showIndicators: Item[] = [];
   public showLevels: boolean = false;
   public nameEjerc: string;
+  public viewTableIndicador: boolean = true;
 
   constructor(
     private service$: SportsmanService,
@@ -90,18 +91,21 @@ export class ViewIndicatorsComponent implements OnInit {
       this.showIndicators = this.indicadores.filter(
         (item: Item) => item.EjercicioID === data.ID
       );
+
+      this.viewTableIndicador = this.showIndicators.length === 0 ? true : false;
       this.nameEjerc = data.Name;
     }
   }
 
   goBack(): void {
-    window.history.back();
-  }
-
-  cerrar(): void {
-    this.showIndicators = [];
-    this.indicadores = [];
-    this.getDataIndicators(this.routeId);
+    if (!this.viewTableIndicador && !this.showLevels) {
+      this.viewTableIndicador = true;
+      return;
+    } else if (!this.viewTableIndicador && this.showLevels) {
+      this.showLevels = false;
+    } else {
+      window.history.back();
+    }
   }
 
   relativo(items: string): number {
@@ -129,10 +133,6 @@ export class ViewIndicatorsComponent implements OnInit {
     this.niveles = levels;
     this.nameEjerc = name;
     this.showLevels = true;
-  }
-
-  outLevel(): void {
-    this.showLevels = false;
   }
 
   actionFunction(): void {
