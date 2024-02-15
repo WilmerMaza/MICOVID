@@ -26,6 +26,7 @@ import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service'
 import {
   NormaliceLowerValidators,
   Validators as Validar,
+  regExps,
 } from 'src/app/utils/Validators';
 import { Toast } from 'src/app/utils/alert_Toast';
 import { ImageLoader } from 'src/app/utils/readerBlodImg';
@@ -233,7 +234,7 @@ export class CreateSportsmanComponent implements OnInit {
 
   generarExpresionRegular(mask: string):void{
     // Escapar caracteres especiales en la máscara
-    const escapedMask = mask.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const escapedMask = mask.replace(regExps['escapeCaracteresEspeciales'], '\\$&');
 
     // Reemplazar '0' con '\d'
     const regexString = escapedMask.replace(/0/g, '\\d');
