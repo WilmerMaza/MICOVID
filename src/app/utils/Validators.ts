@@ -26,6 +26,7 @@ export const regExps: { [key: string]: RegExp } = {
   numberWDecimal: /^(\d*|(\d+))(\.\d+)?$/,
   telefonoRegex: /^\d{8,15}$/,
   regexcomma: /,/g,
+  escapeCaracteresEspeciales:/[-\/\\^$*+?.()|[\]{}]/g
 };
 export class Validators {
   static isNullOrUndefined<T>(
