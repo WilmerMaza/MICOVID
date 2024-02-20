@@ -68,6 +68,7 @@ export class ViewIndicatorsComponent implements OnInit {
           itemEjercicio.SubGrupoAbbreviation = SubGrupo.abreviatura;
           itemEjercicio.GrupoAbbreviation = Grupo.Abbreviation;
           this.indicadores = this.indicadores.concat(Indicadores);
+          itemEjercicio.HasIndicators = itemEjercicio.Indicadores.length > 0;
           this.showModule = true;
         });
         this.viewImage(this.dataSportman.image);
@@ -85,15 +86,22 @@ export class ViewIndicatorsComponent implements OnInit {
   }
 
   getActionEvent(event: ActionResponse): void {
-    const { action, data } = event;
-
-    if (action === 'ver indicador') {
+    const { action : {action}, data } = event;
+    
+    switch (action) {
+      case 'ver indicador':
       this.showIndicators = this.indicadores.filter(
         (item: Item) => item.EjercicioID === data.ID
       );
 
       this.viewTableIndicador = this.showIndicators.length === 0 ? true : false;
       this.nameEjerc = data.Name;
+      break;
+      case 'ver rubrica':
+        this.redirect$.navigate(['sportsman/rubrica'], {
+          queryParams: { id: this.routeId, ejercicio: data.ID},
+        });
+        break;
     }
   }
 
@@ -135,13 +143,13 @@ export class ViewIndicatorsComponent implements OnInit {
     this.showLevels = true;
   }
 
-  actionFunction(): void {
+  actionFunction(redirect: string): void {
     const sportmanData: Sportsman = {
       ...this.dataSportman,
       sportInstition: '',
     };
     this.service$.setSportmanInfoRedirect(sportmanData);
 
-    this.redirect$.navigate(['/sportsman']);
+    this.redirect$.navigate([redirect]);
   }
 }

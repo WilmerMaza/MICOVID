@@ -20,6 +20,7 @@ export interface EjercicioIndicadores {
   SubGrupoAbbreviation: string;
   GrupoAbbreviation: string;
   Indicadores: Item[];
+  HasIndicators: boolean;
 }
 export interface SubGrupo {
   abreviatura: string;
@@ -111,10 +112,17 @@ export const columnsIndValue = [
     type: 'text',
   },
   {
-    displayname: 'noName',
+    displayname: 'acción',
     estado: true,
-    type: 'button indicador',
-    menu: [],
+    type: 'action',
+    menu: [{
+      action: 'Menu',
+      text: 'Ver',
+      menu: [
+        { action: 'ver indicador', text: 'Indicadores' },
+        { action: 'ver rubrica', text: 'Rubrica' },
+      ]
+    }]
   },
 ];
 

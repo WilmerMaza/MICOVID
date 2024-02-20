@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MicoviApiService } from 'src/app/services/micovi-api.service';
 import { DynamicObject } from 'src/app/shared/model/filterModel';
-import { Sportsman } from '../../models/DataSportsman';
+import { ICalificacion, Sportsman } from '../../models/DataSportsman';
 import { HistorialCategory } from '../../models/HistorialCategoryModel';
 import { SuccessResponse } from '../../models/SuccessResponse';
 import { categoryModel } from '../../models/categoryModel';
@@ -58,6 +58,16 @@ export class SportsmanService {
 
   getAlldataIndicators(ID: string): Observable<responseAssing>{
     const url = `/indicators/get-indicators?id=${ID}`;
+    return this.micovid$.get(url);
+  }
+
+  enviarDataCalificacionFinal(data: {[key: string]: number | string}):  Observable<SuccessResponse>{
+    const url = `/sportMan/calificacion`;
+    return this.micovid$.post(url, data);
+  }
+
+  getAllCalifications(sportmanid: string, ejercicioid: string): Observable<ICalificacion[]>{
+    const url = `/sportMan/calificacion?SportsManID=${sportmanid}&EjercicioID=${ejercicioid}`;
     return this.micovid$.get(url);
   }
   

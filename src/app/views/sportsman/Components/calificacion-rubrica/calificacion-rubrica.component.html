@@ -1,0 +1,61 @@
+<div id="contenedor-de-calificacion" #contenedor_de_calificacion>
+  <div *ngIf="showInfo" class="contenedor-informacion">
+    <div class="data-sportman">
+      <div *ngIf="contenedor_de_calificacion.offsetWidth >= 500" class="informacion-inicial">
+        <h3>RUBRICA</h3>
+        <h5>{{ ejercicio?.Name }}</h5>
+      </div>
+      <div *ngIf="contenedor_de_calificacion.offsetWidth >= 750" class="informacion-inicial-2">
+        <p>{{ infoSportman.name }}</p>
+        <p>
+          {{ infoSportman.typeIdentification | uppercase }}
+          {{ infoSportman.identification }}
+        </p>
+      </div>
+      <div class="informacion-inicial-3">
+        <p>Repetición</p>
+        <div class="contador-repeticiones">
+            <div class="ir-atras" (click)="repeticiones > 1 ? back_function(): null"><mat-icon>keyboard_arrow_left</mat-icon></div>
+            <div class="numerador">{{repeticiones}}</div>
+            <div class="ir-delante" (click)="next_function()"><mat-icon>keyboard_arrow_right</mat-icon></div>
+        </div>
+      </div>
+      <div class="boton-enviar">
+        <button class="button-send" (click)="enviarCalificacion()">Enviar</button>
+      </div>
+    </div>
+    <div class="x-back" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </div>
+  </div>
+  <div class="contenedor-tablero-calificador">
+    <div class="contenedor-indicadores" *ngFor="let item of indicadores">
+      {{ item.IndicatorsName }}
+
+      <div
+        class="niveles"
+        *ngFor="let level of obtenerArregloIndicador(item); let ind = index"
+        [ngClass]="{
+          estiloSelector: level !== undefined,
+          nivelSeleccionado:
+            level !== undefined ? includesData(level.ID) : false
+        }"
+        [matTooltip]="level !== undefined ? level.LevelName : ''"
+        matTooltipPosition="above"
+        (click)="
+          level !== undefined
+            ? seleccionarNivel(level, item.IndicatorsName, ind + 1)
+            : null
+        "
+      >
+        <div *ngIf="level !== undefined">
+          {{ ind + 1 }}
+        </div>
+      </div>
+
+      <div class="panel-calificacion">
+        Calificación: {{ obtenerCalificacion_Columna(item.IndicatorsName) }}
+      </div>
+    </div>
+  </div>
+</div>

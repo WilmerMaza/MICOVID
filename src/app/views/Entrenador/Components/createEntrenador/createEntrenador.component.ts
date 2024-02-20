@@ -191,7 +191,8 @@ export class CreateEntrenadorComponent implements OnInit {
     const regex = new RegExp('^' + withoutSpace + '$');
     
     this.validateRegex = regex;
-    this.entrenadorForm.get('phone')?.addValidators(Validators.pattern(regex));
+    this.entrenadorForm.get('phone')?.clearValidators();
+    this.entrenadorForm.get('phone')?.addValidators([Validators.required, Validators.pattern(regex)])
     this.entrenadorForm.get('phone')?.updateValueAndValidity();
   }
 

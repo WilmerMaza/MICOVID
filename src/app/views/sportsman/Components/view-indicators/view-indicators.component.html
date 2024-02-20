@@ -2,13 +2,13 @@
   <div *ngIf="showModule" class="info-sportman">
     <div class="content-image">
       <img
-        [src]="imageUrl?imageUrl:'https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7'"
+        [src]="imageUrl !== ''?imageUrl:'https://th.bing.com/th/id/OIP._KbLkm3HqL6uLZbv_6y8ZQAAAA?w=178&h=180&c=7&r=0&o=5&pid=1.7'"
         alt="imagen del deportista">
     </div>
     <div class="data-sportman">
       <h1>{{dataSportman.name}}</h1>
       <p>CC {{dataSportman.identification}}</p>
-      <button (click)="actionFunction()">ver tarjeta de deportista</button>
+      <button (click)="actionFunction('/sportsman')">ver tarjeta de deportista</button>
     </div>
     <div class="x-back" (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>

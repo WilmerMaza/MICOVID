@@ -7,7 +7,6 @@ export class sportsmanFormModel {
       name: new FormControl(null, [Validators.required]),
       identification: new FormControl(null, [
         Validators.required,
-        Validators.pattern(regExps['number']),
       ]),
       typeIdentification: new FormControl(null, [Validators.required]),
       birtDate: new FormControl(null, [Validators.required]),
@@ -36,8 +35,7 @@ export class sportsmanFormModel {
         Validators.pattern(regExps['emailComplet']),
       ]),
       phone: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(regExps['telefonoRegex']),
+        Validators.required
       ]),
       image: new FormControl(null),
     });
