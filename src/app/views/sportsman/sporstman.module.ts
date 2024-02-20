@@ -11,6 +11,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import {MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { ViewIndicatorsComponent } from './Components/view-indicators/view-indicators.component';
 import { SwiperModule } from 'swiper/angular';
+import { ViewRubricaComponent } from './Components/view-rubrica/view-rubrica.component';
+import { CalificacionRubricaComponent } from './Components/calificacion-rubrica/calificacion-rubrica.component';
 
 @NgModule({
   imports: [
@@ -30,6 +32,8 @@ import { SwiperModule } from 'swiper/angular';
     SportsmanComponent,
     CreateSportsmanComponent,
     ViewIndicatorsComponent,
+    ViewRubricaComponent,
+    CalificacionRubricaComponent,
 
   ],
   bootstrap: [CreateSportsmanComponent],

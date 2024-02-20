@@ -244,7 +244,8 @@ export class CreateSportsmanComponent implements OnInit {
     const regex = new RegExp('^' + withoutSpace + '$');
     
     this.validateRegex = regex;
-    this.sportsmansForm.get('phone')?.addValidators(Validators.pattern(regex));
+    this.sportsmansForm.get('phone')?.clearValidators();
+    this.sportsmansForm.get('phone')?.addValidators([Validators.required, Validators.pattern(regex)])
     this.sportsmansForm.get('phone')?.updateValueAndValidity();
   }
 

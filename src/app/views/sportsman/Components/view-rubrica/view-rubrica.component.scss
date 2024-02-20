@@ -1,0 +1,98 @@
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+@import "swiper/css/effect-coverflow";
+
+#panel-clasificacion-rubrica{
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    .info-sportman {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 20px;
+      padding: 20px;
+      padding-top: 40px;
+      margin-left: 30px;
+      position: relative;
+      .content-image {
+        width: 134px;
+        height: 134px;
+        flex-shrink: 0;
+        fill: rgba(217, 217, 217, 0);
+        stroke-width: 2.436px;
+        stroke: #0c4cc8;
+        filter: drop-shadow(
+          0px 3.2484846115112305px 3.2484846115112305px rgba(0, 0, 0, 0.25)
+        );
+        border-radius: 50%;
+        border: 2px solid #0c4cc8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        img {
+          text-align: center;
+          width: 134px;
+          height: 134px;
+        }
+      }
+      .data-sportman {
+        font-weight: 500;
+        color: #0c4cc8;
+        .content-cc-button{
+          display: flex;
+          gap: 15px;
+        }
+        button {
+          color: #fff;
+          border: none;
+          border-radius: 15px;
+          background-color: #0c4cc8;
+          padding: 0 10px;
+          box-shadow: 0 0 3px gray;
+        }
+        button:active {
+          box-shadow: 0 0 0px 0px gray;
+        }
+      }
+      .x-back {
+        position: absolute;
+        top: 10px;
+        left: -12px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        color: #0c4cc8;
+        border: solid 2px;
+      }
+      .x-back:active {
+        background-color: darkgray;
+      }
+      .button-clacificar {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        button {
+          color: #fff;
+          border: none;
+          border-radius: 15px;
+          background-color: #73F237;
+          padding: 0 40px;
+          box-shadow: 0 0 3px gray;
+        }
+        button:active {
+          box-shadow: 0 0 0px 0px gray;
+        }
+      }
+      h3{
+        font-weight: 600;
+      }
+    }
+}

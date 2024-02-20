@@ -1,3 +1,5 @@
+import { EjercicioIndicadores } from "../sportsman/Models/indicatorsModel";
+
 export interface Sportsman {
   ID: string;
   name: string;
@@ -22,6 +24,7 @@ export interface Sportsman {
   Diciplina?: Diciplina;
   SportsInstitution?: SportsInstitution;
   age?:string;
+  Ejercicios?:EjercicioIndicadores[];
 }
 
 export interface Diciplina {
@@ -30,4 +33,14 @@ export interface Diciplina {
 
 export interface SportsInstitution {
   institutionName: string;
+}
+
+export interface ICalificacion {
+  EjercicioID: string;
+  ID: string;
+  SportsManID: string;
+  maximo: number;
+  minimo: number;
+  promedio: number;
+  consecutivo?: number;
 }
