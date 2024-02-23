@@ -13,9 +13,7 @@
     flex-direction: row;
     align-items: center;
     gap: 40px;
-    margin-bottom: 20px;
     padding: 20px;
-    padding-top: 40px;
     margin-left: 30px;
     position: relative;
     color: #0c4cc8;
@@ -71,8 +69,8 @@
     }
     .x-back {
       position: absolute;
-      top: 10px;
-      left: -12px;
+      top: 20px;
+      left: -30px;
       width: 32px;
       height: 32px;
       display: flex;
@@ -93,18 +91,54 @@
     margin: 0;
     border: 2px solid #0c4cc8;
     padding: 0;
-
+    overflow: auto;
     .contenedor-indicadores {
       text-align: center;
       width: -webkit-fill-available;
-
+      .header-indicadores{
+        font-size: 17px;
+        font-weight: 700;
+        color: #0c4cc8;
+      }
       .niveles {
-        height: 120px;
+        min-height: 130px;
         font-size: 80px;
         font-weight: 700;
         color: #a5c7e5;
         border: 2px solid #8ba6e18f;
         text-shadow: 1px 1px gray;
+      }
+
+      .niveles:not(.big-tooltip) .big-tooltip {
+        position: absolute;
+        font-size: 17px;
+        top: 80px;
+        right: 20px;
+        width: 300px;
+        overflow: auto;
+        border-radius: 18px;
+        background-color: white;
+        display: none;
+        padding: 10px;
+        text-align: start;
+        box-shadow: 2px 2px 6px rgba(128, 128, 128, 0.76);
+        p {
+          word-wrap: break-word;
+          font-weight: 400;
+          font-size: 16px;
+          color: black;
+          text-shadow: none;
+        }
+        h4 {
+          font-weight: 700;
+          color: #0c4cc8;
+          font-size: 35px;
+          text-shadow: none;
+        }
+      }
+
+      .niveles:hover  .big-tooltip {
+        display: block;
       }
 
       .estiloSelector:hover {

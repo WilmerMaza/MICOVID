@@ -156,7 +156,7 @@ export class CalificacionRubricaComponent implements OnInit {
       min = Math.min(...arregloCantidades);
       max = Math.max(...arregloCantidades);
       let sumaFull = arregloCantidades.reduce((a, b) => a + b);
-      promedio = sumaFull / arregloCantidades.length
+      promedio = Number((sumaFull / arregloCantidades.length).toFixed(3))
     }
 
     if(!min && !max && !promedio) this.goBack();
