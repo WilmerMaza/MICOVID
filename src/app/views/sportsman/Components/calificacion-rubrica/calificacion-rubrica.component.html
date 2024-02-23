@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="boton-enviar">
-        <button class="button-send" (click)="enviarCalificacion()">Enviar</button>
+        <button class="button-send" (click)="enviarCalificacion()">Terminar</button>
       </div>
     </div>
     <div class="x-back" (click)="goBack()">
@@ -30,7 +30,7 @@
   </div>
   <div class="contenedor-tablero-calificador">
     <div class="contenedor-indicadores" *ngFor="let item of indicadores">
-      {{ item.IndicatorsName }}
+      <span class="header-indicadores">{{ item.IndicatorsName }}</span>
 
       <div
         class="niveles"
@@ -40,8 +40,6 @@
           nivelSeleccionado:
             level !== undefined ? includesData(level.ID) : false
         }"
-        [matTooltip]="level !== undefined ? level.LevelName : ''"
-        matTooltipPosition="above"
         (click)="
           level !== undefined
             ? seleccionarNivel(level, item.IndicatorsName, ind + 1)
@@ -50,6 +48,10 @@
       >
         <div *ngIf="level !== undefined">
           {{ ind + 1 }}
+          <div class="big-tooltip">
+            <h4>{{level.LevelName}}</h4>
+            <p>{{level.Description}}</p>
+          </div>
         </div>
       </div>
 
