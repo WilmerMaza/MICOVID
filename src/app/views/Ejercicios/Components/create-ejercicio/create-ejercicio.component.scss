@@ -230,33 +230,34 @@
 #createEjercicio {
   background: white;
   margin: 10px;
-  width: calc(100% - 40px);
-  height: 100%;
+  height: calc(100vh - 13vh);
   border-radius: 15px;
   font-family: inria sans;
+  position: relative;
+  overflow: hidden;
 
   .iconVolver {
     width: 35px;
-    float: right;
+    float: left;
     position: relative;
     color: white;
     border: 3px solid white;
     border-radius: 20px;
     height: 35px;
-    margin: 10px 10px 0px 0px;
+    margin: 10px 10px 0px 10px;
     display: flex;
     background-color: #0c4cc8;
     align-items: center;
   }
   .content_fondo {
-        width: 741px;
-        height: 100%;
-        background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        right: -300px;
-      }
+    width: 40%;
+    height: 100%;
+    background-image: url(../../../../../assets/images/fondoCrearEjercicio.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left:68.5%
+    }
 
   .content_form_createEjercicio {
     .title_createEjercicio {
@@ -266,13 +267,14 @@
       margin: 2px 47px;
       top: 20px;
       color: #0c4cc8;
-      font-size: 2.5em;
+      font-size: 3.1em;
       font-weight: 700;
       height: 80px;
     }
 
     .botonCrearContent {
       text-align: center;
+      width: 70%;
       height: 64px;
 
       .botonCrear {
@@ -281,17 +283,19 @@
         font-size: 20px;
         font-weight: 500;
         width: 250px;
-        border-radius: 10px;
+        border-radius: 15px;
         color: #ffffffff;
         margin: 10px;
+        height: 30px;
+        box-shadow: 10px 10px 38px -7px rgba(0, 0, 0, 0.34);
       }
     }
 
     .forms-create-Ejercicio {
       background: #ffff;
-      width: auto;
-      height: 100%;
-      margin: 10px 75px;
+      width: 60%;
+      height: 90%;
+      margin: 60px 0 10px 60px;
 
       .form-container {
         display: grid;
@@ -307,6 +311,14 @@
           height: 30px;
         }
 
+        .rowEjercicio {
+          font-weight: 600;
+          margin: 0px;
+        }
+        .row-select{
+          font-weight: 600;
+          margin: 0px;
+        }
         .descripition {
           height: 50px !important;
           width: 100%;
