@@ -5,11 +5,7 @@
   overflow: hidden;
   .content {
     width: 100%;
-<<<<<<< HEAD
-    height: calc(100vh - 11vh);
-=======
-    height: calc(100vh - 15vh);
->>>>>>> eb400c0286a1f5098a387d2b008bb3b41cd89b38
+    height: calc(100vh - 100px);
     padding: 4%;
     background: white;
     border-radius: 15px;
@@ -17,7 +13,7 @@
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minMax(224px, 1fr));
-      gap: 50px;
+      gap: 35px;
     }
     .grid-containerCenter {
       justify-items: center !important;
@@ -80,10 +76,11 @@
 
   @media (max-width: 900px){
     .content {height: auto !important;}
-    
+      padding: 7%;
   }
-  @media (max-height: 700px){
-    .content {height: auto !important;}
+
+@media (max-height: 700px){
+    .content {height: auto;}
   }
 
 }
