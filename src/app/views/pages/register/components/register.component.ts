@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterFormModel } from 'src/app/views/pages/model/RegisterFormModel';
-import { DataRegisterModel } from 'src/app/views/pages/model/DataRegisterModel';
-import { ResponseRegister } from 'src/app/views/pages/model/ResponseLoginModel';
-import { CryptoService } from 'src/app/utils/crypto.service';
-import { RegisterService } from '../services/register.service';
-import { SessionService } from '../../services/session.service';
-import Swal from 'sweetalert2';
-import { DynamicError } from 'src/app/shared/model/filterModel';
 import { Ipaises, PAISESCONST } from 'src/app/models/PaisesConst';
-import { CARACTER } from '../../model/constRegister';
-import { NormaliceLowerValidators, Validators as Validar, regExps } from 'src/app/utils/Validators';
 import { ImagenFuntionsService } from 'src/app/services/imagen-funtions.service';
-import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
+import { DynamicError } from 'src/app/shared/model/filterModel';
 import { Toast } from 'src/app/utils/alert_Toast';
+import { CryptoService } from 'src/app/utils/crypto.service';
+import { NormaliceLowerValidators, Validators as Validar } from 'src/app/utils/Validators';
+import { responseUploadMode } from 'src/app/views/Ejercicios/Model/reponseModel';
+import { DataRegisterModel } from 'src/app/views/pages/model/DataRegisterModel';
+import { RegisterFormModel } from 'src/app/views/pages/model/RegisterFormModel';
+import { ResponseRegister } from 'src/app/views/pages/model/ResponseLoginModel';
+import Swal from 'sweetalert2';
+import { CARACTER } from '../../model/constRegister';
+import { SessionService } from '../../services/session.service';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   public selectedImageURL: string = '';
   public selectedFiles: File;
   public imageSelected: boolean = false;
-  public placeholderSelect: string = "+57 Colombia";
+  public placeholderSelect: string = "Ingrese telefono";
   public prefijoPhone:string = "+57";
   public maskPhone:string = "00 0000 0000"; 
   private validateRegex: RegExp;
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
       this.data.image = Validar.isNullOrUndefined(this.selectedFiles)
       ? 'defaul.png'
       : this.selectedFiles.name;
-      this.data.phone = `${this.prefijoPhone} ${this.data.phone?.toString()}`;
+      this.data.phone = `${this.data.phone?.toString()}`;
       this.data.character = this.data.character?.toString();
       this.data.password = dataEncript;
       NormaliceLowerValidators.normaliceData(this.data);
