@@ -68,13 +68,14 @@ export class AddCategoriaComponent implements OnInit{
         this.onNoClick();
       },
       (dataError: DynamicError<any>) => {
+
         const {
-          error: { msg },
+          error: { mjs }
         } = dataError;
 
         Toast.fire({
           icon: 'error',
-          title: msg,
+          title: mjs,
         });
       }
     );
@@ -110,7 +111,7 @@ export class AddCategoriaComponent implements OnInit{
         });
       }
     );
-    
+
   }
 
   alertTrigger(): void {
