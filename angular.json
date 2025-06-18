@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "micovi:build:production"
+              "buildTarget": "micovi:build:production"
             },
             "development": {
-              "browserTarget": "micovi:build:development"
+              "buildTarget": "micovi:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "micovi:build"
+            "buildTarget": "micovi:build"
           }
         },
         "test": {
